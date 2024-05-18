@@ -27,10 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-API_USERNAME = 'GenieUser'
-
-API_PASSWORD = 'sarzyp-vijvo5-gIbcic'
-
 # Application definition
 
 INSTALLED_APPS = [
