@@ -18,11 +18,7 @@ const BrandSelector = () => {
     const getBrands = async () => {
 		try {
 			setLoading(true);
-			const response = await axios.get('/api/search/', { 
-				params: {
-					operation: 'getBrands'
-				}
-			});
+			const response = await axios.get('/api/getBrands/');
             setFashionBrands(response.data.brands);
 		} catch (error) {
 			console.error('Error fetching data:', error);
@@ -73,7 +69,7 @@ const BrandSelector = () => {
 									return searchedBrand && brandName.startsWith(searchedBrand) && brandName !== searchedBrand;
 								})
 								.map((brand) => (
-									<div className='dropdown-row' onClick={() => onSearchBrand(brand)} key={brand.name}>
+									<div className='dropdown-row' onClick={() => onSearchBrand(brand)} key={ brand.name } value={ brand.id }>
 										{ brand.name }
 									</div>)
 								)

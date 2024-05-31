@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import BrandSelector from './components/brandSelector';
 import PriceSelector from './components/priceSelector';
 import NameSelector from './components/nameSelector';
+
 import './App.css';
+
+import axios from 'axios';
 
 const fashionBrandSelectDivName = "brandSelectDiv";
 const priceSelectDivName = "priceSelectDiv";
@@ -27,20 +30,28 @@ const App = () => {
 	const [searchedItems, setSearchedItems] = useState([]);
 
 	const getItems = () => {
-		return (!isSearching ?
-			(<div className='col' style={{ textAlign: 'center', alignContent: 'center' }}>
-				Searched items will show up here!
-			</div>) :
-			(<div className='col' style={{ textAlign: 'center', alignContent: 'center' }}>
-				temp, is searching
-			</div>)
-			
-		)
+		if (isSearching) {
+			search();
+		} else {
+			return(
+				<div className='col' style={{ textAlign: 'center', alignContent: 'center' }}>
+					Searched items will show up here!
+				</div>
+			)
+		}
 	}
 
-	const search = () => {
-		
-	}
+	const search = async () => {
+		try {
+			setIsSearching(true);
+			const response = await axios.get('/api/search/');
+            setSearchedItems(response.data)
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		} finally {
+			setIsSearching(false);
+		}
+	};
 
 	return (
 		<html>
