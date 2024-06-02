@@ -3,16 +3,16 @@ import './../App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-const ImgFromBase64 = ({ data }) => <img src={`data:image/jpeg;base64,${data}`} />
+const ImgFromBase64 = ({ data }) => <img src={`data:image/jpeg;base64,${data}`} alt="" />
 
 const getCurrencyIcon = ({ item }) => {
 	if (item.currencyType === 1) {
 		return(
-			<img className="currency-icon" src={ process.env.PUBLIC_URL + "stardollar.png"}></img>
+			<img className="currency-icon" src={ process.env.PUBLIC_URL + "stardollar.png"} alt=""></img>
 		)
 	} else {
 		return(
-			<img className="currency-icon" src={ process.env.PUBLIC_URL + "starcoin.png"}></img>
+			<img className="currency-icon" src={ process.env.PUBLIC_URL + "starcoin.png"} alt=""></img>
 		)
 	}
 }
@@ -22,7 +22,7 @@ const getBrandName = ({ item }) => {
     let idToBrandMap = {};
     let allBrandsDiv = document.getElementById(constants.divIds.ALL_BRANDS_DIV);
     let fashionBrands = JSON.parse(allBrandsDiv.innerHTML);
-    fashionBrands.map((brand) => {
+    fashionBrands.forEach(brand => {
         idToBrandMap[brand.id] = brand.name;
     });
     return idToBrandMap[brandId];
