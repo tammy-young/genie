@@ -1,41 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import BrandSelector from './components/brandSelector';
-import PriceSelector from './components/priceSelector';
-import NameSelector from './components/nameSelector';
-import ItemCard from './components/itemCard.js';
-
 import './App.css';
 import constants from './constants.js';
-
 import axios from 'axios';
 
-const priceSelectDivName = "priceSelectDiv";
-const nameSelectDivName = "nameSelectDiv";
+import ItemCard from './components/itemCard.js';
+import FilterSection from './components/filterSection.js';
+
 
 const App = () => {
-
-	// for fetching the brands
-	const [fashionBrands, setFashionBrands] = useState([]);
-	const [loading, setLoading] = useState(true);
-
+	
+	// for searching
 	const [isSearching, setIsSearching] = useState(false);
 	const [searchedItems, setSearchedItems] = useState([]);
-
-	const getBrands = async () => {
-		try {
-			setLoading(true);
-			const response = await axios.get('/api/getBrands/');
-            setFashionBrands(response.data.brands);
-		} catch (error) {
-			console.error('Error fetching data:', error);
-		} finally {
-			setLoading(false);
-		}
-	};
-
-	useEffect(() => {
-		getBrands();
-	}, []);
 
 	const getItems = () => {
 		if (searchedItems.length === 0) {
@@ -50,7 +26,7 @@ const App = () => {
 					<div id={ constants.divIds.SEARCHING_TEXT_DIV }></div>
 					{ searchedItems
 					  .map((item) => (
-						<ItemCard item={ item } fashionBrands={ fashionBrands }/>
+						<ItemCard item={ item } />
 					  )) }
 				</div>
 			)
@@ -103,48 +79,14 @@ const App = () => {
 			<body style={{ padding: '30px', top: 0, bottom: 0, right: 0, left: 0, position: 'absolute' }}>
 				<div className='row'>
 					<div className='col'>
-						<h1>Genie</h1>
+						<h2>Genie</h2>
 					</div>
 				</div>
-				<div className='row' style={{ height: '100%' }}>
-					<div className='col half-col'>
-						<h2>Fashion</h2>
-						<table className='table'>
-							<thead>
-								<tr>
-									<th style={{ position: 'relative' }}>
-										<h3 style={{ position: 'absolute', top: 15, left: 15 }}>Brands</h3>
-									</th>
-									<th>
-										<div id={ constants.divIds.FASHION_BRAND_DIV_NAME } style={{ visibility: 'visible' }}>
-											<BrandSelector fashionBrands={ fashionBrands } loading={ loading } />
-										</div>
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th>
-										<h3>Price</h3>
-									</th>
-									<th>
-										<div id={ priceSelectDivName } style={{ visibility: 'visible' }}>
-											<PriceSelector />
-										</div>
-									</th>
-								</tr>
-								<tr>
-									<th>
-										<h3>Item Name</h3>
-									</th>
-									<th>
-										<div id={ nameSelectDivName }>
-											<NameSelector />
-										</div>
-									</th>
-								</tr>
-							</tbody>
-						</table>
+				<div className='row' style={{ paddingLeft: '30px', height: '100%' }}>
+					<div className='col filter-col'>
+						<h2 style={{ paddingBottom: '30px' }}>Fashion</h2>
+						
+						<FilterSection />
 
 						<div className='row'>
 							<div style={{ paddingRight: '5px' }}>
@@ -157,6 +99,8 @@ const App = () => {
 					{ getItems() }
 					
 				</div>
+
+				<div style={{ display: "none" }} id={ constants.divIds.ALL_BRANDS_DIV }></div>
 				
 			</body>
 		</html>

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import constants from './../constants.js';
 import './../App.css';
 
 const brandSelectTitle = "Brand Name"
 const brandNameErrorId = "brandNameError";
+
 
 const BrandSelector = ({ fashionBrands, loading }) => {
 
@@ -20,7 +20,6 @@ const BrandSelector = ({ fashionBrands, loading }) => {
 	const onSearchBrand = (brand) => {
 		setSelectedBrand(brand.name);
 		setSelectedBrandId(brand.id)
-		console.log("searching for " + brand);
 	}
 	
 	return(

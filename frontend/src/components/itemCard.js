@@ -1,4 +1,6 @@
+import constants from '../constants';
 import './../App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const ImgFromBase64 = ({ data }) => <img src={`data:image/jpeg;base64,${data}`} />
@@ -15,9 +17,11 @@ const getCurrencyIcon = ({ item }) => {
 	}
 }
 
-const getBrandName = ({ item, fashionBrands }) => {
+const getBrandName = ({ item }) => {
     let brandId = item.brand;
     let idToBrandMap = {};
+    let allBrandsDiv = document.getElementById(constants.divIds.ALL_BRANDS_DIV);
+    let fashionBrands = JSON.parse(allBrandsDiv.innerHTML);
     fashionBrands.map((brand) => {
         idToBrandMap[brand.id] = brand.name;
     });
@@ -42,7 +46,11 @@ const ItemCard = ({ item, fashionBrands }) => {
                         { getCurrencyIcon({ item }) }
                     </p>
                     <div>
-                        Seller: { item.sellerUsername }
+                        Seller: { item.sellerUsername } 
+                        <FontAwesomeIcon icon="fa-solid fa-copy" />
+                        {/* <button>
+                            
+                        </button> */}
                     </div>
                 </div>
                 
