@@ -63,6 +63,39 @@
   padding-left: 5px;
 }
 
+/* Currency Icon */
+
+.currency-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Item Card */
+
+.item-card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item-card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 10px !important;
+  flex: 0 1 calc(30% - 1em);
+}
+
+@media screen and (min-width: 40em) {
+  .item-card {
+     max-width: calc(30% - 1em);
+  }
+}
+
+@media screen and (min-width: 60em) {
+  .item-card {
+      max-width: calc(30% - 1em);
+  }
+}
+
 /* Other */
 
 .show-filter {
