@@ -10,8 +10,7 @@ const constants = {
     },
     filterValuesIds: {
         FASHION_BRAND: "brandNameFilter",
-        FASHION_MIN_PRICE: "minPriceFashion",
-        FASHION_MAX_PRICE: "maxPriceFashion",
+        FASHION_PRICE: "fashionPrice",
         FASHION_ITEM_NAME: "fashionItemName",
         FASHION_CURRENCY_TYPE: "fashionCurrencyType"
     },

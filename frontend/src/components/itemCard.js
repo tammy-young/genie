@@ -2,22 +2,16 @@ import constants from '../constants';
 import './../App.css';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import IconButton from '@mui/material/IconButton';
-
-const sellerNameDiv = "sellerNameDiv"
+import StardollarIcon from './images/stardollar';
+import StarcoinIcon from './images/starcoin';
 
 
 const ImgFromBase64 = ({ data }) => <img src={`data:image/jpeg;base64,${data}`} alt="" />
 
 const getCurrencyIcon = ({ item }) => {
-	if (item.currencyType === 1) {
-		return(
-			<img className="currency-icon" src={ process.env.PUBLIC_URL + "stardollar.png"} alt=""></img>
-		)
-	} else {
-		return(
-			<img className="currency-icon" src={ process.env.PUBLIC_URL + "starcoin.png"} alt=""></img>
-		)
-	}
+    return(
+        item.currencyType === 1? <StardollarIcon /> : <StarcoinIcon />
+    );
 }
 
 function copy(copyValue) {
@@ -52,12 +46,10 @@ const ItemCard = ({ item, fashionBrands }) => {
                         Original: { item.originalPrice }
                         { getCurrencyIcon({ item }) }
                     </p>
-                    <div>
-                        Seller: 
-                        <div id={ sellerNameDiv }>
-                            { item.sellerUsername } 
-                        </div>
-                        <IconButton size="small" onClick={() => copy(item.sellerUsername) }>
+                    <br />
+                    <div style={{ display: "inline-block" }}>
+                        Seller: { item.sellerUsername }
+                        <IconButton size="small" onClick={() => copy(item.sellerUsername) } style={{ display: "inline-block" }}>
                             <ContentCopyIcon />
                         </IconButton>
                     </div>

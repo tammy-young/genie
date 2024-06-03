@@ -7,6 +7,10 @@ import ItemCard from './components/itemCard.js';
 import FilterTable from './components/filterColumn.js';
 
 
+const getCurrencyType = (currencyCheckbox) => {
+	return currencyCheckbox.checked? 2: 1;
+}
+
 const App = () => {
 	
 	// for searching
@@ -44,15 +48,15 @@ const App = () => {
 
 			// get input boxes
 			let brandInput = document.getElementById(constants.filterValuesIds.FASHION_BRAND);
-			let minPriceInput = document.getElementById(constants.filterValuesIds.FASHION_MIN_PRICE);
-			let maxPriceInput = document.getElementById(constants.filterValuesIds.FASHION_MAX_PRICE);
 			let itemNameInput = document.getElementById(constants.filterValuesIds.FASHION_ITEM_NAME);
 			let currencyTypeInput = document.getElementById(constants.filterValuesIds.FASHION_CURRENCY_TYPE);
+			let priceInput = document.getElementById(constants.filterValuesIds.FASHION_PRICE);
 
 			let searchBrandId = brandFilterSection !== null? brandInput.brandId : "";
-			let minPrice = priceFilterSection !== null? minPriceInput.value : "";
-			let maxPrice = priceFilterSection !== null? maxPriceInput.value : "";
-			let currencyType = priceFilterSection !== null? currencyTypeInput.value : "";
+			let priceInputValue = priceFilterSection !== null? priceInput.innerText: "2\n600";
+			let minPrice = priceInputValue.split("\n")[0];
+			let maxPrice = priceInputValue.split("\n")[1];
+			let currencyType = priceFilterSection !== null? getCurrencyType(currencyTypeInput) : "";
 			let itemName = nameFilterSection !== null? itemNameInput.value : "";
 
 			const response = await axios.get('/api/search/', {
