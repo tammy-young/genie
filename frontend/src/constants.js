@@ -20,6 +20,9 @@ const constants = {
     buttonIds: {
         SEARCH_BTN: "searchBtn",
         RESET_BTN: "resetBtn"
+    },
+    colors: {
+        PRIMARY: "#FF4E9B"
     }
 }
 
