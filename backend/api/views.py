@@ -92,4 +92,6 @@ class BrandsView(BazaarSearchView):
     def get_brands(self):
         page_content = self.make_request(BAZAAR_URL)
         brands = page_content["brands"]["fashion"]["brand"]
-        return {"brands": brands}
+        brands_id_to_name = {brand['id']: brand['name'] for brand in brands}
+        brands_name_to_id = {brand['name']: brand['id'] for brand in brands}
+        return {"brandsIdToName": brands_id_to_name, "brandsNameToId": brands_name_to_id}

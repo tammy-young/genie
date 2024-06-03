@@ -23,7 +23,6 @@ const PriceSelector = () => {
     return(
         <>
             <div className="row">
-
                 <div className='col'>
                     <Slider getAriaLabel={() => 'Starcoins'} value={ value } onChange={ handleChange } valueLabelDisplay="auto"
                         getAriaValueText={ valuetext } min={ 2 } max={ 600 } id={ constants.filterValuesIds.FASHION_PRICE }/>

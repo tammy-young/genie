@@ -88,18 +88,24 @@ const FilterRow = ({ row, fashionBrands, loading }) => {
 
 const FilterTable = () => {
 
-     // for fetching the brands
+    // for fetching the brands
 	const [fashionBrands, setFashionBrands] = useState([]);
 	const [loading, setLoading] = useState(true);
 
     const getBrands = async () => {
 		try {
 			setLoading(true);
+
 			const response = await axios.get('/api/getBrands/');
-            let brands = response.data.brands;
-            setFashionBrands(brands);
-            let allBrandsHidden = document.getElementById(constants.divIds.ALL_BRANDS_DIV);
-            allBrandsHidden.innerHTML = JSON.stringify(brands);
+
+            let brandsIdToName = response.data.brandsIdToName;
+            let brandsNameToId = response.data.brandsNameToId;
+            setFashionBrands(Object.keys(brandsNameToId));
+
+            let brandsIdToNameHidden = document.getElementById(constants.divIds.BRANDS_ID_TO_NAME);
+            let brandsNameToIdHidden = document.getElementById(constants.divIds.BRANDS_NAME_TO_ID);
+            brandsIdToNameHidden.innerHTML = JSON.stringify(brandsIdToName);
+            brandsNameToIdHidden.innerHTML = JSON.stringify(brandsNameToId);
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		} finally {

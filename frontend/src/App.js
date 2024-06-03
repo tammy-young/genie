@@ -11,6 +11,17 @@ const getCurrencyType = (currencyCheckbox) => {
 	return currencyCheckbox.checked? 2: 1;
 }
 
+const getBrandId = (brandInput) => {
+	let brandName = brandInput.value;
+	let brandNameToIdDiv = document.getElementById(constants.divIds.BRANDS_NAME_TO_ID);
+	let brands = JSON.parse(brandNameToIdDiv.innerHTML);
+	try {
+		return brands[brandName];
+	} catch {
+		return "";
+	}
+}
+
 const App = () => {
 	
 	// for searching
@@ -52,7 +63,7 @@ const App = () => {
 			let currencyTypeInput = document.getElementById(constants.filterValuesIds.FASHION_CURRENCY_TYPE);
 			let priceInput = document.getElementById(constants.filterValuesIds.FASHION_PRICE);
 
-			let searchBrandId = brandFilterSection !== null? brandInput.brandId : "";
+			let searchBrandId = brandFilterSection !== null? getBrandId(brandInput) : "";
 			let priceInputValue = priceFilterSection !== null? priceInput.innerText: "2\n600";
 			let minPrice = priceInputValue.split("\n")[0];
 			let maxPrice = priceInputValue.split("\n")[1];
@@ -119,7 +130,8 @@ const App = () => {
 					
 				</div>
 
-				<div style={{ display: "none" }} id={ constants.divIds.ALL_BRANDS_DIV }></div>
+				<div style={{ display: "none" }} id={ constants.divIds.BRANDS_NAME_TO_ID }></div>
+				<div style={{ display: "none" }} id={ constants.divIds.BRANDS_ID_TO_NAME }></div>
 				
 			</body>
 		</html>

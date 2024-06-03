@@ -1,66 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
+import FormControl from '@mui/joy/FormControl';
+import Autocomplete from '@mui/joy/Autocomplete';
+
 import constants from './../constants.js';
 import './../App.css';
 
-const brandSelectTitle = "Brand Name"
-const brandNameErrorId = "brandNameError";
-
 
 const BrandSelector = ({ fashionBrands, loading }) => {
-
-	// for search bar
-	const [selectedBrandId, setSelectedBrandId] = useState('');
-	const [selectedBrand, setSelectedBrand] = useState('');
-
-	const onChangeBrand = (event) => {
-		setSelectedBrand(event.target.value)
-		setSelectedBrandId(event.target.dataset.brandId)
-	}
-
-	const onSearchBrand = (brand) => {
-		setSelectedBrand(brand.name);
-		setSelectedBrandId(brand.id)
-	}
-	
 	return(
 		<>
 			{loading ?
-				(<label className='spans'>
-					{ brandSelectTitle }
-					<div className='search-container'>
-						<div className='search-inner'>
-							<input type="text" value={ selectedBrand } className='spans' onChange={ onChangeBrand } data-brand-id={ selectedBrandId }></input>
-						</div>
-						<div className='dropdown'>
-						</div>
-					</div>
-				</label>) :
-				(<label className='spans'>
-					{ brandSelectTitle }
-					<div className='search-container'>
-						<div className='search-inner'>
-							<input type="text" value={ selectedBrand } className='spans' onChange={ onChangeBrand } placeholder='Start typing...'
-								id={ constants.filterValuesIds.FASHION_BRAND } data-brand-id={ selectedBrandId }></input>
-							<p id={ brandNameErrorId }></p>
-						</div>
-						<div className='dropdown'>
-							{ fashionBrands
-								.filter(brand => {
-									const searchedBrand = selectedBrand.toLowerCase();
-									const brandName = brand.name.toLowerCase();
-									return searchedBrand && brandName.startsWith(searchedBrand) && brandName !== searchedBrand;
-								})
-								.map((brand) => (
-									<div className='dropdown-row' onClick={() => onSearchBrand(brand)} key={ brand.name } value={ brand.id }>
-										{ brand.name }
-									</div>)
-								)
-								.slice(0, 5)
-							}
-						</div>
-					</div>
-				</label>
-				)
+				(<FormControl id="free-solo-2-demo">
+					<Autocomplete
+						placeholder="Start typing..." type="search" freeSolo disableClearable options={ [] }
+						id={ constants.filterValuesIds.FASHION_BRAND } />
+				</FormControl>) :
+				(<FormControl id="free-solo-2-demo">
+					<Autocomplete
+						placeholder="Start typing..." type="search" freeSolo disableClearable options={ fashionBrands }
+						id={ constants.filterValuesIds.FASHION_BRAND } />
+				</FormControl>)
 			}
 		</>
 	);

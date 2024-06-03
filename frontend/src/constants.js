@@ -6,7 +6,8 @@ const constants = {
         FASHION_NAME_DIV: "nameFilterDiv",
         ITEM_PANEL_DIV: "itemPanel",
         SEARCHING_TEXT_DIV: "searchingText",
-        ALL_BRANDS_DIV: "allBrands"
+        BRANDS_NAME_TO_ID: "brandsNameToIdDiv",
+        BRANDS_ID_TO_NAME: "brandsIdToNameDiv"
     },
     filterValuesIds: {
         FASHION_BRAND: "brandNameFilter",

@@ -20,13 +20,9 @@ function copy(copyValue) {
 
 const getBrandName = ({ item }) => {
     let brandId = item.brand;
-    let idToBrandMap = {};
-    let allBrandsDiv = document.getElementById(constants.divIds.ALL_BRANDS_DIV);
-    let fashionBrands = JSON.parse(allBrandsDiv.innerHTML);
-    fashionBrands.forEach(brand => {
-        idToBrandMap[brand.id] = brand.name;
-    });
-    return idToBrandMap[brandId];
+    let allBrandsDiv = document.getElementById(constants.divIds.BRANDS_ID_TO_NAME);
+    let brands = JSON.parse(allBrandsDiv.innerHTML);
+    return brands[brandId];
 }
 
 const ItemCard = ({ item, fashionBrands }) => {
