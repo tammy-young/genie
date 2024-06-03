@@ -1,6 +1,9 @@
 import constants from '../constants';
 import './../App.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import IconButton from '@mui/material/IconButton';
+
+const sellerNameDiv = "sellerNameDiv"
 
 
 const ImgFromBase64 = ({ data }) => <img src={`data:image/jpeg;base64,${data}`} alt="" />
@@ -15,6 +18,10 @@ const getCurrencyIcon = ({ item }) => {
 			<img className="currency-icon" src={ process.env.PUBLIC_URL + "starcoin.png"} alt=""></img>
 		)
 	}
+}
+
+function copy(copyValue) {
+    navigator.clipboard.writeText(copyValue);
 }
 
 const getBrandName = ({ item }) => {
@@ -46,11 +53,13 @@ const ItemCard = ({ item, fashionBrands }) => {
                         { getCurrencyIcon({ item }) }
                     </p>
                     <div>
-                        Seller: { item.sellerUsername } 
-                        <FontAwesomeIcon icon="fa-solid fa-copy" />
-                        {/* <button>
-                            
-                        </button> */}
+                        Seller: 
+                        <div id={ sellerNameDiv }>
+                            { item.sellerUsername } 
+                        </div>
+                        <IconButton size="small" onClick={() => copy(item.sellerUsername) }>
+                            <ContentCopyIcon />
+                        </IconButton>
                     </div>
                 </div>
                 

@@ -1,9 +1,9 @@
 
 const constants = {
     divIds: {
-        FASHION_BRAND_DIV_NAME: "brandSelectDiv",
-        FASION_PRICE_SELECT_DIV: "priceSelectDiv",
-        FASHION_NAME_SELECT_DIV: "nameSelectDiv",
+        FASHION_BRAND_DIV: "brandFilterDiv",
+        FASHION_PRICE_DIV: "priceFilterDiv",
+        FASHION_NAME_DIV: "nameFilterDiv",
         ITEM_PANEL_DIV: "itemPanel",
         SEARCHING_TEXT_DIV: "searchingText",
         ALL_BRANDS_DIV: "allBrands"

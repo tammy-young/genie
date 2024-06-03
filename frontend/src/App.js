@@ -4,7 +4,7 @@ import constants from './constants.js';
 import axios from 'axios';
 
 import ItemCard from './components/itemCard.js';
-import FilterSection from './components/filterSection.js';
+import FilterTable from './components/filterColumn.js';
 
 
 const App = () => {
@@ -36,11 +36,25 @@ const App = () => {
 	const search = async () => {
 		try {
 			setIsSearching(true);
-			let searchBrandId = document.getElementById(constants.filterValuesIds.FASHION_BRAND).dataset.brandId;
-			let minPrice = document.getElementById(constants.filterValuesIds.FASHION_MIN_PRICE).value;
-			let maxPrice = document.getElementById(constants.filterValuesIds.FASHION_MAX_PRICE).value;
-			let itemName = document.getElementById(constants.filterValuesIds.FASHION_ITEM_NAME).value;
-			let currencyType = document.getElementById(constants.filterValuesIds.FASHION_CURRENCY_TYPE).value;
+
+			// get the filter sections (don't exist when closed)
+			let brandFilterSection = document.getElementById(constants.divIds.FASHION_BRAND_DIV);
+			let priceFilterSection = document.getElementById(constants.divIds.FASHION_PRICE_DIV);
+			let nameFilterSection = document.getElementById(constants.divIds.FASHION_NAME_DIV);
+
+			// get input boxes
+			let brandInput = document.getElementById(constants.filterValuesIds.FASHION_BRAND);
+			let minPriceInput = document.getElementById(constants.filterValuesIds.FASHION_MIN_PRICE);
+			let maxPriceInput = document.getElementById(constants.filterValuesIds.FASHION_MAX_PRICE);
+			let itemNameInput = document.getElementById(constants.filterValuesIds.FASHION_ITEM_NAME);
+			let currencyTypeInput = document.getElementById(constants.filterValuesIds.FASHION_CURRENCY_TYPE);
+
+			let searchBrandId = brandFilterSection !== null? brandInput.brandId : "";
+			let minPrice = priceFilterSection !== null? minPriceInput.value : "";
+			let maxPrice = priceFilterSection !== null? maxPriceInput.value : "";
+			let currencyType = priceFilterSection !== null? currencyTypeInput.value : "";
+			let itemName = nameFilterSection !== null? itemNameInput.value : "";
+
 			const response = await axios.get('/api/search/', {
 				params: {
 					"brandId": searchBrandId,
@@ -50,6 +64,7 @@ const App = () => {
 					"currencyType": currencyType
 				}
 			});
+
 			let items = response.data.items;
 			setSearchedItems(items);
 		} catch (error) {
@@ -86,7 +101,7 @@ const App = () => {
 					<div className='col filter-col'>
 						<h2 style={{ paddingBottom: '30px' }}>Fashion</h2>
 						
-						<FilterSection />
+						<FilterTable />
 
 						<div className='row'>
 							<div style={{ paddingRight: '5px' }}>

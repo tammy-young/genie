@@ -96,6 +96,13 @@
   }
 }
 
+/* Colors */
+
+.genie-primary-text {
+  color: #FF4E9B !important;
+  font-weight: bold !important;
+}
+
 /* Other */
 
 .show-filter {
@@ -111,7 +118,7 @@
 }
 
 .filter-col {
-  width: 30%;
+  max-width: 30% !important;
 }
 
 .spans {
