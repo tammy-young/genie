@@ -43,7 +43,7 @@ class SearchView(BazaarSearchView):
         search_url += f"&maxPrice={max_price}" if max_price else ""
 
         currency_type = request.GET.get("currencyType", "")
-        search_url += f"&currency_type={currency_type}" if (max_price or max_price) and currency_type else ""
+        search_url += f"&currencyType={currency_type}" if (max_price or max_price) and currency_type else ""
 
         item_name = request.GET.get("itemName", "")
         if item_name:
