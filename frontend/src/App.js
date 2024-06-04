@@ -52,6 +52,10 @@ const App = () => {
 		try {
 			setIsSearching(true);
 
+			if (searchedItems != []) {
+				setSearchedItems([]);
+			}
+
 			// get the filter sections (don't exist when closed)
 			let brandFilterSection = document.getElementById(constants.divIds.FASHION_BRAND_DIV);
 			let priceFilterSection = document.getElementById(constants.divIds.FASHION_PRICE_DIV);
