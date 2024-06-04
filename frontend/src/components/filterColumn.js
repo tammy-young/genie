@@ -65,7 +65,7 @@ const FilterRow = ({ row, fashionBrands, loading }) => {
         <>
             <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
                 <TableCell component="th" scope="row">
-                    { row.name }
+                    <h6><b>{ row.name }</b></h6>
                 </TableCell>
                 <TableCell style={{ textAlign: 'right' }}>
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>

@@ -118,7 +118,7 @@ const App = () => {
 						
 						<FilterTable />
 
-						<div className='row'>
+						<div className='row' style={{ padding: '15px' }}>
 							<div style={{ paddingRight: '5px' }}>
 								<button className='btn btn-success' id={ constants.buttonIds.SEARCH_BTN } onClick={ search }>Search</button>
 							</div>
