@@ -31,6 +31,8 @@ class BazaarSearchView(View):
 
 class SearchView(BazaarSearchView):
 
+    ITEMS_KEY = "items"
+
     def get(self, request):
         search_url = BAZAAR_URL + "?search&type=fashion&Price=24"
         brand_id = request.GET.get("brandId", "")
@@ -52,10 +54,14 @@ class SearchView(BazaarSearchView):
         else:
             items = []
             item_ids = []
-            stop_search_time = time.time() + 30
+            stop_search_time = time.time() + 10
 
             while time.time() < stop_search_time and len(items) < 10:
-                returned_items = self.make_request(search_url)["items"]
+                returned_page = self.make_request(search_url)
+
+                if self.ITEMS_KEY not in returned_page:
+                    continue
+                returned_items = returned_page[self.ITEMS_KEY]
 
                 for item in returned_items:
                     item_id = item['itemId']
