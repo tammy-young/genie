@@ -22,7 +22,7 @@ const constants = {
         RESET_BTN: "resetBtn"
     },
     colors: {
-        PRIMARY: "#FF4E9B",
+        PRIMARY: "#A87CFC",
         BACKGROUND: "#FDFBFE"
     }
 }
