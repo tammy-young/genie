@@ -58,6 +58,18 @@ const getFilter = (row, fashionBrands, loading) => {
     }
 }
 
+const clearFilters = () => {
+    const svgs = document.querySelectorAll('table svg');
+    svgs.forEach(svg => {
+        if (svg.dataset.testid == "KeyboardArrowUpIcon") {
+            const button = svg.closest('button');
+            if (button) {
+                button.click();
+            }
+        }
+    });
+}
+
 const FilterRow = ({ row, fashionBrands, loading }) => {
     const [open, setOpen] = useState(false);
   
@@ -123,7 +135,9 @@ const FilterTable = () => {
                 <TableHead>
                     <TableRow>
                         <TableCell><b>Filters</b></TableCell>
-                        <TableCell className="genie-primary-text" style={{ textAlign: 'right' }}>Clear All</TableCell>
+                        <TableCell className="genie-primary-text" style={{ textAlign: 'right', cursor: 'pointer' }} onClick={ clearFilters }>
+                            Clear All
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
