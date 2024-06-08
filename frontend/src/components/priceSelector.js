@@ -6,10 +6,21 @@ import constants from "../constants";
 import './../App.css';
 import StardollarIcon from './images/stardollar';
 import StarcoinIcon from './images/starcoin';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 const defaultMin = 2;
 const defaultMax = 600;
+
+const theme = createTheme({
+    palette: {
+        stardollPurple: {
+            main: constants.colors.PRIMARY,
+            light: constants.colors.PRIMARY,
+            dark: constants.colors.PRIMARY,
+        },
+    },
+});
 
 function valuetext(value) {
     return `${value}°C`;
@@ -42,8 +53,11 @@ const PriceSelector = () => {
             </div>
             <div className="row">
                 <div className='col'>
-                    <Slider getAriaLabel={() => 'Starcoins'} value={ value } onChange={ handleChange } valueLabelDisplay="auto" color="info"
-                        getAriaValueText={ valuetext } min={ defaultMin } max={ defaultMax } id={ constants.filterValuesIds.FASHION_PRICE }/>
+                    <ThemeProvider theme={ theme }>
+                        <Slider getAriaLabel={() => 'Starcoins'} value={ value } onChange={ handleChange } valueLabelDisplay="auto" color="stardollPurple"
+                            getAriaValueText={ valuetext } min={ defaultMin } max={ defaultMax } id={ constants.filterValuesIds.FASHION_PRICE }/>
+                    </ThemeProvider>
+                    
                 </div>
             </div>
             <div className="row">
@@ -60,9 +74,9 @@ const PriceSelector = () => {
                     </label>
                 </div>
                 <div className="col">
-                    <Switch color="primary" slotProps={{ input: { 'aria-label': 'dark mode' } }} startDecorator={ <StardollarIcon /> }
-                        endDecorator={ <StarcoinIcon /> } checked={ stardollars } onChange={(event) => setCurrency(event.target.checked)}
-                        id={ constants.filterValuesIds.FASHION_CURRENCY_TYPE } />
+                        <Switch slotProps={{ input: { 'aria-label': 'dark mode' } }} startDecorator={ <StardollarIcon /> }
+                            endDecorator={ <StarcoinIcon /> } checked={ stardollars } onChange={(event) => setCurrency(event.target.checked)}
+                            id={ constants.filterValuesIds.FASHION_CURRENCY_TYPE } />
                 </div>
             </div>
         </>
