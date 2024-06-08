@@ -7,6 +7,8 @@ import ItemCard from './components/itemCard.js';
 import FilterTable from './components/filterColumn.js';
 import GenieIcon from './components/images/genieLogo.js';
 
+const startSearchMessage = "Searched items will show up here!"
+
 
 const getCurrencyType = (currencyCheckbox) => {
 	return currencyCheckbox.checked? 2: 1;
@@ -27,6 +29,8 @@ const displayItems = (items) => {
 	if (items == []) {
 		return "No Items Found!";
 	} else {
+		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
+		searchingTextDiv.innerHTML = "";
 		return items.map((item) => (
 			<ItemCard item={ item } />
 		));
@@ -43,13 +47,13 @@ const App = () => {
 		if (searchedItems.length === 0) {
 			return(
 				<div className='col' style={{ textAlign: 'center', alignContent: 'center', overflowY: "scroll" }} id={ constants.divIds.ITEM_PANEL_DIV }>
-					<div id={ constants.divIds.SEARCHING_TEXT_DIV }></div>
+					<div id={ constants.divIds.SEARCHING_TEXT_DIV }>{ startSearchMessage }</div>
 				</div>
 			)
 		} else {
 			return(
 				<div className='col item-card-container' style={{ textAlign: 'center', alignContent: 'center', overflowY: "scroll" }} id={ constants.divIds.ITEM_PANEL_DIV }>
-					<div id={ constants.divIds.SEARCHING_TEXT_DIV }></div>
+					<div id={ constants.divIds.SEARCHING_TEXT_DIV }>{ startSearchMessage }</div>
 					{ displayItems(searchedItems) }
 				</div>
 			)
@@ -101,6 +105,13 @@ const App = () => {
 		}
 	};
 
+	const reset = () => {
+		setSearchedItems([]);
+		setIsSearching(false);
+		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
+		searchingTextDiv.innerHTML = startSearchMessage;
+	}
+
 	useEffect(() => {
 		getItems();
 	}, [searchedItems]);
@@ -109,11 +120,7 @@ const App = () => {
 		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
 		if (isSearching) {
 			searchingTextDiv.innerHTML = "Searching...";
-		} else if (!isSearching && (searchedItems.length === 0)) {
-			searchingTextDiv.innerHTML = "Searched items will show up here!";
-		} else {
-			searchingTextDiv.innerHTML = "";
-		}
+		} 
 	}, [isSearching])
 
 	return (
@@ -133,7 +140,7 @@ const App = () => {
 							<div style={{ paddingRight: '5px' }}>
 								<button className='btn btn-success' id={ constants.buttonIds.SEARCH_BTN } onClick={ search }>Search</button>
 							</div>
-							<button className='btn btn-secondary' id={ constants.buttonIds.RESET_BTN }>Reset</button>
+							<button className='btn btn-secondary' id={ constants.buttonIds.RESET_BTN } onClick={ reset }>Reset</button>
 						</div>
 					</div>
 
