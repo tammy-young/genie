@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import ItemCard from './components/itemCard.js';
 import FilterTable from './components/filterColumn.js';
+import GenieIcon from './components/images/genieLogo.js';
 
 
 const getCurrencyType = (currencyCheckbox) => {
@@ -19,6 +20,16 @@ const getBrandId = (brandInput) => {
 		return brands[brandName];
 	} catch {
 		return "";
+	}
+}
+
+const displayItems = (items) => {
+	if (items == []) {
+		return "No Items Found!";
+	} else {
+		return items.map((item) => (
+			<ItemCard item={ item } />
+		));
 	}
 }
 
@@ -39,10 +50,7 @@ const App = () => {
 			return(
 				<div className='col item-card-container' style={{ textAlign: 'center', alignContent: 'center', overflowY: "scroll" }} id={ constants.divIds.ITEM_PANEL_DIV }>
 					<div id={ constants.divIds.SEARCHING_TEXT_DIV }></div>
-					{ searchedItems
-					  .map((item) => (
-						<ItemCard item={ item } />
-					  )) }
+					{ displayItems(searchedItems) }
 				</div>
 			)
 		}
@@ -111,11 +119,10 @@ const App = () => {
 	return (
 		<html>
 			<body style={{ padding: '30px', top: 0, bottom: 0, right: 0, left: 0, position: 'absolute' }}>
-				<div className='row'>
-					<div className='col'>
-						<h2>Genie</h2>
-					</div>
+				<div className='row' style={{ marginTop:'-30px' }}>
+					<GenieIcon />
 				</div>
+				
 				<div className='row' style={{ paddingLeft: '30px', height: '100%' }}>
 					<div className='col filter-col'>
 						<h2 style={{ paddingBottom: '30px' }}>Fashion</h2>

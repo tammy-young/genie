@@ -6,7 +6,7 @@ import StardollarIcon from './images/stardollar';
 import StarcoinIcon from './images/starcoin';
 
 
-const ImgFromBase64 = ({ data }) => <img src={`data:image/jpeg;base64,${data}`} alt="" />
+const ImgFromBase64 = ({ data }) => <img src={`data:image/jpeg;base64,${data}`} alt="No Image Found" style={{ width: '50%' }} />
 
 const getCurrencyIcon = ({ item }) => {
     return(
@@ -28,7 +28,9 @@ const getBrandName = ({ item }) => {
 const ItemCard = ({ item, fashionBrands }) => {
     return (
         <div className="card item-card" style={{ width: '100%', padding: '10px', margin: '10px' }}>
-            <ImgFromBase64 data={ item.itemImage } />
+            <div style={{ alignContent: 'center', paddingTop: '50px' }}>
+                <ImgFromBase64 data={ item.itemImage } />
+            </div>
             <div style={{ padding: '10px' }}>
                 <h6><b>{ item.name }</b></h6>
                 <p>{ getBrandName({ item, fashionBrands }) }</p>
