@@ -172,8 +172,9 @@ body {
   .css-88uc6g-JoyAutocomplete-root {
     background-color: #1f2023 !important;
   }
-  input {
+  .css-kf85qm-JoyInput-root {
     background-color: #1f2023 !important;
     border-color: #dadada !important;
+    color: #dadada !important;
   }
 }

@@ -97,7 +97,7 @@ class SearchView(BazaarSearchView):
                 searched_item_name = item['name'].lower()
                 seller_id = item['sellerId']
 
-                if seller_id not in seller_ids and searched_item_name in item_name:
+                if seller_id not in seller_ids and item_name in searched_item_name:
                     item_info = self.get_item_info(item)
                     items.append(item_info)
                     seller_ids.append(seller_id)
