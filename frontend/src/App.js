@@ -52,7 +52,7 @@ const App = () => {
 			)
 		} else {
 			return(
-				<div className='col item-card-container' style={{ textAlign: 'center', alignContent: 'center', overflowY: "scroll" }} id={ constants.divIds.ITEM_PANEL_DIV }>
+				<div className='col item-card-container' style={{ textAlign: 'center', overflowY: "scroll" }} id={ constants.divIds.ITEM_PANEL_DIV }>
 					<div id={ constants.divIds.SEARCHING_TEXT_DIV }>{ startSearchMessage }</div>
 					{ displayItems(searchedItems) }
 				</div>

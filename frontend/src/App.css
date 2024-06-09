@@ -79,6 +79,8 @@
 .item-card-container {
   display: flex;
   flex-wrap: wrap;
+  overflow-y: scroll;
+  height: 88vh;
 }
 
 .item-card {
@@ -148,13 +150,17 @@
 }
 
 .scrollable {
-  overflow-y: scroll
+  overflow-y: scroll;
+  height: 100px !important;
 }
 
 body {
   background-color: #FDFBFE;
   color: #1f2023;
   font-family: "Roboto", sans-serif !important;
+  height: 92vh;
+  max-height: 92vh;
+  margin: 0;
 }
 @media (prefers-color-scheme: dark) {
   body {
