@@ -10,8 +10,9 @@ const NameSelector = () => {
     return(
         <>
             <FormControl>
-                <FormLabel>Name contains...</FormLabel>
-                <Input className='spans' data-id={ constants.filterValuesIds.FASHION_ITEM_NAME } />
+                <FormLabel>Keyword</FormLabel>
+                <Input className='spans' data-id={ constants.filterValuesIds.FASHION_ITEM_NAME }
+                    placeholder='Name contains...' />
             </FormControl>
             
         </>

@@ -65,18 +65,18 @@ const PriceSelector = () => {
                     <label style={{ paddingRight: '10px' }}>
                         Min<br/>
                         <input type="number" id={ constants.filterValuesIds.FASHION_MIN_PRICE } min={ defaultMin } max={ defaultMax }
-                            onChange={ priceRangeChangeFromInput } defaultValue={ defaultMin } />
+                            onChange={ priceRangeChangeFromInput } defaultValue={ defaultMin } className='my-input' />
                     </label>
                     <label>
                         Max<br/>
                         <input type="number" id={ constants.filterValuesIds.FASHION_MAX_PRICE } min={ defaultMin } max={ defaultMax }
-                            onChange={ priceRangeChangeFromInput } defaultValue={ defaultMax } />
+                            onChange={ priceRangeChangeFromInput } defaultValue={ defaultMax } className='my-input' />
                     </label>
                 </div>
                 <div className="col">
-                        <Switch slotProps={{ input: { 'aria-label': 'dark mode' } }} startDecorator={ <StardollarIcon /> }
-                            endDecorator={ <StarcoinIcon /> } checked={ stardollars } onChange={(event) => setCurrency(event.target.checked)}
-                            id={ constants.filterValuesIds.FASHION_CURRENCY_TYPE } />
+                    <Switch slotProps={{ input: { 'aria-label': 'dark mode' } }} startDecorator={ <StardollarIcon /> }
+                        endDecorator={ <StarcoinIcon /> } checked={ stardollars } onChange={(event) => setCurrency(event.target.checked)}
+                        id={ constants.filterValuesIds.FASHION_CURRENCY_TYPE } color="neutral" />
                 </div>
             </div>
         </>

@@ -110,10 +110,25 @@
   background-color: #A87CFC;
 }
 
+/* Table */
+
+.css-1ex1afd-MuiTableCell-root {
+  border-bottom: 0px !important;
+}
+
 /* Other */
 
 .show-filter {
   width: 100%;
+}
+
+.my-input {
+  border: 1px solid;
+  border-color: #1f2023;
+  border-radius: 5px;
+  padding: 5px;
+  padding-left: 10px;
+  font-size: 1rem;
 }
 
 .search-inner {
@@ -185,9 +200,11 @@ body {
     color: #A87CFC !important;
     font-weight: bold !important;
   }
-  input {
+  .my-input {
     background-color: #1f2023 !important;
     color: #dadada !important;
+    border: 1px solid !important;
+    border-color: #dadada !important;
   }
   .genie-primary {
     background-color: #A87CFC !important;
