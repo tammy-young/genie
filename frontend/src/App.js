@@ -138,7 +138,7 @@ const App = () => {
 
 						<div className='row' style={{ padding: '15px' }}>
 							<div style={{ paddingRight: '5px' }}>
-								<button className='btn btn-success' id={ constants.buttonIds.SEARCH_BTN } onClick={ search }>Search</button>
+								<button className='btn genie-primary' id={ constants.buttonIds.SEARCH_BTN } onClick={ search }>Search</button>
 							</div>
 							<button className='btn btn-secondary' id={ constants.buttonIds.RESET_BTN } onClick={ reset }>Reset</button>
 						</div>

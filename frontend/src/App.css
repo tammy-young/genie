@@ -106,6 +106,10 @@
   font-weight: bold !important;
 }
 
+.genie-primary {
+  background-color: #A87CFC;
+}
+
 /* Other */
 
 .show-filter {
@@ -183,6 +187,10 @@ body {
   }
   input {
     background-color: #1f2023 !important;
+    color: #dadada !important;
+  }
+  .genie-primary {
+    background-color: #A87CFC !important;
     color: #dadada !important;
   }
 }
