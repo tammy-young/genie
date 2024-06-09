@@ -61,7 +61,7 @@ const getFilter = (row, fashionBrands, loading) => {
 const clearFilters = () => {
     const svgs = document.querySelectorAll('table svg');
     svgs.forEach(svg => {
-        if (svg.dataset.testid == "KeyboardArrowUpIcon") {
+        if (svg.dataset.testid === "KeyboardArrowUpIcon") {
             const button = svg.closest('button');
             if (button) {
                 button.click();

@@ -26,7 +26,7 @@ const getBrandId = (brandInput) => {
 }
 
 const displayItems = (items) => {
-	if (items == []) {
+	if (items.length === 0) {
 		return "No Items Found!";
 	} else {
 		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
@@ -64,7 +64,7 @@ const App = () => {
 		try {
 			setIsSearching(true);
 
-			if (searchedItems != []) {
+			if (searchedItems.length !== 0) {
 				setSearchedItems([]);
 			}
 
@@ -75,7 +75,7 @@ const App = () => {
 
 			// get input boxes
 			let brandInput = document.getElementById(constants.filterValuesIds.FASHION_BRAND);
-			let itemNameInput = document.getElementById(constants.filterValuesIds.FASHION_ITEM_NAME);
+			let itemNameInput = document.querySelector('[data-id="' + constants.filterValuesIds.FASHION_ITEM_NAME + '"] input');
 			let currencyTypeInput = document.getElementById(constants.filterValuesIds.FASHION_CURRENCY_TYPE);
 			let priceInput = document.getElementById(constants.filterValuesIds.FASHION_PRICE);
 
@@ -120,7 +120,7 @@ const App = () => {
 		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
 		if (isSearching) {
 			searchingTextDiv.innerHTML = "Searching...";
-		} 
+		}
 	}, [isSearching])
 
 	return (
