@@ -177,4 +177,8 @@ body {
     border-color: #dadada !important;
     color: #dadada !important;
   }
+  .genie-primary-text {
+    color: #A87CFC !important;
+    font-weight: bold !important;
+  }
 }

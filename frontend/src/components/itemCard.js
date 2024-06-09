@@ -33,24 +33,39 @@ const ItemCard = ({ item, fashionBrands }) => {
             </div>
             <div style={{ padding: '10px' }}>
                 <h6><b>{ item.name }</b></h6>
-                <p>{ getBrandName({ item, fashionBrands }) }</p>
+                <p style={{ marginTop: '-5px' }}>{ getBrandName({ item, fashionBrands }) }</p>
                 <div style={{ textAlign: "left" }}>
-                    <div style={{ display: "inline-block" }}>
-                        Selling for: { item.sellPrice }
-                        { getCurrencyIcon({ item }) }
-                    </div>
-                    <br />
-                    <p style={{ display: "inline-block" }}>
-                        Original: { item.originalPrice }
-                        { getCurrencyIcon({ item }) }
-                    </p>
-                    <br />
-                    <div style={{ display: "inline-block" }}>
-                        Seller: { item.sellerUsername }
-                        <IconButton size="small" onClick={() => copy(item.sellerUsername) } style={{ display: "inline-block" }}>
-                            <ContentCopyIcon />
-                        </IconButton>
-                    </div>
+                    <table>
+                        <tr>
+                            <th style={{ paddingRight: '50px', fontWeight:'normal' }}>
+                                Selling for
+                            </th>
+                            <th style={{ fontWeight:'normal' }}>
+                                { item.sellPrice }
+                                { getCurrencyIcon({ item }) }
+                            </th>
+                        </tr>
+                        <tr>
+                            <th style={{ fontWeight:'normal' }}>
+                                Original Price
+                            </th>
+                            <th style={{ fontWeight:'normal' }}>
+                                { item.originalPrice }
+                                { getCurrencyIcon({ item }) }
+                            </th>
+                        </tr>
+                        <tr>
+                            <th style={{ fontWeight: 'normal' }}>
+                                Seller
+                            </th>
+                            <th style={{ fontWeight: 'normal' }}>
+                                { item.sellerUsername }
+                                <IconButton size="small" onClick={() => copy(item.sellerUsername) } style={{ display: "inline-block" }}>
+                                    <ContentCopyIcon style={{ width: '17px', marginTop: '-5px' }}/>
+                                </IconButton>
+                            </th>
+                        </tr>
+                    </table>
                 </div>
                 
             </div>
