@@ -4,11 +4,21 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import GenieIcon from './components/images/genieLogo.js';
 import Search from './pages/search.js';
-
-const startSearchMessage = "Searched items will show up here!"
+import constants from './constants.js';
 
 
 const getPage = (pageNumber) => {
+	// setting the active nav bar
+	let navCols = document.querySelectorAll('[data-nav-id]');
+	for (let i = 0; i < navCols.length; i++) {
+		let navCol = navCols[i];
+		if (i == pageNumber) {
+			navCol.style.borderBottom = "1px solid";
+			navCol.style.borderColor = constants.colors.PRIMARY;
+		} else {
+			navCol.style.borderBottom = "0px"
+		}
+	}
 	if (pageNumber == 0) {
 		return(<Search />);
 	}
@@ -29,11 +39,17 @@ const App = () => {
 					<div className='col' style={{ padding: '0px', textAlign: 'left', width: 'fit-content', maxWidth: 'fit-content' }}>
 						<GenieIcon />
 					</div>
-					<div className='col' style={{ display: 'flex', alignItems: 'center' }}>
+					<div className='col' style={{ display: 'flex', alignItems: 'center', borderBottom: '1px solid', maxWidth: 'fit-content' }} data-nav-id={ 0 }>
 						<div onClick={() => { setCurrentPage(0) }} style={{ cursor: 'pointer' }}>
 							Search <SearchIcon />
 						</div>
 					</div>
+					<div className='col' style={{ display: 'flex', alignItems: 'center', borderBottom: '1px solid', maxWidth: 'fit-content' }} data-nav-id={ 0 }>
+						<div onClick={() => { setCurrentPage(1) }} style={{ cursor: 'pointer' }}>
+							Id Number Search <SearchIcon />
+						</div>
+					</div>
+					<div className='col'></div>
 					
 				</div>
 				<div id="curr-page">
