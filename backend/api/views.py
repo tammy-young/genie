@@ -39,73 +39,56 @@ class SearchView(BazaarSearchView):
         search_url = SEARCH_URL
 
         item_name = request.GET.get("itemName", "")
-        if item_name:
-            items = self.search_by_item_name(item_name)
 
-        else:
-            brand_id = request.GET.get("brandId", "")
-            search_url += f"&brands={brand_id}" if brand_id else ""
-            
-            min_price = request.GET.get("minPrice", "")
-            search_url += f"&minPrice={min_price}" if min_price else ""
+        brand_id = request.GET.get("brandId", "")
+        search_url += f"&brands={brand_id}" if brand_id else ""
+        
+        min_price = request.GET.get("minPrice", "")
+        search_url += f"&minPrice={min_price}" if min_price else ""
 
-            max_price = request.GET.get("maxPrice", "")
-            search_url += f"&maxPrice={max_price}" if max_price else ""
+        max_price = request.GET.get("maxPrice", "")
+        search_url += f"&maxPrice={max_price}" if max_price else ""
 
-            currency_type = request.GET.get("currencyType", "")
-            search_url += f"&currencyType={currency_type}" if (max_price or max_price) and currency_type else ""
-            
-            items = []
-            item_ids = []
-            stop_search_time = time.time() + 10
-
-            while time.time() < stop_search_time and len(items) < MAX_ITEMS_AT_ONCE:
-                returned_page = self.make_request(search_url)
-
-                if self.ITEMS_KEY not in returned_page:
-                    continue
-                returned_items = returned_page[self.ITEMS_KEY]
-
-                for item in returned_items:
-                    item_id = item['itemId']
-
-                    if item_id not in item_ids:
-                        item_info = self.get_item_info(item)
-                        items.append(item_info)
-                        item_ids.append(item_id)
-
-                    if len(items) >= MAX_ITEMS_AT_ONCE:
-                        break
-
-        return JsonResponse({"items": items})
-    
-    def search_by_item_name(self, item_name):
-        item_name = item_name.lower()
-
+        currency_type = request.GET.get("currencyType", "")
+        search_url += f"&currencyType={currency_type}" if (max_price or max_price) and currency_type else ""
+        
         items = []
+        item_ids = []
         seller_ids = []
         stop_search_time = time.time() + 10
 
         while time.time() < stop_search_time and len(items) < MAX_ITEMS_AT_ONCE:
-            returned_page = self.make_request(SEARCH_URL)
-
+            returned_page = self.make_request(search_url)
+            
+            # if there are no items on the page then get a new page
             if self.ITEMS_KEY not in returned_page:
                 continue
             returned_items = returned_page[self.ITEMS_KEY]
 
             for item in returned_items:
-                searched_item_name = item['name'].lower()
-                seller_id = item['sellerId']
+                item_id = item['itemId']
+                add_item = False
 
-                if seller_id not in seller_ids and item_name in searched_item_name:
+                if item_name:
+                    searched_item_name = item['name'].lower()
+                    seller_id = item['sellerId']
+
+                    if seller_id not in seller_ids and item_name in searched_item_name:
+                        add_item = True
+                        seller_ids.append(seller_id)
+                else:
+                    if item_id not in item_ids:
+                        add_item = True
+                        item_ids.append(item_id)
+
+                if add_item:
                     item_info = self.get_item_info(item)
                     items.append(item_info)
-                    seller_ids.append(seller_id)
-                    
+
                 if len(items) >= MAX_ITEMS_AT_ONCE:
-                        break
-        
-        return items
+                    break
+
+        return JsonResponse({"items": items})
 
     def get_item_info(self, item):
         item_id = item['itemId']

@@ -181,4 +181,8 @@ body {
     color: #A87CFC !important;
     font-weight: bold !important;
   }
+  input {
+    background-color: #1f2023 !important;
+    color: #dadada !important;
+  }
 }
