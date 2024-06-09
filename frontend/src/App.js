@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import SearchIcon from '@mui/icons-material/Search';
+import NumbersIcon from '@mui/icons-material/Numbers';
 
 import GenieIcon from './components/images/genieLogo.js';
 import Search from './pages/search.js';
 import constants from './constants.js';
+import IdSearch from './pages/idSearch.js';
 
 
 const getPage = (pageNumber) => {
@@ -12,15 +14,17 @@ const getPage = (pageNumber) => {
 	let navCols = document.querySelectorAll('[data-nav-id]');
 	for (let i = 0; i < navCols.length; i++) {
 		let navCol = navCols[i];
-		if (i == pageNumber) {
+		if (i === pageNumber) {
 			navCol.style.borderBottom = "1px solid";
 			navCol.style.borderColor = constants.colors.PRIMARY;
 		} else {
 			navCol.style.borderBottom = "0px"
 		}
 	}
-	if (pageNumber == 0) {
+	if (pageNumber === 0) {
 		return(<Search />);
+	} else if (pageNumber === 1) {
+		return(<IdSearch />);
 	}
 }
 
@@ -46,7 +50,7 @@ const App = () => {
 					</div>
 					<div className='col' style={{ display: 'flex', alignItems: 'center', borderBottom: '1px solid', maxWidth: 'fit-content' }} data-nav-id={ 0 }>
 						<div onClick={() => { setCurrentPage(1) }} style={{ cursor: 'pointer' }}>
-							Id Number Search <SearchIcon />
+							Id Number Search <NumbersIcon />
 						</div>
 					</div>
 					<div className='col'></div>
