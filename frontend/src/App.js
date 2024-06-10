@@ -17,13 +17,15 @@ const getPage = (pageNumber) => {
 		if (i === pageNumber) {
 			navCol.style.borderBottom = "1px solid";
 			navCol.style.borderColor = constants.colors.PRIMARY;
+			navCol.style.marginBottom = "-1px";
 		} else {
 			navCol.style.borderBottom = "0px"
+			navCol.style.marginBottom = "0px";
 		}
 	}
-	if (pageNumber === 0) {
+	if (pageNumber === constants.pageIndexes.SEARCH) {
 		return(<Search />);
-	} else if (pageNumber === 1) {
+	} else if (pageNumber === constants.pageIndexes.ID_SEARCH) {
 		return(<IdSearch />);
 	}
 }
@@ -43,12 +45,12 @@ const App = () => {
 					<div className='col' style={{ padding: '0px', textAlign: 'left', width: 'fit-content', maxWidth: 'fit-content' }}>
 						<GenieIcon />
 					</div>
-					<div className='col' style={{ display: 'flex', alignItems: 'center', borderBottom: '1px solid', maxWidth: 'fit-content' }} data-nav-id={ 0 }>
+					<div className='col' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content' }} data-nav-id={ 0 }>
 						<div onClick={() => { setCurrentPage(0) }} style={{ cursor: 'pointer' }}>
 							Search <SearchIcon />
 						</div>
 					</div>
-					<div className='col' style={{ display: 'flex', alignItems: 'center', borderBottom: '1px solid', maxWidth: 'fit-content' }} data-nav-id={ 0 }>
+					<div className='col' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content' }} data-nav-id={ 0 }>
 						<div onClick={() => { setCurrentPage(1) }} style={{ cursor: 'pointer' }}>
 							Id Number Search <NumbersIcon />
 						</div>

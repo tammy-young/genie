@@ -24,6 +24,10 @@ const constants = {
     colors: {
         PRIMARY: "#A87CFC",
         BACKGROUND: "#FDFBFE"
+    },
+    pageIndexes: {
+        SEARCH: 0,
+        ID_SEARCH: 1
     }
 }
 
