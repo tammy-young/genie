@@ -109,7 +109,8 @@
 }
 
 .genie-primary {
-  background-color: #A87CFC;
+  background-color: #A87CFC !important;
+  color: #fff !important;
 }
 
 /* Table */
@@ -209,10 +210,6 @@ body {
     color: #dadada !important;
     border: 1px solid !important;
     border-color: #dadada !important;
-  }
-  .genie-primary {
-    background-color: #A87CFC !important;
-    color: #dadada !important;
   }
 }
 
