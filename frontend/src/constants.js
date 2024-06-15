@@ -28,6 +28,9 @@ const constants = {
     pageIndexes: {
         SEARCH: 0,
         ID_SEARCH: 1
+    },
+    brandIdSearchPage: {
+        BRAND_ID_SEARCH_INPUT: "brandIdSearchInput"
     }
 }
 

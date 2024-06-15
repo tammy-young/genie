@@ -61,6 +61,9 @@ const App = () => {
 				<div id="curr-page">
 					{ getPage(currentPage) }
 				</div>
+
+				<div style={{ display: "none" }} id={ constants.divIds.BRANDS_NAME_TO_ID }></div>
+				<div style={{ display: "none" }} id={ constants.divIds.BRANDS_ID_TO_NAME }></div>
 			</body>
 		</html>
 	);

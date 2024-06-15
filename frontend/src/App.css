@@ -152,7 +152,6 @@
 
 .scrollable {
   overflow-y: scroll;
-  height: 100px !important;
 }
 
 body {
@@ -214,6 +213,11 @@ body {
 }
 
 .page {
-  width: 100%;
-  height: 88vh;
+  width: 100% !important;
+  height: 88vh !important;
+  max-height: 88vh !important;
+}
+
+.id-search-row {
+  height: fit-content;
 }
