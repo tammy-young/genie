@@ -54,7 +54,6 @@ class SearchView(BazaarSearchView):
         
         items = []
         item_ids = []
-        seller_ids = []
         stop_search_time = time.time() + 10
 
         while time.time() < stop_search_time and len(items) < MAX_ITEMS_AT_ONCE:
@@ -71,11 +70,9 @@ class SearchView(BazaarSearchView):
 
                 if item_name:
                     searched_item_name = item['name'].lower()
-                    seller_id = item['sellerId']
 
-                    if seller_id not in seller_ids and item_name in searched_item_name:
+                    if item_name in searched_item_name:
                         add_item = True
-                        seller_ids.append(seller_id)
                 else:
                     if item_id not in item_ids:
                         add_item = True
