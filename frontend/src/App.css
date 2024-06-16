@@ -87,6 +87,8 @@
   transition: 0.3s;
   border-radius: 10px !important;
   flex: 0 1 calc(30% - 1em);
+  background-color: #faf9fa !important;
+  border-width: 0px !important;
 }
 
 @media screen and (min-width: 40em) {
