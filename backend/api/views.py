@@ -1,6 +1,5 @@
 import json
 import time
-import base64
 from bs4 import BeautifulSoup
 import requests
 
@@ -11,7 +10,7 @@ BAZAAR_URL = "https://www.stardoll.com/en/com/user/getStarBazaar.php"
 SEARCH_URL = BAZAAR_URL + "?search&type=fashion&Price=24"
 ITEM_IMAGE_URL = "http://cdn.stardoll.com/itemimages/76/0/98/{}.png"
 USER_COOKIE = "pdhUser=460859043%3A2b888bad5e9867832ac89b36c8383940%3Asdw161.stardoll.com"
-SELLER_INFO_URL = "http://www.stardoll.com/en/user/yearbook.php?id={}"
+SELLER_INFO_URL = "http://www.stardoll.com/en/user/sellItems.php?id={}"
 ITEM_INFO = ["brand", "name", "currencyType", "originalPrice", "sellPrice", "sellerId"]
 MAX_ITEMS_AT_ONCE = 20
 
@@ -90,8 +89,7 @@ class SearchView(BazaarSearchView):
     def get_item_info(self, item):
         item_id = item['itemId']
         item_info = {info: item[info] for info in ITEM_INFO}
-                        
-        item_image = base64.b64encode(requests.get(ITEM_IMAGE_URL.format(item_id)).content).decode("utf-8")
+        item_image = ITEM_IMAGE_URL.format(item_id)
         item_info["itemImage"] = item_image
 
         seller_page = self.make_request(SELLER_INFO_URL.format(item_info["sellerId"]), html=True)

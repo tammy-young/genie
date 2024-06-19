@@ -6,8 +6,6 @@ import StardollarIcon from './images/stardollar';
 import StarcoinIcon from './images/starcoin';
 
 
-const ImgFromBase64 = ({ data }) => <img src={`data:image/jpeg;base64,${data}`} alt="No Image Found" style={{ width: '50%' }} />
-
 const getCurrencyIcon = ({ item }) => {
     return(
         item.currencyType === 1? <StardollarIcon /> : <StarcoinIcon />
@@ -29,7 +27,7 @@ const ItemCard = ({ item, fashionBrands }) => {
     return (
         <div className="card item-card" style={{ width: '100%', padding: '10px', margin: '10px' }}>
             <div style={{ alignContent: 'center', paddingTop: '50px' }}>
-                <ImgFromBase64 data={ item.itemImage } />
+                <img src={ item.itemImage } alt="No Image Found" style={{ width: '50%' }} />
             </div>
             <div style={{ padding: '10px' }}>
                 <h6><b>{ item.name }</b></h6>
