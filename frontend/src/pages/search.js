@@ -30,9 +30,9 @@ const displayItems = (items) => {
 	} else {
 		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
 		searchingTextDiv.innerHTML = "";
-		return items.map((item) => (
-			<ItemCard item={ item } />
-		));
+		return items.map((item, index) => {
+			return (<ItemCard item={ item } index={ index } />);
+		});
 	}
 }
 
@@ -84,7 +84,7 @@ const Search = () => {
 			let currencyType = priceFilterSection !== null? getCurrencyType(currencyTypeInput) : "";
 			let itemName = nameFilterSection !== null? itemNameInput.value : "";
 
-			const response = await axios.get('/api/search/', {
+			const response = await axios.get('/search/', {
 				params: {
 					"brandId": searchBrandId,
 					"minPrice": minPrice,
