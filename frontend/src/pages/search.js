@@ -109,9 +109,10 @@ const Search = () => {
 		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
 		searchingTextDiv.innerHTML = startSearchMessage;
 	}
-
+	
 	useEffect(() => {
 		getItems();
+		// eslint-disable-next-line
 	}, [searchedItems]);
 
 	useEffect(() => {

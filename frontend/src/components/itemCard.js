@@ -38,7 +38,7 @@ const ItemCard = ({ item, index }) => {
     return (
         <div className="card item-card" style={{ width: '100%', padding: '10px', margin: '10px' }} data-div-id={ index }>
             <div style={{ alignContent: 'center', paddingTop: '50px' }}>
-                <img src={ item.itemImage } alt="No Image Found" style={{ width: '50%' }} />
+                <img src={ item.itemImage } alt="Not Found" style={{ width: '50%' }} />
             </div>
             <div style={{ padding: '10px' }}>
                 <h6><b>{ item.name }</b></h6>
