@@ -23,15 +23,26 @@ const getBrandName = ({ item }) => {
     return brands[brandId];
 }
 
-const ItemCard = ({ item, fashionBrands }) => {
+const getSeller = (item, index) => {
+	fetch("/getSeller?sellerId=" + item.sellerId)
+	.then(res => res.json())
+	.then(data => {
+		let username = data.sellerUser;
+		let itemCardDiv = document.querySelector('div.item-card[data-div-id="' + index + '"]');
+        let usernameTextBox = itemCardDiv.querySelector("#" + constants.divIds.SELLER_USERNAME_DIV_ID);
+		usernameTextBox.innerHTML = username;
+	});
+}
+
+const ItemCard = ({ item, index }) => {
     return (
-        <div className="card item-card" style={{ width: '100%', padding: '10px', margin: '10px' }}>
+        <div className="card item-card" style={{ width: '100%', padding: '10px', margin: '10px' }} data-div-id={ index }>
             <div style={{ alignContent: 'center', paddingTop: '50px' }}>
                 <img src={ item.itemImage } alt="No Image Found" style={{ width: '50%' }} />
             </div>
             <div style={{ padding: '10px' }}>
                 <h6><b>{ item.name }</b></h6>
-                <p style={{ marginTop: '-5px' }}>{ getBrandName({ item, fashionBrands }) }</p>
+                <p style={{ marginTop: '-5px' }}>{ getBrandName({ item }) }</p>
                 <div style={{ textAlign: "left" }}>
                     <table>
                         <tr>
@@ -56,8 +67,8 @@ const ItemCard = ({ item, fashionBrands }) => {
                             <th style={{ fontWeight: 'normal' }}>
                                 Seller
                             </th>
-                            <th style={{ fontWeight: 'normal' }}>
-                                { item.sellerUsername }
+                            <th style={{ fontWeight: 'normal' }} id={ constants.divIds.SELLER_USERNAME_DIV_ID }>
+                                { getSeller(item, index) }
                                 <IconButton size="small" onClick={() => copy(item.sellerUsername) } style={{ display: "inline-block" }}>
                                     <ContentCopyIcon style={{ width: '17px', marginTop: '-5px' }}/>
                                 </IconButton>
@@ -65,7 +76,6 @@ const ItemCard = ({ item, fashionBrands }) => {
                         </tr>
                     </table>
                 </div>
-                
             </div>
         </div>
     )

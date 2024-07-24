@@ -108,7 +108,7 @@ const FilterTable = () => {
 		try {
 			setLoading(true);
 
-			const response = await axios.get('/api/getBrands/');
+			const response = await axios.get('/getBrands');
 
             let brandsIdToName = response.data.brandsIdToName;
             let brandsNameToId = response.data.brandsNameToId;
