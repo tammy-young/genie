@@ -226,3 +226,14 @@ body {
 .id-search-row {
   height: fit-content;
 }
+
+a {
+  color: #000 !important;
+}
+
+.nav-bar .nav > a[class*="selected"] {
+  border-radius: 30px;
+  background-color: #A87CFC;
+  color: #fff !important;
+  padding: 0.75rem 1rem;
+}
