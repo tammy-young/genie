@@ -8,7 +8,8 @@ const constants = {
         SEARCHING_TEXT_DIV: "searchingText",
         BRANDS_NAME_TO_ID: "brandsNameToIdDiv",
         BRANDS_ID_TO_NAME: "brandsIdToNameDiv",
-        SELLER_USERNAME_DIV_ID: "sellerUsername"
+        SELLER_USERNAME_DIV_ID: "sellerUsername",
+        COPY_ICON: "copySellerUsername"
     },
     filterValuesIds: {
         FASHION_BRAND: "brandNameFilter",
