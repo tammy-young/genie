@@ -24,15 +24,11 @@ const getBrandId = (brandInput) => {
 }
 
 const displayItems = (items) => {
-	if (items.length === 0) {
-		return "No Items Found!";
-	} else {
-		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
-		searchingTextDiv.innerHTML = "";
-		return items.map((item, index) => {
-			return (<ItemCard item={ item } index={ index } />);
-		});
-	}
+	let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
+	searchingTextDiv.innerHTML = "";
+	return items.map((item, index) => {
+		return (<ItemCard item={ item } index={ index } />);
+	});
 }
 
 const Search = () => {
@@ -94,7 +90,11 @@ const Search = () => {
 			});
 
 			let items = response.data.items;
-			setSearchedItems(items);
+			if (items.length === 0) {
+				document.getElementById(constants.divIds.SEARCHING_TEXT_DIV).innerHTML = "No Items Found!";
+			} else {
+				setSearchedItems(items);
+			}
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		} finally {
