@@ -17,7 +17,13 @@ run:
 	cd $(FRONTEND_DIR) && npm start &
 	cd $(BACKEND_DIR) && npm start
 
-# Target to build frontend and backend
+# Target to build frontend
 .PHONY: build
 build:
 	cd $(FRONTEND_DIR) && npm run build
+
+# Target to install dependencies
+.PHONY: install-now
+install:
+	cd $(FRONTEND_DIR) && npm i
+	cd $(BACKEND_DIR) && npm i
