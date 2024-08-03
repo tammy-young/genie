@@ -20,11 +20,7 @@ const getBrandId = (brandInput) => {
 	}
 	let brandNameToIdDiv = document.getElementById(constants.divIds.BRANDS_NAME_TO_ID);
 	let brands = JSON.parse(brandNameToIdDiv.innerHTML);
-	try {
-		return brands[brandName];
-	} catch {
-		return "";
-	}
+	return brandName in brands? brands[brandName] : "";
 }
 
 const displayItems = (items) => {
