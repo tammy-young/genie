@@ -26,12 +26,12 @@ const constants = {
         PRIMARY: "#A87CFC",
         BACKGROUND: "#FDFBFE"
     },
-    pageIndexes: {
-        SEARCH: 0,
-        ID_SEARCH: 1
-    },
     brandIdSearchPage: {
         BRAND_ID_SEARCH_INPUT: "brandIdSearchInput"
+    },
+    paths: {
+        SEARCH: "/",
+        ID_SEARCH: "/brands"
     }
 }
 

@@ -142,8 +142,8 @@ const FilterTable = () => {
                 </TableHead>
                 <TableBody>
                     { filters
-                      .map((row) => (
-                        <FilterRow key={row} row={ row } fashionBrands={ fashionBrands } loading={ loading }/>
+                      .map((row, index) => (
+                        <FilterRow key={index} row={ row } fashionBrands={ fashionBrands } loading={ loading }/>
                     ))
                     }
                 </TableBody>
