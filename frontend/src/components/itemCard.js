@@ -31,6 +31,9 @@ const getSeller = (item, index) => {
 		let itemCardDiv = document.querySelector('div.item-card[data-div-id="' + index + '"]');
         let usernameTextBox = itemCardDiv.querySelector("#" + constants.divIds.SELLER_USERNAME_DIV_ID);
 		usernameTextBox.innerHTML = username;
+        let copyUserIcon = itemCardDiv.querySelector('#' + constants.divIds.COPY_ICON);
+        copyUserIcon.style.visibility = "visible";
+        copyUserIcon.onclick = function() {copy(username)};
 	});
 }
 
@@ -69,8 +72,10 @@ const ItemCard = ({ item, index }) => {
                             </th>
                             <th style={{ fontWeight: 'normal' }} id={ constants.divIds.SELLER_USERNAME_DIV_ID }>
                                 { getSeller(item, index) }
-                                <IconButton size="small" onClick={() => copy(item.sellerUsername) } style={{ display: "inline-block" }}>
-                                    <ContentCopyIcon style={{ width: '17px', marginTop: '-5px' }}/>
+                            </th>
+                            <th style={{ fontWeight: 'normal' }}>
+                                <IconButton size="small" style={{ display: "inline-block", visibility: "hidden" }} id={ constants.divIds.COPY_ICON }>
+                                    <ContentCopyIcon style={{ width: '17px', marginTop: '-3px' }}/>
                                 </IconButton>
                             </th>
                         </tr>

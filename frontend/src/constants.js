@@ -8,7 +8,8 @@ const constants = {
         SEARCHING_TEXT_DIV: "searchingText",
         BRANDS_NAME_TO_ID: "brandsNameToIdDiv",
         BRANDS_ID_TO_NAME: "brandsIdToNameDiv",
-        SELLER_USERNAME_DIV_ID: "sellerUsername"
+        SELLER_USERNAME_DIV_ID: "sellerUsername",
+        COPY_ICON: "copySellerUsername"
     },
     filterValuesIds: {
         FASHION_BRAND: "brandNameFilter",
@@ -26,12 +27,12 @@ const constants = {
         PRIMARY: "#A87CFC",
         BACKGROUND: "#FDFBFE"
     },
-    pageIndexes: {
-        SEARCH: 0,
-        ID_SEARCH: 1
-    },
     brandIdSearchPage: {
         BRAND_ID_SEARCH_INPUT: "brandIdSearchInput"
+    },
+    paths: {
+        SEARCH: "/",
+        ID_SEARCH: "/brands"
     }
 }
 

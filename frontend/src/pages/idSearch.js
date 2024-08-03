@@ -1,10 +1,6 @@
 import Input from '@mui/joy/Input';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
-import constants from '../constants';
-import './../App.css';
-import { useEffect, useState } from 'react';
-import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -12,6 +8,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+
+import { useEffect, useState } from 'react';
+import { styled } from '@mui/material/styles';
+import axios from 'axios';
+
+import constants from '../constants';
+import './../App.css';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -55,8 +58,25 @@ const IdSearch = () => {
         setSearchingFor(brand.target.value);
     }
 
+    const getBrands = async () => {
+		try {
+			const response = await axios.get('/getBrands');
+            let brandsIdToName = response.data.brandsIdToName;
+            let brandsNameToId = response.data.brandsNameToId;
+            let brandsIdToNameHidden = document.getElementById(constants.divIds.BRANDS_ID_TO_NAME);
+            let brandsNameToIdHidden = document.getElementById(constants.divIds.BRANDS_NAME_TO_ID);
+            if (brandsIdToNameHidden !== null && brandsNameToIdHidden !== null) {
+                brandsIdToNameHidden.innerHTML = JSON.stringify(brandsIdToName);
+                brandsNameToIdHidden.innerHTML = JSON.stringify(brandsNameToId);
+                setSearchedBrands(reset());
+            }
+		} catch (error) {
+			console.error('Error fetching brands:', error);
+		}
+	};
+
     useEffect(() => {
-		setSearchedBrands(reset());
+		getBrands();
 	}, []);
 
     return(
@@ -106,6 +126,8 @@ const IdSearch = () => {
                     </TableContainer>
                 </div>
             </div>
+            <div style={{ display: "none" }} id={ constants.divIds.BRANDS_NAME_TO_ID }></div>
+            <div style={{ display: "none" }} id={ constants.divIds.BRANDS_ID_TO_NAME }></div>
         </div>
     );
 }

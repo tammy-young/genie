@@ -15,13 +15,12 @@ const getCurrencyType = (currencyCheckbox) => {
 
 const getBrandId = (brandInput) => {
 	let brandName = brandInput.value;
-	let brandNameToIdDiv = document.getElementById(constants.divIds.BRANDS_NAME_TO_ID);
-	let brands = JSON.parse(brandNameToIdDiv.innerHTML);
-	try {
-		return brands[brandName];
-	} catch {
+	if (brandName === "") {
 		return "";
 	}
+	let brandNameToIdDiv = document.getElementById(constants.divIds.BRANDS_NAME_TO_ID);
+	let brands = JSON.parse(brandNameToIdDiv.innerHTML);
+	return brandName in brands? brands[brandName] : "";
 }
 
 const displayItems = (items) => {
@@ -137,11 +136,10 @@ const Search = () => {
                         <button className='btn btn-secondary' id={ constants.buttonIds.RESET_BTN } onClick={ reset }>Reset</button>
                     </div>
                 </div>
-
                 { getItems() }
-                
             </div>
-
+			<div style={{ display: "none" }} id={ constants.divIds.BRANDS_NAME_TO_ID }></div>
+			<div style={{ display: "none" }} id={ constants.divIds.BRANDS_ID_TO_NAME }></div>
         </div>
     )
 }
