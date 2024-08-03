@@ -15,6 +15,9 @@ const getCurrencyType = (currencyCheckbox) => {
 
 const getBrandId = (brandInput) => {
 	let brandName = brandInput.value;
+	if (brandName === "") {
+		return "";
+	}
 	let brandNameToIdDiv = document.getElementById(constants.divIds.BRANDS_NAME_TO_ID);
 	let brands = JSON.parse(brandNameToIdDiv.innerHTML);
 	try {
