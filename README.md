@@ -38,4 +38,4 @@ const response = await fetch(url, {
 ```
 
 # Troubleshooting
-The most common issue you will run into is infinitely long searching. The search function is desgiend to time out in 10 seconds, or when it finds 20 matching items. If your search is running infinitely, it could be due to no matching items found, or your `PDH_USER` environment variable being expired. If your `PDH_USER` cookie is expired, Genie will not work. You will need to follow [the steps above](https://github.com/tammy-young/genie?tab=readme-ov-file#configuring-your-environment) for configuring your environment to replace the `PDH_USER` value in `.env`.
+The most common issue you will run into is infinitely long searching. The search function is desgiend to time out in 10 seconds, or when it finds 20 matching items. If your search is running infinitely, it's probably because your `PDH_USER` cookie expired. If your `PDH_USER` cookie is expired, Genie will not work. You will need to follow [the steps above](https://github.com/tammy-young/genie?tab=readme-ov-file#configuring-your-environment) for configuring your environment to replace the `PDH_USER` value in `.env`.
