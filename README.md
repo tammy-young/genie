@@ -18,7 +18,7 @@ Now you need to configure your environment variables. Create a `.env` file in th
 ```
 PDH_USER=YOUR_PDH_USER_COOKIE
 ```
-Login to [Stardoll](www.stardoll.com) and right click, then inspect element. Find the cookies (usually under `Application` or `Storage` and copy the value of `pdhUser`. Replace `YOUR_PDH_USER_COOKIE` in your `.env` file with this value.
+Login to [Stardoll](http://www.stardoll.com/en/) and right click, then inspect element. Find the cookies (usually under `Application` or `Storage` and copy the value of `pdhUser`. Replace `YOUR_PDH_USER_COOKIE` in your `.env` file with this value.
 
 Now your environment is configured and you can do a `make run` in your terminal to run Genie.
 
