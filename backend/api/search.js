@@ -2,13 +2,13 @@ import constants from "../constants.js";
 import fetchData from "./bazaarRequest.js";
 
 const ITEMS_KEY = "items";
-
+const ITEM_INFO = ["brand", "name", "currencyType", "originalPrice", "sellPrice", "sellerId"];
 
 const getItemInfo = async (item) => {
     let itemId = item['itemId'];
     let itemInfo = {};
-    constants.backend.ITEM_INFO.forEach(info => {
-        itemInfo[info] = item[info];
+    ITEM_INFO.forEach(info => {
+        itemInfo[info] = typeof item[info] === "string"? item[info].replace(/&amp;/g, "&") : item[info];
     })
     itemInfo["itemImage"] = constants.backend.ITEM_IMAGE_URL(itemId);
     return itemInfo;
