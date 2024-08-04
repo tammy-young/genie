@@ -215,6 +215,9 @@ body {
   .css-ozesu3-MuiTableCell-root {
     color: #dadada !important;
   }
+  a {
+    color: #fff !important;
+  }
 }
 
 .page {
@@ -228,7 +231,7 @@ body {
 }
 
 a {
-  color: #000 !important;
+  color: #000;
 }
 
 .nav-bar .nav > a[class*="selected"] {
