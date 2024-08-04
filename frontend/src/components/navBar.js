@@ -17,7 +17,9 @@ const NavBar = () => {
     return (
         <div className='row nav-bar'>
             <div className='col' style={{ padding: '0px', textAlign: 'left', width: 'fit-content', maxWidth: 'fit-content' }}>
-                <GenieIcon />
+                <NavLink to={ constants.paths.SEARCH }>
+                    <GenieIcon />
+                </NavLink>
             </div>
             <div className='col nav' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content' }} >
                 <NavLink to={ constants.paths.SEARCH } className={"nav-link" + (isActive(constants.paths.SEARCH) ? " selected" : "")} >
