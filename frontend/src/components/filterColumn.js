@@ -15,6 +15,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import NameSelector from './nameSelector.js';
 import BrandSelector from './brandSelector.js';
 import PriceSelector from './priceSelector.js';
+import OtherFilters from './otherFilters.js';
 
 import "./../App.css";
 import constants from '../constants.js';
@@ -25,6 +26,7 @@ import axios from 'axios';
  * 0 - brand filter
  * 1 - price filter
  * 2 - name filter
+ * 3 - other filters
  */
 const filters = [{
     "name": "Brand",
@@ -38,6 +40,10 @@ const filters = [{
     "name": "Item Name",
     "filterType": 2,
     "divName": constants.divIds.FASHION_NAME_DIV
+}, {
+    "name": "Other",
+    "filterType": 3,
+    "divName": constants.divIds.OTHER_FILTERS_DIV
 }];
 
 const getFilter = (row, fashionBrands, loading) => {
@@ -48,13 +54,11 @@ const getFilter = (row, fashionBrands, loading) => {
             <BrandSelector fashionBrands={ fashionBrands } loading={ loading } />
         );
     } else if (filterType === 1) {
-        return(
-            <PriceSelector />
-        );
+        return(<PriceSelector />);
     } else if (filterType === 2) {
-        return(
-            <NameSelector />
-        );
+        return(<NameSelector />);
+    } else if (filterType === 3) {
+        return (<OtherFilters />);
     }
 }
 

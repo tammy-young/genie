@@ -1,12 +1,8 @@
 import constants from "../constants.js";
 import fetchData from "./bazaarRequest.js";
 
-
 const ITEMS_KEY = "items";
 
-const getHeader = (req, headerName) => {
-    return req.headers[headerName]? req.headers[headerName] : "";
-}
 
 const getItemInfo = async (item) => {
     let itemId = item['itemId'];
@@ -35,6 +31,8 @@ const search = async (req) => {
     let currencyType = req.query.currencyType;
     searchUrl += (minPrice || maxPrice) && (currencyType !== "")? `&currencyType=${currencyType}` : "";
 
+    let showStardesign = (req.query.showStardesign === 'true');
+
     let items = [];
     let itemIds = [];
     let stopSearchTime = Date.now() + 10000;
@@ -49,6 +47,10 @@ const search = async (req) => {
             for (let item of returned_items) {
                 let itemId = item['itemId'];
                 let addItem = false;
+
+                if (!showStardesign && item.brand == "43") {
+                    continue;
+                }
 
                 if (itemName !== "") {
                     let searchedItemName = item.name.toLowerCase();

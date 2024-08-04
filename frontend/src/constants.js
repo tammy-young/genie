@@ -4,6 +4,7 @@ const constants = {
         FASHION_BRAND_DIV: "brandFilterDiv",
         FASHION_PRICE_DIV: "priceFilterDiv",
         FASHION_NAME_DIV: "nameFilterDiv",
+        OTHER_FILTERS_DIV: "otherFilersDiv",
         ITEM_PANEL_DIV: "itemPanel",
         SEARCHING_TEXT_DIV: "searchingText",
         BRANDS_NAME_TO_ID: "brandsNameToIdDiv",
@@ -17,7 +18,8 @@ const constants = {
         FASHION_ITEM_NAME: "fashionItemName",
         FASHION_CURRENCY_TYPE: "fashionCurrencyType",
         FASHION_MIN_PRICE: "fashionMinPrice",
-        FASHION_MAX_PRICE: "fashionMaxPrice"
+        FASHION_MAX_PRICE: "fashionMaxPrice",
+        SHOW_STARDESIGN: "showStardesignFilter"
     },
     buttonIds: {
         SEARCH_BTN: "searchBtn",
