@@ -71,6 +71,7 @@ const Search = () => {
 			let itemNameInput = document.querySelector('[data-id="' + constants.filterValuesIds.FASHION_ITEM_NAME + '"] input');
 			let currencyTypeInput = document.getElementById(constants.filterValuesIds.FASHION_CURRENCY_TYPE);
 			let priceInput = document.getElementById(constants.filterValuesIds.FASHION_PRICE);
+			let stardesignInput = document.getElementById(constants.filterValuesIds.SHOW_STARDESIGN);
 
 			let searchBrandId = brandFilterSection !== null? getBrandId(brandInput) : "";
 			let priceInputValue = priceFilterSection !== null? priceInput.innerText: "2\n600";
@@ -78,6 +79,7 @@ const Search = () => {
 			let maxPrice = priceInputValue.split("\n")[1];
 			let currencyType = priceFilterSection !== null? getCurrencyType(currencyTypeInput) : "";
 			let itemName = nameFilterSection !== null? itemNameInput.value : "";
+			let showStardesign = stardesignInput !== null? stardesignInput.checked : true;
 
 			const response = await axios.get('/search/', {
 				params: {
@@ -85,7 +87,8 @@ const Search = () => {
 					"minPrice": minPrice,
 					"maxPrice": maxPrice,
 					"itemName": itemName,
-					"currencyType": currencyType
+					"currencyType": currencyType,
+					"showStardesign": showStardesign
 				}
 			});
 

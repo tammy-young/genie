@@ -6,21 +6,12 @@ import constants from "../constants";
 import './../App.css';
 import StardollarIcon from './images/stardollar';
 import StarcoinIcon from './images/starcoin';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '../themes';
 
 const defaultMin = 2;
 const defaultMax = 600;
 
-const theme = createTheme({
-    palette: {
-        stardollPurple: {
-            main: constants.colors.PRIMARY,
-            light: constants.colors.PRIMARY,
-            dark: constants.colors.PRIMARY,
-        },
-    },
-});
 
 function valuetext(value) {
     return `${value}°C`;
