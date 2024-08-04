@@ -233,11 +233,11 @@ body {
   height: fit-content;
 }
 
-a {
+a.nav-link {
   color: #000;
 }
 
-.nav-bar .nav > a[class*="selected"] {
+.nav-bar .nav > a[class*="selected"].nav-link {
   border-radius: 30px;
   background-color: #A87CFC;
   color: #fff !important;
