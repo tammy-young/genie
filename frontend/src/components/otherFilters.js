@@ -11,7 +11,7 @@ const OtherFilters = () => {
 	return(
 		<>
             {/* <ThemeProvider theme={ theme }> */}
-                <Checkbox variant="outlined" label="Show Stardesign" color="stardollPurple" id={ constants.filterValuesIds.SHOW_STARDESIGN } />
+                <Checkbox variant="outlined" color="neutral" label="Show Stardesign" id={ constants.filterValuesIds.SHOW_STARDESIGN } />
             {/* </ThemeProvider> */}
 		</>
 	);
