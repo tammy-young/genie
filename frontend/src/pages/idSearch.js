@@ -107,7 +107,7 @@ const IdSearch = () => {
                                     .filter(brand => {
                                         const searchedBrand = searchingFor.toLowerCase();
                                         const brandName = brand.toLowerCase();
-                                        return (searchedBrand && brandName.includes(searchedBrand) && brandName !== searchedBrand) || searchedBrand === "";
+                                        return (searchedBrand && brandName.includes(searchedBrand)) || searchedBrand === "";
                                     })
                                     .map((brand) => (
                                         <StyledTableRow>
