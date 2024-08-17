@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import 'dotenv/config';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Search from './pages/search.js';

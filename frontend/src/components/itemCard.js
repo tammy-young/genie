@@ -24,7 +24,7 @@ const getBrandName = ({ item }) => {
 }
 
 const getSeller = (item, index) => {
-	fetch(process.env.API + constants.backend.GET_SELLER + "?sellerId=" + item.sellerId)
+	fetch(constants.backend.API + constants.backend.GET_SELLER + "?sellerId=" + item.sellerId)
 	.then(res => res.json())
 	.then(data => {
 		let username = data.sellerUser;

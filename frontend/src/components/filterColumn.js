@@ -112,13 +112,7 @@ const FilterTable = () => {
 		try {
 			setLoading(true);
 
-            let apiUrl = process.env.API;
-            let undefinedPart = "/undefined";
-            if (apiUrl.includes(undefinedPart)) {
-                apiUrl.replace(undefinedPart, "")
-            }
-
-			const response = await axios.get(apiUrl + constants.backend.GET_BRANDS);
+			const response = await axios.get(constants.backend.API + constants.backend.GET_BRANDS);
 
             let brandsIdToName = response.data.brandsIdToName;
             let brandsNameToId = response.data.brandsNameToId;

@@ -81,7 +81,7 @@ const Search = () => {
 			let itemName = nameFilterSection !== null? itemNameInput.value : "";
 			let showStardesign = stardesignInput !== null? stardesignInput.checked : true;
 
-			const response = await axios.get(process.env.API + constants.backend.SEARCH, {
+			const response = await axios.get(constants.backend.API + constants.backend.SEARCH, {
 				params: {
 					"brandId": searchBrandId,
 					"minPrice": minPrice,
