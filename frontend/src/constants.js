@@ -37,8 +37,9 @@ const constants = {
         ID_SEARCH: "/brands"
     },
     backend: {
-        GET_BRANDS: "/getBrands",
-        SEARCH: "/search"
+        GET_BRANDS: "/.netlify/functions/getBrands",
+        SEARCH: "/.netlify/functions/search",
+        GET_SELLER: "/.netlify/functions/getSeller"
     }
 }
 
