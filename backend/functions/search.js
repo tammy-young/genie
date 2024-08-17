@@ -1,8 +1,31 @@
-import constants from "../constants.js";
-import fetchData from "./bazaarRequest.js";
+import express from "express";
+import cors from 'cors';
+import 'dotenv/config';
+import ServerlessHttp from "serverless-http";
+
 
 const ITEMS_KEY = "items";
 const ITEM_INFO = ["brand", "name", "currencyType", "originalPrice", "sellPrice", "sellerId"];
+const BAZAAR_URL = "https://www.stardoll.com/en/com/user/getStarBazaar.php";
+const SEARCH_URL_PART = "?search&type=fashion&Price=24";
+const MAX_ITEMS_AT_ONCE = 20;
+
+const itemImageUrl = (id) => { return `http://cdn.stardoll.com/itemimages/76/0/98/${id}.png` };
+
+async function fetchData(url, html=false) {
+    try {
+        const response = await fetch(url, {
+            withCredentials: true,
+            headers: {
+                Cookie: "pdhUser=" + process.env.PDH_USER + ";"
+            }
+        });
+        const data = html? response.text() : response.json();
+        return data;
+    } catch (e) {
+        console.error("Could not get response:", e);
+    }
+}
 
 const getItemInfo = async (item) => {
     let itemId = item['itemId'];
@@ -10,13 +33,13 @@ const getItemInfo = async (item) => {
     ITEM_INFO.forEach(info => {
         itemInfo[info] = typeof item[info] === "string"? item[info].replace(/&amp;/g, "&") : item[info];
     })
-    itemInfo["itemImage"] = constants.backend.ITEM_IMAGE_URL(itemId);
+    itemInfo["itemImage"] = itemImageUrl(itemId);
     return itemInfo;
 }
 
 const search = async (req) => {
 
-    let searchUrl = constants.backend.BAZAAR_URL + constants.backend.SEARCH_URL_PART;
+    let searchUrl = BAZAAR_URL + SEARCH_URL_PART;
     let itemName = req.query.itemName.toLowerCase();
 
     let brandId = req.query.brandId;
@@ -37,7 +60,7 @@ const search = async (req) => {
     let itemIds = [];
     let stopSearchTime = Date.now() + 10000;
 
-    while (Date.now() < stopSearchTime && items.length < constants.backend.MAX_ITEMS_AT_ONCE) {
+    while (Date.now() < stopSearchTime && items.length < MAX_ITEMS_AT_ONCE) {
         let returnedPage = await fetchData(searchUrl);
 
         // if there are no items on the page then get a new page
@@ -69,7 +92,7 @@ const search = async (req) => {
                     items.push(itemInfo);
                 }
 
-                if (items.length >= constants.backend.MAX_ITEMS_AT_ONCE) {
+                if (items.length >= MAX_ITEMS_AT_ONCE) {
                     break;
                 }
             }
@@ -79,4 +102,18 @@ const search = async (req) => {
     return {"items": items};
 }
 
-export default search;
+const app = express();
+app.use(cors())
+
+app.get("/.netlify/functions/search", async (req, res) => {
+    search(req)
+    .then(data => {
+        res.json(data);
+    });
+});
+
+const handler = ServerlessHttp(app);
+module.exports.handler = async(event, context) => {
+    const result = handler(event, context);
+    return result;
+}
