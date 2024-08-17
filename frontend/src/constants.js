@@ -35,6 +35,10 @@ const constants = {
     paths: {
         SEARCH: "/",
         ID_SEARCH: "/brands"
+    },
+    backend: {
+        GET_BRANDS: "/getBrands",
+        SEARCH: "/search"
     }
 }
 
