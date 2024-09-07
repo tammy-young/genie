@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper';
 
 import { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
+import axios from 'axios';
 
 import constants from '../constants';
 import './../App.css';
@@ -57,9 +58,26 @@ const IdSearch = () => {
         setSearchingFor(brand.target.value);
     }
 
+    const getBrands = async () => {
+		try {
+			const response = await axios.get(constants.backend.API + constants.backend.GET_BRANDS);
+            let brandsIdToName = response.data.brandsIdToName;
+            let brandsNameToId = response.data.brandsNameToId;
+            let brandsIdToNameHidden = document.getElementById(constants.divIds.BRANDS_ID_TO_NAME);
+            let brandsNameToIdHidden = document.getElementById(constants.divIds.BRANDS_NAME_TO_ID);
+            if (brandsIdToNameHidden !== null && brandsNameToIdHidden !== null) {
+                brandsIdToNameHidden.innerHTML = JSON.stringify(brandsIdToName);
+                brandsNameToIdHidden.innerHTML = JSON.stringify(brandsNameToId);
+                setSearchedBrands(reset());
+            }
+		} catch (error) {
+			console.error('Error fetching brands:', error);
+		}
+	};
+
     useEffect(() => {
-        setSearchedBrands(reset());
-    }, [])
+		getBrands();
+	}, []);
 
     return(
         <div className='page' style={{ padding: '30px' }}>
@@ -108,6 +126,8 @@ const IdSearch = () => {
                     </TableContainer>
                 </div>
             </div>
+            <div style={{ display: "none" }} id={ constants.divIds.BRANDS_NAME_TO_ID }></div>
+            <div style={{ display: "none" }} id={ constants.divIds.BRANDS_ID_TO_NAME }></div>
         </div>
     );
 }
