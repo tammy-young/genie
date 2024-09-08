@@ -8,7 +8,8 @@ import './../App.css';
 const OtherFilters = () => {
 	return(
 		<>
-			<Checkbox variant="outlined" color="neutral" label="Show Stardesign" id={ constants.filterValuesIds.SHOW_STARDESIGN } />
+			<Checkbox variant="outlined" color="neutral" label="Show Stardesign, Special Offer, and Buy & Get"
+			  id={ constants.filterValuesIds.SHOW_STARDESIGN } defaultChecked="true" />
 		</>
 	);
 }
