@@ -87,19 +87,24 @@
   transition: 0.3s;
   border-radius: 10px !important;
   flex: 0 1 calc(30% - 1em);
-  background-color: #faf9fa !important;
-  border-width: 0px !important;
+  background-color: #fff !important;
 }
 
 @media screen and (min-width: 40em) {
   .item-card {
-     max-width: calc(30% - 1em);
+     max-width: calc(74% - 1em);
+  }
+}
+
+@media screen and (min-width: 50em) {
+  .item-card {
+     max-width: calc(49% - 1em);
   }
 }
 
 @media screen and (min-width: 60em) {
   .item-card {
-      max-width: calc(30% - 1em);
+      max-width: calc(24% - 1em);
   }
 }
 
@@ -157,11 +162,12 @@
 }
 
 body {
-  background-color: #FDFBFE;
+  background-color: #fff !important;
   color: #1f2023;
   font-family: "Roboto", sans-serif !important;
   margin: 0;
 }
+
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #1f2023 !important;
