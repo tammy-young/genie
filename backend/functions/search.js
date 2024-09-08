@@ -9,6 +9,7 @@ const ITEM_INFO = ["brand", "name", "currencyType", "originalPrice", "sellPrice"
 const BAZAAR_URL = "https://www.stardoll.com/en/com/user/getStarBazaar.php";
 const SEARCH_URL_PART = "?search&type=fashion&Price=24";
 const MAX_ITEMS_AT_ONCE = 20;
+const IGNORE_BRANDS = ["43", "354", "907"]
 
 const itemImageUrl = (id) => { return `http://cdn.stardoll.com/itemimages/76/0/98/${id}.png` };
 
@@ -58,7 +59,7 @@ const search = async (req) => {
 
     let items = [];
     let itemIds = [];
-    let stopSearchTime = Date.now() + 10000;
+    let stopSearchTime = Date.now() + 8000;
 
     while (Date.now() < stopSearchTime && items.length < MAX_ITEMS_AT_ONCE) {
         let returnedPage = await fetchData(searchUrl);
@@ -71,7 +72,7 @@ const search = async (req) => {
                 let itemId = item['itemId'];
                 let addItem = false;
 
-                if (!showStardesign && item.brand == "43") {
+                if (!showStardesign && IGNORE_BRANDS.includes(item.brand)) {
                     continue;
                 }
 
