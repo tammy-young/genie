@@ -10,7 +10,7 @@ const startSearchMessage = "Searched items will show up here!"
 
 
 const getCurrencyType = (currencyCheckbox) => {
-	return currencyCheckbox.checked? 2: 1;
+	return currencyCheckbox.id === '0'? "" : currencyCheckbox.id;
 }
 
 const getBrandId = (brandInput) => {
@@ -69,7 +69,7 @@ const Search = () => {
 			// get input boxes
 			let brandInput = document.getElementById(constants.filterValuesIds.FASHION_BRAND);
 			let itemNameInput = document.querySelector('[data-id="' + constants.filterValuesIds.FASHION_ITEM_NAME + '"] input');
-			let currencyTypeInput = document.getElementById(constants.filterValuesIds.FASHION_CURRENCY_TYPE);
+			let currencyTypeInput = document.getElementsByClassName(constants.filterValuesIds.SELECTED_CURRENCY)[0];
 			let priceInput = document.getElementById(constants.filterValuesIds.FASHION_PRICE);
 			let stardesignInput = document.getElementById(constants.filterValuesIds.SHOW_STARDESIGN);
 
@@ -126,8 +126,8 @@ const Search = () => {
 
     return(
         <div className='page'>
-            <div className='row' style={{ paddingLeft: '30px', height: '100%' }}>
-                <div className='col filter-col'>
+            <div className='row' style={{ paddingLeft: '30px', height: '100%', minWidth: '250px' }}>
+                <div className='col filter-col' style={{ minWidth: '250px', maxWidth: '350px' }}>
                     <h2 style={{ paddingTop: '30px' }}>Fashion</h2>
                     
                     <FilterTable />
@@ -139,7 +139,9 @@ const Search = () => {
                         <button className='btn btn-secondary' id={ constants.buttonIds.RESET_BTN } onClick={ reset }>Reset</button>
                     </div>
                 </div>
-                { getItems() }
+				<div className='col' style={{ textAlign: 'center', display: 'flex' }}>
+					{ getItems() }
+				</div>
             </div>
 			<div style={{ display: "none" }} id={ constants.divIds.BRANDS_NAME_TO_ID }></div>
 			<div style={{ display: "none" }} id={ constants.divIds.BRANDS_ID_TO_NAME }></div>

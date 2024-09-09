@@ -3,11 +3,16 @@ import constants from "./constants";
 
 const theme = createTheme({
     palette: {
-        stardollPurple: {
+        primary: {
             main: constants.colors.PRIMARY,
             light: constants.colors.PRIMARY,
             dark: constants.colors.PRIMARY,
         },
+        secondary: {
+            main: constants.colors.LIGHT_GREY,
+            light: constants.colors.LIGHT_GREY,
+            dark: constants.colors.LIGHT_GREY
+        }
     },
 });
 

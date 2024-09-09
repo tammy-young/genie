@@ -19,7 +19,8 @@ const constants = {
         FASHION_CURRENCY_TYPE: "fashionCurrencyType",
         FASHION_MIN_PRICE: "fashionMinPrice",
         FASHION_MAX_PRICE: "fashionMaxPrice",
-        SHOW_STARDESIGN: "showStardesignFilter"
+        SHOW_STARDESIGN: "showStardesignFilter",
+        SELECTED_CURRENCY: "selectedCurrency"
     },
     buttonIds: {
         SEARCH_BTN: "searchBtn",
@@ -27,7 +28,8 @@ const constants = {
     },
     colors: {
         PRIMARY: "#A87CFC",
-        BACKGROUND: "#FDFBFE"
+        BACKGROUND: "#FDFBFE",
+        LIGHT_GREY: "#e6e6e6"
     },
     brandIdSearchPage: {
         BRAND_ID_SEARCH_INPUT: "brandIdSearchInput"

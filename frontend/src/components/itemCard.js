@@ -47,39 +47,37 @@ const ItemCard = ({ item, index }) => {
                 <h6><b>{ item.name }</b></h6>
                 <p style={{ marginTop: '-5px' }}>{ getBrandName({ item }) }</p>
                 <div style={{ textAlign: "left" }}>
-                    <table>
-                        <tr>
-                            <th style={{ paddingRight: '50px', fontWeight:'normal' }}>
-                                Selling for
-                            </th>
-                            <th style={{ fontWeight:'normal' }}>
-                                { item.sellPrice }
-                                { getCurrencyIcon({ item }) }
-                            </th>
-                        </tr>
-                        <tr>
-                            <th style={{ fontWeight:'normal' }}>
-                                Original Price
-                            </th>
-                            <th style={{ fontWeight:'normal' }}>
-                                { item.originalPrice }
-                                { getCurrencyIcon({ item }) }
-                            </th>
-                        </tr>
-                        <tr>
-                            <th style={{ fontWeight: 'normal' }}>
-                                Seller
-                            </th>
-                            <th style={{ fontWeight: 'normal' }} id={ constants.divIds.SELLER_USERNAME_DIV_ID }>
-                                { getSeller(item, index) }
-                            </th>
-                            <th style={{ fontWeight: 'normal' }}>
-                                <IconButton size="small" style={{ display: "inline-block", visibility: "hidden" }} id={ constants.divIds.COPY_ICON }>
-                                    <ContentCopyIcon style={{ width: '17px', marginTop: '-3px' }}/>
-                                </IconButton>
-                            </th>
-                        </tr>
-                    </table>
+                    <div className='row'>
+                        <div className='col'>
+                            Sell
+                        </div>
+                        <div className='col ralign'>
+                            { item.sellPrice }
+                            { getCurrencyIcon({ item }) }
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col'>
+                            Original
+                        </div>
+                        <div className='col ralign'>
+                            { item.originalPrice }
+                            { getCurrencyIcon({ item }) }
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col'>
+                            Seller
+                        </div>
+                        <div className='col ralign' id={ constants.divIds.SELLER_USERNAME_DIV_ID } style={{ paddingRight: '5px' }}>
+                            { getSeller(item, index) }
+                        </div>
+                        <div className='col ralign' style={{ maxWidth: '17px' }}>
+                            <IconButton size="small" style={{ visibility: "hidden" }} id={ constants.divIds.COPY_ICON }>
+                                <ContentCopyIcon style={{ width: '17px', marginTop: '-5px', marginLeft: '-25px' }}/>
+                            </IconButton>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

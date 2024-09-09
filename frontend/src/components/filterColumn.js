@@ -134,7 +134,7 @@ const FilterTable = () => {
 	}, []);
 
     return(
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} style={{ minWidth: '250px', maxWidth: '350px' }}>
             <Table aria-label="collapsible table">
                 <TableHead>
                     <TableRow>

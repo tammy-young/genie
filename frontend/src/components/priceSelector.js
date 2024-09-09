@@ -1,5 +1,6 @@
 import Slider from '@mui/material/Slider';
-import Switch from '@mui/joy/Switch';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 import { useState } from 'react';
 import constants from "../constants";
@@ -19,7 +20,7 @@ function valuetext(value) {
 
 const PriceSelector = () => {
     const [value, setValue] = useState([defaultMin, defaultMax]);
-    const [stardollars, setCurrency] = useState(false);
+    const [selectedBtn, setSelectedBtn] = useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -45,10 +46,9 @@ const PriceSelector = () => {
             <div className="row">
                 <div className='col'>
                     <ThemeProvider theme={ theme }>
-                        <Slider getAriaLabel={() => 'Starcoins'} value={ value } onChange={ handleChange } valueLabelDisplay="auto" color="stardollPurple"
+                        <Slider getAriaLabel={() => 'Starcoins'} value={ value } onChange={ handleChange } valueLabelDisplay="auto" color="primary"
                             getAriaValueText={ valuetext } min={ defaultMin } max={ defaultMax } id={ constants.filterValuesIds.FASHION_PRICE }/>
                     </ThemeProvider>
-                    
                 </div>
             </div>
             <div className="row">
@@ -65,9 +65,31 @@ const PriceSelector = () => {
                     </label>
                 </div>
                 <div className="col">
-                    <Switch slotProps={{ input: { 'aria-label': 'dark mode' } }} startDecorator={ <StardollarIcon /> }
-                        endDecorator={ <StarcoinIcon /> } checked={ stardollars } onChange={(event) => setCurrency(event.target.checked)}
-                        id={ constants.filterValuesIds.FASHION_CURRENCY_TYPE } color="neutral" />
+                    Currency Type
+                    <div>
+                        <ThemeProvider theme={ theme }>
+                            <ButtonGroup variant="outlined" aria-label="Currency Type Select">
+                                <Button
+                                 className={selectedBtn === 0 ? constants.filterValuesIds.SELECTED_CURRENCY : ""} id="0"
+                                 color={selectedBtn === 0 ? "primary" : "secondary"} style={{ color: constants.colors.LIGHT_GREY, fontWeight: "normal" }}
+                                 variant={selectedBtn === 0 ? "contained" : "outlined"} onClick={()=>setSelectedBtn(0)}>
+                                    N/A
+                                </Button>
+                                <Button
+                                 className={selectedBtn === 1 ? constants.filterValuesIds.SELECTED_CURRENCY : ""} id="1"
+                                 color={selectedBtn === 1 ? "primary" : "secondary"}
+                                 variant={selectedBtn === 1 ? "contained" : "outlined"} onClick={()=>setSelectedBtn(1)}>
+                                    <StardollarIcon />
+                                </Button>
+                                <Button
+                                 className={selectedBtn === 2 ? constants.filterValuesIds.SELECTED_CURRENCY : ""} id="2"
+                                 color={selectedBtn === 2 ? "primary" : "secondary"}
+                                 variant={selectedBtn === 2 ? "contained" : "outlined"} onClick={()=>setSelectedBtn(2)}>
+                                    <StarcoinIcon />
+                                </Button>
+                            </ButtonGroup>
+                        </ThemeProvider>
+                    </div>
                 </div>
             </div>
         </>
