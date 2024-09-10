@@ -223,6 +223,10 @@ body {
   .MuiCheckbox-checkbox {
     background-color: #1f2023 !important;
   }
+  tr {
+    border: 1px double #353639 !important;
+    border-collapse: collapse;
+  }
 }
 
 .page {
