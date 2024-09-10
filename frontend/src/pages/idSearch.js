@@ -82,14 +82,14 @@ const IdSearch = () => {
     return(
         <div className='page' style={{ padding: '30px' }}>
             <div className="row">
-                <div className='col filter-col'>
+                <div className='col filter-col' style={{ minWidth: '300px' }}>
                     <FormControl>
                         <FormLabel>Brand Name</FormLabel>
                         <Input className='spans' data-id={ constants.brandIdSearchPage.BRAND_ID_SEARCH_INPUT }
-                         onChange={ updateSearchingBrand } />
+                         onChange={ updateSearchingBrand } placeholder='Start typing...' />
                     </FormControl>
                 </div>
-                <div className="col scrollable" style={{ maxWidth: '100%', maxHeight: '84vh' }}>
+                <div className="col scrollable" style={{ maxWidth: '100%', minWidth: '300px', maxHeight: '84vh' }}>
                     <TableContainer component={Paper}>
                         <Table>
                             <TableHead>
