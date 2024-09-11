@@ -126,7 +126,6 @@ const Search = () => {
 
     return(
         <div className='page'>
-			<img></img>
             <div className='row' style={{ paddingLeft: '30px', height: '100%', minWidth: '250px' }}>
                 <div className='col filter-col' style={{ minWidth: '250px', maxWidth: '350px' }}>
                     <h2 style={{ paddingTop: '30px' }}>Fashion</h2>

@@ -69,7 +69,7 @@ const ItemCard = ({ item, index }) => {
                         <div className='col'>
                             Seller
                         </div>
-                        <div className='col ralign' id={ constants.divIds.SELLER_USERNAME_DIV_ID } style={{ paddingRight: '5px' }}>
+                        <div className='col ralign text-overflow-ellipses' id={ constants.divIds.SELLER_USERNAME_DIV_ID } style={{ paddingRight: '5px', maxWidth: '100px' }}>
                             { getSeller(item, index) }
                         </div>
                         <div className='col ralign' style={{ maxWidth: '17px' }}>

@@ -253,3 +253,9 @@ a.nav-link {
 .ralign {
   text-align: right;
 }
+
+.text-overflow-ellipses {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
