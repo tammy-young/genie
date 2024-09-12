@@ -11,7 +11,7 @@ const SEARCH_URL_PART = "?search&type=fashion&Price=24";
 const MAX_ITEMS_AT_ONCE = 20;
 const IGNORE_BRANDS = ["43", "354", "907"]
 
-const itemImageUrl = (id) => { return `http://cdn.stardoll.com/itemimages/76/0/98/${id}.png` };
+const itemImageUrl = (id) => { return `https://wsrv.nl/?url=cdn.stardoll.com/itemimages/76/0/98/${id}.png` };
 
 async function fetchData(url, html=false) {
     try {
