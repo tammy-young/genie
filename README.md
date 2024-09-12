@@ -27,7 +27,7 @@ PDH_USER=YOUR_PDH_USER_COOKIE
 Now your environment is configured and you can do a `make run` in your terminal to run Genie.
 
 ## Troubleshooting 🛠️
-The most common issue you will run into is infinitely long searching. The search function is desigend to time out in 8 seconds, or when it finds 20 matching items. If your search is running for a long time, it's likely due to the `PDH_USER` cookie being expired. You will need to follow [the steps above](https://github.com/tammy-young/genie?tab=readme-ov-file#configuring-your-environment) for configuring your environment to replace the `PDH_USER` value in `.env`.
+The most common issue you will run into is infinitely long searching. The search function is desigend to time out in 8 seconds, or when it finds 20 matching items. If your search is running for a long time, it's likely due to the `PDH_USER` cookie being expired. You will need to follow [the steps above](https://github.com/tammy-young/genie?tab=readme-ov-file#configuring-your-environment-%EF%B8%8F) for configuring your environment to replace the `PDH_USER` value in `.env`.
 
 # Security Concerns 🔒
 Due to ongoing security concerns, here is a transparent explanation on how Genie works without you having to log in to your Stardoll account.
