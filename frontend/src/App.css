@@ -185,6 +185,8 @@ body {
   margin: 0;
 }
 
+/* Dark mode colors */
+
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #1f2023 !important;
@@ -258,4 +260,16 @@ a.nav-link {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.site-padding {
+  padding-left: min(100px, 7%);
+  padding-right: min(100px, 7%);
+  padding-top: 10px;
+}
+
+@media (max-width: 30em) {
+  .nav-link div {
+    display: none;
+  }
 }

@@ -126,9 +126,9 @@ const Search = () => {
 
     return(
         <div className='page'>
-            <div className='row' style={{ paddingLeft: '30px', height: '100%', minWidth: '250px' }}>
-                <div className='col filter-col' style={{ minWidth: '250px', maxWidth: '350px' }}>
-                    <h2 style={{ paddingTop: '30px' }}>Fashion</h2>
+            <div className='row' style={{ height: '100%' }}>
+                <div className='col filter-col' style={{ minWidth: '350px', maxWidth: '350px' }}>
+                    <h2 style={{ paddingTop: '20px' }}>Fashion</h2>
                     
                     <FilterTable />
 

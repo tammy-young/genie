@@ -21,15 +21,17 @@ const NavBar = () => {
                     <GenieIcon />
                 </NavLink>
             </div>
-            <div className='col nav' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content' }} >
-                <NavLink to={ constants.paths.SEARCH } className={"nav-link" + (isActive(constants.paths.SEARCH) ? " selected" : "")} >
-                    Search <SearchIcon />
-                </NavLink>
-            </div>
-            <div className='col nav' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content' }} >
-                <NavLink to={ constants.paths.ID_SEARCH } className={"nav-link" + (isActive(constants.paths.ID_SEARCH) ? " selected" : "")} >
-                    Brands <NumbersIcon />
-                </NavLink>
+            <div style={{ display: "flex" }}>
+                <div className='col nav' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content', paddingRight: '0px' }} >
+                    <NavLink to={ constants.paths.SEARCH } className={"nav-link" + (isActive(constants.paths.SEARCH) ? " selected" : "")} style={{ display: 'flex' }}>
+                        Search <div><SearchIcon /></div>
+                    </NavLink>
+                </div>
+                <div className='col nav' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content' }} >
+                    <NavLink to={ constants.paths.ID_SEARCH } className={"nav-link" + (isActive(constants.paths.ID_SEARCH) ? " selected" : "")} style={{ display: 'flex' }}>
+                        Brands <div><NumbersIcon /></div>
+                    </NavLink>
+                </div>
             </div>
             <div className='col'></div>
         </div>

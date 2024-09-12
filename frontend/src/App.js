@@ -9,7 +9,7 @@ import NavBar from './components/navBar.js';
 
 const App = () => {
 	return (
-		<div style={{ paddingLeft: '100px', paddingRight: '100px', paddingTop: '10px' }}>
+		<div className='site-padding'>
 			<Router>
 				<NavBar />
 				<Routes>

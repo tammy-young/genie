@@ -80,13 +80,15 @@ const IdSearch = () => {
 	}, []);
 
     return(
-        <div className='page' style={{ padding: '30px' }}>
+        <div className='page'>
             <div className="row">
-                <div className='col filter-col' style={{ minWidth: '300px' }}>
+                <div className='col filter-col' style={{ minWidth: '300px', paddingTop: '20px' }}>
                     <FormControl>
                         <FormLabel>Brand Name</FormLabel>
                         <Input className='spans' data-id={ constants.brandIdSearchPage.BRAND_ID_SEARCH_INPUT }
                          onChange={ updateSearchingBrand } placeholder='Start typing...' />
+                         <br>
+                         </br>
                     </FormControl>
                 </div>
                 <div className="col scrollable" style={{ maxWidth: '100%', minWidth: '300px', maxHeight: '84vh' }}>
