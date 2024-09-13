@@ -37,22 +37,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
-const reset = () => {
-    let allBrandsDiv = document.getElementById(constants.divIds.BRANDS_ID_TO_NAME);
-    const allBrands = JSON.parse(allBrandsDiv.innerHTML);
-    return Object.values(allBrands).sort((a, b) => a.localeCompare(b));
-}
-
-const getIdFromBrandName = (brandName) => {
-    let allBrandsDiv = document.getElementById(constants.divIds.BRANDS_NAME_TO_ID);
-    const allBrands = JSON.parse(allBrandsDiv.innerHTML);
-    return allBrands[brandName];
-}
-
 const IdSearch = () => {
 
     const [searchedBrands, setSearchedBrands] = useState([]);
     const [searchingFor, setSearchingFor] = useState("");
+    const [brandsToId, setBrandsToId] = useState({});
 
     const updateSearchingBrand = (brand) => {
         setSearchingFor(brand.target.value);
@@ -69,14 +58,22 @@ const IdSearch = () => {
                 brandsIdToNameHidden.innerHTML = JSON.stringify(brandsIdToName);
                 brandsNameToIdHidden.innerHTML = JSON.stringify(brandsNameToId);
                 setSearchedBrands(reset());
+                setBrandsToId(brandsNameToId);
             }
 		} catch (error) {
 			console.error('Error fetching brands:', error);
 		}
 	};
 
+    const reset = () => {
+        let allBrandsDiv = document.getElementById(constants.divIds.BRANDS_ID_TO_NAME);
+        const allBrands = JSON.parse(allBrandsDiv.innerHTML);
+        return Object.values(allBrands).sort((a, b) => a.localeCompare(b));
+    }
+
     useEffect(() => {
 		getBrands();
+        // eslint-disable-next-line
 	}, []);
 
     return(
@@ -114,10 +111,20 @@ const IdSearch = () => {
                                     .map((brand) => (
                                         <StyledTableRow>
                                             <StyledTableCell>
-                                                { brand }
+                                                <div className='row'>
+                                                    <div className='col'>
+                                                        { brand }
+                                                    </div>
+                                                    <div className='ralign col' id={`brand-logo-${brandsToId[brand]}`}>
+                                                        <img loading="lazy" height="25" srcSet={`https://wsrv.nl/?url=cdn.stardoll.com/cms/i/makeover/common/icons/brandLogos/${brandsToId[brand]}.png`}
+                                                            src={`https://wsrv.nl/?url=cdn.stardoll.com/cms/i/makeover/common/icons/brandLogos/${brandsToId[brand]}.png`} alt=""
+                                                            onError={() => document.getElementById(`brand-logo-${brandsToId[brand]}`).style.display = 'none'}
+                                                            onLoad={() => document.getElementById(`brand-logo-${brandsToId[brand]}`).style.display = 'block'} />
+                                                    </div>
+                                                </div>
                                             </StyledTableCell>
                                             <StyledTableCell>
-                                                { getIdFromBrandName(brand) }
+                                                { brandsToId[brand] }
                                             </StyledTableCell>
                                         </StyledTableRow>
                                         )

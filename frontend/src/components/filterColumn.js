@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -19,7 +19,6 @@ import OtherFilters from './otherFilters.js';
 
 import "./../App.css";
 import constants from '../constants.js';
-import axios from 'axios';
 
 /**
  * filterType
@@ -46,13 +45,11 @@ const filters = [{
     "divName": constants.divIds.OTHER_FILTERS_DIV
 }];
 
-const getFilter = (row, fashionBrands, loading) => {
+const getFilter = (row) => {
 
     let filterType = row.filterType;
     if (filterType === 0) {
-        return(
-            <BrandSelector fashionBrands={ fashionBrands } loading={ loading } />
-        );
+        return(<BrandSelector />);
     } else if (filterType === 1) {
         return(<PriceSelector />);
     } else if (filterType === 2) {
@@ -74,7 +71,7 @@ const clearFilters = () => {
     });
 }
 
-const FilterRow = ({ row, fashionBrands, loading }) => {
+const FilterRow = ({ row }) => {
     const [open, setOpen] = useState(false);
   
     return(
@@ -93,7 +90,7 @@ const FilterRow = ({ row, fashionBrands, loading }) => {
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={ open } timeout="auto" unmountOnExit id={ row.divName }>
                         <Box sx={{ margin: 1 }}>
-                            { getFilter(row, fashionBrands, loading) }
+                            { getFilter(row) }
                         </Box>
                     </Collapse>
                 </TableCell>
@@ -103,35 +100,6 @@ const FilterRow = ({ row, fashionBrands, loading }) => {
 }
 
 const FilterTable = () => {
-
-    // for fetching the brands
-	const [fashionBrands, setFashionBrands] = useState([]);
-	const [loading, setLoading] = useState(true);
-
-    const getBrands = async () => {
-		try {
-			setLoading(true);
-
-			const response = await axios.get(constants.backend.API + constants.backend.GET_BRANDS);
-
-            let brandsIdToName = response.data.brandsIdToName;
-            let brandsNameToId = response.data.brandsNameToId;
-            setFashionBrands(Object.keys(brandsNameToId));
-
-            let brandsIdToNameHidden = document.getElementById(constants.divIds.BRANDS_ID_TO_NAME);
-            let brandsNameToIdHidden = document.getElementById(constants.divIds.BRANDS_NAME_TO_ID);
-            brandsIdToNameHidden.innerHTML = JSON.stringify(brandsIdToName);
-            brandsNameToIdHidden.innerHTML = JSON.stringify(brandsNameToId);
-		} catch (error) {
-			console.error('Error fetching data:', error);
-		} finally {
-			setLoading(false);
-		}
-	};
-
-    useEffect(() => {
-		getBrands();
-	}, []);
 
     return(
         <TableContainer component={Paper} style={{ minWidth: '350px', maxWidth: '350px' }}>
@@ -147,7 +115,7 @@ const FilterTable = () => {
                 <TableBody>
                     { filters
                       .map((row, index) => (
-                        <FilterRow key={index} row={ row } fashionBrands={ fashionBrands } loading={ loading }/>
+                        <FilterRow key={index} row={ row } />
                     ))
                     }
                 </TableBody>
