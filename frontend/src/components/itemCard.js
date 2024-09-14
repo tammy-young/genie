@@ -20,7 +20,7 @@ const getBrandName = ({ item }) => {
     let brandId = item.brand;
     let allBrandsDiv = document.getElementById(constants.divIds.BRANDS_ID_TO_NAME);
     let brands = JSON.parse(allBrandsDiv.innerHTML);
-    return brands[brandId].replace(/&amp;/g, "&");
+    return brands[brandId] ? brands[brandId].replace(/&amp;/g, "&") : "";
 }
 
 const getSeller = (item, index) => {
