@@ -10,14 +10,14 @@ import './../App.css';
 
 const BRAND_NAME_TEXT = "Brand Name";
 
-export function BrandSelector(brandsToId) {
+export function BrandSelector({ brandsToId }) {
 	return (
 		<FormControl>
 			<FormLabel>{ BRAND_NAME_TEXT }</FormLabel>
 			<Autocomplete
 				id={ constants.filterValuesIds.FASHION_BRAND }
 				sx={{ width: 300 }}
-				options={brandsToId}
+				options={!brandsToId ? [{name:"Loading...", brandId:0}] : brandsToId }
 				placeholder='Start typing...'
 				autoHighlight
 				getOptionLabel={(option) => option.name}
