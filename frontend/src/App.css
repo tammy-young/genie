@@ -80,7 +80,8 @@
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
-  height: 88vh;
+  max-height: 88vh;
+  height: min-content;
 }
 
 .item-card {
