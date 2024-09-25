@@ -38,8 +38,7 @@ app.get("/.netlify/functions/getSeller", (req, res) => {
         res.json({"sellerUser": username});
     })
     .catch((e) => {
-        let sellerUserText = `ID: ${sellerId}`;
-        res.json({"sellerUser": sellerUserText});
+        res.json({"sellerUser": ""});
     });
 });
 

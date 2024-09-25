@@ -79,6 +79,19 @@ const ItemCard = ({ item, index }) => {
                             </IconButton>
                         </div>
                     </div>
+                    <div className='row'>
+                        <div className='col'>
+                            Seller ID
+                        </div>
+                        <div className='col ralign text-overflow-ellipses' id={ constants.divIds.SELLER_USERNAME_ID_DIV_ID } style={{ paddingRight: '5px', maxWidth: '100px' }}>
+                            { item.sellerId }
+                        </div>
+                        <div className='col ralign' style={{ maxWidth: '17px' }}>
+                            <IconButton size="small" id={ constants.divIds.COPY_ID_ICON } onClick={() => copy(item.sellerId)}>
+                                <ContentCopyIcon style={{ width: '17px', marginTop: '-5px', marginLeft: '-25px' }}/>
+                            </IconButton>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

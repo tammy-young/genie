@@ -10,7 +10,9 @@ const constants = {
         BRANDS_NAME_TO_ID: "brandsNameToIdDiv",
         BRANDS_ID_TO_NAME: "brandsIdToNameDiv",
         SELLER_USERNAME_DIV_ID: "sellerUsername",
-        COPY_ICON: "copySellerUsername"
+        SELLER_USERNAME_ID_DIV_ID: "sellerIdDiv",
+        COPY_ICON: "copySellerUsername",
+        COPY_ID_ICON: "copySellerId"
     },
     filterValuesIds: {
         FASHION_BRAND: "brandNameFilter",
