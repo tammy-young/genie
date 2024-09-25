@@ -5,7 +5,7 @@ import ServerlessHttp from "serverless-http";
 import * as cheerio from 'cheerio';
 
 
-const sellerInfoUrl = (id) => { return `http://www.stardoll.com/en/user/album.php?id=${id}` }
+const sellerInfoUrl = (id) => { return `http://www.stardoll.com/en/user/sellItems.php?id=${id}` }
 
 async function fetchData(url, html=false) {
     try {
