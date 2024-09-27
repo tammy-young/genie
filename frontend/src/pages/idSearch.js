@@ -115,12 +115,6 @@ const IdSearch = () => {
                                                     <div className='col'>
                                                         { brand }
                                                     </div>
-                                                    <div className='ralign col' id={`brand-logo-${brandsToId[brand]}`}>
-                                                        <img loading="lazy" height="25" srcSet={`https://wsrv.nl/?url=cdn.stardoll.com/cms/i/makeover/common/icons/brandLogos/${brandsToId[brand]}.png`}
-                                                            src={`https://wsrv.nl/?url=cdn.stardoll.com/cms/i/makeover/common/icons/brandLogos/${brandsToId[brand]}.png`} alt=""
-                                                            onError={() => document.getElementById(`brand-logo-${brandsToId[brand]}`).style.display = 'none'}
-                                                            onLoad={() => document.getElementById(`brand-logo-${brandsToId[brand]}`).style.display = 'block'} />
-                                                    </div>
                                                 </div>
                                             </StyledTableCell>
                                             <StyledTableCell>

@@ -40,10 +40,6 @@ const getSeller = (item, index) => {
 const ItemCard = ({ item, index }) => {
     return (
         <div className="card item-card" style={{ width: '100%', padding: '10px', margin: '10px', border: "1px solid rgba(0, 0, 0, 0.1)" }} data-div-id={ index }>
-            <div style={{ alignContent: 'center', paddingTop: '50px' }}>
-                {/* eslint-disable-next-line */}
-                <img src={ item.itemImage } alt="Image Not Found" style={{ width: '50%' }} />
-            </div>
             <div style={{ padding: '10px' }}>
                 <h6><b>{ item.name }</b></h6>
                 <p style={{ marginTop: '-5px' }}>{ getBrandName({ item }) }</p>

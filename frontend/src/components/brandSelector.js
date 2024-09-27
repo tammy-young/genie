@@ -28,12 +28,6 @@ export function BrandSelector({ brandsToId }) {
 							<div style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
 								{option.name}
 							</div>
-							<div className='ralign' style={{ maxWidth: 'min-content', display: 'flex', alignItems: 'center' }} id={`brand-logo-${option.brandId}`}>
-								<img loading="lazy" height="25" srcSet={`https://wsrv.nl/?url=cdn.stardoll.com/cms/i/makeover/common/icons/brandLogos/${option.brandId}.png`}
-									src={`https://wsrv.nl/?url=cdn.stardoll.com/cms/i/makeover/common/icons/brandLogos/${option.brandId}.png`} alt=""
-									onError={() => document.getElementById(`brand-logo-${option.brandId}`).style.display = 'none'}
-									onLoad={() => document.getElementById(`brand-logo-${option.brandId}`).style.display = 'block'} />
-							</div>
 						</Box>
 					);
 				}}
