@@ -37,7 +37,8 @@ const constants = {
         BRAND_ID_SEARCH_INPUT: "brandIdSearchInput"
     },
     paths: {
-        SEARCH: "/",
+        FASHION: "/",
+        INTERIOR: "/interior",
         ID_SEARCH: "/brands"
     },
     backend: {
