@@ -46,7 +46,7 @@ const search = async (req) => {
 
     let searchUrl = BAZAAR_URL;
 
-    if (itemType === "fashion") {
+    if (itemType === "fashion" || !itemType) {
         searchUrl += FASHION_SEARCH_URL_PART;
     } else if (itemType === "interior") {
         searchUrl += INTERIOR_SEARCH_URL_PART;
