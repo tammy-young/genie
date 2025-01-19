@@ -50,7 +50,6 @@ const InteriorSearch = () => {
 			let itemNameInput = document.querySelector('[data-id="' + constants.filterValuesIds.FASHION_ITEM_NAME + '"] input');
 			let currencyTypeInput = document.getElementsByClassName(constants.filterValuesIds.SELECTED_CURRENCY)[0];
 			let priceInput = document.getElementById(constants.filterValuesIds.FASHION_PRICE);
-			let stardesignInput = document.getElementById(constants.filterValuesIds.SHOW_STARDESIGN);
 
 			let searchBrandId = brandFilterSection !== null ? getBrandId(brandInput) : "";
 			let priceInputValue = priceFilterSection !== null ? priceInput.innerText : "2\n600";
@@ -58,7 +57,10 @@ const InteriorSearch = () => {
 			let maxPrice = priceInputValue.split("\n")[1];
 			let currencyType = priceFilterSection !== null ? getCurrencyType(currencyTypeInput) : "";
 			let itemName = nameFilterSection !== null ? itemNameInput.value : "";
-			let showStardesign = stardesignInput !== null ? stardesignInput.checked : true;
+
+			// excluded brands
+			let excludedBrands = document.getElementById(constants.divIds.EXCLUDED_BRANDS_DIV).innerText;
+			excludedBrands = excludedBrands !== "" ? excludedBrands.split(",") : [];
 
 			const response = await axios.get(constants.backend.API + constants.backend.SEARCH, {
 				params: {
@@ -67,7 +69,7 @@ const InteriorSearch = () => {
 					"maxPrice": maxPrice,
 					"itemName": itemName,
 					"currencyType": currencyType,
-					"showStardesign": showStardesign,
+					"excludedBrands": excludedBrands,
 					"itemType": "interior"
 				}
 			});
@@ -99,8 +101,9 @@ const InteriorSearch = () => {
 
 	useEffect(() => {
 		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
+		searchingTextDiv.className = "w-full flex flex-row justify-center text-center items-center";
 		if (isSearching) {
-			searchingTextDiv.innerHTML = `<img src="${process.env.PUBLIC_URL + "sd-loading.gif"}" alt="Searching..."></img>`;
+			searchingTextDiv.innerHTML = `<img src="${process.env.PUBLIC_URL + "sd-loading.gif"}" alt="Searching..." style="align-self: center;"></img>`;
 		}
 	}, [isSearching])
 
@@ -119,12 +122,13 @@ const InteriorSearch = () => {
 						<button className='btn btn-secondary' id={constants.buttonIds.RESET_BTN} onClick={reset}>Reset</button>
 					</div>
 				</div>
-				<div className='col' style={{ textAlign: 'center', display: 'flex' }}>
+				<div className="col flex" style={{ textAlign: 'center' }}>
 					{getItems()}
 				</div>
 			</div>
 			<div style={{ display: "none" }} id={constants.divIds.BRANDS_NAME_TO_ID}></div>
 			<div style={{ display: "none" }} id={constants.divIds.BRANDS_ID_TO_NAME}></div>
+			<div style={{ display: "none" }} id={constants.divIds.EXCLUDED_BRANDS_DIV}></div>
 		</div>
 	)
 }
