@@ -6,7 +6,6 @@ import axios from 'axios';
 import FilterTable from '../components/filterColumn.js';
 
 import { getCurrencyType, getBrandId, displayItems } from '../searchUtils.js';
-import { clickSearch } from '../searchUtils.js';
 
 const startSearchMessage = "Searched items will show up here!"
 
@@ -108,38 +107,22 @@ const FashionSearch = () => {
 		}
 	}, [isSearching]);
 
-	useEffect(() => {
-		const form = document.getElementById('filter-form');
-		form.addEventListener('keypress', function (event) {
-			if (event.keyCode === 13) {
-				event.preventDefault();
-				form.submit();
-			}
-		});
-	}, []);
-
 	return (
 		<div className='page sm:h-[88vh] h-[80vh]'>
-			<form onSubmit={(e) => e.preventDefault() && clickSearch()} id="filter-form" className=' h-full'>
-				<div className='flex sm:flex-row flex-col sm:space-x-8 h-full'>
-					<div className=' sm:min-w-[350px] sm:max-w-[350px]'>
-						<h2 className='pt-4 ml-0 font-bold'>Fashion</h2>
-						<div className='row space-y-4 flex flex-col px-3'>
-							<FilterTable />
-							<div className='space-x-2'>
-								<button className='btn fashion' id={constants.buttonIds.SEARCH_BTN} onClick={search}>Search</button>
-								<button className='btn btn-secondary' id={constants.buttonIds.RESET_BTN} onClick={reset}>Reset</button>
-							</div>
-						</div>
+			<div className='flex sm:flex-row flex-col sm:space-x-8 h-full'>
+				<div className=' sm:min-w-[350px] sm:max-w-[350px]'>
+					<h2 className='pt-4 ml-0 font-bold'>Fashion</h2>
+					<div className='row space-y-4 flex flex-col px-3'>
+						<FilterTable search={search} reset={reset} />
 					</div>
-					<div className="flex justify-center w-full h-full" style={{ textAlign: 'center' }}>
-						{getItems()}
-					</div>
-					<div style={{ display: "none" }} id={constants.divIds.BRANDS_NAME_TO_ID}></div>
-					<div style={{ display: "none" }} id={constants.divIds.BRANDS_ID_TO_NAME}></div>
-					<div style={{ display: "none" }} id={constants.divIds.EXCLUDED_BRANDS_DIV}></div>
 				</div>
-			</form>
+				<div className="flex justify-center w-full h-full" style={{ textAlign: 'center' }}>
+					{getItems()}
+				</div>
+				<div style={{ display: "none" }} id={constants.divIds.BRANDS_NAME_TO_ID}></div>
+				<div style={{ display: "none" }} id={constants.divIds.BRANDS_ID_TO_NAME}></div>
+				<div style={{ display: "none" }} id={constants.divIds.EXCLUDED_BRANDS_DIV}></div>
+			</div>
 		</div>
 	)
 }

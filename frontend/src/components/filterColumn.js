@@ -19,6 +19,7 @@ import PriceSelector from './priceSelector.js';
 import "./../App.css";
 import constants from '../constants.js';
 import axios from 'axios';
+import { clickSearch } from '../searchUtils.js';
 
 /**
  * filterType
@@ -94,9 +95,10 @@ const FilterRow = ({ row, brands }) => {
     );
 }
 
-const FilterTable = () => {
+const FilterTable = ({ search, reset }) => {
 
     const [brandsToId, setBrandsToId] = useState([]);
+    const itemType = window.location.pathname.split('/')[1] || "fashion";
 
     const getBrands = async () => {
         try {
@@ -127,26 +129,42 @@ const FilterTable = () => {
         // eslint-disable-next-line
     }, []);
 
+    useEffect(() => {
+        const form = document.getElementById('filter-form');
+        form.addEventListener('keypress', function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                clickSearch(event);
+            }
+        });
+    }, []);
+
     return (
-        <TableContainer component={Paper} style={{ maxWidth: '350px' }} className='!min-w-[max(350px,100%)]'>
-            <Table aria-label="collapsible table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell><b>Filters</b></TableCell>
-                        <TableCell className="genie-primary-text" style={{ textAlign: 'right', cursor: 'pointer' }} onClick={clearFilters}>
-                            Clear All
-                        </TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {filters
-                        .map((row, index) => (
-                            <FilterRow key={index} row={row} brands={brandsToId} />
-                        ))
-                    }
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <form onSubmit={(e) => e.preventDefault()} id="filter-form" className=' h-full flex flex-col space-y-2'>
+            <TableContainer component={Paper} style={{ maxWidth: '350px' }} className='!min-w-[max(350px,100%)]'>
+                <Table aria-label="collapsible table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell><b>Filters</b></TableCell>
+                            <TableCell className="genie-primary-text" style={{ textAlign: 'right', cursor: 'pointer' }} onClick={clearFilters}>
+                                Clear All
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {filters
+                            .map((row, index) => (
+                                <FilterRow key={index} row={row} brands={brandsToId} />
+                            ))
+                        }
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <div className='space-x-2'>
+                <button className={`btn ${itemType}`} id={constants.buttonIds.SEARCH_BTN} onClick={search}>Search</button>
+                <button className='btn btn-secondary' id={constants.buttonIds.RESET_BTN} onClick={reset}>Reset</button>
+            </div>
+        </form>
     );
 }
 

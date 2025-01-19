@@ -123,26 +123,20 @@ const InteriorSearch = () => {
 
 	return (
 		<div className='page sm:h-[88vh] h-[80vh]'>
-			<form onSubmit={(e) => e.preventDefault() && clickSearch()} id="filter-form" className=' h-full'>
-				<div className='flex sm:flex-row flex-col sm:space-x-8 h-full'>
-					<div className=' sm:min-w-[350px] sm:max-w-[350px]'>
-						<h2 className='pt-4 ml-0 font-bold'>Interior</h2>
-						<div className='row space-y-4 flex flex-col px-3'>
-							<FilterTable />
-							<div className='space-x-2'>
-								<button className='btn interior' id={constants.buttonIds.SEARCH_BTN} onClick={search}>Search</button>
-								<button className='btn btn-secondary' id={constants.buttonIds.RESET_BTN} onClick={reset}>Reset</button>
-							</div>
-						</div>
+			<div className='flex sm:flex-row flex-col sm:space-x-8 h-full'>
+				<div className=' sm:min-w-[350px] sm:max-w-[350px]'>
+					<h2 className='pt-4 ml-0 font-bold'>Interior</h2>
+					<div className='row space-y-4 flex flex-col px-3'>
+						<FilterTable />
 					</div>
-					<div className="flex justify-center w-full h-full" style={{ textAlign: 'center' }}>
-						{getItems()}
-					</div>
-					<div style={{ display: "none" }} id={constants.divIds.BRANDS_NAME_TO_ID}></div>
-					<div style={{ display: "none" }} id={constants.divIds.BRANDS_ID_TO_NAME}></div>
-					<div style={{ display: "none" }} id={constants.divIds.EXCLUDED_BRANDS_DIV}></div>
 				</div>
-			</form>
+				<div className="flex justify-center w-full h-full" style={{ textAlign: 'center' }}>
+					{getItems()}
+				</div>
+				<div style={{ display: "none" }} id={constants.divIds.BRANDS_NAME_TO_ID}></div>
+				<div style={{ display: "none" }} id={constants.divIds.BRANDS_ID_TO_NAME}></div>
+				<div style={{ display: "none" }} id={constants.divIds.EXCLUDED_BRANDS_DIV}></div>
+			</div>
 		</div>
 	)
 }
