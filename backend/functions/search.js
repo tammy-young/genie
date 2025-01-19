@@ -50,7 +50,7 @@ const search = async (req) => {
         searchUrl += INTERIOR_SEARCH_URL_PART;
     }
 
-    let itemName = req.query.itemName.toLowerCase();
+    let itemName = req.query.itemName !== "" ? req.query.itemName.toLowerCase() : "";
 
     let brandId = req.query.brandId;
     searchUrl += brandId !== ""? `&brands=${brandId}` : "";
