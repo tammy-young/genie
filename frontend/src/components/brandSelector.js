@@ -162,7 +162,7 @@ export function BrandSelector({ brandsToId }) {
 						const { key, ...optionProps } = props;
 						return (
 							<Box key={key} component="li" sx={{ display: 'flex', alignItems: 'stretch', paddingLeft: '10px', paddingRight: '10px', minHeight: '35px', maxHeight: '100px' }} {...optionProps}
-								className='-mt-2 mb-2'>
+								className='-mt-2 mb-2 dark:bg-[#1f2023] dark:text-white dark:hover:!bg-neutral-600 dark:aria-selected:bg-neutral-600 aria-selected:font-bold'>
 								<div style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
 									{option.name}
 								</div>
