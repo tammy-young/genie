@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Search from './pages/search.js';
+import FashionSearch from './pages/fashion.js';
+import InteriorSearch from './pages/interior.js';
 import constants from './constants.js';
 import IdSearch from './pages/idSearch.js';
 import NavBar from './components/navBar.js';
@@ -13,7 +14,8 @@ const App = () => {
 			<Router>
 				<NavBar />
 				<Routes>
-					<Route path={ constants.paths.SEARCH } element={ <Search /> } />
+					<Route path={ constants.paths.FASHION } element={ <FashionSearch /> } />
+					<Route path={ constants.paths.INTERIOR } element={ <InteriorSearch /> } />
 					<Route path={ constants.paths.ID_SEARCH } element={ <IdSearch /> } />
 				</Routes>
 			</Router>

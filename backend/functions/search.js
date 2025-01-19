@@ -7,9 +7,11 @@ import ServerlessHttp from "serverless-http";
 const ITEMS_KEY = "items";
 const ITEM_INFO = ["brand", "name", "currencyType", "originalPrice", "sellPrice", "sellerId"];
 const BAZAAR_URL = "https://www.stardoll.com/en/com/user/getStarBazaar.php";
-const SEARCH_URL_PART = "?search&type=fashion&Price=24";
+const FASHION_SEARCH_URL_PART = "?search&type=fashion&Price=24";
+const INTERIOR_SEARCH_URL_PART = "?search&type=interior&Price=24";
 const MAX_ITEMS_AT_ONCE = 20;
-const IGNORE_BRANDS = ["43", "354", "907"]
+const IGNORE_BRANDS_FASHION = ["43", "354", "907"]
+const IGNORE_BRANDS_INTERIOR = ["78", "354"]
 
 const itemImageUrl = (id) => { return `https://wsrv.nl/?url=cdn.stardoll.com/itemimages/76/0/98/${id}.png` };
 
@@ -40,7 +42,16 @@ const getItemInfo = async (item) => {
 
 const search = async (req) => {
 
-    let searchUrl = BAZAAR_URL + SEARCH_URL_PART;
+    const itemType = req.query.itemType;
+
+    let searchUrl = BAZAAR_URL;
+
+    if (itemType === "fashion" || !itemType) {
+        searchUrl += FASHION_SEARCH_URL_PART;
+    } else if (itemType === "interior") {
+        searchUrl += INTERIOR_SEARCH_URL_PART;
+    }
+
     let itemName = req.query.itemName.toLowerCase();
 
     let brandId = req.query.brandId;
@@ -72,7 +83,9 @@ const search = async (req) => {
                 let itemId = item['itemId'];
                 let addItem = false;
 
-                if (!showStardesign && IGNORE_BRANDS.includes(item.brand)) {
+                if (!showStardesign && itemType === "fashion" && IGNORE_BRANDS_FASHION.includes(item.brand)) {
+                    continue;
+                } else if (!showStardesign && itemType === "interior" && IGNORE_BRANDS_INTERIOR.includes(item.brand)) {
                     continue;
                 }
 
