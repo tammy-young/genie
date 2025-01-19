@@ -123,18 +123,16 @@ const InteriorSearch = () => {
 
 	return (
 		<div className='page'>
-			<form onSubmit={(e) => e.preventDefault() && clickSearch()} className='filter-form'>
+			<form onSubmit={(e) => e.preventDefault() && clickSearch()} className='filter-form h-full'>
 				<div className='row' style={{ height: '100%' }}>
 					<div className='col filter-col' style={{ minWidth: '350px', maxWidth: '350px' }}>
-						<div className='col filter-col' style={{ minWidth: '350px', maxWidth: '350px' }}>
-							<h2 style={{ paddingTop: '20px' }}>Interior</h2>
-							<div className='row space-y-4' style={{ padding: '15px' }}>
-								<FilterTable />
-								<div style={{ paddingRight: '5px' }}>
-									<button className='btn interior' id={constants.buttonIds.SEARCH_BTN} onClick={search}>Search</button>
-								</div>
-								<button className='btn btn-secondary' id={constants.buttonIds.RESET_BTN} onClick={reset}>Reset</button>
+						<h2 style={{ paddingTop: '20px' }}>Interior</h2>
+						<div className='row space-y-4' style={{ padding: '15px' }}>
+							<FilterTable />
+							<div style={{ paddingRight: '5px' }}>
+								<button className='btn interior' id={constants.buttonIds.SEARCH_BTN} onClick={search}>Search</button>
 							</div>
+							<button className='btn btn-secondary' id={constants.buttonIds.RESET_BTN} onClick={reset}>Reset</button>
 						</div>
 					</div>
 					<div className="col flex" style={{ textAlign: 'center' }}>

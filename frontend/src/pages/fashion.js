@@ -123,7 +123,7 @@ const FashionSearch = () => {
 
 	return (
 		<div className='page'>
-			<form onSubmit={(e) => e.preventDefault() && clickSearch()} className='filter-form'>
+			<form onSubmit={(e) => e.preventDefault() && clickSearch()} className='filter-form h-full'>
 				<div className='row' style={{ height: '100%' }}>
 					<div className='col filter-col' style={{ minWidth: '350px', maxWidth: '350px' }}>
 						<h2 style={{ paddingTop: '20px' }}>Fashion</h2>
