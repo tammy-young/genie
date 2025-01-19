@@ -140,7 +140,7 @@ const FilterTable = ({ search, reset }) => {
     }, []);
 
     return (
-        <form onSubmit={(e) => e.preventDefault()} id="filter-form" className=' h-full flex flex-col space-y-2'>
+        <form onSubmit={(e) => e.preventDefault()} id="filter-form" className='flex flex-col space-y-2'>
             <TableContainer component={Paper} style={{ maxWidth: '350px' }} className='!min-w-[max(350px,100%)]'>
                 <Table aria-label="collapsible table">
                     <TableHead>

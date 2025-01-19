@@ -4,6 +4,7 @@ import constants from '../constants.js';
 import axios from 'axios';
 
 import FilterTable from '../components/filterColumn.js';
+import ImageInfoBox from '../components/imageInfoBox.js';
 
 import { getCurrencyType, getBrandId, displayItems } from '../searchUtils.js';
 
@@ -123,11 +124,10 @@ const InteriorSearch = () => {
 	return (
 		<div className='page sm:h-[88vh] h-[80vh]'>
 			<div className='flex sm:flex-row flex-col sm:space-x-8 h-full'>
-				<div className=' sm:min-w-[350px] sm:max-w-[350px]'>
+				<div className=' sm:min-w-[350px] sm:max-w-[350px] space-y-4'>
 					<h2 className='pt-4 ml-0 font-bold'>Interior</h2>
-					<div className='row space-y-4 flex flex-col px-3'>
-						<FilterTable search={search} reset={reset} />
-					</div>
+					<FilterTable search={search} reset={reset} />
+					<ImageInfoBox />
 				</div>
 				<div className="flex justify-center w-full h-full" style={{ textAlign: 'center' }}>
 					{getItems()}
