@@ -97,10 +97,15 @@ const FilterRow = ({ row, brands }) => {
 const FilterTable = () => {
 
     const [brandsToId, setBrandsToId] = useState([]);
+    const itemType = window.location.pathname.split('/')[1] || "fashion";
 
     const getBrands = async () => {
         try {
-            const response = await axios.get(constants.backend.API + constants.backend.GET_BRANDS);
+            const response = await axios.get(constants.backend.API + constants.backend.GET_BRANDS, {
+                params: {
+                    "itemType": itemType
+                }
+            });
 
             let brandsIdToName = response.data.brandsIdToName;
             let brandsNameToId = response.data.brandsNameToId;

@@ -22,10 +22,20 @@ async function fetchData(url, html=false) {
     }
 }
 
-const getBrands = async () => {
+const getBrands = async (req) => {
+
+    const itemType = req.query.itemType;
+    let brands = {};
     
     let pageContent = await fetchData(BAZAAR_URL);
-    let brands = pageContent.brands.fashion.brand;
+
+    if (itemType === "fashion") {
+        brands = pageContent.brands.fashion.brand;
+    } else if (itemType === "interior") {
+        brands = pageContent.brands.interior.brand;
+    } else {
+        brands = pageContent.brands.fashion.brand.concat(pageContent.brands.interior.brand);
+    }
 
     let brandsIdToName = {};
     brands.map((brand) => {
@@ -44,7 +54,7 @@ const app = express();
 app.use(cors())
 
 app.get("/.netlify/functions/getBrands", (req, res) => {
-    getBrands()
+    getBrands(req)
     .then(data => {
         res.json(data);
     })
