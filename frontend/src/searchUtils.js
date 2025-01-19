@@ -22,3 +22,9 @@ export const displayItems = (items) => {
     return (<ItemCard item={item} index={index} />);
   });
 }
+
+export const clickSearch = (e) => {
+	e.preventDefault();
+	let button = document.getElementById(constants.buttonIds.SEARCH_BTN);
+	button.click();
+}

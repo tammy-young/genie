@@ -6,6 +6,7 @@ import axios from 'axios';
 import FilterTable from '../components/filterColumn.js';
 
 import { getCurrencyType, getBrandId, displayItems } from '../searchUtils.js';
+import { clickSearch } from '../searchUtils.js';
 
 const startSearchMessage = "Searched items will show up here!"
 
@@ -105,30 +106,43 @@ const FashionSearch = () => {
 			searchingTextDiv.className = "w-full flex flex-row justify-center text-center items-center";
 			searchingTextDiv.innerHTML = `<img src="${process.env.PUBLIC_URL + "sd-loading.gif"}" alt="Searching..." style="align-self: center;"></img>`;
 		}
-	}, [isSearching])
+	}, [isSearching]);
+
+	useEffect(() => {
+		const forms = document.querySelectorAll('filter-form');
+
+		forms.forEach((form) => {
+			form.addEventListener('keypress', function (event) {
+				if (event.keyCode === 13) {
+					event.preventDefault();
+					form.submit();
+				}
+			});
+		})
+	}, []);
 
 	return (
 		<div className='page'>
-			<div className='row' style={{ height: '100%' }}>
-				<div className='col filter-col' style={{ minWidth: '350px', maxWidth: '350px' }}>
-					<h2 style={{ paddingTop: '20px' }}>Fashion</h2>
-
-					<FilterTable />
-
-					<div className='row' style={{ padding: '15px' }}>
-						<div style={{ paddingRight: '5px' }}>
-							<button className='btn fashion' id={constants.buttonIds.SEARCH_BTN} onClick={search}>Search</button>
+			<form onSubmit={(e) => e.preventDefault() && clickSearch()} className='filter-form'>
+				<div className='row' style={{ height: '100%' }}>
+					<div className='col filter-col' style={{ minWidth: '350px', maxWidth: '350px' }}>
+						<h2 style={{ paddingTop: '20px' }}>Fashion</h2>
+						<div className='row space-y-4' style={{ padding: '15px' }}>
+							<FilterTable />
+							<div style={{ paddingRight: '5px' }}>
+								<button className='btn fashion' id={constants.buttonIds.SEARCH_BTN} onClick={search}>Search</button>
+							</div>
+							<button className='btn btn-secondary' id={constants.buttonIds.RESET_BTN} onClick={reset}>Reset</button>
 						</div>
-						<button className='btn btn-secondary' id={constants.buttonIds.RESET_BTN} onClick={reset}>Reset</button>
 					</div>
+					<div className="col flex" style={{ textAlign: 'center' }}>
+						{getItems()}
+					</div>
+					<div style={{ display: "none" }} id={constants.divIds.BRANDS_NAME_TO_ID}></div>
+					<div style={{ display: "none" }} id={constants.divIds.BRANDS_ID_TO_NAME}></div>
+					<div style={{ display: "none" }} id={constants.divIds.EXCLUDED_BRANDS_DIV}></div>
 				</div>
-				<div className="col flex" style={{ textAlign: 'center' }}>
-					{getItems()}
-				</div>
-			</div>
-			<div style={{ display: "none" }} id={constants.divIds.BRANDS_NAME_TO_ID}></div>
-			<div style={{ display: "none" }} id={constants.divIds.BRANDS_ID_TO_NAME}></div>
-			<div style={{ display: "none" }} id={constants.divIds.EXCLUDED_BRANDS_DIV}></div>
+			</form>
 		</div>
 	)
 }

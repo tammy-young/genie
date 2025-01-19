@@ -45,11 +45,11 @@ const getFilter = (row, brands) => {
 
     let filterType = row.filterType;
     if (filterType === 0) {
-        return(<BrandSelector brandsToId={ brands } />);
+        return (<BrandSelector brandsToId={brands} />);
     } else if (filterType === 1) {
-        return(<PriceSelector />);
+        return (<PriceSelector />);
     } else if (filterType === 2) {
-        return(<NameSelector />);
+        return (<NameSelector />);
     }
 }
 
@@ -68,12 +68,12 @@ const clearFilters = () => {
 
 const FilterRow = ({ row, brands }) => {
     const [open, setOpen] = useState(false);
-  
-    return(
+
+    return (
         <>
             <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
                 <TableCell component="th" scope="row">
-                    <h6><b>{ row.name }</b></h6>
+                    <h6><b>{row.name}</b></h6>
                 </TableCell>
                 <TableCell style={{ textAlign: 'right' }}>
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
@@ -83,9 +83,9 @@ const FilterRow = ({ row, brands }) => {
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                    <Collapse in={ open } timeout="auto" unmountOnExit id={ row.divName }>
+                    <Collapse in={open} timeout="auto" unmountOnExit id={row.divName}>
                         <Box sx={{ margin: 1 }}>
-                            { getFilter(row, brands) }
+                            {getFilter(row, brands)}
                         </Box>
                     </Collapse>
                 </TableCell>
@@ -97,10 +97,10 @@ const FilterRow = ({ row, brands }) => {
 const FilterTable = () => {
 
     const [brandsToId, setBrandsToId] = useState([]);
-    
+
     const getBrands = async () => {
-		try {
-			const response = await axios.get(constants.backend.API + constants.backend.GET_BRANDS);
+        try {
+            const response = await axios.get(constants.backend.API + constants.backend.GET_BRANDS);
 
             let brandsIdToName = response.data.brandsIdToName;
             let brandsNameToId = response.data.brandsNameToId;
@@ -110,38 +110,38 @@ const FilterTable = () => {
             brandsIdToNameHidden.innerHTML = JSON.stringify(brandsIdToName);
             brandsNameToIdHidden.innerHTML = JSON.stringify(brandsNameToId);
 
-			let formattedBrandsList = [];
-			for (const [key, value] of Object.entries(brandsNameToId)) {
-				formattedBrandsList.push({'name': key, 'brandId': value});
-			}
-			setBrandsToId(formattedBrandsList);
-		} catch (error) {
-			console.error('Error fetching data:', error);
-		}
-	};
+            let formattedBrandsList = [];
+            for (const [key, value] of Object.entries(brandsNameToId)) {
+                formattedBrandsList.push({ 'name': key, 'brandId': value });
+            }
+            setBrandsToId(formattedBrandsList);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
     useEffect(() => {
         if (brandsToId.length === 0) {
             getBrands();
         }
-	}, []);
+    }, []);
 
-    return(
+    return (
         <TableContainer component={Paper} style={{ minWidth: '350px', maxWidth: '350px' }}>
             <Table aria-label="collapsible table">
                 <TableHead>
                     <TableRow>
                         <TableCell><b>Filters</b></TableCell>
-                        <TableCell className="genie-primary-text" style={{ textAlign: 'right', cursor: 'pointer' }} onClick={ clearFilters }>
+                        <TableCell className="genie-primary-text" style={{ textAlign: 'right', cursor: 'pointer' }} onClick={clearFilters}>
                             Clear All
                         </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    { filters
-                      .map((row, index) => (
-                        <FilterRow key={index} row={ row } brands={ brandsToId } />
-                    ))
+                    {filters
+                        .map((row, index) => (
+                            <FilterRow key={index} row={row} brands={brandsToId} />
+                        ))
                     }
                 </TableBody>
             </Table>
