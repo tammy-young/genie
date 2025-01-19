@@ -15,7 +15,6 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import NameSelector from './nameSelector.js';
 import BrandSelector from './brandSelector.js';
 import PriceSelector from './priceSelector.js';
-import OtherFilters from './otherFilters.js';
 
 import "./../App.css";
 import constants from '../constants.js';
@@ -40,10 +39,6 @@ const filters = [{
     "name": "Item Name",
     "filterType": 2,
     "divName": constants.divIds.FASHION_NAME_DIV
-}, {
-    "name": "Other",
-    "filterType": 3,
-    "divName": constants.divIds.OTHER_FILTERS_DIV
 }];
 
 const getFilter = (row, brands) => {
@@ -55,8 +50,6 @@ const getFilter = (row, brands) => {
         return(<PriceSelector />);
     } else if (filterType === 2) {
         return(<NameSelector />);
-    } else if (filterType === 3) {
-        return (<OtherFilters />);
     }
 }
 
@@ -70,6 +63,7 @@ const clearFilters = () => {
             }
         }
     });
+    document.getElementById(constants.divIds.EXCLUDED_BRANDS_DIV).innerText = "";
 }
 
 const FilterRow = ({ row, brands }) => {
@@ -127,7 +121,9 @@ const FilterTable = () => {
 	};
 
     useEffect(() => {
-		getBrands();
+        if (brandsToId.length === 0) {
+            getBrands();
+        }
 	}, []);
 
     return(

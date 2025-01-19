@@ -10,8 +10,6 @@ const BAZAAR_URL = "https://www.stardoll.com/en/com/user/getStarBazaar.php";
 const FASHION_SEARCH_URL_PART = "?search&type=fashion&Price=24";
 const INTERIOR_SEARCH_URL_PART = "?search&type=interior&Price=24";
 const MAX_ITEMS_AT_ONCE = 20;
-const IGNORE_BRANDS_FASHION = ["43", "354", "907"]
-const IGNORE_BRANDS_INTERIOR = ["78", "354"]
 
 const itemImageUrl = (id) => { return `https://wsrv.nl/?url=cdn.stardoll.com/itemimages/76/0/98/${id}.png` };
 
@@ -66,7 +64,7 @@ const search = async (req) => {
     let currencyType = req.query.currencyType;
     searchUrl += (minPrice || maxPrice) && (currencyType !== "")? `&currencyType=${currencyType}` : "";
 
-    let showStardesign = (req.query.showStardesign === 'true');
+    let excludeBrands = req.query.excludedBrands || [];
 
     let items = [];
     let itemIds = [];
@@ -83,9 +81,7 @@ const search = async (req) => {
                 let itemId = item['itemId'];
                 let addItem = false;
 
-                if (!showStardesign && itemType === "fashion" && IGNORE_BRANDS_FASHION.includes(item.brand)) {
-                    continue;
-                } else if (!showStardesign && itemType === "interior" && IGNORE_BRANDS_INTERIOR.includes(item.brand)) {
+                if (excludeBrands.includes(item.brand)) {
                     continue;
                 }
 

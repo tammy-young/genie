@@ -48,7 +48,7 @@ const ItemCard = ({ item, index }) => {
                         <div className='col'>
                             Sell
                         </div>
-                        <div className='col ralign'>
+                        <div className='col ralign flex w-full flex-row justify-end'>
                             {item.sellPrice}
                             {getCurrencyIcon({ item })}
                         </div>
@@ -57,7 +57,7 @@ const ItemCard = ({ item, index }) => {
                         <div className='col'>
                             Original
                         </div>
-                        <div className='col ralign'>
+                        <div className='col ralign flex w-full flex-row justify-end'>
                             {item.originalPrice}
                             {getCurrencyIcon({ item })}
                         </div>
