@@ -4,6 +4,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import IconButton from '@mui/material/IconButton';
 import StardollarIcon from './images/stardollar';
 import StarcoinIcon from './images/starcoin';
+import ItemImagePlaceholder from './images/itemImagePlaceholder';
 
 
 const getCurrencyIcon = ({ item }) => {
@@ -41,6 +42,7 @@ const ItemCard = ({ item, index }) => {
     return (
         <div className="card item-card !min-w-[270px] sm:max-w-[30%] w-full" style={{ padding: '10px', border: "1px solid rgba(0, 0, 0, 0.1)" }} data-div-id={index}>
             <div style={{ padding: '10px' }}>
+                <ItemImagePlaceholder imageUrl={item.itemImage} />
                 <h6><b>{item.name}</b></h6>
                 <p style={{ marginTop: '-5px' }}>{getBrandName({ item })}</p>
                 <div style={{ textAlign: "left" }}>
