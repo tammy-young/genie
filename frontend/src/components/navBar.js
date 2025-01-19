@@ -1,4 +1,3 @@
-import SearchIcon from '@mui/icons-material/Search';
 import NumbersIcon from '@mui/icons-material/Numbers';
 import { NavLink, useLocation } from 'react-router-dom';
 import CheckroomIcon from '@mui/icons-material/Checkroom';

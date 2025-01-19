@@ -124,6 +124,7 @@ const FilterTable = () => {
         if (brandsToId.length === 0) {
             getBrands();
         }
+        // eslint-disable-next-line
     }, []);
 
     return (
