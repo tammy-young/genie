@@ -25,7 +25,7 @@ const InteriorSearch = () => {
 			)
 		} else {
 			return (
-				<div className='col item-card-container' style={{ textAlign: 'center', overflowY: "scroll", maxWidth: '100%' }} id={constants.divIds.ITEM_PANEL_DIV}>
+				<div className='' style={{ textAlign: 'center', overflowY: "scroll", maxWidth: '100%' }} id={constants.divIds.ITEM_PANEL_DIV}>
 					<div id={constants.divIds.SEARCHING_TEXT_DIV}>{startSearchMessage}</div>
 					{displayItems(searchedItems)}
 				</div>
@@ -122,26 +122,26 @@ const InteriorSearch = () => {
 	}, []);
 
 	return (
-		<div className='page'>
+		<div className='page sm:h-[88vh] h-[80vh]'>
 			<form onSubmit={(e) => e.preventDefault() && clickSearch()} className='filter-form h-full'>
-				<div className='row' style={{ height: '100%' }}>
-					<div className='col filter-col' style={{ minWidth: '350px', maxWidth: '350px' }}>
+				<div className='flex sm:flex-row flex-col sm:space-x-8' style={{ height: '100%' }}>
+					<div className=' sm:min-w-[350px] sm:max-w-[350px]'>
 						<h2 style={{ paddingTop: '20px' }}>Interior</h2>
-						<div className='row space-y-4' style={{ padding: '15px' }}>
+						<div className='row space-y-4 flex flex-col' style={{ padding: '15px' }}>
 							<FilterTable />
-							<div style={{ paddingRight: '5px' }}>
+							<div className='space-x-2'>
 								<button className='btn interior' id={constants.buttonIds.SEARCH_BTN} onClick={search}>Search</button>
+								<button className='btn btn-secondary' id={constants.buttonIds.RESET_BTN} onClick={reset}>Reset</button>
 							</div>
-							<button className='btn btn-secondary' id={constants.buttonIds.RESET_BTN} onClick={reset}>Reset</button>
 						</div>
 					</div>
-					<div className="col flex" style={{ textAlign: 'center' }}>
+					<div className="flex justify-center w-full h-full" style={{ textAlign: 'center' }}>
 						{getItems()}
 					</div>
+					<div style={{ display: "none" }} id={constants.divIds.BRANDS_NAME_TO_ID}></div>
+					<div style={{ display: "none" }} id={constants.divIds.BRANDS_ID_TO_NAME}></div>
+					<div style={{ display: "none" }} id={constants.divIds.EXCLUDED_BRANDS_DIV}></div>
 				</div>
-				<div style={{ display: "none" }} id={constants.divIds.BRANDS_NAME_TO_ID}></div>
-				<div style={{ display: "none" }} id={constants.divIds.BRANDS_ID_TO_NAME}></div>
-				<div style={{ display: "none" }} id={constants.divIds.EXCLUDED_BRANDS_DIV}></div>
 			</form>
 		</div>
 	)

@@ -17,13 +17,13 @@ const NavBar = () => {
     }
 
     return (
-        <div className='row nav-bar'>
-            <div className='col' style={{ padding: '0px', textAlign: 'left', width: 'fit-content', maxWidth: 'fit-content' }}>
-                <NavLink to={constants.paths.SEARCH}>
+        <div className='nav-bar flex flex-col sm:flex-row space-y-3 sm:space-y-0'>
+            <div className='col flex flex-row justify-center sm:justify-start p-0'>
+                <NavLink to={constants.paths.FASHION}>
                     <GenieIcon />
                 </NavLink>
             </div>
-            <div style={{ display: "flex" }}>
+            <div className='flex w-full justify-center space-x-3'>
                 <div className='col nav' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content', paddingRight: '0px' }} >
                     <NavLink to={constants.paths.FASHION} className={"nav-link" + (isActive(constants.paths.FASHION) ? " fashion-selected" : "")} style={{ display: 'flex' }}>
                         <div>Fashion</div>

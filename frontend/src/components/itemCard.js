@@ -39,7 +39,7 @@ const getSeller = (item, index) => {
 
 const ItemCard = ({ item, index }) => {
     return (
-        <div className="card item-card" style={{ width: '100%', padding: '10px', margin: '10px', border: "1px solid rgba(0, 0, 0, 0.1)" }} data-div-id={index}>
+        <div className="card item-card !min-w-[270px] sm:max-w-[30%] w-full" style={{ padding: '10px', border: "1px solid rgba(0, 0, 0, 0.1)" }} data-div-id={index}>
             <div style={{ padding: '10px' }}>
                 <h6><b>{item.name}</b></h6>
                 <p style={{ marginTop: '-5px' }}>{getBrandName({ item })}</p>
