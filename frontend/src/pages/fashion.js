@@ -119,9 +119,6 @@ const FashionSearch = () => {
 				<div className="flex justify-center w-full h-full" style={{ textAlign: 'center' }}>
 					{getItems()}
 				</div>
-				<div style={{ display: "none" }} id={constants.divIds.BRANDS_NAME_TO_ID}></div>
-				<div style={{ display: "none" }} id={constants.divIds.BRANDS_ID_TO_NAME}></div>
-				<div style={{ display: "none" }} id={constants.divIds.EXCLUDED_BRANDS_DIV}></div>
 			</div>
 		</div>
 	)
