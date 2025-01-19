@@ -127,7 +127,9 @@ const FilterTable = () => {
 	};
 
     useEffect(() => {
-		getBrands();
+        if (brandsToId.length === 0) {
+            getBrands();
+        }
 	}, []);
 
     return(
