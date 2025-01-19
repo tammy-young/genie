@@ -127,7 +127,7 @@ const FilterTable = () => {
     }, []);
 
     return (
-        <TableContainer component={Paper} style={{ minWidth: '350px', maxWidth: '350px' }}>
+        <TableContainer component={Paper} style={{ maxWidth: '350px' }} className='!min-w-[max(350px,100%)]'>
             <Table aria-label="collapsible table">
                 <TableHead>
                     <TableRow>

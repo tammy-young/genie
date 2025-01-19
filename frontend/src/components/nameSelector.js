@@ -9,7 +9,7 @@ import './../App.css';
 const NameSelector = () => {
     return(
         <>
-            <FormControl>
+            <FormControl className="pb-3">
                 <FormLabel>Keyword</FormLabel>
                 <Input className='spans' data-id={ constants.filterValuesIds.FASHION_ITEM_NAME }
                     placeholder='Name contains...' />

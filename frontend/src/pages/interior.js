@@ -123,11 +123,11 @@ const InteriorSearch = () => {
 
 	return (
 		<div className='page sm:h-[88vh] h-[80vh]'>
-			<form onSubmit={(e) => e.preventDefault() && clickSearch()} className='filter-form h-full'>
-				<div className='flex sm:flex-row flex-col sm:space-x-8' style={{ height: '100%' }}>
+			<form onSubmit={(e) => e.preventDefault() && clickSearch()} id="filter-form" className=' h-full'>
+				<div className='flex sm:flex-row flex-col sm:space-x-8 h-full'>
 					<div className=' sm:min-w-[350px] sm:max-w-[350px]'>
-						<h2 style={{ paddingTop: '20px' }}>Interior</h2>
-						<div className='row space-y-4 flex flex-col' style={{ padding: '15px' }}>
+						<h2 className='pt-4 ml-0 font-bold'>Interior</h2>
+						<div className='row space-y-4 flex flex-col px-3'>
 							<FilterTable />
 							<div className='space-x-2'>
 								<button className='btn interior' id={constants.buttonIds.SEARCH_BTN} onClick={search}>Search</button>

@@ -109,25 +109,22 @@ const FashionSearch = () => {
 	}, [isSearching]);
 
 	useEffect(() => {
-		const forms = document.querySelectorAll('filter-form');
-
-		forms.forEach((form) => {
-			form.addEventListener('keypress', function (event) {
-				if (event.keyCode === 13) {
-					event.preventDefault();
-					form.submit();
-				}
-			});
-		})
+		const form = document.getElementById('filter-form');
+		form.addEventListener('keypress', function (event) {
+			if (event.keyCode === 13) {
+				event.preventDefault();
+				form.submit();
+			}
+		});
 	}, []);
 
 	return (
 		<div className='page sm:h-[88vh] h-[80vh]'>
-			<form onSubmit={(e) => e.preventDefault() && clickSearch()} className='filter-form h-full'>
-				<div className='flex sm:flex-row flex-col sm:space-x-8' style={{ height: '100%' }}>
+			<form onSubmit={(e) => e.preventDefault() && clickSearch()} id="filter-form" className=' h-full'>
+				<div className='flex sm:flex-row flex-col sm:space-x-8 h-full'>
 					<div className=' sm:min-w-[350px] sm:max-w-[350px]'>
-						<h2 style={{ paddingTop: '20px' }}>Fashion</h2>
-						<div className='row space-y-4 flex flex-col' style={{ padding: '15px' }}>
+						<h2 className='pt-4 ml-0 font-bold'>Fashion</h2>
+						<div className='row space-y-4 flex flex-col px-3'>
 							<FilterTable />
 							<div className='space-x-2'>
 								<button className='btn fashion' id={constants.buttonIds.SEARCH_BTN} onClick={search}>Search</button>
