@@ -67,7 +67,8 @@ const FashionSearch = () => {
 					"maxPrice": maxPrice,
 					"itemName": itemName,
 					"currencyType": currencyType,
-					"showStardesign": showStardesign
+					"showStardesign": showStardesign,
+					"itemType": "fashion"
 				}
 			});
 

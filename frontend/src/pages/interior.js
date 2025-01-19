@@ -67,7 +67,8 @@ const InteriorSearch = () => {
 					"maxPrice": maxPrice,
 					"itemName": itemName,
 					"currencyType": currencyType,
-					"showStardesign": showStardesign
+					"showStardesign": showStardesign,
+					"itemType": "interior"
 				}
 			});
 

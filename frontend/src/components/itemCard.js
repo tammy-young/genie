@@ -7,8 +7,8 @@ import StarcoinIcon from './images/starcoin';
 
 
 const getCurrencyIcon = ({ item }) => {
-    return(
-        item.currencyType === 1? <StardollarIcon /> : <StarcoinIcon />
+    return (
+        item.currencyType === 1 ? <StardollarIcon /> : <StarcoinIcon />
     );
 }
 
@@ -24,33 +24,33 @@ const getBrandName = ({ item }) => {
 }
 
 const getSeller = (item, index) => {
-	fetch(constants.backend.API + constants.backend.GET_SELLER + "?sellerId=" + item.sellerId)
-	.then(res => res.json())
-	.then(data => {
-		let username = data.sellerUser;
-		let itemCardDiv = document.querySelector('div.item-card[data-div-id="' + index + '"]');
-        let usernameTextBox = itemCardDiv.querySelector("#" + constants.divIds.SELLER_USERNAME_DIV_ID);
-		usernameTextBox.innerHTML = username;
-        let copyUserIcon = itemCardDiv.querySelector('#' + constants.divIds.COPY_ICON);
-        copyUserIcon.style.visibility = "visible";
-        copyUserIcon.onclick = function() {copy(username)};
-	});
+    fetch(constants.backend.API + constants.backend.GET_SELLER + "?sellerId=" + item.sellerId)
+        .then(res => res.json())
+        .then(data => {
+            let username = data.sellerUser;
+            let itemCardDiv = document.querySelector('div.item-card[data-div-id="' + index + '"]');
+            let usernameTextBox = itemCardDiv.querySelector("#" + constants.divIds.SELLER_USERNAME_DIV_ID);
+            usernameTextBox.innerHTML = username;
+            let copyUserIcon = itemCardDiv.querySelector('#' + constants.divIds.COPY_ICON);
+            copyUserIcon.style.visibility = "visible";
+            copyUserIcon.onclick = function () { copy(username) };
+        });
 }
 
 const ItemCard = ({ item, index }) => {
     return (
-        <div className="card item-card" style={{ width: '100%', padding: '10px', margin: '10px', border: "1px solid rgba(0, 0, 0, 0.1)" }} data-div-id={ index }>
+        <div className="card item-card" style={{ width: '100%', padding: '10px', margin: '10px', border: "1px solid rgba(0, 0, 0, 0.1)" }} data-div-id={index}>
             <div style={{ padding: '10px' }}>
-                <h6><b>{ item.name }</b></h6>
-                <p style={{ marginTop: '-5px' }}>{ getBrandName({ item }) }</p>
+                <h6><b>{item.name}</b></h6>
+                <p style={{ marginTop: '-5px' }}>{getBrandName({ item })}</p>
                 <div style={{ textAlign: "left" }}>
                     <div className='row'>
                         <div className='col'>
                             Sell
                         </div>
                         <div className='col ralign'>
-                            { item.sellPrice }
-                            { getCurrencyIcon({ item }) }
+                            {item.sellPrice}
+                            {getCurrencyIcon({ item })}
                         </div>
                     </div>
                     <div className='row'>
@@ -58,20 +58,20 @@ const ItemCard = ({ item, index }) => {
                             Original
                         </div>
                         <div className='col ralign'>
-                            { item.originalPrice }
-                            { getCurrencyIcon({ item }) }
+                            {item.originalPrice}
+                            {getCurrencyIcon({ item })}
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col'>
                             Seller
                         </div>
-                        <div className='col ralign text-overflow-ellipses' id={ constants.divIds.SELLER_USERNAME_DIV_ID } style={{ paddingRight: '5px', maxWidth: '100px' }}>
-                            { getSeller(item, index) }
+                        <div className='col ralign text-overflow-ellipses' id={constants.divIds.SELLER_USERNAME_DIV_ID} style={{ paddingRight: '5px', maxWidth: '100px' }}>
+                            {getSeller(item, index)}
                         </div>
                         <div className='col ralign' style={{ maxWidth: '17px' }}>
-                            <IconButton size="small" style={{ visibility: "hidden" }} id={ constants.divIds.COPY_ICON }>
-                                <ContentCopyIcon style={{ width: '17px', marginTop: '-5px', marginLeft: '-25px' }}/>
+                            <IconButton size="small" style={{ visibility: "hidden" }} id={constants.divIds.COPY_ICON}>
+                                <ContentCopyIcon style={{ width: '17px', marginTop: '-5px', marginLeft: '-25px' }} />
                             </IconButton>
                         </div>
                     </div>
@@ -79,12 +79,12 @@ const ItemCard = ({ item, index }) => {
                         <div className='col'>
                             Seller ID
                         </div>
-                        <div className='col ralign text-overflow-ellipses' id={ constants.divIds.SELLER_USERNAME_ID_DIV_ID } style={{ paddingRight: '5px', maxWidth: '100px' }}>
-                            { item.sellerId }
+                        <div className='col ralign text-overflow-ellipses' id={constants.divIds.SELLER_USERNAME_ID_DIV_ID} style={{ paddingRight: '5px', maxWidth: '100px' }}>
+                            {item.sellerId}
                         </div>
                         <div className='col ralign' style={{ maxWidth: '17px' }}>
-                            <IconButton size="small" id={ constants.divIds.COPY_ID_ICON } onClick={() => copy(item.sellerId)}>
-                                <ContentCopyIcon style={{ width: '17px', marginTop: '-5px', marginLeft: '-25px' }}/>
+                            <IconButton size="small" id={constants.divIds.COPY_ID_ICON} onClick={() => copy(item.sellerId)}>
+                                <ContentCopyIcon style={{ width: '17px', marginTop: '-5px', marginLeft: '-25px' }} />
                             </IconButton>
                         </div>
                     </div>
