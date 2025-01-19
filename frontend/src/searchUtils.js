@@ -19,7 +19,7 @@ export const displayItems = (items) => {
 	let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
 	searchingTextDiv.innerHTML = "";
 	return (
-		<div className='flex flex-wrap w-full sm:gap-4 space-y-4 sm:space-y-0 overflow-y-scroll max-h-[100vh] py-4'>
+		<div className='flex flex-wrap w-full sm:gap-4 space-y-4 sm:space-y-0 max-h-[100vh] py-4'>
 			{items.map((item, index) => (
 				<ItemCard item={item} index={index} />
 			))}
