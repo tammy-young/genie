@@ -6,6 +6,18 @@ import fetch from 'node-fetch';
 
 
 const BAZAAR_URL = "https://www.stardoll.com/en/com/user/getStarBazaar.php";
+const EXTRA_INTERIOR_BRANDS = [{
+    "id": 534,
+    "name": "Basic Decor",
+  },
+  {
+    "id": 983,
+    "name": "Callie's Pop Up Shop Decor",
+  },
+  {
+    "id": 712,
+    "name": "Pretty n' Love Decor",
+  }];
 
 async function fetchData(url, html=false) {
     try {
@@ -32,7 +44,7 @@ const getBrands = async (req) => {
     if (itemType === "fashion") {
         brands = pageContent.brands.fashion.brand;
     } else if (itemType === "interior") {
-        brands = pageContent.brands.interior.brand;
+        brands = pageContent.brands.interior.brand.concat(EXTRA_INTERIOR_BRANDS);
     } else {
         brands = pageContent.brands.fashion.brand.concat(pageContent.brands.interior.brand);
     }
