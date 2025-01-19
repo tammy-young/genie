@@ -6,7 +6,6 @@ import axios from 'axios';
 import FilterTable from '../components/filterColumn.js';
 
 import { getCurrencyType, getBrandId, displayItems } from '../searchUtils.js';
-import { clickSearch } from '../searchUtils.js';
 
 const startSearchMessage = "Searched items will show up here!"
 
@@ -127,7 +126,7 @@ const InteriorSearch = () => {
 				<div className=' sm:min-w-[350px] sm:max-w-[350px]'>
 					<h2 className='pt-4 ml-0 font-bold'>Interior</h2>
 					<div className='row space-y-4 flex flex-col px-3'>
-						<FilterTable />
+						<FilterTable search={search} reset={reset} />
 					</div>
 				</div>
 				<div className="flex justify-center w-full h-full" style={{ textAlign: 'center' }}>
