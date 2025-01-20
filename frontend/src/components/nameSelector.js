@@ -14,7 +14,7 @@ const NameSelector = () => {
                 <FormLabel>Keyword</FormLabel>
                 <Input className='spans' data-id={ constants.filterValuesIds.FASHION_ITEM_NAME }
                     placeholder='Name contains...'/>
-                <FormHelperText>Hint: You can use this field to search for Stardesigners</FormHelperText>
+                <FormHelperText className="dark:!text-neutral-400">Hint: You can use this field to search for Stardesigners</FormHelperText>
             </FormControl>
             
         </>

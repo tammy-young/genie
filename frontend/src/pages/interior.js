@@ -24,7 +24,7 @@ const InteriorSearch = () => {
 						<div id={constants.divIds.SEARCHING_TEXT_DIV}>{startSearchMessage}</div>
 					) : (
 						<div>
-							<div id={constants.divIds.SEARCHING_TEXT_DIV}>{startSearchMessage}</div>
+							<div id={constants.divIds.SEARCHING_TEXT_DIV}></div>
 							{displayItems(searchedItems)}
 						</div>
 					)
@@ -96,30 +96,12 @@ const InteriorSearch = () => {
 	}
 
 	useEffect(() => {
-		getItems();
-		// eslint-disable-next-line
-	}, [searchedItems]);
-
-	useEffect(() => {
 		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
 		searchingTextDiv.className = "w-full flex flex-col justify-center text-center items-center";
 		if (isSearching) {
 			searchingTextDiv.innerHTML = `<img src="${process.env.PUBLIC_URL + "sd-loading.gif"}" alt="Searching..." style="align-self: center;"></img>`;
 		}
 	}, [isSearching]);
-
-	useEffect(() => {
-		const forms = document.querySelectorAll('filter-form');
-
-		forms.forEach((form) => {
-			form.addEventListener('keypress', function (event) {
-				if (event.keyCode === 13) {
-					event.preventDefault();
-					form.submit();
-				}
-			});
-		})
-	}, []);
 
 	return (
 		<div className='flex sm:flex-row flex-col sm:space-x-8'>

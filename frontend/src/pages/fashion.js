@@ -24,7 +24,7 @@ const FashionSearch = () => {
 						<div id={constants.divIds.SEARCHING_TEXT_DIV}>{startSearchMessage}</div>
 					) : (
 						<div>
-							<div id={constants.divIds.SEARCHING_TEXT_DIV}>{startSearchMessage}</div>
+							<div id={constants.divIds.SEARCHING_TEXT_DIV}></div>
 							{displayItems(searchedItems)}
 						</div>
 					)
@@ -94,11 +94,6 @@ const FashionSearch = () => {
 		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
 		searchingTextDiv.innerHTML = startSearchMessage;
 	}
-
-	useEffect(() => {
-		getItems();
-		// eslint-disable-next-line
-	}, [searchedItems]);
 
 	useEffect(() => {
 		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
