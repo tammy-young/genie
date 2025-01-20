@@ -14,16 +14,17 @@ const ImageInfoBox = () => {
         <Alert
           severity="info"
           color="primary"
+          className='dark:!bg-primary'
           action={
             <IconButton
               aria-label="close"
-              color="inherit"
+              color='inherit'
               size="small"
               onClick={() => {
                 setInfoOpen(false);
               }}
             >
-              <CloseIcon fontSize="inherit" color='primary' />
+              <CloseIcon fontSize="inherit" />
             </IconButton>
           }
         >

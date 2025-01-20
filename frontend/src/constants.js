@@ -31,8 +31,11 @@ const constants = {
     },
     colors: {
         PRIMARY: "#A87CFC",
+        PRIMARY_LIGHT: "#f6f1fe",
         BACKGROUND: "#FDFBFE",
-        LIGHT_GREY: "#e6e6e6"
+        LIGHT_GREY: "#e6e6e6",
+        FASHION: '#ee6fb3',
+        INTERIOR: '#51c0cb'
     },
     brandIdSearchPage: {
         BRAND_ID_SEARCH_INPUT: "brandIdSearchInput"

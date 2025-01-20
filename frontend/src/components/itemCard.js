@@ -40,35 +40,41 @@ const getSeller = (item, index) => {
 
 const ItemCard = ({ item, index }) => {
     return (
-        <div className="card item-card !min-w-[270px] sm:max-w-[30%] w-full" style={{ padding: '10px', border: "1px solid rgba(0, 0, 0, 0.1)" }} data-div-id={index}>
-            <div style={{ padding: '10px' }}>
+        <div className="card item-card !min-w-[270px] sm:max-w-[30%] w-full" style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }} data-div-id={index}>
+            <div className='p-4'>
                 <ItemImagePlaceholder imageUrl={item.itemImage} />
-                <h6><b>{item.name}</b></h6>
-                <p style={{ marginTop: '-5px' }}>{getBrandName({ item })}</p>
+                <div className='flex flex-col text-center'>
+                    <h6><b>{item.name}</b></h6>
+                    <p style={{ marginTop: '-5px' }}>{getBrandName({ item })}</p>
+                </div>
                 <div style={{ textAlign: "left" }}>
                     <div className='row'>
                         <div className='col'>
                             Sell
                         </div>
-                        <div className='col ralign flex w-full flex-row justify-end'>
-                            {item.sellPrice}
-                            {getCurrencyIcon({ item })}
+                        <div className='col ralign flex w-full flex-row justify-end text-center items-center'>
+                            <p className='mb-0'>{item.sellPrice}</p>
+                            <div className='-mb-[0.05rem]'>
+                                {getCurrencyIcon({ item })}
+                            </div>
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col'>
                             Original
                         </div>
-                        <div className='col ralign flex w-full flex-row justify-end'>
-                            {item.originalPrice}
-                            {getCurrencyIcon({ item })}
+                        <div className='col ralign flex w-full flex-row justify-end justify-end text-center items-center'>
+                            <p className='mb-0'>{item.originalPrice}</p>
+                            <div className='-mb-[0.05rem]'>
+                                {getCurrencyIcon({ item })}
+                            </div>
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col'>
                             Seller
                         </div>
-                        <div className='col ralign text-overflow-ellipses' id={constants.divIds.SELLER_USERNAME_DIV_ID} style={{ paddingRight: '5px', maxWidth: '100px' }}>
+                        <div className='col ralign text-overflow-ellipses' id={constants.divIds.SELLER_USERNAME_DIV_ID} style={{ paddingRight: '5px' }}>
                             {getSeller(item, index)}
                         </div>
                         <div className='col ralign' style={{ maxWidth: '17px' }}>
@@ -81,7 +87,7 @@ const ItemCard = ({ item, index }) => {
                         <div className='col'>
                             Seller ID
                         </div>
-                        <div className='col ralign text-overflow-ellipses' id={constants.divIds.SELLER_USERNAME_ID_DIV_ID} style={{ paddingRight: '5px', maxWidth: '100px' }}>
+                        <div className='col ralign text-overflow-ellipses' id={constants.divIds.SELLER_USERNAME_ID_DIV_ID} style={{ paddingRight: '5px' }}>
                             {item.sellerId}
                         </div>
                         <div className='col ralign' style={{ maxWidth: '17px' }}>

@@ -6,9 +6,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#A87CFC',
-        fashion: '#ee6fb3',
-        interior: '#51c0cb'
+        primary: {
+          DEFAULT: '#A87CFC',
+          light: '#f6f1fe'
+        },
+        fashion: {
+          DEFAULT: '#ee6fb3',
+          light: '#fdd4dc',
+          dark: '#650f3d'
+        },
+        interior: {
+          DEFAULT : '#51c0cb',
+          light: '#d4fafd',
+          dark: '#016c95'
+        }
       },
     },
   },

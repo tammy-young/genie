@@ -17,20 +17,20 @@ const InteriorSearch = () => {
 	const [searchedItems, setSearchedItems] = useState([]);
 
 	const getItems = () => {
-		if (searchedItems.length === 0) {
-			return (
-				<div className='col' style={{ textAlign: 'center', alignContent: 'center', overflowY: "scroll", maxWidth: '100%' }} id={constants.divIds.ITEM_PANEL_DIV}>
-					<div id={constants.divIds.SEARCHING_TEXT_DIV}>{startSearchMessage}</div>
-				</div>
-			)
-		} else {
-			return (
-				<div className='' style={{ textAlign: 'center', overflowY: "scroll", maxWidth: '100%' }} id={constants.divIds.ITEM_PANEL_DIV}>
-					<div id={constants.divIds.SEARCHING_TEXT_DIV}>{startSearchMessage}</div>
-					{displayItems(searchedItems)}
-				</div>
-			)
-		}
+		return (
+			<div className='!h-[84vh] w-full flex justify-center items-center'>
+				{
+					searchedItems.length === 0 ? (
+						<div id={constants.divIds.SEARCHING_TEXT_DIV}>{startSearchMessage}</div>
+					) : (
+						<div>
+							<div id={constants.divIds.SEARCHING_TEXT_DIV}>{startSearchMessage}</div>
+							{displayItems(searchedItems)}
+						</div>
+					)
+				}
+			</div>
+		)
 	}
 
 	const search = async () => {
@@ -102,7 +102,7 @@ const InteriorSearch = () => {
 
 	useEffect(() => {
 		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
-		searchingTextDiv.className = "w-full flex flex-row justify-center text-center items-center";
+		searchingTextDiv.className = "w-full flex flex-col justify-center text-center items-center";
 		if (isSearching) {
 			searchingTextDiv.innerHTML = `<img src="${process.env.PUBLIC_URL + "sd-loading.gif"}" alt="Searching..." style="align-self: center;"></img>`;
 		}
@@ -122,17 +122,13 @@ const InteriorSearch = () => {
 	}, []);
 
 	return (
-		<div className='page sm:h-[88vh] h-[80vh]'>
-			<div className='flex sm:flex-row flex-col sm:space-x-8 h-full'>
-				<div className=' sm:min-w-[350px] sm:max-w-[350px] space-y-4'>
-					<h2 className='pt-4 ml-0 font-bold'>Interior</h2>
-					<FilterTable search={search} reset={reset} />
-					<ImageInfoBox />
-				</div>
-				<div className="flex justify-center w-full h-full" style={{ textAlign: 'center' }}>
-					{getItems()}
-				</div>
+		<div className='flex sm:flex-row flex-col sm:space-x-8'>
+			<div className=' sm:min-w-[350px] sm:max-w-[350px] space-y-4'>
+				<h2 className='pt-4 ml-0 font-bold'>Interior</h2>
+				<FilterTable search={search} reset={reset} />
+				<ImageInfoBox />
 			</div>
+			{getItems()}
 		</div>
 	)
 }

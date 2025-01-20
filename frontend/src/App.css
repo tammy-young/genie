@@ -15,7 +15,6 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -135,7 +134,6 @@
 body {
   background-color: #fff !important;
   color: #1f2023;
-  font-family: "Roboto", sans-serif !important;
   margin: 0;
 }
 
@@ -222,8 +220,28 @@ a.nav-link {
   color: #fff !important;
 }
 
+.fashion-light {
+  background-color: #fdd4dc !important;
+  color: #000 !important;
+}
+
+.fashion-dark {
+  background-color: #650f3d;
+  color: #fff !important;
+}
+
 .interior {
   background-color: #51c0cb !important;
+  color: #fff !important;
+}
+
+.interior-light {
+  background-color: #d4fafd !important;
+  color: #000 !important;
+}
+
+.interior-dark {
+  background-color: #016c95 !important;
   color: #fff !important;
 }
 
@@ -247,7 +265,6 @@ a.nav-link {
 .site-padding {
   padding-left: min(100px, 7%);
   padding-right: min(100px, 7%);
-  padding-top: 10px;
 }
 
 @media (max-width: 30em) {
