@@ -16,7 +16,7 @@ const NavBar = () => {
     }
 
     return (
-        location.pathname !== "" ? (
+        location.pathname !== "/" ? (
             <div className='nav-bar flex flex-col sm:flex-row space-y-3 sm:space-y-0 pt-3 overflow-auto'>
                 <div className='col flex flex-row justify-center sm:justify-start p-0'>
                     <NavLink to="/">

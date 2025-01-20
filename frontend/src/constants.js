@@ -41,12 +41,12 @@ const constants = {
         BRAND_ID_SEARCH_INPUT: "brandIdSearchInput"
     },
     paths: {
-        FASHION: "/",
+        FASHION: "/fashion",
         INTERIOR: "/interior",
         ID_SEARCH: "/brands"
     },
     backend: {
-        API: "https://genie-api.netlify.app",
+        API: "http://localhost:8888",
         GET_BRANDS: "/.netlify/functions/getBrands",
         SEARCH: "/.netlify/functions/search",
         GET_SELLER: "/.netlify/functions/getSeller"
