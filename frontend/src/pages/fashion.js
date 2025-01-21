@@ -3,10 +3,11 @@ import './../App.css';
 import constants from '../constants.js';
 import axios from 'axios';
 
-import FilterModal from '../components/filterModal.js';
+import FilterModal from '../components/filters/filterModal.js';
 
 import { getCurrencyType, getBrandId, getItems } from '../searchUtils.js';
 import ImageInfoBox from '../components/imageInfoBox.js';
+import FilterMenu from '../components/filters/filterMenu.js';
 
 const startSearchMessage = "Searched items will show up here!"
 
@@ -77,7 +78,12 @@ const FashionSearch = () => {
 	return (
 		<div className='flex flex-col'>
 			<h2 className='pt-4 ml-0 font-semibold'>Fashion for Sale in Starbazaar</h2>
-			<FilterModal search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
+			<div className='md:block hidden'>
+				<FilterMenu search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
+			</div>
+			<div className='md:hidden block'>
+				<FilterModal search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
+			</div>
 			{getItems(searchedItems, startSearchMessage)}
 		</div>
 	)

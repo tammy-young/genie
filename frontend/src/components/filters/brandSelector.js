@@ -4,9 +4,7 @@ import Autocomplete from '@mui/joy/Autocomplete';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-import constants from './../constants.js';
-import './../App.css';
-
+import constants from '../../constants.js';
 
 const BRAND_NAME_TEXT = "Brand Name";
 

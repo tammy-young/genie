@@ -4,8 +4,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Tooltip from '@mui/material/Tooltip';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
-import constants from "./../constants.js";
-import './../App.css';
+import constants from "../../constants.js";
 
 
 const NameSelector = () => {

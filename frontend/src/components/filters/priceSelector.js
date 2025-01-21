@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import constants from "../constants";
-import './../App.css';
-import StardollarIcon from './images/stardollar';
-import StarcoinIcon from './images/starcoin';
+import constants from "../../constants";
+import StardollarIcon from '../images/stardollar';
+import StarcoinIcon from '../images/starcoin';
 
 import ButtonGroup from '@mui/joy/ButtonGroup';
-import Slider, { sliderClasses } from '@mui/joy/Slider';
+import Slider from '@mui/joy/Slider';
 import Button from '@mui/joy/Button';
 import Input from '@mui/joy/Input';
 import FormLabel from '@mui/joy/FormLabel';

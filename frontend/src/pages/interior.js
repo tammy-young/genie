@@ -3,7 +3,8 @@ import './../App.css';
 import constants from '../constants.js';
 import axios from 'axios';
 
-import FilterModal from '../components/filterModal.js';
+import FilterModal from '../components/filters/filterModal.js';
+import FilterMenu from '../components/filters/filterMenu.js';
 import ImageInfoBox from '../components/imageInfoBox.js';
 
 import { getCurrencyType, getBrandId, getItems } from '../searchUtils.js';
@@ -83,8 +84,12 @@ const InteriorSearch = () => {
 		<div className='flex sm:flex-row flex-col sm:space-x-8'>
 			<div className=' sm:min-w-[350px] sm:max-w-[350px] space-y-4'>
 				<h2 className='pt-4 ml-0 font-bold'>Interior</h2>
-				<FilterModal search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage}  />
-				<ImageInfoBox />
+				<div className='md:block hidden'>
+					<FilterMenu search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
+				</div>
+				<div className='md:hidden block'>
+					<FilterModal search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
+				</div>
 			</div>
 			{getItems(searchedItems, startSearchMessage)}
 		</div>

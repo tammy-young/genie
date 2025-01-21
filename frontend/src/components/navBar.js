@@ -17,7 +17,7 @@ const NavBar = () => {
 
   return (
     location.pathname !== "" ? (
-      <div className='nav-bar flex flex-col sm:flex-row flex-wrap space-y-3 sm:space-y-0 sm:justify-between pt-3 overflow-auto'>
+      <div className='nav-bar flex flex-col sm:flex-row flex-wrap space-y-3 sm:space-y-0 sm:justify-between overflow-auto'>
         <div className='flex flex-row justify-center sm:justify-start p-0'>
           <NavLink to="/">
             <GenieLogo />
