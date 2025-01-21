@@ -7,7 +7,7 @@ import PriceSelector from './priceSelector.js';
 import "./../App.css";
 import constants from '../constants.js';
 import axios from 'axios';
-import { clickSearch, reset } from '../searchUtils.js';
+import { reset } from '../searchUtils.js';
 import ExcludeBrandSelector from './excludeBrandSelector.js';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
@@ -61,17 +61,11 @@ const FilterModal = ({ search, setSearchedItems, setIsSearching, startSearchMess
     // eslint-disable-next-line
   }, []);
 
-  // useEffect(() => {
-  //   if (open) {
-  //     const form = document.getElementById('filter-form');
-  //     form.addEventListener('keypress', function (event) {
-  //       if (event.keyCode === 13) {
-  //         event.preventDefault();
-  //         clickSearch(event);
-  //       }
-  //     });
-  //   }
-  // }, [open]);
+  function submitForm(e) {
+    e.preventDefault();
+    handleClose();
+    search();
+  }
 
   return (
     <div>
@@ -83,14 +77,14 @@ const FilterModal = ({ search, setSearchedItems, setIsSearching, startSearchMess
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} className="dark:!bg-[#1f2023] dark:!text-white p-4 md:w-1/2 lg:w-1/3 w-5/6 !rounded-lg">
-          <form onSubmit={(e) => e.preventDefault()} id="filter-form" className='flex flex-col space-y-4 w-full flex-wrap ml-0'>
+          <form onSubmit={(e) => submitForm(e)} id="filter-form" className='flex flex-col space-y-4 w-full flex-wrap ml-0'>
             <h1 className='font-bold'>Filters</h1>
             <BrandSelector brandsToId={brandsToId} />
             <ExcludeBrandSelector brandsToId={brandsToId} />
             <PriceSelector />
             <NameSelector />
             <div className='flex space-x-4 ml-0'>
-              <button className={`btn ${itemType} !h-fit`} id={constants.buttonIds.SEARCH_BTN} onClick={search}>Search</button>
+              <button className={`btn ${itemType} !h-fit`} id={constants.buttonIds.SEARCH_BTN} type="submit">Search</button>
               <button className='btn btn-secondary h-fit' id={constants.buttonIds.RESET_BTN} onClick={() => reset(setSearchedItems, setIsSearching, startSearchMessage)}>Reset</button>
             </div>
           </form>

@@ -20,6 +20,13 @@ export function BrandSelector({ brandsToId }) {
 				placeholder='Start typing...'
 				autoHighlight
 				getOptionLabel={(option) => option.name}
+				slotProps={{
+					listbox: {
+						sx: (theme) => ({
+							zIndex: theme.vars.zIndex.modal
+						})
+					}
+				}}
 				renderOption={(props, option) => {
 					const { key, ...optionProps } = props;
 					return (
