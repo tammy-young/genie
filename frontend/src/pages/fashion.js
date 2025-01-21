@@ -3,7 +3,7 @@ import './../App.css';
 import constants from '../constants.js';
 import axios from 'axios';
 
-import FilterTable from '../components/filterColumn.js';
+import FilterModal from '../components/filterModal.js';
 
 import { getCurrencyType, getBrandId, getItems } from '../searchUtils.js';
 import ImageInfoBox from '../components/imageInfoBox.js';
@@ -77,7 +77,7 @@ const FashionSearch = () => {
 	return (
 		<div className='flex flex-col'>
 			<h2 className='pt-4 ml-0 font-semibold'>Fashion for Sale in Starbazaar</h2>
-			<FilterTable search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
+			<FilterModal search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
 			{getItems(searchedItems, startSearchMessage)}
 		</div>
 	)

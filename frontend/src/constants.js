@@ -14,6 +14,7 @@ const constants = {
         COPY_ICON: "copySellerUsername",
         COPY_ID_ICON: "copySellerId",
         EXCLUDED_BRANDS_DIV: "excludedBrandsDiv",
+        EXCLUDED_BRANDS_SECTION: "excludedBrandsSection"
     },
     filterValuesIds: {
         FASHION_BRAND: "brandNameFilter",

@@ -22,7 +22,7 @@ const style = {
   boxShadow: 24,
 };
 
-const FilterTable = ({ search, setSearchedItems, setIsSearching, startSearchMessage }) => {
+const FilterModal = ({ search, setSearchedItems, setIsSearching, startSearchMessage }) => {
 
   const [brandsToId, setBrandsToId] = useState([]);
   const itemType = window.location.pathname.split('/')[1] || "fashion";
@@ -102,4 +102,4 @@ const FilterTable = ({ search, setSearchedItems, setIsSearching, startSearchMess
   );
 }
 
-export default FilterTable;
+export default FilterModal;
