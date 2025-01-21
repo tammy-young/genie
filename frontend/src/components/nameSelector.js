@@ -1,24 +1,25 @@
 import Input from '@mui/joy/Input';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
-import FormHelperText from '@mui/joy/FormHelperText';
+import Tooltip from '@mui/material/Tooltip';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 import constants from "./../constants.js";
 import './../App.css';
 
 
 const NameSelector = () => {
-    return(
-        <>
-            <FormControl className="pb-3">
-                <FormLabel>Keyword</FormLabel>
-                <Input className='spans' data-id={ constants.filterValuesIds.FASHION_ITEM_NAME }
-                    placeholder='Name contains...'/>
-                <FormHelperText className="dark:!text-neutral-400">Hint: You can use this field to search for Stardesigners</FormHelperText>
-            </FormControl>
-            
-        </>
-    )
+  return (
+    <FormControl className="">
+      <FormLabel>
+        Keyword
+        <Tooltip title="Hint: You can use this field to search for Stardesigners">
+          <InfoOutlinedIcon className='cursor-pointer !w-4 !h-4 !text-primary' />
+        </Tooltip>
+      </FormLabel>
+      <Input data-id={constants.filterValuesIds.FASHION_ITEM_NAME} placeholder='Name contains...' />
+    </FormControl>
+  )
 }
 
 export default NameSelector;

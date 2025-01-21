@@ -15,6 +15,23 @@ export const getBrandId = (brandInput) => {
 	return brandName in brands ? brands[brandName] : "";
 }
 
+export const getItems = (searchedItems, startSearchMessage) => {
+	return (
+		<div className='!h-[84vh] w-full flex justify-center items-center'>
+			{
+				searchedItems.length === 0 ? (
+					<div id={constants.divIds.SEARCHING_TEXT_DIV}>{startSearchMessage}</div>
+				) : (
+					<div>
+						<div id={constants.divIds.SEARCHING_TEXT_DIV}></div>
+						{displayItems(searchedItems)}
+					</div>
+				)
+			}
+		</div>
+	)
+}
+
 export const displayItems = (items) => {
 	let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
 	searchingTextDiv.innerHTML = "";
@@ -31,4 +48,11 @@ export const clickSearch = (e) => {
 	e.preventDefault();
 	let button = document.getElementById(constants.buttonIds.SEARCH_BTN);
 	button.click();
+}
+
+export const reset = (setSearchedItems, setIsSearching, startSearchMessage) => {
+	setSearchedItems([]);
+	setIsSearching(false);
+	let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
+	searchingTextDiv.innerHTML = startSearchMessage;
 }

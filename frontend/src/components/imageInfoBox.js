@@ -14,7 +14,7 @@ const ImageInfoBox = () => {
         <Alert
           severity="info"
           color="primary"
-          className='dark:!bg-primary'
+          className='dark:!bg-primary w-fit'
           action={
             <IconButton
               aria-label="close"

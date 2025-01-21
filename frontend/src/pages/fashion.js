@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import FilterTable from '../components/filterColumn.js';
 
-import { getCurrencyType, getBrandId, displayItems } from '../searchUtils.js';
+import { getCurrencyType, getBrandId, getItems } from '../searchUtils.js';
 import ImageInfoBox from '../components/imageInfoBox.js';
 
 const startSearchMessage = "Searched items will show up here!"
@@ -16,23 +16,6 @@ const FashionSearch = () => {
 	const [isSearching, setIsSearching] = useState(false);
 	const [searchedItems, setSearchedItems] = useState([]);
 
-	const getItems = () => {
-		return (
-			<div className='!h-[84vh] w-full flex justify-center items-center'>
-				{
-					searchedItems.length === 0 ? (
-						<div id={constants.divIds.SEARCHING_TEXT_DIV}>{startSearchMessage}</div>
-					) : (
-						<div>
-							<div id={constants.divIds.SEARCHING_TEXT_DIV}></div>
-							{displayItems(searchedItems)}
-						</div>
-					)
-				}
-			</div>
-		)
-	}
-
 	const search = async () => {
 		try {
 			setIsSearching(true);
@@ -41,23 +24,18 @@ const FashionSearch = () => {
 				setSearchedItems([]);
 			}
 
-			// get the filter sections (don't exist when closed)
-			let brandFilterSection = document.getElementById(constants.divIds.FASHION_BRAND_DIV);
-			let priceFilterSection = document.getElementById(constants.divIds.FASHION_PRICE_DIV);
-			let nameFilterSection = document.getElementById(constants.divIds.FASHION_NAME_DIV);
-
 			// get input boxes
 			let brandInput = document.getElementById(constants.filterValuesIds.FASHION_BRAND);
 			let itemNameInput = document.querySelector('[data-id="' + constants.filterValuesIds.FASHION_ITEM_NAME + '"] input');
 			let currencyTypeInput = document.getElementsByClassName(constants.filterValuesIds.SELECTED_CURRENCY)[0];
 			let priceInput = document.getElementById(constants.filterValuesIds.FASHION_PRICE);
 
-			let searchBrandId = brandFilterSection !== null ? getBrandId(brandInput) : "";
-			let priceInputValue = priceFilterSection !== null ? priceInput.innerText : "2\n600";
+			let searchBrandId = getBrandId(brandInput);
+			let priceInputValue = priceInput.innerText || "2\n600";
 			let minPrice = priceInputValue.split("\n")[0];
 			let maxPrice = priceInputValue.split("\n")[1];
-			let currencyType = priceFilterSection !== null ? getCurrencyType(currencyTypeInput) : "";
-			let itemName = nameFilterSection !== null ? itemNameInput.value : "";
+			let currencyType = getCurrencyType(currencyTypeInput);
+			let itemName = itemNameInput.value;
 
 			// excluded brands
 			let excludedBrands = document.getElementById(constants.divIds.EXCLUDED_BRANDS_DIV).innerText;
@@ -88,13 +66,6 @@ const FashionSearch = () => {
 		}
 	};
 
-	const reset = () => {
-		setSearchedItems([]);
-		setIsSearching(false);
-		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
-		searchingTextDiv.innerHTML = startSearchMessage;
-	}
-
 	useEffect(() => {
 		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
 		if (isSearching) {
@@ -104,13 +75,10 @@ const FashionSearch = () => {
 	}, [isSearching]);
 
 	return (
-		<div className='flex sm:flex-row flex-col sm:space-x-8'>
-			<div className=' sm:min-w-[350px] sm:max-w-[350px] space-y-4'>
-				<h2 className='pt-4 ml-0 font-bold'>Fashion</h2>
-				<FilterTable search={search} reset={reset} />
-				<ImageInfoBox />
-			</div>
-			{getItems()}
+		<div className='flex flex-col'>
+			<h2 className='pt-4 ml-0 font-semibold'>Fashion for Sale in Starbazaar</h2>
+			<FilterTable search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
+			{getItems(searchedItems, startSearchMessage)}
 		</div>
 	)
 }

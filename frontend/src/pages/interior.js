@@ -6,7 +6,7 @@ import axios from 'axios';
 import FilterTable from '../components/filterColumn.js';
 import ImageInfoBox from '../components/imageInfoBox.js';
 
-import { getCurrencyType, getBrandId, displayItems } from '../searchUtils.js';
+import { getCurrencyType, getBrandId, getItems } from '../searchUtils.js';
 
 const startSearchMessage = "Searched items will show up here!"
 
@@ -15,23 +15,6 @@ const InteriorSearch = () => {
 	// for searching
 	const [isSearching, setIsSearching] = useState(false);
 	const [searchedItems, setSearchedItems] = useState([]);
-
-	const getItems = () => {
-		return (
-			<div className='!h-[84vh] w-full flex justify-center items-center'>
-				{
-					searchedItems.length === 0 ? (
-						<div id={constants.divIds.SEARCHING_TEXT_DIV}>{startSearchMessage}</div>
-					) : (
-						<div>
-							<div id={constants.divIds.SEARCHING_TEXT_DIV}></div>
-							{displayItems(searchedItems)}
-						</div>
-					)
-				}
-			</div>
-		)
-	}
 
 	const search = async () => {
 		try {
@@ -88,13 +71,6 @@ const InteriorSearch = () => {
 		}
 	};
 
-	const reset = () => {
-		setSearchedItems([]);
-		setIsSearching(false);
-		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
-		searchingTextDiv.innerHTML = startSearchMessage;
-	}
-
 	useEffect(() => {
 		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
 		searchingTextDiv.className = "w-full flex flex-col justify-center text-center items-center";
@@ -107,10 +83,10 @@ const InteriorSearch = () => {
 		<div className='flex sm:flex-row flex-col sm:space-x-8'>
 			<div className=' sm:min-w-[350px] sm:max-w-[350px] space-y-4'>
 				<h2 className='pt-4 ml-0 font-bold'>Interior</h2>
-				<FilterTable search={search} reset={reset} />
+				<FilterTable search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage}  />
 				<ImageInfoBox />
 			</div>
-			{getItems()}
+			{getItems(searchedItems, startSearchMessage)}
 		</div>
 	)
 }
