@@ -51,19 +51,19 @@ const search = async (req) => {
         searchUrl += INTERIOR_SEARCH_URL_PART;
     }
 
-    let itemName = req.query.itemName !== "" ? req.query.itemName.toLowerCase() : "";
+    let itemName = req.query.itemName ? req.query.itemName.toLowerCase() : "";
 
     let brandId = req.query.brandId;
-    searchUrl += brandId !== ""? `&brands=${brandId}` : "";
+    searchUrl += brandId ? `&brands=${brandId}` : "";
 
     let minPrice = req.query.minPrice;
-    searchUrl += minPrice !== ""? `&minPrice=${minPrice}` : "";
+    searchUrl += minPrice ? `&minPrice=${minPrice}` : "";
 
     let maxPrice = req.query.maxPrice;
-    searchUrl += maxPrice !== ""? `&maxPrice=${maxPrice}` : "";
+    searchUrl += maxPrice ? `&maxPrice=${maxPrice}` : "";
 
     let currencyType = req.query.currencyType;
-    searchUrl += (minPrice || maxPrice) && (currencyType !== "")? `&currencyType=${currencyType}` : "";
+    searchUrl += (minPrice || maxPrice) && currencyType ? `&currencyType=${currencyType}` : "";
 
     let excludeBrands = req.query.excludedBrands || [];
 
