@@ -45,7 +45,7 @@ export const displayItems = (items) => {
 	);
 }
 
-export const onEnterSearch = (e, search, handleClose, params) => {
+export const onEnterSearch = (e, search, params, handleClose) => {
 	e.preventDefault();
 	if (handleClose) {
 		handleClose();

@@ -57,7 +57,7 @@ const FilterModal = ({ search, setSearchedItems, setIsSearching, startSearchMess
     <div>
       <div className='flex space-x-2'>
         <Button onClick={handleOpen} className='border !text-black dark:!text-white !normal-case'>Filters</Button>
-        <Button onClick={(e) => onEnterSearch(e, search, handleClose, {selectedBrand, excludedBrands, priceRange, currencyType, itemName})} className={`${itemType} !text-white !normal-case`}>Search</Button>
+        <Button onClick={(e) => onEnterSearch(e, search, {selectedBrand, excludedBrands, priceRange, currencyType, itemName})} className={`${itemType} !text-white !normal-case`}>Search</Button>
         <Button className='!bg-neutral-500 !text-white !normal-case' type="button" onClick={() => reset(setSearchedItems, setIsSearching, startSearchMessage)}>Reset</Button>
       </div>
       <Modal
@@ -67,7 +67,7 @@ const FilterModal = ({ search, setSearchedItems, setIsSearching, startSearchMess
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} className="dark:!bg-[#1f2023] dark:!text-white p-4 md:w-1/2 lg:w-1/3 w-5/6 !rounded-lg">
-          <form onSubmit={(e) => onEnterSearch(e, search, handleClose, {selectedBrand, excludedBrands, priceRange, currencyType, itemName})} id="filter-form" className='flex flex-col space-y-4 w-full flex-wrap ml-0'>
+          <form onSubmit={(e) => onEnterSearch(e, search, {selectedBrand, excludedBrands, priceRange, currencyType, itemName}, handleClose)} id="filter-form" className='flex flex-col space-y-4 w-full flex-wrap ml-0'>
             <div className='flex justify-between items-center'>
               <h1 className='font-bold mb-0'>Filters</h1>
               <CloseIcon onClick={handleClose} className='cursor-pointer' />
