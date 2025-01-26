@@ -115,25 +115,25 @@ const Listbox = styled('ul')(
 `,
 );
 
-const ExcludeBrandSelector = ({ brandsToId }) => {
+const ExcludeBrandSelector = ({ brandsToId, setExcludedBrands, excludedBrands }) => {
   const {
     getInputProps,
     getTagProps,
     getListboxProps,
     getOptionProps,
     groupedOptions = [],
-    value = [],
+    value = excludedBrands,
   } = useAutocomplete({
     id: 'customized-hook-demo',
     multiple: true,
     options: brandsToId,
-    onChange: (event, newValue) => setExcludedBrands(newValue),
+    onChange: (event, newValue) => {
+      setExcludedBrands(newValue);
+    },
     getOptionLabel: (option) => option.name,
+    value: excludedBrands,
   });
 
-  function setExcludedBrands(newValue) {
-    document.getElementById(constants.divIds.EXCLUDED_BRANDS_DIV).innerText = newValue.map((option) => option.brandId).join(",");
-  }
   return (
     <FormControl className=''>
       <div>

@@ -7,7 +7,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import constants from "../../constants.js";
 
 
-const NameSelector = () => {
+const NameSelector = ({ setItemName, itemName }) => {
   return (
     <FormControl className="">
       <FormLabel>
@@ -16,7 +16,8 @@ const NameSelector = () => {
           <InfoOutlinedIcon className='cursor-pointer !w-4 !h-4 !text-primary' />
         </Tooltip>
       </FormLabel>
-      <Input data-id={constants.filterValuesIds.FASHION_ITEM_NAME} placeholder='Name contains...' />
+      <Input data-id={constants.filterValuesIds.FASHION_ITEM_NAME} placeholder='Name contains...'
+        onChange={(e) => {setItemName(e.target.value)}} value={itemName} />
     </FormControl>
   )
 }

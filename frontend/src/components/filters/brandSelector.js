@@ -8,7 +8,7 @@ import constants from '../../constants.js';
 
 const BRAND_NAME_TEXT = "Brand Name";
 
-export function BrandSelector({ brandsToId }) {
+export function BrandSelector({ brandsToId, setSelectedBrand, selectedBrand }) {
 	return (
 		<FormControl>
 			<FormLabel>{BRAND_NAME_TEXT}</FormLabel>
@@ -17,13 +17,17 @@ export function BrandSelector({ brandsToId }) {
 				options={!brandsToId ? [{ name: "Loading...", brandId: 0 }] : brandsToId}
 				placeholder='Start typing...'
 				autoHighlight
-				getOptionLabel={(option) => option.name}
+				getOptionLabel={(option) => option.name || ''}
+				value={selectedBrand}
 				slotProps={{
 					listbox: {
 						sx: (theme) => ({
 							zIndex: theme.vars.zIndex.modal
 						})
 					}
+				}}
+				onChange={(event, value) => {
+					setSelectedBrand(value);
 				}}
 				renderOption={(props, option) => {
 					const { key, ...optionProps } = props;

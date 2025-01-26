@@ -17,7 +17,7 @@ const InteriorSearch = () => {
 	const [isSearching, setIsSearching] = useState(false);
 	const [searchedItems, setSearchedItems] = useState([]);
 
-	const search = async () => {
+	const search = async (params) => {
 		try {
 			setIsSearching(true);
 
@@ -25,36 +25,14 @@ const InteriorSearch = () => {
 				setSearchedItems([]);
 			}
 
-			// get the filter sections (don't exist when closed)
-			let brandFilterSection = document.getElementById(constants.divIds.FASHION_BRAND_DIV);
-			let priceFilterSection = document.getElementById(constants.divIds.FASHION_PRICE_DIV);
-			let nameFilterSection = document.getElementById(constants.divIds.FASHION_NAME_DIV);
-
-			// get input boxes
-			let brandInput = document.getElementById(constants.filterValuesIds.FASHION_BRAND);
-			let itemNameInput = document.querySelector('[data-id="' + constants.filterValuesIds.FASHION_ITEM_NAME + '"] input');
-			let currencyTypeInput = document.getElementsByClassName(constants.filterValuesIds.SELECTED_CURRENCY)[0];
-			let priceInput = document.getElementById(constants.filterValuesIds.FASHION_PRICE);
-
-			let searchBrandId = brandFilterSection !== null ? getBrandId(brandInput) : "";
-			let priceInputValue = priceFilterSection !== null ? priceInput.innerText : "2\n600";
-			let minPrice = priceInputValue.split("\n")[0];
-			let maxPrice = priceInputValue.split("\n")[1];
-			let currencyType = priceFilterSection !== null ? getCurrencyType(currencyTypeInput) : "";
-			let itemName = nameFilterSection !== null ? itemNameInput.value : "";
-
-			// excluded brands
-			let excludedBrands = document.getElementById(constants.divIds.EXCLUDED_BRANDS_DIV).innerText;
-			excludedBrands = excludedBrands !== "" ? excludedBrands.split(",") : [];
-
 			const response = await axios.get(constants.backend.API + constants.backend.SEARCH, {
 				params: {
-					"brandId": searchBrandId,
-					"minPrice": minPrice,
-					"maxPrice": maxPrice,
-					"itemName": itemName,
-					"currencyType": currencyType,
-					"excludedBrands": excludedBrands,
+					"brandId": params.selectedBrand.brandId,
+					"minPrice": params.priceRange[0],
+					"maxPrice": params.priceRange[1],
+					"itemName": params.itemName,
+					"currencyType": params.currencyType,
+					"excludedBrands": params.excludedBrands.map(brand => brand.brandId),
 					"itemType": "interior"
 				}
 			});
@@ -81,15 +59,13 @@ const InteriorSearch = () => {
 	}, [isSearching]);
 
 	return (
-		<div className='flex sm:flex-row flex-col sm:space-x-8'>
-			<div className=' sm:min-w-[350px] sm:max-w-[350px] space-y-4'>
-				<h2 className='pt-4 ml-0 font-bold'>Interior</h2>
-				<div className='md:block hidden'>
-					<FilterMenu search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
-				</div>
-				<div className='md:hidden block'>
-					<FilterModal search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
-				</div>
+		<div className='flex flex-col'>
+			<h2 className='pt-4 ml-0 font-bold'>Interior for Sale in Starbazaar</h2>
+			<div className='lg:block hidden'>
+				<FilterMenu search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
+			</div>
+			<div className='lg:hidden block'>
+				<FilterModal search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
 			</div>
 			{getItems(searchedItems, startSearchMessage)}
 		</div>

@@ -45,12 +45,12 @@ export const displayItems = (items) => {
 	);
 }
 
-export const onEnterSearch = (e, search, handleClose) => {
+export const onEnterSearch = (e, search, handleClose, params) => {
 	e.preventDefault();
 	if (handleClose) {
 		handleClose();
 	}
-	search();
+	search(params);
 }
 
 export const reset = (setSearchedItems, setIsSearching, startSearchMessage) => {

@@ -17,7 +17,7 @@ const FashionSearch = () => {
 	const [isSearching, setIsSearching] = useState(false);
 	const [searchedItems, setSearchedItems] = useState([]);
 
-	const search = async () => {
+	const search = async (params) => {
 		try {
 			setIsSearching(true);
 
@@ -25,31 +25,14 @@ const FashionSearch = () => {
 				setSearchedItems([]);
 			}
 
-			// get input boxes
-			let brandInput = document.getElementById(constants.filterValuesIds.FASHION_BRAND);
-			let itemNameInput = document.querySelector('[data-id="' + constants.filterValuesIds.FASHION_ITEM_NAME + '"] input');
-			let currencyTypeInput = document.getElementsByClassName(constants.filterValuesIds.SELECTED_CURRENCY)[0];
-			let priceInput = document.getElementById(constants.filterValuesIds.FASHION_PRICE);
-
-			let searchBrandId = getBrandId(brandInput);
-			let priceInputValue = priceInput.innerText || "2\n600";
-			let minPrice = priceInputValue.split("\n")[0];
-			let maxPrice = priceInputValue.split("\n")[1];
-			let currencyType = getCurrencyType(currencyTypeInput);
-			let itemName = itemNameInput.value;
-
-			// excluded brands
-			let excludedBrands = document.getElementById(constants.divIds.EXCLUDED_BRANDS_DIV).innerText;
-			excludedBrands = excludedBrands !== "" ? excludedBrands.split(",") : [];
-
 			const response = await axios.get(constants.backend.API + constants.backend.SEARCH, {
 				params: {
-					"brandId": searchBrandId,
-					"minPrice": minPrice,
-					"maxPrice": maxPrice,
-					"itemName": itemName,
-					"currencyType": currencyType,
-					"excludedBrands": excludedBrands,
+					"brandId": params.selectedBrand.brandId,
+					"minPrice": params.priceRange[0],
+					"maxPrice": params.priceRange[1],
+					"itemName": params.itemName,
+					"currencyType": params.currencyType,
+					"excludedBrands": params.excludedBrands.map(brand => brand.brandId),
 					"itemType": "fashion"
 				}
 			});
@@ -78,10 +61,10 @@ const FashionSearch = () => {
 	return (
 		<div className='flex flex-col'>
 			<h2 className='pt-4 ml-0 font-semibold'>Fashion for Sale in Starbazaar</h2>
-			<div className='md:block hidden'>
+			<div className='lg:block hidden'>
 				<FilterMenu search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
 			</div>
-			<div className='md:hidden block'>
+			<div className='lg:hidden block'>
 				<FilterModal search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
 			</div>
 			{getItems(searchedItems, startSearchMessage)}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import constants from "../../constants";
 import StardollarIcon from '../images/stardollar';
 import StarcoinIcon from '../images/starcoin';
@@ -18,23 +18,34 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-const PriceSelector = () => {
+const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange, currencyType }) => {
   const [value, setValue] = useState([defaultMin, defaultMax]);
   const [selectedBtn, setSelectedBtn] = useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleSliderChange = (event, newValue) => {
     setValue(newValue);
-    let minPriceInput = document.querySelector('[data-id="' + constants.filterValuesIds.FASHION_MIN_PRICE + '"] input');
-    let maxPriceInput = document.querySelector('[data-id="' + constants.filterValuesIds.FASHION_MAX_PRICE + '"] input');
-    minPriceInput.value = newValue[0];
-    maxPriceInput.value = newValue[1];
   };
 
-  function priceRangeChangeFromInput() {
-    let minPriceInputValue = document.querySelector('[data-id="' + constants.filterValuesIds.FASHION_MIN_PRICE + '"] input').value;
-    let maxPriceInputValue = document.querySelector('[data-id="' + constants.filterValuesIds.FASHION_MAX_PRICE + '"] input').value;
-    setValue([minPriceInputValue, maxPriceInputValue]);
+  const handleMinInputChange = (event) => {
+    const newMin = Math.min(Number(event.target.value), value[1]);
+    setValue([newMin, value[1]]);
+    setPriceRange([newMin, value[1]]);
+  };
+
+  const handleMaxInputChange = (event) => {
+    const newMax = Math.max(Number(event.target.value), value[0]);
+    setValue([value[0], newMax]);
+    setPriceRange([value[0], newMax]);
+  };
+
+  const changeCurrencyType = (type) => {
+    setCurrencyType(`${type}`);
+    setSelectedBtn(type);
   }
+
+  useEffect(() => {
+    setSelectedBtn(parseInt(currencyType) || 0);
+  }, [currencyType]);
 
   return (
     <div className='flex flex-col space-y-2'>
@@ -45,17 +56,17 @@ const PriceSelector = () => {
             <Button
               className={selectedBtn === 0 ? constants.filterValuesIds.SELECTED_CURRENCY + " !bg-primary" : " !bg-neutral-100 dark:!bg-neutral-800 dark:!text-white"} id="0"
               style={{ fontWeight: "normal" }}
-              variant={selectedBtn === 0 ? "soft" : ""} onClick={() => setSelectedBtn(0)}>
+              variant={selectedBtn === 0 ? "soft" : ""} onClick={() => changeCurrencyType(0)}>
               N/A
             </Button>
             <Button
               className={selectedBtn === 1 ? constants.filterValuesIds.SELECTED_CURRENCY + " !bg-primary" : " !bg-neutral-100 dark:!bg-neutral-800"} id="1"
-              variant={selectedBtn === 1 ? "soft" : ""} onClick={() => setSelectedBtn(1)}>
+              variant={selectedBtn === 1 ? "soft" : ""} onClick={() => changeCurrencyType(1)}>
               <StardollarIcon />
             </Button>
             <Button
               className={selectedBtn === 2 ? constants.filterValuesIds.SELECTED_CURRENCY + " !bg-primary" : " !bg-neutral-100 dark:!bg-neutral-800"} id="2"
-              variant={selectedBtn === 2 ? "soft" : ""} onClick={() => setSelectedBtn(2)}>
+              variant={selectedBtn === 2 ? "soft" : ""} onClick={() => changeCurrencyType(2)}>
               <StarcoinIcon />
             </Button>
           </ButtonGroup>
@@ -64,13 +75,13 @@ const PriceSelector = () => {
         <div className={`flex flex-row space-x-2 ${selectedBtn === 0 ? "hidden" : ""}`}>
           <FormControl>
             <FormLabel>Min</FormLabel>
-            <Input type="number" data-id={constants.filterValuesIds.FASHION_MIN_PRICE} min={defaultMin} max={defaultMax}
-              onChange={priceRangeChangeFromInput} defaultValue={defaultMin} className='my-input font-normal h-9 w-[4.5rem] text-clip' />
+            <input type="number" id={constants.filterValuesIds.FASHION_MIN_PRICE} min={defaultMin} max={defaultMax}
+              onChange={handleMinInputChange} value={value[0]} className='my-input font-normal h-9 w-[4.5rem] text-clip' />
           </FormControl>
           <FormControl>
             <FormLabel>Max</FormLabel>
-            <Input type="number" data-id={constants.filterValuesIds.FASHION_MAX_PRICE} min={defaultMin} max={defaultMax}
-              onChange={priceRangeChangeFromInput} defaultValue={defaultMax} className='my-input font-normal h-9 w-[4.5rem]' />
+            <input type="number" id={constants.filterValuesIds.FASHION_MAX_PRICE} min={defaultMin} max={defaultMax}
+              onChange={handleMaxInputChange} value={value[1]} className='my-input font-normal h-9 w-[4.5rem]' />
           </FormControl>
         </div>
       </div>
@@ -78,9 +89,12 @@ const PriceSelector = () => {
       <FormControl className={`flex flex-col row ${selectedBtn === 0 ? "!hidden" : ""} ml-0 mr-2`}>
         <FormLabel>Price Range</FormLabel>
         <div className='pl-2'>
-          <Slider getAriaLabel={() => 'Starcoins'} value={value} onChange={handleChange} valueLabelDisplay="auto"
+          <Slider getAriaLabel={() => 'Starcoins'} value={priceRange} onChange={handleSliderChange} valueLabelDisplay="auto"
             color='neutral'
             className="pb-0"
+            onChangeCommitted={(e, val) => {
+              setPriceRange(val);
+            }}
             getAriaValueText={valuetext} min={defaultMin} max={defaultMax} id={constants.filterValuesIds.FASHION_PRICE} />
         </div>
       </FormControl>

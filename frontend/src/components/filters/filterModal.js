@@ -31,6 +31,13 @@ const FilterModal = ({ search, setSearchedItems, setIsSearching, startSearchMess
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  // filter values
+  const [selectedBrand, setSelectedBrand] = useState({});
+  const [excludedBrands, setExcludedBrands] = useState([]);
+  const [priceRange, setPriceRange] = useState([2, 600]);
+  const [currencyType, setCurrencyType] = useState('');
+  const [itemName, setItemName] = useState('');
+
   useEffect(() => {
     if (brandsToId.length === 0) {
       getBrands(setBrandsToId);
@@ -42,7 +49,7 @@ const FilterModal = ({ search, setSearchedItems, setIsSearching, startSearchMess
     <div>
       <div className='flex space-x-2'>
         <Button onClick={handleOpen} className='border !text-black dark:!text-white !normal-case'>Filters</Button>
-        <Button onClick={(e) => onEnterSearch(e, search, handleClose)} className={`${itemType} !text-white !normal-case`}>Search</Button>
+        <Button onClick={(e) => onEnterSearch(e, search, handleClose, {selectedBrand, excludedBrands, priceRange, currencyType, itemName})} className={`${itemType} !text-white !normal-case`}>Search</Button>
         <Button className='!bg-neutral-500 !text-white !normal-case' type="button" onClick={() => reset(setSearchedItems, setIsSearching, startSearchMessage)}>Reset</Button>
       </div>
       <Modal
@@ -52,16 +59,16 @@ const FilterModal = ({ search, setSearchedItems, setIsSearching, startSearchMess
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} className="dark:!bg-[#1f2023] dark:!text-white p-4 md:w-1/2 lg:w-1/3 w-5/6 !rounded-lg">
-          <form onSubmit={(e) => onEnterSearch(e, search, handleClose)} id="filter-form" className='flex flex-col space-y-4 w-full flex-wrap ml-0'>
+          <form onSubmit={(e) => onEnterSearch(e, search, handleClose, {selectedBrand, excludedBrands, priceRange, currencyType, itemName})} id="filter-form" className='flex flex-col space-y-4 w-full flex-wrap ml-0'>
             <div className='flex justify-between items-center'>
               <h1 className='font-bold mb-0'>Filters</h1>
               <CloseIcon onClick={handleClose} className='cursor-pointer' />
             </div>
             <hr />
-            <BrandSelector brandsToId={brandsToId} />
-            <ExcludeBrandSelector brandsToId={brandsToId} />
-            <PriceSelector />
-            <NameSelector />
+            <BrandSelector brandsToId={brandsToId} setSelectedBrand={setSelectedBrand} selectedBrand={selectedBrand} />
+            <ExcludeBrandSelector brandsToId={brandsToId} setExcludedBrands={setExcludedBrands} excludedBrands={excludedBrands} />
+            <PriceSelector setPriceRange={setPriceRange} setCurrencyType={setCurrencyType} priceRange={priceRange} currencyType={currencyType} />
+            <NameSelector setItemName={setItemName} itemName={itemName} />
             <div className='flex space-x-4 ml-0'>
               <button className={`btn ${itemType} !h-fit`} id={constants.buttonIds.SEARCH_BTN} type="submit">Search</button>
             </div>
