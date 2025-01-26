@@ -45,6 +45,14 @@ const FilterModal = ({ search, setSearchedItems, setIsSearching, startSearchMess
     // eslint-disable-next-line
   }, []);
 
+  function clearFilters() {
+    setSelectedBrand({});
+    setExcludedBrands([]);
+    setPriceRange([2, 600]);
+    setCurrencyType('');
+    setItemName('');
+  }
+
   return (
     <div>
       <div className='flex space-x-2'>
@@ -64,13 +72,14 @@ const FilterModal = ({ search, setSearchedItems, setIsSearching, startSearchMess
               <h1 className='font-bold mb-0'>Filters</h1>
               <CloseIcon onClick={handleClose} className='cursor-pointer' />
             </div>
-            <hr />
+            <hr className='dark:border-neutral-500' />
             <BrandSelector brandsToId={brandsToId} setSelectedBrand={setSelectedBrand} selectedBrand={selectedBrand} />
             <ExcludeBrandSelector brandsToId={brandsToId} setExcludedBrands={setExcludedBrands} excludedBrands={excludedBrands} />
             <PriceSelector setPriceRange={setPriceRange} setCurrencyType={setCurrencyType} priceRange={priceRange} currencyType={currencyType} />
             <NameSelector setItemName={setItemName} itemName={itemName} />
-            <div className='flex space-x-4 ml-0'>
-              <button className={`btn ${itemType} !h-fit`} id={constants.buttonIds.SEARCH_BTN} type="submit">Search</button>
+            <div className='flex space-x-2 ml-0'>
+              <Button className={`btn ${itemType} !h-fit !normal-case`} id={constants.buttonIds.SEARCH_BTN} type="submit">Search</Button>
+              <Button className='!bg-neutral-500 !text-white !normal-case' type="button" onClick={clearFilters}>Clear Filters</Button>
             </div>
           </form>
         </Box>
