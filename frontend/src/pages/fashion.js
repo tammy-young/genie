@@ -60,7 +60,7 @@ const FashionSearch = () => {
 
 	return (
 		<div className='flex flex-col'>
-			<h2 className='sm:pt-4 pt-2 ml-0 font-bold'>Fashion for Sale in Starbazaar</h2>
+			<h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>Fashion for Sale in Starbazaar</h2>
 			<div className='lg:block hidden pb-4'>
 				<FilterMenu search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
 			</div>
