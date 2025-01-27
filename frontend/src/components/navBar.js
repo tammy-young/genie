@@ -47,7 +47,7 @@ const NavBar = () => {
         </div>
         <div className='flex items-center sm:w-max md:w-fit justify-center sm:justify-end'>
           <a href='https://buymeacoffee.com/anastaciasd' target='_blank' rel='noreferrer' className='hover:text-white hover:!no-underline'>
-            <button className='!bg-primary p-2 rounded text-white flex flex-row space-x-1 items-center'>
+            <button className='!bg-primary p-2 rounded text-white flex flex-row lg:space-x-1 items-center'>
               <p className='mb-0 lg:block hidden'>Support Genie</p>
               <CoffeeTwoToneIcon />
             </button>
