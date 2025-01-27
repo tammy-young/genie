@@ -11,7 +11,7 @@ import NavMenu from './components/navMenu.js';
 
 const App = () => {
 	return (
-		<div className='site-padding !h-screen !max-h-screen dark:bg-neutral-900 dark:text-neutral-100'>
+		<div className='site-padding dark:bg-neutral-900 dark:text-neutral-100'>
 			<Router>
 				<div className='md:block hidden'>
 					<NavBar />

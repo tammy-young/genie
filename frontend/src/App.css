@@ -140,6 +140,9 @@ body {
 /* Dark mode colors */
 
 @media (prefers-color-scheme: dark) {
+  html {
+    background-color: #171717 !important;
+  }
   .MuiTable-root {
     background-color: #353639 !important;
     color: #dadada !important;
