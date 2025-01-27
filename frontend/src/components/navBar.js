@@ -6,7 +6,6 @@ import CoffeeTwoToneIcon from '@mui/icons-material/CoffeeTwoTone';
 
 import GenieLogo from './images/genieLogo.js';
 import constants from '../constants.js';
-import GenieIcon from './images/genieIcon.js';
 
 
 const NavBar = () => {
