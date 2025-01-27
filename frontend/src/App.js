@@ -7,13 +7,19 @@ import InteriorSearch from './pages/interior.js';
 import constants from './constants.js';
 import IdSearch from './pages/idSearch.js';
 import NavBar from './components/navBar.js';
-// import Index from './pages/index.js';
+import NavMenu from './components/navMenu.js';
 
 const App = () => {
 	return (
-		<div className='site-padding !h-screen !max-h-screen'>
+		<div className='site-padding !h-screen !max-h-screen dark:bg-neutral-900 dark:text-neutral-100'>
 			<Router>
-				<NavBar />
+				<div className='md:block hidden'>
+					<NavBar />
+				</div>
+				<div className='md:hidden block'>
+					<NavMenu />
+				</div>
+
 				<Routes>
 					{/* <Route index path="/" element={<Index />} /> */}
 					<Route path={constants.paths.FASHION} element={<FashionSearch />} />
