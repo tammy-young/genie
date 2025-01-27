@@ -51,6 +51,10 @@ const FashionSearch = () => {
 	};
 
 	useEffect(() => {
+    document.title = 'Fashion | Genie';
+  }, []);
+
+	useEffect(() => {
 		let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
 		if (isSearching) {
 			searchingTextDiv.className = "w-full flex flex-col justify-center text-center items-center";

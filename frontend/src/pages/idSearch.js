@@ -50,6 +50,10 @@ const IdSearch = () => {
         setSearchingFor(brand.target.value);
     }
 
+    useEffect(() => {
+        document.title = 'Brands | Genie';
+      }, []);
+
     const getBrands = async () => {
 		try {
 			const response = await axios.get(constants.backend.API + constants.backend.GET_BRANDS);

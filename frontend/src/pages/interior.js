@@ -17,6 +17,10 @@ const InteriorSearch = () => {
 	const [isSearching, setIsSearching] = useState(false);
 	const [searchedItems, setSearchedItems] = useState([]);
 
+	useEffect(() => {
+    document.title = 'Interior | Genie';
+  }, []);
+
 	const search = async (params) => {
 		try {
 			setIsSearching(true);
