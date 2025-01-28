@@ -40,7 +40,7 @@ const getSeller = (item, index) => {
 
 const ItemCard = ({ item, index }) => {
     return (
-        <div className="card item-card dark:!bg-neutral-800 !min-w-[250px] sm:max-w-[30%] lg:max-w-[23.5%] w-3/4" style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }} data-div-id={index}>
+        <div className="card item-card dark:!bg-neutral-800 !min-w-[270px] sm:max-w-[30%] md:max-w-[32%] lg:max-w-[23.5%] 2xl:max-w-[23%] w-3/4" style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }} data-div-id={index}>
             <div className='p-4'>
                 <ItemImagePlaceholder imageUrl={item.itemImage} />
                 <div className='flex flex-col text-center'>
