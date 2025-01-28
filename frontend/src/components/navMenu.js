@@ -47,20 +47,20 @@ const NavMenu = () => {
           <Menu placement="bottom-end" className="dark:!bg-neutral-800 w-1/3 !border-none">
             <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
               <NavLink to={constants.paths.FASHION} className={"nav-link p-0 !flex justify-between w-full" + (isActive(constants.paths.FASHION) ? " fashion-selected" : "")}>
-                <div>Fashion</div>
+                <div className='font-bold'>Fashion</div>
                 <CheckroomIcon />
               </NavLink>
 
             </MenuItem>
             <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
               <NavLink to={constants.paths.INTERIOR} className={"nav-link p-0 !flex justify-between w-full" + (isActive(constants.paths.INTERIOR) ? " interior-selected" : "")}>
-                <div>Interior</div>
+                <div className='font-bold'>Interior</div>
                 <ChairIcon />
               </NavLink>
             </MenuItem>
             <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
               <NavLink to={constants.paths.ID_SEARCH} className={"nav-link p-0 !flex justify-between w-full" + (isActive(constants.paths.ID_SEARCH) ? " selected" : "")}>
-                <div>Brands</div>
+                <div className='font-bold'>Brands</div>
                 <NumbersIcon />
               </NavLink>
             </MenuItem>
