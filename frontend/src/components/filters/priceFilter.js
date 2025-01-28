@@ -6,7 +6,6 @@ import StarcoinIcon from '../images/starcoin';
 import ButtonGroup from '@mui/joy/ButtonGroup';
 import Slider from '@mui/joy/Slider';
 import Button from '@mui/joy/Button';
-import Input from '@mui/joy/Input';
 import FormLabel from '@mui/joy/FormLabel';
 import FormControl from '@mui/joy/FormControl';
 

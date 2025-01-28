@@ -3,8 +3,7 @@ import './../App.css';
 import constants from '../constants.js';
 import axios from 'axios';
 
-import FilterModal from '../components/filters/filterModal.js';
-import FilterMenu from '../components/filters/filterMenu.js';
+import Filters from '../components/filters/filters.js';
 import ItemCard from '../components/itemCard.js';
 
 const startSearchMessage = "Searched items will show up here!"
@@ -14,10 +13,6 @@ const InteriorSearch = () => {
 	// for searching
 	const [isSearching, setIsSearching] = useState(false);
 	const [searchedItems, setSearchedItems] = useState([]);
-
-	useEffect(() => {
-		document.title = 'Interior | Genie';
-	}, []);
 
 	const search = async (params) => {
 		try {
@@ -55,7 +50,7 @@ const InteriorSearch = () => {
 	};
 
 	useEffect(() => {
-		document.title = 'Fashion | Genie';
+		document.title = 'Interior | Genie';
 		search({ priceRange: [2, 600] });
 		// eslint-disable-next-line
 	}, []);
@@ -64,19 +59,15 @@ const InteriorSearch = () => {
 		<div className='flex flex-col h-full'>
 			<div className='sticky top-0 dark:!bg-neutral-900 dark:text-neutral-100 z-50'>
 				<h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>Interior for Sale in Starbazaar</h2>
-				<div className='lg:block hidden pb-4'>
-					<FilterMenu search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
-				</div>
-				<div className='lg:hidden block pb-4'>
-					<FilterModal search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
+				<div className='pb-4 w-full'>
+					<Filters search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
 				</div>
 			</div>
 
-			{/* {getItems(searchedItems, startSearchMessage)} */}
 			<div id={constants.divIds.SEARCHING_TEXT_DIV} className={`w-full flex justify-center items-center h-full max-h-full ${isSearching ? 'block' : 'hidden'}`}>
 				<img src={process.env.PUBLIC_URL + "sd-loading.gif"} alt="Searching..." style={{ alignSelf: "center" }} />
 			</div>
-			<div className='flex flex-wrap w-full sm:gap-4 justify-center pb-4'>
+			<div className='flex flex-wrap w-full sm:gap-4 justify-center pb-4 sm:space-y-0 space-y-4'>
 				{searchedItems.map((item, index) => (
 					<ItemCard item={item} index={index} />
 				))}
