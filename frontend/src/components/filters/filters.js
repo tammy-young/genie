@@ -81,13 +81,13 @@ const Filters = ({ search, setSearchedItems, setIsSearching, startSearchMessage 
             >
               Search
             </Button>
-            <Button
+            {/* <Button
               className="!bg-neutral-500 !text-white !normal-case"
               type="button"
               onClick={() => reset(setSearchedItems, setIsSearching, startSearchMessage)}
             >
               Reset
-            </Button>
+            </Button> */}
           </div>
           <Modal open={open} onClose={handleClose}>
             <Box sx={style} className="dark:!bg-[#1f2023] dark:!text-white p-4 md:w-1/2 lg:w-1/3 w-5/6 !rounded-lg">
@@ -163,13 +163,13 @@ const Filters = ({ search, setSearchedItems, setIsSearching, startSearchMessage 
             <Button className="!bg-neutral-500 !h-fit !text-white !normal-case" type="button" onClick={clearFilters}>
               Clear Filters
             </Button>
-            <Button
+            {/* <Button
               className="!bg-neutral-400 !h-fit !text-white !normal-case"
               type="button"
               onClick={() => reset(setSearchedItems, setIsSearching, startSearchMessage)}
             >
               Reset
-            </Button>
+            </Button> */}
           </div>
         </form>
       )}

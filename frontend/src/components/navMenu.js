@@ -46,20 +46,20 @@ const NavMenu = () => {
           </MenuButton>
           <Menu placement="bottom-end" className="dark:!bg-neutral-800 w-1/3 !border-none">
             <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
-              <NavLink to={constants.paths.FASHION} className={"nav-link p-0 !flex justify-between w-full" + (isActive(constants.paths.FASHION) ? " fashion-selected" : "")}>
+              <NavLink to={constants.paths.FASHION} className={"nav-link items-center p-0 !flex justify-between w-full" + (isActive(constants.paths.FASHION) ? " fashion-selected" : "")}>
                 <div className='font-bold'>Fashion</div>
                 <CheckroomIcon />
               </NavLink>
 
             </MenuItem>
             <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
-              <NavLink to={constants.paths.INTERIOR} className={"nav-link p-0 !flex justify-between w-full" + (isActive(constants.paths.INTERIOR) ? " interior-selected" : "")}>
+              <NavLink to={constants.paths.INTERIOR} className={"nav-link items-center p-0 !flex justify-between w-full" + (isActive(constants.paths.INTERIOR) ? " interior-selected" : "")}>
                 <div className='font-bold'>Interior</div>
                 <ChairIcon />
               </NavLink>
             </MenuItem>
             <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
-              <NavLink to={constants.paths.ID_SEARCH} className={"nav-link p-0 !flex justify-between w-full" + (isActive(constants.paths.ID_SEARCH) ? " selected" : "")}>
+              <NavLink to={constants.paths.ID_SEARCH} className={"nav-link items-center p-0 !flex justify-between w-full" + (isActive(constants.paths.ID_SEARCH) ? " selected" : "")}>
                 <div className='font-bold'>Brands</div>
                 <NumbersIcon />
               </NavLink>
