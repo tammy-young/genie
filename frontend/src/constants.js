@@ -47,7 +47,7 @@ const constants = {
         ID_SEARCH: "/brands"
     },
     backend: {
-        API: "http://localhost:8888",
+        API: "https://genie-api.netlify.app",
         GET_BRANDS: "/.netlify/functions/getBrands",
         SEARCH: "/.netlify/functions/search",
         GET_SELLER: "/.netlify/functions/getSeller"
