@@ -57,7 +57,7 @@ const InteriorSearch = () => {
 
 	return (
 		<div className='flex flex-col h-full'>
-			<div className='sticky top-0 dark:!bg-neutral-900 dark:text-neutral-100 z-50'>
+			<div className='sticky top-0 dark:!bg-neutral-900 dark:text-neutral-100 !bg-white z-50'>
 				<h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>Interior for Sale in Starbazaar</h2>
 				<div className='pb-4 w-full'>
 					<Filters search={search} setSearchedItems={setSearchedItems} setIsSearching={setIsSearching} startSearchMessage={startSearchMessage} />
