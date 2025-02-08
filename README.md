@@ -3,19 +3,19 @@
 </p>
 
 # Genie 🧞 [![Netlify Status](https://api.netlify.com/api/v1/badges/7ec8dd45-a039-4f09-94a2-e96e76955207/deploy-status)](https://app.netlify.com/sites/stardoll-genie/deploys)
-A GUI for Stardoll debug search.
+A GUI for Stardoll debug search built with [React](https://react.dev/) and [Express.js](https://expressjs.com/).
 
-# Running Locally 💻
-Make sure you have `npm` installed.
+# Installation 🛠️
 To run Genie locally, first clone the repository.
-```
+```bash
 git clone https://github.com/tammy-young/genie.git
 ```
-Open a terminal in the project and do a `make install`. This will install all the required dependencies.
+Open a terminal in the project and do a `make install`. This will install all the required dependencies. Then, follow the instructions below for configuring your environment and running the app.
 
-## Configuring Your Environment ⚙️
-Now you need to configure your environment variables. Create a `.env` file in the `backend` directory that looks like this:
-```
+# Configuring Your Environment ⚙️
+## Backend
+Create a `.env` file in the `backend` directory that looks like this:
+```dotenv
 PDH_USER=YOUR_PDH_USER_COOKIE
 ```
 1. Login to [Stardoll](http://www.stardoll.com/en/)
@@ -24,12 +24,18 @@ PDH_USER=YOUR_PDH_USER_COOKIE
 4. Copy the value of `pdhUser`
 5. Replace `YOUR_PDH_USER_COOKIE` in your `.env` file with the copied value
 
-Now that your environment is configured, change the path to the backend from the default `https://genie-api.netlify.app` to `localhost:8888` by changing the value of `constants.backend` in `frontend/src/constants.js`.
+## Frontend
+Create a `.env` file in the `frontend` directory that looks like this:
+```dotenv
+REACT_APP_API_URL=http://localhost:8888
+REACT_APP_ENV=dev
+```
 
-Finally, do a `make run` in your terminal to run Genie.
+# Running Locally 💻
+Run `make run` in your terminal to run Genie.
 
-## Troubleshooting 🛠️
-The most common issue you will run into is infinitely long searching. The search function is desigend to time out in 8 seconds, or when it finds 20 matching items. If your search is running for a long time, it's likely due to the `PDH_USER` cookie being expired. You will need to follow [the steps above](https://github.com/tammy-young/genie?tab=readme-ov-file#configuring-your-environment-%EF%B8%8F) for configuring your environment to replace the `PDH_USER` value in `.env`.
+# Troubleshooting 🔍
+The most common issue you will run into is infinitely long searching. The search function is designed to time out in 8 seconds, or when it finds 20 matching items. If your search is running for a long time, it's likely due to the `PDH_USER` cookie being expired. You will need to follow [the steps above](#configuring-your-environment-%EF%B8%8F) for configuring your environment to replace the `PDH_USER` value in `.env`.
 
 # Security Concerns 🔒
 Due to ongoing security concerns, here is a transparent explanation on how Genie works without you having to log in to your Stardoll account.
