@@ -9,7 +9,7 @@ import constants from "../../constants.js";
 
 const NameSelector = ({ setItemName, itemName }) => {
   return (
-    <FormControl className="">
+    <FormControl className='w-full'>
       <FormLabel>
         Keyword
         <Tooltip title="Hint: You can use this field to search for Stardesigners">

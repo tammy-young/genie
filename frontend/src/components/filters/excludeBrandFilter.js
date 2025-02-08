@@ -135,7 +135,7 @@ const ExcludeBrandSelector = ({ brandsToId, setExcludedBrands, excludedBrands })
   });
 
   return (
-    <FormControl className=''>
+    <FormControl>
       <div>
         <FormLabel>Exclude Brands</FormLabel>
         <Input {...getInputProps()}
@@ -167,7 +167,7 @@ const ExcludeBrandSelector = ({ brandsToId, setExcludedBrands, excludedBrands })
         )}
       </div>
 
-      <div className='flex flex-wrap' id={constants.divIds.EXCLUDED_BRANDS_SECTION}>
+      <div className='flex flex-wrap 2xl:max-w-[48%] w-full' id={constants.divIds.EXCLUDED_BRANDS_SECTION}>
         {value.map((option, index) => {
           const { key, ...tagProps } = getTagProps({ index });
           return <Tag key={key} {...tagProps} label={option.name} />;

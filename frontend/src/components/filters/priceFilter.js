@@ -38,8 +38,8 @@ const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange, currencyTyp
   }, [currencyType]);
 
   return (
-    <div className="flex flex-row space-x-8">
-      <FormControl>
+    <div className="flex flex-row space-x-2">
+      <FormControl className="pr-2">
         <FormLabel>Currency Type</FormLabel>
         <ButtonGroup variant="outlined" aria-label="Currency Type Select">
           <Button

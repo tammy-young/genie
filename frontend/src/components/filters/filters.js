@@ -49,7 +49,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1024);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1280);
 
   useEffect(() => {
     const handleResize = () => {
@@ -141,7 +141,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
           </Modal>
         </div>
       ) : (
-        <form className="flex w-full flex-wrap !flex-row"
+        <form className="flex w-full flex-wrap !flex-row space-x-4"
           onSubmit={(e) =>
             onEnterSearch(
               e,
@@ -153,26 +153,34 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
               handleClose
             )
           }>
-          <div className="flex flex-row space-x-4 min-w-fit flex-wrap ml-0 lg:pr-4">
+          <div className='2xl:!max-w-[17%] 2xl:!w-1/6'>
             <BrandSelector
               brandsToId={brandsToId}
               setSelectedBrand={setSelectedBrand}
               selectedBrand={selectedBrand}
             />
+          </div>
+
+          <div className='2xl:!max-w-[17%] 2xl:!w-1/6'>
             <ExcludeBrandSelector
               brandsToId={brandsToId}
               setExcludedBrands={setExcludedBrands}
               excludedBrands={excludedBrands}
             />
-            <PriceSelector
-              setPriceRange={setPriceRange}
-              setCurrencyType={setCurrencyType}
-              priceRange={priceRange}
-              currencyType={currencyType}
-            />
+          </div>
+
+          <PriceSelector
+            setPriceRange={setPriceRange}
+            setCurrencyType={setCurrencyType}
+            priceRange={priceRange}
+            currencyType={currencyType}
+          />
+
+          <div className="2xl:!max-w-[17%] 2xl:!w-1/6 pr-8">
             <NameSelector setItemName={setItemName} itemName={itemName} />
           </div>
-          <div className="flex space-x-2 lg:mt-[1.6rem]">
+
+          <div className="flex space-x-2 lg:mt-[1.6rem] w-fit ml-0">
             <Button className={`btn ${itemType} !h-fit !normal-case`} type="submit">
               Search
             </Button>
