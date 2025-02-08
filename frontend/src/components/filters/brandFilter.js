@@ -22,8 +22,9 @@ export function BrandSelector({ brandsToId, setSelectedBrand, selectedBrand }) {
 				slotProps={{
 					listbox: {
 						sx: (theme) => ({
-							zIndex: theme.vars.zIndex.modal
-						})
+							zIndex: theme.vars.zIndex.modal,
+						}),
+						className: 'dark:!bg-[#1f2023]'
 					}
 				}}
 				onChange={(event, value) => {
@@ -41,12 +42,13 @@ export function BrandSelector({ brandsToId, setSelectedBrand, selectedBrand }) {
 					);
 				}}
 				renderInput={(params) => (
-					<TextField {...params} label="Start typing..." slotProps={{
-						htmlInput: {
-							...params.inputProps,
-							autoComplete: 'new-password',
-						},
-					}} />
+					<TextField {...params} label="Start typing..."
+						slotProps={{
+							htmlInput: {
+								...params.inputProps,
+								autoComplete: 'new-password',
+							},
+						}} />
 				)}
 			/>
 		</FormControl>
