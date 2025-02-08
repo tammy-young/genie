@@ -259,8 +259,8 @@ a.nav-link {
 }
 
 .site-padding {
-  padding-left: min(100px, 7%);
-  padding-right: min(100px, 7%);
+  padding-left: min(100px, 5%);
+  padding-right: min(100px, 5%);
 }
 
 @media (max-width: 30em) {
