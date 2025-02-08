@@ -1,63 +1,12 @@
 import constants from './constants.js';
-import ItemCard from './components/itemCard.js';
 import axios from 'axios';
 
-export const getCurrencyType = (currencyCheckbox) => {
-	return currencyCheckbox.id === '0' ? "" : currencyCheckbox.id;
-}
-
-export const getBrandId = (brandInput) => {
-	let brandName = brandInput.value;
-	if (brandName === "") {
-		return "";
-	}
-	let brandNameToIdDiv = document.getElementById(constants.divIds.BRANDS_NAME_TO_ID);
-	let brands = JSON.parse(brandNameToIdDiv.innerHTML);
-	return brandName in brands ? brands[brandName] : "";
-}
-
-export const getItems = (searchedItems, startSearchMessage) => {
-	return (
-		<div className='!h-[84vh] w-full flex justify-center items-center'>
-			{
-				searchedItems.length === 0 ? (
-					<div id={constants.divIds.SEARCHING_TEXT_DIV}>{startSearchMessage}</div>
-				) : (
-					<div>
-						<div id={constants.divIds.SEARCHING_TEXT_DIV}></div>
-						{displayItems(searchedItems)}
-					</div>
-				)
-			}
-		</div>
-	)
-}
-
-export const displayItems = (items) => {
-	let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
-	searchingTextDiv.innerHTML = "";
-	return (
-		<div className='flex flex-wrap w-full sm:gap-4 space-y-4 sm:space-y-0 justify-center py-4 overflow-y-scroll max-h-[84vh] -mt-4'>
-			{items.map((item, index) => (
-				<ItemCard item={item} index={index} />
-			))}
-		</div>
-	);
-}
-
-export const onEnterSearch = (e, search, params, handleClose) => {
+export const onEnterSearch = (e, params, itemType, setIsSearching, searchedItems, setSearchedItems, handleClose) => {
 	e.preventDefault();
 	if (handleClose) {
 		handleClose();
 	}
-	search(params);
-}
-
-export const reset = (setSearchedItems, setIsSearching, startSearchMessage) => {
-	setSearchedItems([]);
-	setIsSearching(false);
-	let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
-	searchingTextDiv.innerHTML = startSearchMessage;
+	search(params, itemType, setIsSearching, searchedItems, setSearchedItems);
 }
 
 export const getBrands = async (setBrandsToId) => {
@@ -79,5 +28,40 @@ export const getBrands = async (setBrandsToId) => {
 		setBrandsToId(formattedBrandsList);
 	} catch (error) {
 		console.error('Error fetching data:', error);
+	}
+};
+
+export const search = async (params, itemType, setIsSearching, searchedItems, setSearchedItems) => {
+	try {
+		setIsSearching(true);
+
+		window.scrollTo(0, 0);
+
+		if (searchedItems.length !== 0) {
+			setSearchedItems([]);
+		}
+
+		const response = await axios.get(constants.backend.API + constants.backend.SEARCH, {
+			params: {
+				"brandId": params.selectedBrand?.brandId,
+				"minPrice": params.priceRange[0],
+				"maxPrice": params.priceRange[1],
+				"itemName": params.itemName,
+				"currencyType": params.currencyType,
+				"excludedBrands": params.excludedBrands?.map(brand => brand.brandId),
+				"itemType": itemType
+			}
+		});
+
+		let items = response.data.items;
+		if (items.length === 0) {
+			document.getElementById(constants.divIds.SEARCHING_TEXT_DIV).innerHTML = "No Items Found!";
+		} else {
+			setSearchedItems(items);
+		}
+	} catch (error) {
+		console.error('Error fetching data:', error);
+	} finally {
+		setIsSearching(false);
 	}
 };

@@ -1,4 +1,4 @@
-import { onEnterSearch, getBrands, reset } from "../../searchUtils.js";
+import { onEnterSearch, getBrands } from "../../searchUtils.js";
 import { useState, useEffect } from "react";
 
 import NameSelector from './itemNameFilter.js';
@@ -20,7 +20,7 @@ const style = {
   boxShadow: 24,
 };
 
-const Filters = ({ search, setSearchedItems, setIsSearching, startSearchMessage }) => {
+const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
   const [brandsToId, setBrandsToId] = useState([]);
   const itemType = window.location.pathname.split('/')[1] || "fashion";
 
@@ -75,25 +75,33 @@ const Filters = ({ search, setSearchedItems, setIsSearching, startSearchMessage 
             </Button>
             <Button
               onClick={(e) =>
-                onEnterSearch(e, search, { selectedBrand, excludedBrands, priceRange, currencyType, itemName })
+                onEnterSearch(
+                  e,
+                  { selectedBrand, excludedBrands, priceRange, currencyType, itemName },
+                  itemType,
+                  setIsSearching,
+                  searchedItems,
+                  setSearchedItems,
+                )
               }
               className={`${itemType} !text-white !normal-case`}
             >
               Search
             </Button>
-            {/* <Button
-              className="!bg-neutral-500 !text-white !normal-case"
-              type="button"
-              onClick={() => reset(setSearchedItems, setIsSearching, startSearchMessage)}
-            >
-              Reset
-            </Button> */}
           </div>
           <Modal open={open} onClose={handleClose}>
             <Box sx={style} className="dark:!bg-[#1f2023] dark:!text-white p-4 md:w-1/2 lg:w-1/3 w-5/6 !rounded-lg">
               <form
                 onSubmit={(e) =>
-                  onEnterSearch(e, search, { selectedBrand, excludedBrands, priceRange, currencyType, itemName }, handleClose)
+                  onEnterSearch(
+                    e,
+                    { selectedBrand, excludedBrands, priceRange, currencyType, itemName },
+                    itemType,
+                    setIsSearching,
+                    searchedItems,
+                    setSearchedItems,
+                    handleClose
+                  )
                 }
                 id="filter-form"
                 className="flex flex-col space-y-4 w-full flex-wrap ml-0"
@@ -135,7 +143,15 @@ const Filters = ({ search, setSearchedItems, setIsSearching, startSearchMessage 
       ) : (
         <form className="lg:flex hidden w-full flex-wrap !flex-row"
           onSubmit={(e) =>
-            onEnterSearch(e, search, { selectedBrand, excludedBrands, priceRange, currencyType, itemName }, handleClose)
+            onEnterSearch(
+              e,
+              { selectedBrand, excludedBrands, priceRange, currencyType, itemName },
+              itemType,
+              setIsSearching,
+              searchedItems,
+              setSearchedItems,
+              handleClose
+            )
           }>
           <div className="flex flex-row space-x-4 min-w-fit flex-wrap ml-0 lg:pr-4">
             <BrandSelector
@@ -163,13 +179,6 @@ const Filters = ({ search, setSearchedItems, setIsSearching, startSearchMessage 
             <Button className="!bg-neutral-500 !h-fit !text-white !normal-case" type="button" onClick={clearFilters}>
               Clear Filters
             </Button>
-            {/* <Button
-              className="!bg-neutral-400 !h-fit !text-white !normal-case"
-              type="button"
-              onClick={() => reset(setSearchedItems, setIsSearching, startSearchMessage)}
-            >
-              Reset
-            </Button> */}
           </div>
         </form>
       )}
