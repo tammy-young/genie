@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './../App.css';
-import constants from '../constants.js';
 import { search } from '../searchUtils.js';
 
 import Filters from '../components/filters/filters.js';
@@ -27,13 +26,28 @@ const FashionSearch = () => {
 				</div>
 			</div>
 
-			<div id={constants.divIds.SEARCHING_TEXT_DIV} className={`w-full flex justify-center items-center h-full max-h-full ${isSearching ? 'block' : 'hidden'}`}>
-				<img src={process.env.PUBLIC_URL + "sd-loading.gif"} alt="Searching..." style={{ alignSelf: "center" }} />
-			</div>
 			<div className='flex flex-wrap w-full sm:gap-4 justify-center pb-4 sm:space-y-0 space-y-4'>
-				{searchedItems.map((item, index) => (
-					<ItemCard item={item} index={index} />
-				))}
+				{
+					(
+						isSearching && (
+							<div className={`w-full flex justify-center items-center h-full max-h-full ${isSearching ? 'block' : 'hidden'}`}>
+								<img src={process.env.PUBLIC_URL + "sd-loading.gif"} alt="Searching..." style={{ alignSelf: "center" }} />
+							</div>
+						)
+					) || (
+						(searchedItems.length !== 0 && !isSearching) &&
+						searchedItems.map((item, index) => (
+							<ItemCard item={item} index={index} />
+						))
+					) || (
+						(
+							(searchedItems.length === 0 && !isSearching) &&
+							<div className='flex justify-center items-center w-full h-full'>
+								<p>No items found</p>
+							</div>
+						)
+					)
+				}
 			</div>
 		</div>
 	)

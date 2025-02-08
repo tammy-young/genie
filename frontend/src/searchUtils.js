@@ -54,11 +54,7 @@ export const search = async (params, itemType, setIsSearching, searchedItems, se
 		});
 
 		let items = response.data.items;
-		if (items.length === 0) {
-			document.getElementById(constants.divIds.SEARCHING_TEXT_DIV).innerHTML = "No Items Found!";
-		} else {
-			setSearchedItems(items);
-		}
+		setSearchedItems(items);
 	} catch (error) {
 		console.error('Error fetching data:', error);
 	} finally {
