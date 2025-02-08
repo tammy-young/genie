@@ -53,7 +53,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      const isSmall = window.innerWidth < 1024;  // tailwind lg = 1024 px
+      const isSmall = window.innerWidth < 1280;
       setIsSmallScreen(isSmall);
 
       if (!isSmall) {
@@ -68,7 +68,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
   return (
     <div>
       {isSmallScreen ? (
-        <div className="lg:!hidden !block w-full">
+        <div className="!block w-full">
           <div className="flex space-x-2">
             <Button onClick={handleOpen} className="border !text-black dark:!text-white !normal-case">
               Filters
@@ -141,7 +141,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
           </Modal>
         </div>
       ) : (
-        <form className="lg:flex hidden w-full flex-wrap !flex-row"
+        <form className="flex w-full flex-wrap !flex-row"
           onSubmit={(e) =>
             onEnterSearch(
               e,
