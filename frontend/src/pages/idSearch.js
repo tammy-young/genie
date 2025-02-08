@@ -34,33 +34,31 @@ const IdSearch = () => {
   }, []);
 
   return (
-    <div className=''>
-      <div className="">
-        <div className='!sticky top-0 absolute dark:bg-neutral-900 w-full'>
-          <FormControl className="pl-3">
-            <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>All Brands</h2>
-            <FormLabel>Brand Name</FormLabel>
-            <Input className='sm:w-1/2 w-full' data-id={constants.brandIdSearchPage.BRAND_ID_SEARCH_INPUT}
-              onChange={updateSearchingBrand} placeholder='Start typing...' />
-            <br>
-            </br>
-          </FormControl>
-        </div>
-        <div className="flex flex-wrap gap-4 justify-center pb-4">
-          {brands
-            .filter(brand => {
-              const searchedBrand = searchingFor.toLowerCase();
-              const brandName = brand.name.toLowerCase();
-              return (searchedBrand && brandName.includes(searchedBrand)) || searchedBrand === "";
-            })
-            .map((brand, index) => (
-              <div key={index} className="p-4 lg:w-[23%] md:w-[30%] w-[40%] border rounded">
-                <p className='p-0 m-0 text-xl font-bold'>{brand.name}</p>
-                <p className='p-0 m-0'>ID: {brand.id}</p>
-              </div>
-            ))
-          }
-        </div>
+    <div>
+      <div className='!sticky top-0 absolute dark:bg-neutral-900 bg-white w-full'>
+        <FormControl>
+          <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>All Brands</h2>
+          <FormLabel>Brand Name</FormLabel>
+          <Input className='sm:w-1/2 w-full' data-id={constants.brandIdSearchPage.BRAND_ID_SEARCH_INPUT}
+            onChange={updateSearchingBrand} placeholder='Start typing...' />
+          <br>
+          </br>
+        </FormControl>
+      </div>
+      <div className="flex flex-wrap gap-4 justify-center pb-4">
+        {brands
+          .filter(brand => {
+            const searchedBrand = searchingFor.toLowerCase();
+            const brandName = brand.name.toLowerCase();
+            return (searchedBrand && brandName.includes(searchedBrand)) || searchedBrand === "";
+          })
+          .map((brand, index) => (
+            <div key={index} className="p-4 lg:w-[23%] md:w-[30%] w-[40%] border rounded">
+              <p className='p-0 m-0 text-xl font-bold'>{brand.name}</p>
+              <p className='p-0 m-0'>ID: {brand.id}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   );
