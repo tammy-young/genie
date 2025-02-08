@@ -38,7 +38,7 @@ const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange, currencyTyp
   };
 
   const changeCurrencyType = (type) => {
-    setCurrencyType(`${type}`);
+    setCurrencyType(`${type ? type : ''}`);
     setSelectedBtn(type);
   }
 
