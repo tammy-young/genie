@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './../App.css';
-import constants from '../constants.js';
 import { search } from '../searchUtils.js';
 
 import Filters from '../components/filters/filters.js';
