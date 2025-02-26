@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 function ColourFilter({ coloursToId, setSelectedColour, selectedColour }) {
-  console.log(coloursToId);
 	return (
 		<FormControl>
 			<FormLabel>Colour</FormLabel>
