@@ -52,6 +52,9 @@ const search = async (req) => {
 
   let excludeBrands = req.query.excludedBrands || [];
 
+  let colourId = req.query.colourId;
+  searchUrl += colourId ? `&categories=${colourId}` : "";
+
   let items = [];
   let itemIds = [];
   let stopSearchTime = Date.now() + 8000;

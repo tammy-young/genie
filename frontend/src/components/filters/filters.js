@@ -1,4 +1,4 @@
-import { onEnterSearch, getBrands } from "../../searchUtils.js";
+import { onEnterSearch, getFilters } from "../../searchUtils.js";
 import { useState, useEffect } from "react";
 
 import NameSelector from './itemNameFilter.js';
@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
+import ColourFilter from "./colourFilter.js";
 
 const style = {
   position: 'absolute',
@@ -22,6 +23,7 @@ const style = {
 
 const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
   const [brandsToId, setBrandsToId] = useState([]);
+  const [coloursToId, setColoursToId] = useState([]);
   const itemType = window.location.pathname.split('/')[1] || "fashion";
 
   const [selectedBrand, setSelectedBrand] = useState({});
@@ -29,10 +31,11 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
   const [priceRange, setPriceRange] = useState([2, 600]);
   const [currencyType, setCurrencyType] = useState('');
   const [itemName, setItemName] = useState('');
+  const [selectedColour, setSelectedColour] = useState({});
 
   useEffect(() => {
     if (brandsToId.length === 0) {
-      getBrands(setBrandsToId);
+      getFilters(setBrandsToId, setColoursToId);
     }
     // eslint-disable-next-line
   }, []);
@@ -43,6 +46,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
     setPriceRange([2, 600]);
     setCurrencyType('');
     setItemName('');
+    setSelectedColour({});
   }
 
   const [open, setOpen] = useState(false);
@@ -77,7 +81,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
               onClick={(e) =>
                 onEnterSearch(
                   e,
-                  { selectedBrand, excludedBrands, priceRange, currencyType, itemName },
+                  { selectedBrand, excludedBrands, selectedColour, priceRange, currencyType, itemName },
                   itemType,
                   setIsSearching,
                   searchedItems,
@@ -95,7 +99,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
                 onSubmit={(e) =>
                   onEnterSearch(
                     e,
-                    { selectedBrand, excludedBrands, priceRange, currencyType, itemName },
+                    { selectedBrand, excludedBrands, selectedColour, priceRange, currencyType, itemName },
                     itemType,
                     setIsSearching,
                     searchedItems,
@@ -121,6 +125,11 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
                   setExcludedBrands={setExcludedBrands}
                   excludedBrands={excludedBrands}
                 />
+                <ColourFilter
+                  coloursToId={coloursToId}
+                  setSelectedColour={setSelectedColour}
+                  selectedColour={selectedColour}
+                />
                 <PriceSelector
                   setPriceRange={setPriceRange}
                   setCurrencyType={setCurrencyType}
@@ -145,7 +154,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
           onSubmit={(e) =>
             onEnterSearch(
               e,
-              { selectedBrand, excludedBrands, priceRange, currencyType, itemName },
+              { selectedBrand, excludedBrands, selectedColour, priceRange, currencyType, itemName },
               itemType,
               setIsSearching,
               searchedItems,
@@ -166,6 +175,14 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
               brandsToId={brandsToId}
               setExcludedBrands={setExcludedBrands}
               excludedBrands={excludedBrands}
+            />
+          </div>
+
+          <div className='2xl:!max-w-[17%] 2xl:!w-1/6'>
+            <ColourFilter
+              coloursToId={coloursToId}
+              setSelectedColour={setSelectedColour}
+              selectedColour={selectedColour}
             />
           </div>
 
