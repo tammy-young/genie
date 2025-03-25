@@ -1,5 +1,4 @@
 import { onEnterSearch } from "../../../searchUtils.js";
-import { useState, useEffect } from "react";
 
 import NameSelector from './../itemNameFilter.js';
 import BrandSelector from './../brandFilter.js';

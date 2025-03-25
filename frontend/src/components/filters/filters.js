@@ -39,21 +39,21 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, modal }) => 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1280);
+  // const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1280);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const isSmall = window.innerWidth < 1280;
-      setIsSmallScreen(isSmall);
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     const isSmall = window.innerWidth < 1280;
+  //     setIsSmallScreen(isSmall);
 
-      if (!isSmall) {
-        setOpen(false);
-      }
-    };
+  //     if (!isSmall) {
+  //       setOpen(false);
+  //     }
+  //   };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   return (
     <div>
