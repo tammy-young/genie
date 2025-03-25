@@ -27,19 +27,19 @@ const NavBar = () => {
 
         <div className='flex sm:justify-center space-x-3 sm:w-max w-fit'>
           <div className='nav' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content', paddingRight: '0px' }} >
-            <NavLink to={constants.paths.FASHION} className={"nav-link items-center " + (isActive(constants.paths.FASHION) ? "!text-fashion" : "!text-neutral-500")} style={{ display: 'flex' }}>
+            <NavLink to={constants.paths.FASHION} className={"nav-link items-center hover:!text-primary " + (isActive(constants.paths.FASHION) ? "!text-fashion" : "text-neutral-400 dark:!text-neutral-500")} style={{ display: 'flex' }}>
               <div className='md:block hidden'>Fashion</div>
               <div><CheckroomIcon /></div>
             </NavLink>
           </div>
           <div className='nav' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content', paddingRight: '0px' }} >
-            <NavLink to={constants.paths.INTERIOR} className={"nav-link items-center " + (isActive(constants.paths.INTERIOR) ? "!text-interior" : "!text-neutral-500")} style={{ display: 'flex' }}>
+            <NavLink to={constants.paths.INTERIOR} className={"nav-link items-center hover:!text-primary " + (isActive(constants.paths.INTERIOR) ? "!text-interior" : "text-neutral-400 dark:!text-neutral-500")} style={{ display: 'flex' }}>
               <div className='md:block hidden'>Interior</div>
               <div><ChairIcon /></div>
             </NavLink>
           </div>
           <div className='nav' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content' }} >
-            <NavLink to={constants.paths.ID_SEARCH} className={"nav-link items-center " + (isActive(constants.paths.ID_SEARCH) ? "!text-primary" : "!text-neutral-500")} style={{ display: 'flex' }}>
+            <NavLink to={constants.paths.ID_SEARCH} className={"nav-link items-center hover:!text-primary " + (isActive(constants.paths.ID_SEARCH) ? "!text-primary" : "text-neutral-400 dark:!text-neutral-500")} style={{ display: 'flex' }}>
               <div className='md:block hidden'>Brands</div>
               <div><NumbersIcon /></div>
             </NavLink>
@@ -48,7 +48,7 @@ const NavBar = () => {
         <div className='flex items-center sm:w-max md:w-fit justify-center sm:justify-end'>
           <a href='https://buymeacoffee.com/anastaciasd' target='_blank' rel='noreferrer' className='hover:text-white hover:!no-underline'>
             <button className='!bg-primary p-2 rounded text-white flex flex-row lg:space-x-1 items-center'>
-              <p className='mb-0 lg:block hidden'>Support Genie</p>
+              <p className='mb-0 lg:block hidden font-bold'>Support Genie</p>
               <CoffeeTwoToneIcon />
             </button>
           </a>

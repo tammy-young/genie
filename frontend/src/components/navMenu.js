@@ -40,7 +40,7 @@ const NavMenu = () => {
           <MenuButton
             slots={{ root: IconButton }}
             slotProps={{ root: { variant: 'outlined', color: 'neutral' } }}
-            className="!border-none dark:hover:!bg-neutral-700"
+            className="!border-none dark:hover:!bg-neutral-700 dark:!text-white"
           >
             <MenuIcon />
           </MenuButton>
