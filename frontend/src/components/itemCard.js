@@ -27,6 +27,7 @@ const ItemCard = ({ item, index, itemType }) => {
         setSellerUsername(username);
       });
     getBrandName({ item });
+    // eslint-disable-next-line
   }, []);
 
   function copy(username) {
@@ -48,8 +49,8 @@ const ItemCard = ({ item, index, itemType }) => {
     <div className="card item-card dark:!bg-neutral-800 !min-w-[270px] sm:max-w-[30%] md:max-w-[32%] lg:max-w-[23.5%] 2xl:max-w-[19%] w-3/4 light:border p-4 flex flex-col" data-div-id={index}>
       <ItemImage itemId={item.itemId} itemType={itemType} />
       <h6 className='mb-0 font-bold text-lg leading-tight'>{item.name}</h6>
-      <p className='mb-0'>{brandName}</p>
-      <div className='flex flex-row space-x-4'>
+      <p className='mb-1'>{brandName}</p>
+      <div className='flex flex-row space-x-3'>
         <div className='flex flex-row items-center'>
           <p className='mb-0'>{item.sellPrice}</p>
           {getCurrencyIcon({ item })}

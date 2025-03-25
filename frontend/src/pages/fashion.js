@@ -42,8 +42,9 @@ const FashionSearch = () => {
 					) || (
 						(
 							(searchedItems.length === 0 && !isSearching) &&
-							<div className='flex justify-center items-center w-full h-full'>
-								<p>No items found</p>
+							<div className='flex justify-center items-center w-full h-full flex-col space-y-1'>
+								<p className='m-0 p-0'>No items found.</p>
+								<p className='m-0 p-0'>Clear filters and try again!</p>
 							</div>
 						)
 					)
