@@ -1,6 +1,8 @@
 import Input from '@mui/joy/Input';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import IconButton from '@mui/material/IconButton';
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -53,9 +55,14 @@ const IdSearch = () => {
             return (searchedBrand && brandName.includes(searchedBrand)) || searchedBrand === "";
           })
           .map((brand, index) => (
-            <div key={index} className="p-4 lg:w-[23%] md:w-[30%] w-[40%] border rounded">
+            <div key={index} className="p-4 lg:w-[23%] md:w-[30%] w-[40%] rounded dark:!bg-neutral-800 dark:!border-none" style={{ border: '1px solid #dee2e6' }}>
               <p className='p-0 m-0 text-xl font-bold'>{brand.name}</p>
-              <p className='p-0 m-0'>ID: {brand.id}</p>
+              <div className='flex flex-row items-center space-x-1'>
+                <p className='p-0 m-0'>ID: {brand.id}</p>
+                <IconButton className={`!p-0 pr-1`} onClick={() => navigator.clipboard.writeText(brand.id)} aria-label="Copy Username">
+                  <ContentCopyIcon style={{ width: '17px' }} className='text-neutral-400 dark:text-neutral-300' />
+                </IconButton>
+              </div>
             </div>
           ))
         }
