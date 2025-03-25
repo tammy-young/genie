@@ -52,8 +52,20 @@ const search = async (req) => {
 
   let excludeBrands = req.query.excludedBrands || [];
 
+  let categories = [];
   let colourId = req.query.colourId;
-  searchUrl += colourId ? `&categories=${colourId}` : "";
+  if (colourId) {
+    categories.push(colourId);
+  }
+  let itemCategoryId = req.query.itemCategoryId;
+  if (itemCategoryId) {
+    categories.push(itemCategoryId);
+  }
+  if (categories.length === 1) {
+    searchUrl += `&categories=${categories[0]}`;
+  } else if (categories.length > 1) {
+    searchUrl += `&categories=${categories.join(",")}`;
+  }
 
   let items = [];
   let itemIds = [];
