@@ -76,9 +76,9 @@ const search = async (req) => {
 
     // if there are no items on the page then get a new page
     if (returnedPage != null && ITEMS_KEY in returnedPage) {
-      let returned_items = returnedPage[ITEMS_KEY];
+      let returnedItems = returnedPage[ITEMS_KEY];
 
-      for (let item of returned_items) {
+      for (let item of returnedItems) {
         let itemId = item['itemId'];
         let addItem = false;
 
