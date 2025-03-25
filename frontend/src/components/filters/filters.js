@@ -11,6 +11,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import ColourFilter from "./colourFilter.js";
+import ItemCategoryFilter from "./itemCategoryFilter.js";
 
 const style = {
   position: 'absolute',
@@ -24,6 +25,7 @@ const style = {
 const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
   const [brandsToId, setBrandsToId] = useState([]);
   const [coloursToId, setColoursToId] = useState([]);
+  const [itemCategoriesToId, setItemCategoriesToId] = useState([]);
   const itemType = window.location.pathname.split('/')[1] || "fashion";
 
   const [selectedBrand, setSelectedBrand] = useState({});
@@ -32,10 +34,11 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
   const [currencyType, setCurrencyType] = useState('');
   const [itemName, setItemName] = useState('');
   const [selectedColour, setSelectedColour] = useState({});
+  const [itemCategory, setItemCategory] = useState({});
 
   useEffect(() => {
     if (brandsToId.length === 0) {
-      getFilters(setBrandsToId, setColoursToId);
+      getFilters(setBrandsToId, setColoursToId, setItemCategoriesToId, itemType);
     }
     // eslint-disable-next-line
   }, []);
@@ -47,6 +50,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
     setCurrencyType('');
     setItemName('');
     setSelectedColour({});
+    setItemCategory({});
   }
 
   const [open, setOpen] = useState(false);
@@ -81,7 +85,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
               onClick={(e) =>
                 onEnterSearch(
                   e,
-                  { selectedBrand, excludedBrands, selectedColour, priceRange, currencyType, itemName },
+                  { selectedBrand, excludedBrands, selectedColour, itemCategory, priceRange, currencyType, itemName },
                   itemType,
                   setIsSearching,
                   searchedItems,
@@ -99,7 +103,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
                 onSubmit={(e) =>
                   onEnterSearch(
                     e,
-                    { selectedBrand, excludedBrands, selectedColour, priceRange, currencyType, itemName },
+                    { selectedBrand, excludedBrands, selectedColour, itemCategory, priceRange, currencyType, itemName },
                     itemType,
                     setIsSearching,
                     searchedItems,
@@ -130,6 +134,11 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
                   setSelectedColour={setSelectedColour}
                   selectedColour={selectedColour}
                 />
+                <ItemCategoryFilter
+                  itemCategoriesToId={itemCategoriesToId}
+                  setItemCategory={setItemCategory}
+                  itemCategory={itemCategory}
+                />
                 <PriceSelector
                   setPriceRange={setPriceRange}
                   setCurrencyType={setCurrencyType}
@@ -154,7 +163,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
           onSubmit={(e) =>
             onEnterSearch(
               e,
-              { selectedBrand, excludedBrands, selectedColour, priceRange, currencyType, itemName },
+              { selectedBrand, excludedBrands, selectedColour, itemCategory, priceRange, currencyType, itemName },
               itemType,
               setIsSearching,
               searchedItems,
@@ -183,6 +192,14 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems }) => {
               coloursToId={coloursToId}
               setSelectedColour={setSelectedColour}
               selectedColour={selectedColour}
+            />
+          </div>
+
+          <div className='2xl:!max-w-[17%] 2xl:!w-1/6'>
+            <ItemCategoryFilter
+              itemCategoriesToId={itemCategoriesToId}
+              setItemCategory={setItemCategory}
+              itemCategory={itemCategory}
             />
           </div>
 

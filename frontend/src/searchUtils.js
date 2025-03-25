@@ -9,7 +9,7 @@ export const onEnterSearch = (e, params, itemType, setIsSearching, searchedItems
 	search(params, itemType, setIsSearching, searchedItems, setSearchedItems);
 }
 
-export const getFilters = async (setBrandsToId, setColoursToId) => {
+export const getFilters = async (setBrandsToId, setColoursToId, setItemCategoriesToId, itemType) => {
 	try {
 		const response = await axios.get(constants.backend.API + constants.backend.GET_BRANDS);
 
@@ -32,6 +32,21 @@ export const getFilters = async (setBrandsToId, setColoursToId) => {
 			formattedColoursList.push({ 'name': key, 'categoryId': value });
 		}
 		setColoursToId(formattedColoursList);
+
+		if (itemType === "fashion") {
+			let formattedFashionItemCategoriesList = [];
+			for (const [key, value] of Object.entries(response.data.fashionItemCategoriesToId)) {
+				formattedFashionItemCategoriesList.push({ 'name': key, 'categoryId': value });
+			}
+			setItemCategoriesToId(formattedFashionItemCategoriesList);
+		} else if (itemType === "interior") {
+			let formattedInteriorItemCategoriesList = [];
+			for (const [key, value] of Object.entries(response.data.interiorItemCategoriesToId)) {
+				formattedInteriorItemCategoriesList.push({ 'name': key, 'categoryId': value });
+			}
+			setItemCategoriesToId(formattedInteriorItemCategoriesList);
+		}
+		
 	} catch (error) {
 		console.error('Error fetching data:', error);
 	}
@@ -51,6 +66,7 @@ export const search = async (params, itemType, setIsSearching, searchedItems, se
 			params: {
 				"brandId": params.selectedBrand?.brandId,
 				"colourId": params.selectedColour?.categoryId,
+				"itemCategoryId": params.itemCategory?.categoryId,
 				"minPrice": params.priceRange[0],
 				"maxPrice": params.priceRange[1],
 				"itemName": params.itemName,
