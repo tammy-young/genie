@@ -167,9 +167,6 @@ body {
   a {
     color: #fff !important;
   }
-  svg {
-    fill: #fff !important;
-  }
   .MuiCheckbox-checkbox {
     background-color: #1f2023 !important;
   }
@@ -187,10 +184,6 @@ body {
 
 .id-search-row {
   height: fit-content;
-}
-
-a.nav-link {
-  color: #000;
 }
 
 .nav-bar .nav > a.fashion-selected.nav-link {

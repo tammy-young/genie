@@ -35,7 +35,7 @@ const IdSearch = () => {
 
   return (
     <div>
-      <div className='!sticky top-0 absolute dark:bg-neutral-900 bg-white w-full'>
+      <div className='!sticky top-0 absolute dark:!bg-neutral-900 bg-[#ffffff] w-full'>
         <FormControl>
           <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>All Brands</h2>
           <FormLabel>Brand Name</FormLabel>
