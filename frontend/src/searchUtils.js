@@ -1,34 +1,86 @@
 import constants from './constants.js';
-import ItemCard from './components/itemCard.js';
+import axios from 'axios';
 
-export const getCurrencyType = (currencyCheckbox) => {
-	return currencyCheckbox.id === '0' ? "" : currencyCheckbox.id;
-}
-
-export const getBrandId = (brandInput) => {
-	let brandName = brandInput.value;
-	if (brandName === "") {
-		return "";
-	}
-	let brandNameToIdDiv = document.getElementById(constants.divIds.BRANDS_NAME_TO_ID);
-	let brands = JSON.parse(brandNameToIdDiv.innerHTML);
-	return brandName in brands ? brands[brandName] : "";
-}
-
-export const displayItems = (items) => {
-	let searchingTextDiv = document.getElementById(constants.divIds.SEARCHING_TEXT_DIV);
-	searchingTextDiv.innerHTML = "";
-	return (
-		<div className='flex flex-wrap w-full sm:gap-4 space-y-4 sm:space-y-0 justify-center py-4 overflow-y-scroll max-h-[84vh]'>
-			{items.map((item, index) => (
-				<ItemCard item={item} index={index} />
-			))}
-		</div>
-	);
-}
-
-export const clickSearch = (e) => {
+export const onEnterSearch = (e, params, itemType, setIsSearching, searchedItems, setSearchedItems, handleClose) => {
 	e.preventDefault();
-	let button = document.getElementById(constants.buttonIds.SEARCH_BTN);
-	button.click();
+	if (handleClose) {
+		handleClose();
+	}
+	search(params, itemType, setIsSearching, searchedItems, setSearchedItems);
 }
+
+export const getFilters = async (setBrandsToId, setColoursToId, setItemCategoriesToId, itemType) => {
+	try {
+		const response = await axios.get(constants.backend.API + constants.backend.GET_BRANDS);
+
+		let brandsIdToName = response.data.brandsIdToName;
+		let brandsNameToId = response.data.brandsNameToId;
+
+		let brandsIdToNameHidden = document.getElementById(constants.divIds.BRANDS_ID_TO_NAME);
+		let brandsNameToIdHidden = document.getElementById(constants.divIds.BRANDS_NAME_TO_ID);
+		brandsIdToNameHidden.innerHTML = JSON.stringify(brandsIdToName);
+		brandsNameToIdHidden.innerHTML = JSON.stringify(brandsNameToId);
+
+		let formattedBrandsList = [];
+		for (const [key, value] of Object.entries(brandsNameToId)) {
+			formattedBrandsList.push({ 'name': key, 'brandId': value });
+		}
+		setBrandsToId(formattedBrandsList);
+
+		let formattedColoursList = [];
+		for (const [key, value] of Object.entries(response.data.coloursToId)) {
+			formattedColoursList.push({ 'name': key, 'categoryId': value });
+		}
+		setColoursToId(formattedColoursList);
+
+		if (itemType === "fashion") {
+			let formattedFashionItemCategoriesList = [];
+			for (const [key, value] of Object.entries(response.data.fashionItemCategoriesToId)) {
+				formattedFashionItemCategoriesList.push({ 'name': key, 'categoryId': value });
+			}
+			setItemCategoriesToId(formattedFashionItemCategoriesList);
+		} else if (itemType === "interior") {
+			let formattedInteriorItemCategoriesList = [];
+			for (const [key, value] of Object.entries(response.data.interiorItemCategoriesToId)) {
+				formattedInteriorItemCategoriesList.push({ 'name': key, 'categoryId': value });
+			}
+			setItemCategoriesToId(formattedInteriorItemCategoriesList);
+		}
+		
+	} catch (error) {
+		console.error('Error fetching data:', error);
+	}
+};
+
+export const search = async (params, itemType, setIsSearching, searchedItems, setSearchedItems) => {
+	try {
+		setIsSearching(true);
+
+		window.scrollTo(0, 0);
+
+		if (searchedItems.length !== 0) {
+			setSearchedItems([]);
+		}
+
+		const response = await axios.get(constants.backend.API + constants.backend.SEARCH, {
+			params: {
+				"brandId": params.selectedBrand?.brandId,
+				"colourId": params.selectedColour?.categoryId,
+				"itemCategoryId": params.itemCategory?.categoryId,
+				"minPrice": params.priceRange[0],
+				"maxPrice": params.priceRange[1],
+				"itemName": params.itemName,
+				"currencyType": params.currencyType,
+				"excludedBrands": params.excludedBrands?.map(brand => brand.brandId),
+				"itemType": itemType
+			}
+		});
+
+		let items = response.data.items;
+		setSearchedItems(items);
+	} catch (error) {
+		console.error('Error fetching data:', error);
+	} finally {
+		setIsSearching(false);
+	}
+};

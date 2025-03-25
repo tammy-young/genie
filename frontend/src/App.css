@@ -140,12 +140,8 @@ body {
 /* Dark mode colors */
 
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: #1f2023 !important;
-    color: #dadada !important;
-  }
-  .item-card {
-    background-color: #353639 !important;
+  html {
+    background-color: #171717 !important;
   }
   .MuiTable-root {
     background-color: #353639 !important;
@@ -171,9 +167,6 @@ body {
   a {
     color: #fff !important;
   }
-  svg {
-    fill: #fff !important;
-  }
   .MuiCheckbox-checkbox {
     background-color: #1f2023 !important;
   }
@@ -191,10 +184,6 @@ body {
 
 .id-search-row {
   height: fit-content;
-}
-
-a.nav-link {
-  color: #000;
 }
 
 .nav-bar .nav > a.fashion-selected.nav-link {
@@ -263,8 +252,8 @@ a.nav-link {
 }
 
 .site-padding {
-  padding-left: min(100px, 7%);
-  padding-right: min(100px, 7%);
+  padding-left: min(100px, 5%);
+  padding-right: min(100px, 5%);
 }
 
 @media (max-width: 30em) {

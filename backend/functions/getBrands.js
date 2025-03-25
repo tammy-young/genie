@@ -25,7 +25,10 @@ async function fetchData(url, html=false) {
 const getBrands = async () => {
 
     let pageContent = await fetchData(BAZAAR_URL);
+    const colours = pageContent.item_colors;
     const brands = pageContent.brands.fashion.brand.concat(pageContent.brands.interior.brand);
+    const fashionItemCategories = pageContent.price_tags.fashion.price_tag;
+    const interiorItemCategories = pageContent.price_tags.interior.price_tag;
 
     let brandsIdToName = {};
     brands.map((brand) => {
@@ -37,7 +40,22 @@ const getBrands = async () => {
         brandsNameToId[brand.name] = brand.id;
     })
 
-    return {"brandsIdToName": brandsIdToName, "brandsNameToId": brandsNameToId};
+    let coloursToId = {};
+    colours.map((colour) => {
+        coloursToId[colour.name] = colour.categoryId;
+    })
+
+    let fashionItemCategoriesToId = {};
+    fashionItemCategories.map((category) => {
+        fashionItemCategoriesToId[category.name] = category.categoryId;
+    })
+
+    let interiorItemCategoriesToId = {};
+    interiorItemCategories.map((category) => {
+        interiorItemCategoriesToId[category.name] = category.categoryId;
+    })
+
+    return {"brandsIdToName": brandsIdToName, "brandsNameToId": brandsNameToId, "coloursToId": coloursToId, "fashionItemCategoriesToId": fashionItemCategoriesToId, "interiorItemCategoriesToId": interiorItemCategoriesToId};
 }
 
 const app = express();

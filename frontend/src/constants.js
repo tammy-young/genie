@@ -14,6 +14,7 @@ const constants = {
         COPY_ICON: "copySellerUsername",
         COPY_ID_ICON: "copySellerId",
         EXCLUDED_BRANDS_DIV: "excludedBrandsDiv",
+        EXCLUDED_BRANDS_SECTION: "excludedBrandsSection"
     },
     filterValuesIds: {
         FASHION_BRAND: "brandNameFilter",
@@ -46,7 +47,7 @@ const constants = {
         ID_SEARCH: "/brands"
     },
     backend: {
-        API: "https://genie-api.netlify.app",
+        API: process.env.REACT_APP_API_URL,
         GET_BRANDS: "/.netlify/functions/getBrands",
         SEARCH: "/.netlify/functions/search",
         GET_SELLER: "/.netlify/functions/getSeller"
