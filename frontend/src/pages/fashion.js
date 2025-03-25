@@ -37,7 +37,7 @@ const FashionSearch = () => {
 					) || (
 						(searchedItems.length !== 0 && !isSearching) &&
 						searchedItems.map((item, index) => (
-							<ItemCard item={item} index={index} />
+							<ItemCard item={item} index={index} itemType={"fashion"} />
 						))
 					) || (
 						(
