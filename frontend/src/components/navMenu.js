@@ -38,8 +38,6 @@ const NavMenu = () => {
 
         <Dropdown>
           <MenuButton
-            slots={{ root: IconButton }}
-            slotProps={{ root: { variant: 'outlined', color: 'neutral' } }}
             className="!border-none dark:hover:!bg-neutral-700 dark:!text-white"
           >
             <MenuIcon />
@@ -47,20 +45,21 @@ const NavMenu = () => {
           <Menu placement="bottom-end" className="dark:!bg-neutral-800 w-1/3 !border-none">
             <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
               <NavLink to={constants.paths.FASHION} className={"nav-link items-center p-0 !flex justify-between w-full"}>
-                <div className={`font-bold ${isActive(constants.paths.FASHION) ? "!text-fashion" : "!text-black dark:!text-white"}`}>Fashion</div>
+                <p className={`m-0 p-0 font-bold ${isActive(constants.paths.FASHION) ? "!text-fashion" : "!text-black dark:!text-white"}`}>Fashion</p>
                 <CheckroomIcon className={`${isActive(constants.paths.FASHION) ? "!text-fashion" : "!text-black dark:!text-white"}`} />
               </NavLink>
 
             </MenuItem>
             <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
               <NavLink to={constants.paths.INTERIOR} className={"nav-link items-center p-0 !flex justify-between w-full"}>
-                <div className={`font-bold ${isActive(constants.paths.INTERIOR) ? "!text-interior" : "!text-black dark:!text-white"}`}>Interior</div>
+                <p className={`m-0 p-0 font-bold ${isActive(constants.paths.INTERIOR) ? "!text-interior" : "!text-black dark:!text-white"}`}>Interior</p>
                 <ChairIcon className={`${isActive(constants.paths.INTERIOR) ? "!text-interior" : "!text-black dark:!text-white"}`} />
               </NavLink>
             </MenuItem>
+
             <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
               <NavLink to={constants.paths.ID_SEARCH} className={"nav-link items-center p-0 !flex justify-between w-full"}>
-                <div className={`font-bold ${isActive(constants.paths.ID_SEARCH) ? "!text-primary" : "!text-black dark:!text-white"}`}>Brands</div>
+                <p className={`m-0 p-0 font-bold ${isActive(constants.paths.ID_SEARCH) ? "!text-primary" : "!text-black dark:!text-white"}`}>Brands</p>
                 <NumbersIcon className={`${isActive(constants.paths.ID_SEARCH) ? "!text-primary" : "!text-black dark:!text-white"}`} />
               </NavLink>
             </MenuItem>
