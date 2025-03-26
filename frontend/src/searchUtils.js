@@ -14,15 +14,12 @@ export const getFilters = async (setBrandsToId, setColoursToId, setItemCategorie
 		const response = await axios.get(constants.backend.API + constants.backend.GET_BRANDS);
 
 		let brandsIdToName = response.data.brandsIdToName;
-		let brandsNameToId = response.data.brandsNameToId;
 
 		let brandsIdToNameHidden = document.getElementById(constants.divIds.BRANDS_ID_TO_NAME);
-		let brandsNameToIdHidden = document.getElementById(constants.divIds.BRANDS_NAME_TO_ID);
 		brandsIdToNameHidden.innerHTML = JSON.stringify(brandsIdToName);
-		brandsNameToIdHidden.innerHTML = JSON.stringify(brandsNameToId);
 
 		let formattedBrandsList = [];
-		for (const [key, value] of Object.entries(brandsNameToId)) {
+		for (const [key, value] of Object.entries(brandsIdToName)) {
 			formattedBrandsList.push({ 'name': key, 'brandId': value });
 		}
 		setBrandsToId(formattedBrandsList);

@@ -57,7 +57,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, modal }) => 
 
   return (
     <div>
-      { modal ? (
+      {modal ? (
         <FilterModal
           open={open}
           handleOpen={handleOpen}

@@ -35,11 +35,6 @@ const getBrands = async () => {
         brandsIdToName[brand.id] = brand.name;
     })
 
-    let brandsNameToId = {};
-    brands.map((brand) => {
-        brandsNameToId[brand.name] = brand.id;
-    })
-
     let coloursToId = {};
     colours.map((colour) => {
         coloursToId[colour.name] = colour.categoryId;
@@ -55,7 +50,7 @@ const getBrands = async () => {
         interiorItemCategoriesToId[category.name] = category.categoryId;
     })
 
-    return {"brandsIdToName": brandsIdToName, "brandsNameToId": brandsNameToId, "coloursToId": coloursToId, "fashionItemCategoriesToId": fashionItemCategoriesToId, "interiorItemCategoriesToId": interiorItemCategoriesToId};
+    return {"brandsIdToName": brandsIdToName, "coloursToId": coloursToId, "fashionItemCategoriesToId": fashionItemCategoriesToId, "interiorItemCategoriesToId": interiorItemCategoriesToId};
 }
 
 const app = express();

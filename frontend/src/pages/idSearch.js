@@ -22,8 +22,8 @@ const IdSearch = () => {
   const getBrands = async () => {
     try {
       const response = await axios.get(constants.backend.API + constants.backend.GET_BRANDS);
-      let brandsNameToId = response.data.brandsNameToId;
-      setBrands(Object.entries(brandsNameToId).map((brand) => ({ name: brand[0], id: brand[1] })).sort((a, b) => a.name.localeCompare(b.name)));
+      let brandsIdToName = response.data.brandsIdToName;
+      setBrands(Object.entries(brandsIdToName).map((brand) => ({ name: brand[1], id: brand[0] })).sort((a, b) => a.name.localeCompare(b.name)));
     } catch (error) {
       console.error('Error fetching brands:', error);
     }

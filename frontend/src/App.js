@@ -27,7 +27,6 @@ const App = () => {
 					<Route path={constants.paths.ID_SEARCH} element={<IdSearch />} />
 				</Routes>
 			</Router>
-			<div style={{ display: "none" }} id={constants.divIds.BRANDS_NAME_TO_ID}></div>
 			<div style={{ display: "none" }} id={constants.divIds.BRANDS_ID_TO_NAME}></div>
 			<div style={{ display: "none" }} id={constants.divIds.EXCLUDED_BRANDS_DIV}></div>
 		</div>
