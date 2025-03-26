@@ -2,7 +2,6 @@ import GenieLogo from './images/genieLogo.js';
 import { NavLink, useLocation } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import Dropdown from '@mui/joy/Dropdown';
-import IconButton from '@mui/joy/IconButton';
 import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
