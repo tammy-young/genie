@@ -46,22 +46,22 @@ const NavMenu = () => {
           </MenuButton>
           <Menu placement="bottom-end" className="dark:!bg-neutral-800 w-1/3 !border-none">
             <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
-              <NavLink to={constants.paths.FASHION} className={"nav-link items-center p-0 !flex justify-between w-full" + (isActive(constants.paths.FASHION) ? " fashion-selected" : "")}>
-                <div className='font-bold'>Fashion</div>
-                <CheckroomIcon />
+              <NavLink to={constants.paths.FASHION} className={"nav-link items-center p-0 !flex justify-between w-full"}>
+                <div className={`font-bold ${isActive(constants.paths.FASHION) ? "!text-fashion" : "!text-black dark:!text-white"}`}>Fashion</div>
+                <CheckroomIcon className={`${isActive(constants.paths.FASHION) ? "!text-fashion" : "!text-black dark:!text-white"}`} />
               </NavLink>
 
             </MenuItem>
             <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
-              <NavLink to={constants.paths.INTERIOR} className={"nav-link items-center p-0 !flex justify-between w-full" + (isActive(constants.paths.INTERIOR) ? " interior-selected" : "")}>
-                <div className='font-bold'>Interior</div>
-                <ChairIcon />
+              <NavLink to={constants.paths.INTERIOR} className={"nav-link items-center p-0 !flex justify-between w-full"}>
+                <div className={`font-bold ${isActive(constants.paths.INTERIOR) ? "!text-interior" : "!text-black dark:!text-white"}`}>Interior</div>
+                <ChairIcon className={`${isActive(constants.paths.INTERIOR) ? "!text-interior" : "!text-black dark:!text-white"}`} />
               </NavLink>
             </MenuItem>
             <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
-              <NavLink to={constants.paths.ID_SEARCH} className={"nav-link items-center p-0 !flex justify-between w-full" + (isActive(constants.paths.ID_SEARCH) ? " selected" : "")}>
-                <div className='font-bold'>Brands</div>
-                <NumbersIcon />
+              <NavLink to={constants.paths.ID_SEARCH} className={"nav-link items-center p-0 !flex justify-between w-full"}>
+                <div className={`font-bold ${isActive(constants.paths.ID_SEARCH) ? "!text-primary" : "!text-black dark:!text-white"}`}>Brands</div>
+                <NumbersIcon className={`${isActive(constants.paths.ID_SEARCH) ? "!text-primary" : "!text-black dark:!text-white"}`} />
               </NavLink>
             </MenuItem>
           </Menu>
