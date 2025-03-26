@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './../App.css';
 import { search } from '../searchUtils.js';
+import axios from 'axios';
+import constants from '../constants.js';
 
 import Filters from '../components/filters/filters.js';
 import ItemCard from '../components/itemCard.js';
@@ -10,10 +12,16 @@ const FashionSearch = () => {
 	// for searching
 	const [isSearching, setIsSearching] = useState(false);
 	const [searchedItems, setSearchedItems] = useState([]);
+	const [allBrands, setAllBrands] = useState({});
 
 	useEffect(() => {
 		document.title = 'Fashion | Genie';
 		search({ priceRange: [2, 600] }, "fashion", setIsSearching, searchedItems, setSearchedItems);
+		axios.get(constants.backend.API + constants.backend.GET_BRANDS)
+			.then((response) => {
+				let brandsIdToName = response.data.brandsIdToName;
+				setAllBrands(brandsIdToName);
+			})
 		// eslint-disable-next-line
 	}, []);
 
@@ -37,7 +45,7 @@ const FashionSearch = () => {
 					) || (
 						(searchedItems.length !== 0 && !isSearching) &&
 						searchedItems.map((item, index) => (
-							<ItemCard item={item} index={index} itemType={"fashion"} />
+							<ItemCard item={item} index={index} itemType={"fashion"} allBrands={allBrands} />
 						))
 					) || (
 						(

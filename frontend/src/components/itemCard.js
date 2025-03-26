@@ -15,25 +15,9 @@ const getCurrencyIcon = ({ item }) => {
   );
 }
 
-const ItemCard = ({ item, index, itemType }) => {
+const ItemCard = ({ item, index, itemType, allBrands }) => {
   const [sellerUsername, setSellerUsername] = useState("");
   const [brandName, setBrandName] = useState("");
-  const allBrandsDiv = document.getElementById(constants.divIds.BRANDS_ID_TO_NAME);
-
-  if (allBrandsDiv) {
-    const observer = new MutationObserver((mutationsList) => {
-      for (let mutation of mutationsList) {
-        // if the brand div is updated, get the brand name
-        if (mutation.type === 'childList') {
-          const content = allBrandsDiv.innerHTML.trim();
-          if (content !== "") {
-            getBrandName({ item });
-          }
-        }
-      }
-    });
-    observer.observe(allBrandsDiv, { childList: true, subtree: true });
-  }
 
   useEffect(() => {
     fetch(constants.backend.API + constants.backend.GET_SELLER + "?sellerId=" + item.sellerId)
@@ -53,11 +37,12 @@ const ItemCard = ({ item, index, itemType }) => {
     }
   }
 
-  const getBrandName = ({ item }) => {
-    let brandId = item.brand;
-    const allBrands = JSON.parse(allBrandsDiv.innerHTML);
-    setBrandName(allBrands[brandId] ? allBrands[brandId].replace(/&amp;/g, "&") : "");
-  }
+  useEffect(() => {
+    if (Object.keys(allBrands).length !== 0) {
+      setBrandName(allBrands[item.brand] ? allBrands[item.brand].replace(/&amp;/g, "&") : "");
+    }
+    // eslint-disable-next-line
+  }, [allBrands]);
 
   return (
     <div className="card item-card dark:!bg-neutral-800 !min-w-[270px] sm:max-w-[30%] md:max-w-[32%] lg:max-w-[23.5%] 2xl:max-w-[19%] w-3/4 light:border p-4 flex flex-col" data-div-id={index}>
