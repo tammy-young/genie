@@ -18,6 +18,22 @@ const getCurrencyIcon = ({ item }) => {
 const ItemCard = ({ item, index, itemType }) => {
   const [sellerUsername, setSellerUsername] = useState("");
   const [brandName, setBrandName] = useState("");
+  const allBrandsDiv = document.getElementById(constants.divIds.BRANDS_ID_TO_NAME);
+
+  if (allBrandsDiv) {
+    const observer = new MutationObserver((mutationsList) => {
+      for (let mutation of mutationsList) {
+        // if the brand div is updated, get the brand name
+        if (mutation.type === 'childList') {
+          const content = allBrandsDiv.innerHTML.trim();
+          if (content !== "") {
+            getBrandName({ item });
+          }
+        }
+      }
+    });
+    observer.observe(allBrandsDiv, { childList: true, subtree: true });
+  }
 
   useEffect(() => {
     fetch(constants.backend.API + constants.backend.GET_SELLER + "?sellerId=" + item.sellerId)
@@ -26,7 +42,6 @@ const ItemCard = ({ item, index, itemType }) => {
         let username = data.sellerUser;
         setSellerUsername(username);
       });
-    getBrandName({ item });
     // eslint-disable-next-line
   }, []);
 
@@ -40,9 +55,8 @@ const ItemCard = ({ item, index, itemType }) => {
 
   const getBrandName = ({ item }) => {
     let brandId = item.brand;
-    let allBrandsDiv = document.getElementById(constants.divIds.BRANDS_ID_TO_NAME);
-    let brands = JSON.parse(allBrandsDiv.innerHTML);
-    setBrandName(brands[brandId] ? brands[brandId].replace(/&amp;/g, "&") : "");
+    const allBrands = JSON.parse(allBrandsDiv.innerHTML);
+    setBrandName(allBrands[brandId] ? allBrands[brandId].replace(/&amp;/g, "&") : "");
   }
 
   return (
