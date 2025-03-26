@@ -20,7 +20,7 @@ export const getFilters = async (setBrandsToId, setColoursToId, setItemCategorie
 
 		let formattedBrandsList = [];
 		for (const [key, value] of Object.entries(brandsIdToName)) {
-			formattedBrandsList.push({ 'name': key, 'brandId': value });
+			formattedBrandsList.push({ 'name': value, 'brandId': key });
 		}
 		setBrandsToId(formattedBrandsList);
 
