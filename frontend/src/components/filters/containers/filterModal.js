@@ -71,7 +71,7 @@ const FilterModal = ({
         </Button>
       </div>
       <Modal open={open} onClose={handleClose}>
-        <Box sx={style} className="dark:!bg-[#1f2023] dark:!text-white p-4 sm:w-3/5 lg:w-2/5 !rounded-lg">
+        <Box sx={style} className="dark:!bg-[#1f2023] dark:!text-white p-4 w-[95%] sm:w-3/5 lg:w-2/5 !rounded-lg">
           <form
             onSubmit={(e) =>
               onEnterSearch(

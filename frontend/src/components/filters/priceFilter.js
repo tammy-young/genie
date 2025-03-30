@@ -65,12 +65,12 @@ const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange, currencyTyp
         <FormControl>
           <FormLabel>Min</FormLabel>
           <input type="number" id={constants.filterValuesIds.FASHION_MIN_PRICE} min={defaultMin} max={defaultMax}
-            onChange={handleMinInputChange} value={value[0]} className='my-input font-normal h-9 w-[4.5rem] text-clip' />
+            onChange={handleMinInputChange} value={value[0]} className='my-input font-normal h-9 text-clip' />
         </FormControl>
         <FormControl>
           <FormLabel>Max</FormLabel>
           <input type="number" id={constants.filterValuesIds.FASHION_MAX_PRICE} min={defaultMin} max={defaultMax}
-            onChange={handleMaxInputChange} value={value[1]} className='my-input font-normal h-9 w-[4.5rem]' />
+            onChange={handleMaxInputChange} value={value[1]} className='my-input font-normal h-9' />
         </FormControl>
       </div>
     </div>
