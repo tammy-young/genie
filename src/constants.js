@@ -47,9 +47,9 @@ const constants = {
     },
     backend: {
         API: process.env.REACT_APP_API_URL,
-        GET_BRANDS: "/.netlify/functions/getBrands",
-        SEARCH: "/.netlify/functions/search",
-        GET_SELLER: "/.netlify/functions/getSeller"
+        GET_BRANDS: "/getBrands",
+        SEARCH: "/search",
+        GET_SELLER: "/getSeller"
     }
 }
 

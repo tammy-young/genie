@@ -1,16 +1,16 @@
 import { onEnterSearch } from "../../../searchUtils.js";
 
-import NameSelector from './../itemNameFilter.js';
-import BrandSelector from './../brandFilter.js';
-import PriceSelector from './../priceFilter.js';
-import ExcludeBrandSelector from './../excludeBrandFilter.js';
+import NameSelector from '../itemNameFilter.js';
+import BrandSelector from '../brandFilter.js';
+import PriceSelector from '../priceFilter.js';
+import ExcludeBrandSelector from '../excludeBrandFilter.js';
 
 import Button from "@mui/material/Button";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
-import ColourFilter from "./../colourFilter.js";
-import ItemCategoryFilter from "./../itemCategoryFilter.js";
+import ColourFilter from "../colourFilter.js";
+import ItemCategoryFilter from "../itemCategoryFilter.js";
 
 const style = {
   position: 'absolute',

@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import constants from '../constants';
-import './../App.css';
+import '../App.css';
 
 const IdSearch = () => {
 
