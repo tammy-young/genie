@@ -1,7 +1,5 @@
-import express from "express";
-import cors from 'cors';
 import 'dotenv/config';
-import ServerlessHttp from "serverless-http";
+import fetchData from "../utils/fetchData.js";
 
 const ITEMS_KEY = "items";
 const BAZAAR_URL = "https://www.stardoll.com/en/com/user/getStarBazaar.php";
@@ -9,22 +7,7 @@ const FASHION_SEARCH_URL_PART = "?search&type=fashion&Price=24";
 const INTERIOR_SEARCH_URL_PART = "?search&type=interior&Price=24";
 const MAX_ITEMS_AT_ONCE = 20;
 
-async function fetchData(url, html = false) {
-  try {
-    const response = await fetch(url, {
-      withCredentials: true,
-      headers: {
-        Cookie: "pdhUser=" + process.env.PDH_USER + ";"
-      }
-    });
-    const data = html ? response.text() : response.json();
-    return data;
-  } catch (e) {
-    console.error("Could not get response:", e);
-  }
-}
-
-const search = async (req) => {
+async function search(req) {
 
   const itemType = req.query.itemType;
 
@@ -69,7 +52,7 @@ const search = async (req) => {
 
   let items = [];
   let itemIds = [];
-  let stopSearchTime = Date.now() + 8000;
+  let stopSearchTime = Date.now() + 10000;
 
   while (Date.now() < stopSearchTime && items.length < MAX_ITEMS_AT_ONCE) {
     let returnedPage = await fetchData(searchUrl);
@@ -112,18 +95,4 @@ const search = async (req) => {
   return { "items": items };
 }
 
-const app = express();
-app.use(cors())
-
-app.get("/.netlify/functions/search", async (req, res) => {
-  search(req)
-    .then(data => {
-      res.json(data);
-    });
-});
-
-const handler = ServerlessHttp(app);
-module.exports.handler = async (event, context) => {
-  const result = handler(event, context);
-  return result;
-}
+export default search;
