@@ -8,7 +8,7 @@ A GUI for Stardoll debug search built with [React](https://react.dev/).
 # Installation 🛠️
 To run Genie locally, first clone the repository.
 ```bash
-git clone https://github.com/tammy-young/Genie.git
+git clone https://github.com/tammy-young/genie.git
 ```
 Open a terminal in the project and do a `make install`. This will install all the required dependencies. Then, follow the instructions below for configuring your environment and running the app.
 
