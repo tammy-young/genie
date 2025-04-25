@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/tammy-young/genie/blob/main/frontend/public/genie-logo.png" />
+  <img src="https://github.com/tammy-young/genie/blob/main/public/genie-logo.png" />
 </p>
 
 # Genie 🧞 [![Netlify Status](https://api.netlify.com/api/v1/badges/7ec8dd45-a039-4f09-94a2-e96e76955207/deploy-status)](https://app.netlify.com/sites/stardoll-genie/deploys)
