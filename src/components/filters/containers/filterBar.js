@@ -1,13 +1,13 @@
 import { onEnterSearch } from "../../../searchUtils.js";
 
-import NameSelector from './../itemNameFilter.js';
-import BrandSelector from './../brandFilter.js';
-import PriceSelector from './../priceFilter.js';
-import ExcludeBrandSelector from './../excludeBrandFilter.js';
+import NameSelector from '../itemNameFilter.js';
+import BrandSelector from '../brandFilter.js';
+import PriceSelector from '../priceFilter.js';
+import ExcludeBrandSelector from '../excludeBrandFilter.js';
 
 import Button from "@mui/material/Button";
-import ColourFilter from "./../colourFilter.js";
-import ItemCategoryFilter from "./../itemCategoryFilter.js";
+import ColourFilter from "../colourFilter.js";
+import ItemCategoryFilter from "../itemCategoryFilter.js";
 
 const FilterBar = ({
   selectedBrand,

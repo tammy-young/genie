@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './../App.css';
+import '../App.css';
 import { search } from '../searchUtils.js';
 import axios from 'axios';
 import constants from '../constants.js';
@@ -8,15 +8,15 @@ import Filters from '../components/filters/filters.js';
 import ItemCard from '../components/itemCard.js';
 
 
-const FashionSearch = () => {
+const InteriorSearch = () => {
 	// for searching
 	const [isSearching, setIsSearching] = useState(false);
 	const [searchedItems, setSearchedItems] = useState([]);
 	const [allBrands, setAllBrands] = useState({});
 
 	useEffect(() => {
-		document.title = 'Fashion | Genie';
-		search({ priceRange: [2, 600] }, "fashion", setIsSearching, searchedItems, setSearchedItems);
+		document.title = 'Interior | Genie';
+		search({ priceRange: [2, 600] }, "interior", setIsSearching, searchedItems, setSearchedItems);
 		axios.get(constants.backend.API + constants.backend.GET_BRANDS)
 			.then((response) => {
 				let brandsIdToName = response.data.brandsIdToName;
@@ -28,9 +28,9 @@ const FashionSearch = () => {
 	return (
 		<div className='flex flex-col h-full'>
 			<div className='sticky top-0 dark:!bg-neutral-900 dark:text-neutral-100 !bg-white z-50'>
-				<h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>Fashion for Sale in Starbazaar</h2>
+				<h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>Interior for Sale in Starbazaar</h2>
 				<div className='pb-4 w-full'>
-					<Filters setIsSearching={setIsSearching} searchedItems={searchedItems} setSearchedItems={setSearchedItems} modal={true} />
+					<Filters setIsSearching={setIsSearching} searchedItems={searchedItems} setSearchedItems={setSearchedItems} modal={true} allBrands={allBrands} />
 				</div>
 			</div>
 
@@ -45,7 +45,7 @@ const FashionSearch = () => {
 					) || (
 						(searchedItems.length !== 0 && !isSearching) &&
 						searchedItems.map((item, index) => (
-							<ItemCard item={item} index={index} itemType={"fashion"} allBrands={allBrands} />
+							<ItemCard item={item} index={index} itemType={"interior"} allBrands={allBrands} />
 						))
 					) || (
 						(
@@ -62,4 +62,4 @@ const FashionSearch = () => {
 	)
 }
 
-export default FashionSearch;
+export default InteriorSearch;

@@ -1,6 +1,6 @@
 import constants from '../constants';
 import { useEffect, useState } from 'react';
-import './../App.css';
+import '../App.css';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import IconButton from '@mui/material/IconButton';
 import StardollarIcon from './images/stardollar';
