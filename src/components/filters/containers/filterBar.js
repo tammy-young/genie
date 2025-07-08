@@ -31,7 +31,10 @@ const FilterBar = ({
   brandsToId,
   coloursToId,
   itemCategoriesToId,
-  clearFilters
+  clearFilters,
+  itemTypeFilter,
+  brandFilter,
+  colourFilter
 }) => {
   return (
     <form
@@ -47,37 +50,53 @@ const FilterBar = ({
         )
       }
     >
-      <div className='2xl:!max-w-[17%] 2xl:!w-1/6'>
-        <BrandSelector
-          brandsToId={brandsToId}
-          setSelectedBrand={setSelectedBrand}
-          selectedBrand={selectedBrand}
-        />
-      </div>
+      {
+        brandFilter ? (
+          <div className='2xl:!max-w-[17%] 2xl:!w-1/6'>
+            <BrandSelector
+              brandsToId={brandsToId}
+              setSelectedBrand={setSelectedBrand}
+              selectedBrand={selectedBrand}
+            />
+          </div>
+        ) : null
+      }
 
-      <div className='2xl:!max-w-[17%] 2xl:!w-1/6'>
-        <ExcludeBrandSelector
-          brandsToId={brandsToId}
-          setExcludedBrands={setExcludedBrands}
-          excludedBrands={excludedBrands}
-        />
-      </div>
+      {
+        brandFilter ? (
+          <div className='2xl:!max-w-[17%] 2xl:!w-1/6'>
+            <ExcludeBrandSelector
+              brandsToId={brandsToId}
+              setExcludedBrands={setExcludedBrands}
+              excludedBrands={excludedBrands}
+            />
+          </div>
+        ) : null
+      }
 
-      <div className='2xl:!max-w-[17%] 2xl:!w-1/6'>
-        <ColourFilter
-          coloursToId={coloursToId}
-          setSelectedColour={setSelectedColour}
-          selectedColour={selectedColour}
-        />
-      </div>
+      {
+        colourFilter ? (
+          <div className='2xl:!max-w-[17%] 2xl:!w-1/6'>
+            <ColourFilter
+              coloursToId={coloursToId}
+              setSelectedColour={setSelectedColour}
+              selectedColour={selectedColour}
+            />
+          </div>
+        ) : null
+      }
 
-      <div className='2xl:!max-w-[17%] 2xl:!w-1/6'>
-        <ItemCategoryFilter
-          itemCategoriesToId={itemCategoriesToId}
-          setItemCategory={setItemCategory}
-          itemCategory={itemCategory}
-        />
-      </div>
+      {
+        itemTypeFilter ? (
+          <div className='2xl:!max-w-[17%] 2xl:!w-1/6'>
+            <ItemCategoryFilter
+              itemCategoriesToId={itemCategoriesToId}
+              setItemCategory={setItemCategory}
+              itemCategory={itemCategory}
+            />
+          </div>
+        ) : null
+      }
 
       <PriceSelector
         setPriceRange={setPriceRange}

@@ -18,6 +18,17 @@ const getCurrencyIcon = ({ item }) => {
 const ItemCard = ({ item, index, itemType, allBrands }) => {
   const [sellerUsername, setSellerUsername] = useState("");
   const [brandName, setBrandName] = useState("");
+  let idButtonColour = "";
+
+  if (itemType === 'fashion') {
+    idButtonColour = "!bg-fashion";
+  } else if (itemType === 'interior') {
+    idButtonColour = "!bg-interior";
+  } else if (itemType === 'jewelry') {
+    idButtonColour = "!bg-jewelry";
+  } else if (itemType === 'hair') {
+    idButtonColour = "!bg-hair";
+  }
 
   useEffect(() => {
     fetch(constants.backend.API + constants.backend.GET_SELLER + "?sellerId=" + item.sellerId)
@@ -46,7 +57,7 @@ const ItemCard = ({ item, index, itemType, allBrands }) => {
 
   return (
     <div className="card item-card dark:!bg-neutral-800 !min-w-[270px] sm:max-w-[30%] md:max-w-[32%] lg:max-w-[23.5%] 2xl:max-w-[19%] w-3/4 light:border p-4 flex flex-col" data-div-id={index}>
-      <ItemImage itemId={item.itemId} itemType={itemType} />
+      <ItemImage itemId={itemType === "hair" ? item.customItemId : item.itemId} itemType={itemType} />
       <h6 className='mb-0 font-bold text-lg leading-tight'>{item.name}</h6>
       <p className='mb-1'>{brandName}</p>
       <div className='flex flex-row space-x-3'>
@@ -76,9 +87,9 @@ const ItemCard = ({ item, index, itemType, allBrands }) => {
               </IconButton>
             ) : null
           }
-          <Button className={`!rounded-full px-2 !text-xs flex-flex-row items-center space-x-[1px] ${itemType === 'fashion' ? '!bg-fashion' : '!bg-interior'}`} onClick={() => copy(false)} sx={{ height: '3px' }}>
+          <Button className={`!rounded-full px-2 !text-xs flex-flex-row items-center space-x-[1px] ${idButtonColour} ${itemType === "hair"? '!text-neutral-500' : ''}`} onClick={() => copy(false)} sx={{ height: '3px' }}>
             <p className='mb-0'>ID</p>
-            <ContentCopyIcon style={{ width: '14px' }} className='text-white dark:text-neutral-300' />
+            <ContentCopyIcon style={{ width: '14px' }} className={`${itemType === "hair"? 'text-neutral-500 dark:text-neutral-500' : 'text-white dark:text-neutral-300'}`} />
           </Button>
         </div>
       </div>

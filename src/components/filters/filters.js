@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import FilterModal from "./containers/filterModal.js";
 import FilterBar from "./containers/filterBar.js";
 
-const Filters = ({ setIsSearching, searchedItems, setSearchedItems, modal }) => {
+const Filters = ({ setIsSearching, searchedItems, setSearchedItems, modal, itemTypeFilter = true, brandFilter = true, colourFilter = true}) => {
   const [brandsToId, setBrandsToId] = useState([]);
   const [coloursToId, setColoursToId] = useState([]);
   const [itemCategoriesToId, setItemCategoriesToId] = useState([]);
@@ -84,6 +84,9 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, modal }) => 
           coloursToId={coloursToId}
           itemCategoriesToId={itemCategoriesToId}
           clearFilters={clearFilters}
+          itemTypeFilter={itemTypeFilter}
+          brandFilter={brandFilter}
+          colourFilter={colourFilter}
         />
       ) : (
         <FilterBar
@@ -109,6 +112,9 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, modal }) => 
           coloursToId={coloursToId}
           itemCategoriesToId={itemCategoriesToId}
           clearFilters={clearFilters}
+          itemTypeFilter={itemTypeFilter}
+          brandFilter={brandFilter}
+          colourFilter={colourFilter}
         />
       )}
     </div>

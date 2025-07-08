@@ -8,15 +8,15 @@ import Filters from '../components/filters/filters.js';
 import ItemCard from '../components/itemCard.js';
 
 
-const JewelrySearch = () => {
+const HairSearch = () => {
   // for searching
   const [isSearching, setIsSearching] = useState(false);
   const [searchedItems, setSearchedItems] = useState([]);
   const [allBrands, setAllBrands] = useState({});
 
   useEffect(() => {
-    document.title = 'Jewelry | Genie';
-    search({ priceRange: [2, 600] }, "jewelry", setIsSearching, searchedItems, setSearchedItems);
+    document.title = 'Hair | Genie';
+    search({ priceRange: [2, 600] }, "hair", setIsSearching, searchedItems, setSearchedItems);
     axios.get(constants.backend.API + constants.backend.GET_BRANDS)
       .then((response) => {
         let brandsIdToName = response.data.brandsIdToName;
@@ -28,9 +28,18 @@ const JewelrySearch = () => {
   return (
     <div className='flex flex-col h-full'>
       <div className='sticky top-0 dark:!bg-neutral-900 dark:text-neutral-100 !bg-white z-50'>
-        <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>Jewelry for Sale in Starbazaar</h2>
+        <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>Hair for Sale in Starbazaar</h2>
         <div className='pb-4 w-full'>
-          <Filters setIsSearching={setIsSearching} searchedItems={searchedItems} setSearchedItems={setSearchedItems} modal={true} allBrands={allBrands} itemTypeFilter={false} />
+          <Filters
+            setIsSearching={setIsSearching}
+            searchedItems={searchedItems}
+            setSearchedItems={setSearchedItems}
+            modal={true}
+            allBrands={allBrands}
+            itemTypeFilter={false}
+            brandFilter={false}
+            colourFilter={false}
+          />
         </div>
       </div>
 
@@ -45,7 +54,7 @@ const JewelrySearch = () => {
           ) || (
             (searchedItems.length !== 0 && !isSearching) &&
             searchedItems.map((item, index) => (
-              <ItemCard item={item} index={index} itemType={"jewelry"} allBrands={allBrands} />
+              <ItemCard item={item} index={index} itemType={"hair"} allBrands={allBrands} />
             ))
           ) || (
             (
@@ -62,4 +71,4 @@ const JewelrySearch = () => {
   )
 }
 
-export default JewelrySearch;
+export default HairSearch;

@@ -44,6 +44,7 @@ const constants = {
         FASHION: "/",
         INTERIOR: "/interior",
         JEWELRY: "/jewelry",
+        HAIR: "/hair",
         ID_SEARCH: "/brands"
     },
     backend: {

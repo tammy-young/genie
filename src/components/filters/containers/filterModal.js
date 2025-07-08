@@ -46,7 +46,10 @@ const FilterModal = ({
   brandsToId,
   coloursToId,
   itemCategoriesToId,
-  clearFilters
+  clearFilters,
+  itemTypeFilter,
+  brandFilter,
+  colourFilter
 }) => {
   return (
     <div className="!block w-full">
@@ -93,26 +96,42 @@ const FilterModal = ({
             </div>
             <hr className="dark:border-neutral-500" />
             <div className="space-y-4 overflow-y-auto">
-              <BrandSelector
-                brandsToId={brandsToId}
-                setSelectedBrand={setSelectedBrand}
-                selectedBrand={selectedBrand}
-              />
-              <ExcludeBrandSelector
-                brandsToId={brandsToId}
-                setExcludedBrands={setExcludedBrands}
-                excludedBrands={excludedBrands}
-              />
-              <ColourFilter
-                coloursToId={coloursToId}
-                setSelectedColour={setSelectedColour}
-                selectedColour={selectedColour}
-              />
-              <ItemCategoryFilter
-                itemCategoriesToId={itemCategoriesToId}
-                setItemCategory={setItemCategory}
-                itemCategory={itemCategory}
-              />
+              {
+                brandFilter ? (
+                  <BrandSelector
+                    brandsToId={brandsToId}
+                    setSelectedBrand={setSelectedBrand}
+                    selectedBrand={selectedBrand}
+                  />
+                ) : null
+              }
+              {
+                brandFilter ? (
+                  <ExcludeBrandSelector
+                    brandsToId={brandsToId}
+                    setExcludedBrands={setExcludedBrands}
+                    excludedBrands={excludedBrands}
+                  />
+                ) : null
+              }
+              {
+                colourFilter ? (
+                  <ColourFilter
+                    coloursToId={coloursToId}
+                    setSelectedColour={setSelectedColour}
+                    selectedColour={selectedColour}
+                  />
+                ) : null
+              }
+              {
+                itemTypeFilter ? (
+                  <ItemCategoryFilter
+                    itemCategoriesToId={itemCategoriesToId}
+                    setItemCategory={setItemCategory}
+                    itemCategory={itemCategory}
+                  />
+                ) : null
+              }
               <PriceSelector
                 setPriceRange={setPriceRange}
                 setCurrencyType={setCurrencyType}

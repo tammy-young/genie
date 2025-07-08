@@ -26,6 +26,11 @@ module.exports = {
           light: '#f6f1fe',
           dark: '#654a97'
         },
+        hair: {
+          DEFAULT: '#eee447',
+          light: '#f7f2a3',
+          dark: '#777224'
+        }
       },
     },
   },
