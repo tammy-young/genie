@@ -249,6 +249,21 @@ body {
   color: #fff !important;
 }
 
+.hair {
+  background-color: #eee447 !important;
+  color: #000 !important;
+}
+
+.hair-light {
+  background-color: #f7f2a3 !important;
+  color: #000 !important;
+}
+
+.hair-dark {
+  background-color: #777224 !important;
+  color: #fff !important;
+}
+
 .nav-bar .nav > a.selected.nav-link {
   border-radius: 30px;
   background-color: #A87CFC;

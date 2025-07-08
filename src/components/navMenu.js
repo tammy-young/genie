@@ -11,6 +11,7 @@ import NumbersIcon from '@mui/icons-material/Numbers';
 import constants from '../constants.js';
 import CoffeeTwoToneIcon from '@mui/icons-material/CoffeeTwoTone';
 import DiamondIcon from '@mui/icons-material/Diamond';
+import ContentCutIcon from '@mui/icons-material/ContentCut';
 
 
 const NavMenu = () => {
@@ -60,6 +61,12 @@ const NavMenu = () => {
               <NavLink to={constants.paths.JEWELRY} className={"nav-link items-center p-0 !flex justify-between w-full"}>
                 <p className={`m-0 p-0 font-bold ${isActive(constants.paths.JEWELRY) ? "!text-jewelry" : "!text-black dark:!text-white"}`}>Jewelry</p>
                 <DiamondIcon className={`${isActive(constants.paths.JEWELRY) ? "!text-jewelry" : "!text-black dark:!text-white"}`} />
+              </NavLink>
+            </MenuItem>
+            <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
+              <NavLink to={constants.paths.HAIR} className={"nav-link items-center p-0 !flex justify-between w-full"}>
+                <p className={`m-0 p-0 font-bold ${isActive(constants.paths.HAIR) ? "!text-hair" : "!text-black dark:!text-white"}`}>Hair</p>
+                <ContentCutIcon className={`${isActive(constants.paths.HAIR) ? "!text-hair" : "!text-black dark:!text-white"}`} />
               </NavLink>
             </MenuItem>
 
