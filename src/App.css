@@ -234,6 +234,21 @@ body {
   color: #fff !important;
 }
 
+.jewelry {
+  background-color: #A87CFC !important;
+  color: #fff !important;
+}
+
+.jewelry-light {
+  background-color: #f6f1fe !important;
+  color: #000 !important;
+}
+
+.jewelry-dark {
+  background-color: #654a97 !important;
+  color: #fff !important;
+}
+
 .nav-bar .nav > a.selected.nav-link {
   border-radius: 30px;
   background-color: #A87CFC;
