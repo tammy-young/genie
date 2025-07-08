@@ -20,7 +20,12 @@ module.exports = {
           DEFAULT : '#51c0cb',
           light: '#d4fafd',
           dark: '#016c95'
-        }
+        },
+        jewelry: {
+          DEFAULT: '#A87CFC',
+          light: '#f6f1fe',
+          dark: '#654a97'
+        },
       },
     },
   },

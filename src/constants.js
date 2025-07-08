@@ -43,6 +43,7 @@ const constants = {
     paths: {
         FASHION: "/",
         INTERIOR: "/interior",
+        JEWELRY: "/jewelry",
         ID_SEARCH: "/brands"
     },
     backend: {
