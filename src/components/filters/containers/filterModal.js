@@ -46,7 +46,8 @@ const FilterModal = ({
   brandsToId,
   coloursToId,
   itemCategoriesToId,
-  clearFilters
+  clearFilters,
+  itemTypeFilter
 }) => {
   return (
     <div className="!block w-full">
@@ -108,11 +109,15 @@ const FilterModal = ({
                 setSelectedColour={setSelectedColour}
                 selectedColour={selectedColour}
               />
-              <ItemCategoryFilter
-                itemCategoriesToId={itemCategoriesToId}
-                setItemCategory={setItemCategory}
-                itemCategory={itemCategory}
-              />
+              {
+                itemTypeFilter ? (
+                  <ItemCategoryFilter
+                    itemCategoriesToId={itemCategoriesToId}
+                    setItemCategory={setItemCategory}
+                    itemCategory={itemCategory}
+                  />
+                ) : null
+              }
               <PriceSelector
                 setPriceRange={setPriceRange}
                 setCurrencyType={setCurrencyType}

@@ -31,7 +31,8 @@ const FilterBar = ({
   brandsToId,
   coloursToId,
   itemCategoriesToId,
-  clearFilters
+  clearFilters,
+  itemTypeFilter
 }) => {
   return (
     <form
@@ -71,13 +72,17 @@ const FilterBar = ({
         />
       </div>
 
-      <div className='2xl:!max-w-[17%] 2xl:!w-1/6'>
-        <ItemCategoryFilter
-          itemCategoriesToId={itemCategoriesToId}
-          setItemCategory={setItemCategory}
-          itemCategory={itemCategory}
-        />
-      </div>
+      {
+        itemTypeFilter ? (
+          <div className='2xl:!max-w-[17%] 2xl:!w-1/6'>
+            <ItemCategoryFilter
+              itemCategoriesToId={itemCategoriesToId}
+              setItemCategory={setItemCategory}
+              itemCategory={itemCategory}
+            />
+          </div>
+        ) : null
+      }
 
       <PriceSelector
         setPriceRange={setPriceRange}

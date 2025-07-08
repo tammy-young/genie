@@ -30,7 +30,7 @@ const JewelrySearch = () => {
       <div className='sticky top-0 dark:!bg-neutral-900 dark:text-neutral-100 !bg-white z-50'>
         <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>Jewelry for Sale in Starbazaar</h2>
         <div className='pb-4 w-full'>
-          <Filters setIsSearching={setIsSearching} searchedItems={searchedItems} setSearchedItems={setSearchedItems} modal={true} allBrands={allBrands} />
+          <Filters setIsSearching={setIsSearching} searchedItems={searchedItems} setSearchedItems={setSearchedItems} modal={true} allBrands={allBrands} itemTypeFilter={false} />
         </div>
       </div>
 
