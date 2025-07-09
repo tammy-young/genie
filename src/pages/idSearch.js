@@ -14,6 +14,7 @@ const IdSearch = () => {
 
   const [searchingFor, setSearchingFor] = useState("");
   const [brands, setBrands] = useState([]);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   const updateSearchingBrand = (brand) => {
     setSearchingFor(brand.target.value);
@@ -35,8 +36,24 @@ const IdSearch = () => {
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollToTop(window.pageYOffset > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
-    <div>
+    <div className='relative'>
       <div className='!sticky top-0 absolute dark:!bg-neutral-900 bg-[#ffffff] w-full z-[10]'>
         <FormControl>
           <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>All Brands</h2>
@@ -67,6 +84,30 @@ const IdSearch = () => {
           ))
         }
       </div>
+
+      {
+        showScrollToTop && (
+          <button
+            onClick={scrollToTop}
+            className={`fixed bottom-6 right-6 !bg-primary hover:!bg-primary-dark text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-50 ${showScrollToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            aria-label="Scroll to top"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 10l7-7m0 0l7 7m-7-7v18"
+              />
+            </svg>
+          </button>
+        )
+      }
     </div>
   );
 }
