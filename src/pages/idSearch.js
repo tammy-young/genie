@@ -54,17 +54,22 @@ const IdSearch = () => {
 
   return (
     <div className='relative'>
-      <div className='!sticky top-0 absolute dark:!bg-neutral-900 bg-[#ffffff] w-full z-[10]'>
-        <FormControl>
-          <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>All Brands</h2>
-          <FormLabel>Brand Name</FormLabel>
-          <Input className='sm:w-1/2 w-full' data-id={constants.brandIdSearchPage.BRAND_ID_SEARCH_INPUT}
-            onChange={updateSearchingBrand} placeholder='Start typing...' />
-          <br>
-          </br>
+      <div className='sticky top-0 bg-white/95 dark:bg-neutral-900/80 backdrop-blur-sm w-full z-10 pb-4'>
+        <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>All Brands</h2>
+        <FormControl className="max-w-md">
+          <FormLabel className="text-gray-700 dark:text-neutral-300 font-medium mb-2 dark:!text-white">
+            Search Brand Name
+          </FormLabel>
+          <Input
+            data-id={constants.brandIdSearchPage.BRAND_ID_SEARCH_INPUT}
+            onChange={updateSearchingBrand}
+            placeholder='Start typing to search brands...'
+            className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
+            size="lg"
+          />
         </FormControl>
       </div>
-      <div className="flex flex-wrap gap-4 justify-center pb-4">
+      <div className="flex flex-wrap gap-6 justify-center pb-8 pt-4">
         {brands
           .filter(brand => {
             const searchedBrand = searchingFor.toLowerCase();
@@ -72,14 +77,39 @@ const IdSearch = () => {
             return (searchedBrand && brandName.includes(searchedBrand)) || searchedBrand === "";
           })
           .map((brand, index) => (
-            <div key={index} className="p-4 lg:w-[23%] md:w-[30%] sm:w-[48%] w-full rounded dark:!bg-neutral-800 dark:!border-none" style={{ border: '1px solid #dee2e6' }}>
-              <p className='p-0 m-0 text-xl font-bold'>{brand.name}</p>
-              <div className='flex flex-row items-center space-x-1'>
-                <p className='p-0 m-0'>ID: {brand.id}</p>
-                <IconButton className={`!p-0 pr-1`} onClick={() => navigator.clipboard.writeText(brand.id)} aria-label="Copy Username">
-                  <ContentCopyIcon style={{ width: '17px' }} className='text-neutral-400 dark:text-neutral-300' />
+            <div
+              key={index}
+              className="group relative dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl !border !border-gray-200 dark:border-none transition-all duration-300 transform hover:scale-[1.02] p-6 lg:w-[23%] md:w-[30%] sm:w-[48%] w-full min-h-[120px] flex flex-col justify-between"
+            >
+              <div className="flex-1 flex items-start pb-2">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight group-hover:text-primary transition-colors duration-200">
+                  {brand.name}
+                </h3>
+              </div>
+
+              <div className="flex items-center justify-between border-t border-gray-100 dark:border-neutral-700 pt-2">
+                <div className="flex items-center space-x-2">
+                  <span className="text-sm font-medium text-gray-600 dark:text-neutral-400">
+                    ID:
+                  </span>
+                  <span className="text-sm font-mono font-semibold text-gray-900 dark:text-white bg-gray-100 dark:bg-neutral-700 px-2 py-1 rounded-md">
+                    {brand.id}
+                  </span>
+                </div>
+
+                <IconButton
+                  className="!p-2 !min-w-0 hover:!bg-primary/10 dark:hover:!bg-primary/20 rounded-full transition-all duration-200 transform hover:scale-110 group-hover:!bg-primary/5"
+                  onClick={() => navigator.clipboard.writeText(brand.id)}
+                  aria-label="Copy Brand ID"
+                >
+                  <ContentCopyIcon
+                    style={{ width: '18px' }}
+                    className="text-gray-500 dark:text-neutral-400 group-hover:text-primary transition-colors duration-200"
+                  />
                 </IconButton>
               </div>
+
+              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-primary/20 transition-all duration-300 pointer-events-none"></div>
             </div>
           ))
         }
