@@ -18,38 +18,38 @@ const App = () => {
 			<Router>
 				<Routes>
 					<Route path={constants.paths.FASHION} element={
-						<div className='site-padding'>
+						<div>
 							<div className='md:block hidden'><NavBar /></div>
 							<div className='md:hidden block'><NavMenu /></div>
-							<FashionSearch />
+							<div className='site-padding'><FashionSearch /></div>
 						</div>
 					} />
 					<Route path={constants.paths.INTERIOR} element={
-						<div className='site-padding'>
+						<div>
 							<div className='md:block hidden'><NavBar /></div>
 							<div className='md:hidden block'><NavMenu /></div>
-							<InteriorSearch />
+							<div className='site-padding'><InteriorSearch /></div>
 						</div>
 					} />
 					<Route path={constants.paths.JEWELRY} element={
-						<div className='site-padding'>
+						<div>
 							<div className='md:block hidden'><NavBar /></div>
 							<div className='md:hidden block'><NavMenu /></div>
-							<JewelrySearch />
+							<div className='site-padding'><JewelrySearch /></div>
 						</div>
 					} />
 					<Route path={constants.paths.HAIR} element={
-						<div className='site-padding'>
+						<div>
 							<div className='md:block hidden'><NavBar /></div>
 							<div className='md:hidden block'><NavMenu /></div>
-							<HairSearch />
+							<div className='site-padding'><HairSearch /></div>
 						</div>
 					} />
 					<Route path={constants.paths.ID_SEARCH} element={
-						<div className='site-padding'>
+						<div>
 							<div className='md:block hidden'><NavBar /></div>
 							<div className='md:hidden block'><NavMenu /></div>
-							<IdSearch />
+							<div className='site-padding'><IdSearch /></div>
 						</div>
 					} />
 					<Route path="*" element={<NotFound />} />

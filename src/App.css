@@ -245,6 +245,12 @@ body {
 .site-padding {
   padding-left: min(100px, 5%);
   padding-right: min(100px, 5%);
+  padding-top: 5px;
+}
+
+.site-nav-bar-padding {
+  padding-left: min(100px, 5%);
+  padding-right: min(100px, 5%);
 }
 
 @media (max-width: 30em) {
