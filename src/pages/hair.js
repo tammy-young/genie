@@ -51,7 +51,6 @@ const HairSearch = () => {
             setIsSearching={setIsSearching}
             searchedItems={searchedItems}
             setSearchedItems={setSearchedItems}
-            modal={true}
             allBrands={allBrands}
             itemTypeFilter={false}
             brandFilter={false}

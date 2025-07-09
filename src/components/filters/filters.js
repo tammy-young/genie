@@ -2,9 +2,8 @@ import { getFilters } from "../../searchUtils.js";
 import { useState, useEffect } from "react";
 
 import FilterModal from "./containers/filterModal.js";
-import FilterBar from "./containers/filterBar.js";
 
-const Filters = ({ setIsSearching, searchedItems, setSearchedItems, modal, itemTypeFilter = true, brandFilter = true, colourFilter = true}) => {
+const Filters = ({ setIsSearching, searchedItems, setSearchedItems, itemTypeFilter = true, brandFilter = true, colourFilter = true }) => {
   const [brandsToId, setBrandsToId] = useState([]);
   const [coloursToId, setColoursToId] = useState([]);
   const [itemCategoriesToId, setItemCategoriesToId] = useState([]);
@@ -56,68 +55,36 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, modal, itemT
   // }, []);
 
   return (
-    <div>
-      {modal ? (
-        <FilterModal
-          open={open}
-          handleOpen={handleOpen}
-          handleClose={handleClose}
-          selectedBrand={selectedBrand}
-          setSelectedBrand={setSelectedBrand}
-          excludedBrands={excludedBrands}
-          setExcludedBrands={setExcludedBrands}
-          selectedColour={selectedColour}
-          setSelectedColour={setSelectedColour}
-          itemCategory={itemCategory}
-          setItemCategory={setItemCategory}
-          priceRange={priceRange}
-          setPriceRange={setPriceRange}
-          currencyType={currencyType}
-          setCurrencyType={setCurrencyType}
-          itemName={itemName}
-          setItemName={setItemName}
-          itemType={itemType}
-          setIsSearching={setIsSearching}
-          searchedItems={searchedItems}
-          setSearchedItems={setSearchedItems}
-          brandsToId={brandsToId}
-          coloursToId={coloursToId}
-          itemCategoriesToId={itemCategoriesToId}
-          clearFilters={clearFilters}
-          itemTypeFilter={itemTypeFilter}
-          brandFilter={brandFilter}
-          colourFilter={colourFilter}
-        />
-      ) : (
-        <FilterBar
-          selectedBrand={selectedBrand}
-          setSelectedBrand={setSelectedBrand}
-          excludedBrands={excludedBrands}
-          setExcludedBrands={setExcludedBrands}
-          selectedColour={selectedColour}
-          setSelectedColour={setSelectedColour}
-          itemCategory={itemCategory}
-          setItemCategory={setItemCategory}
-          priceRange={priceRange}
-          setPriceRange={setPriceRange}
-          currencyType={currencyType}
-          setCurrencyType={setCurrencyType}
-          itemName={itemName}
-          setItemName={setItemName}
-          itemType={itemType}
-          setIsSearching={setIsSearching}
-          searchedItems={searchedItems}
-          setSearchedItems={setSearchedItems}
-          brandsToId={brandsToId}
-          coloursToId={coloursToId}
-          itemCategoriesToId={itemCategoriesToId}
-          clearFilters={clearFilters}
-          itemTypeFilter={itemTypeFilter}
-          brandFilter={brandFilter}
-          colourFilter={colourFilter}
-        />
-      )}
-    </div>
+    <FilterModal
+      open={open}
+      handleOpen={handleOpen}
+      handleClose={handleClose}
+      selectedBrand={selectedBrand}
+      setSelectedBrand={setSelectedBrand}
+      excludedBrands={excludedBrands}
+      setExcludedBrands={setExcludedBrands}
+      selectedColour={selectedColour}
+      setSelectedColour={setSelectedColour}
+      itemCategory={itemCategory}
+      setItemCategory={setItemCategory}
+      priceRange={priceRange}
+      setPriceRange={setPriceRange}
+      currencyType={currencyType}
+      setCurrencyType={setCurrencyType}
+      itemName={itemName}
+      setItemName={setItemName}
+      itemType={itemType}
+      setIsSearching={setIsSearching}
+      searchedItems={searchedItems}
+      setSearchedItems={setSearchedItems}
+      brandsToId={brandsToId}
+      coloursToId={coloursToId}
+      itemCategoriesToId={itemCategoriesToId}
+      clearFilters={clearFilters}
+      itemTypeFilter={itemTypeFilter}
+      brandFilter={brandFilter}
+      colourFilter={colourFilter}
+    />
   )
 }
 
