@@ -19,53 +19,75 @@ const NavBar = () => {
 
   return (
     location.pathname !== "" ? (
-      <div className='nav-bar flex flex-row flex-wrap space-y-3 sm:space-y-0 justify-between overflow-auto'>
+      <div className='nav-bar bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-neutral-700 sticky top-0 z-50 site-nav-bar-padding py-[0.3rem]'>
+        <div className='flex flex-row flex-wrap space-y-3 sm:space-y-0 justify-between items-center mx-auto'>
 
-        <div className='flex flex-row justify-center sm:justify-start mt-2'>
-          <NavLink to="/">
-            <GenieLogo />
-          </NavLink>
-        </div>
+          <div className='flex flex-row justify-center sm:justify-start'>
+            <NavLink to="/" className="transform hover:scale-105 transition-transform duration-200">
+              <GenieLogo />
+            </NavLink>
+          </div>
 
-        <div className='flex sm:justify-center space-x-3 sm:w-max w-fit'>
-          <div className='nav' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content', paddingRight: '0px' }} >
-            <NavLink to={constants.paths.FASHION} className={"nav-link items-center hover:!text-primary " + (isActive(constants.paths.FASHION) ? "!text-fashion" : "text-neutral-400 dark:!text-neutral-500")} style={{ display: 'flex' }}>
-              <div className='md:block hidden'>Fashion</div>
-              <div><CheckroomIcon /></div>
-            </NavLink>
+          <div className='flex sm:justify-center space-x-1 sm:w-max w-fit'>
+            <div className='nav flex items-center'>
+              <NavLink
+                to={constants.paths.FASHION}
+                className={`flex items-center flex-col justify-center px-4 py-2 rounded-xl transition-all duration-200 hover:bg-fashion/10 hover:scale-105 hover:text-fashion !no-underline ${isActive(constants.paths.FASHION) ? "bg-fashion/20 text-fashion font-semibold shadow-sm" : "text-neutral-600 dark:text-neutral-400"}`}
+              >
+                <CheckroomIcon />
+                <span className='lg:block hidden text-sm'>Fashion</span>
+              </NavLink>
+            </div>
+
+            <div className='nav flex items-center'>
+              <NavLink
+                to={constants.paths.INTERIOR}
+                className={`flex items-center flex-col justify-center px-4 py-2 rounded-xl transition-all duration-200 hover:bg-interior/10 hover:scale-105 hover:text-interior !no-underline ${isActive(constants.paths.INTERIOR) ? "bg-interior/20 text-interior font-semibold shadow-sm" : "text-neutral-600 dark:text-neutral-400"}`}
+              >
+                <ChairIcon />
+                <span className='lg:block hidden text-sm'>Interior</span>
+              </NavLink>
+            </div>
+
+            <div className='nav flex items-center'>
+              <NavLink
+                to={constants.paths.JEWELRY}
+                className={`flex items-center flex-col justify-center px-4 py-2 rounded-xl transition-all duration-200 hover:bg-jewelry/10 hover:scale-105 hover:text-jewelry !no-underline ${isActive(constants.paths.JEWELRY) ? "bg-jewelry/20 text-jewelry font-semibold shadow-sm" : "text-neutral-600 dark:text-neutral-400"}`}
+              >
+                <DiamondIcon />
+                <span className='lg:block hidden text-sm'>Jewelry</span>
+              </NavLink>
+            </div>
+
+            <div className='nav flex items-center'>
+              <NavLink
+                to={constants.paths.HAIR}
+                className={`flex items-center flex-col justify-center px-4 py-2 rounded-xl transition-all duration-200 hover:bg-hair/10 hover:scale-105 hover:text-hair-dark !no-underline ${isActive(constants.paths.HAIR) ? "bg-hair/20 text-hair-dark font-semibold shadow-sm" : "text-neutral-600 dark:text-neutral-400"}`}
+              >
+                <ContentCutIcon />
+                <span className='lg:block hidden text-sm'>Hair</span>
+              </NavLink>
+            </div>
+
+            <div className='nav flex items-center'>
+              <NavLink
+                to={constants.paths.ID_SEARCH}
+                className={`flex items-center flex-col justify-center px-4 py-2 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105 hover:text-primary !no-underline ${isActive(constants.paths.ID_SEARCH) ? "bg-primary/20 !text-primary font-semibold shadow-sm" : "text-neutral-600 dark:text-neutral-400"}`}
+              >
+                <NumbersIcon />
+                <span className='lg:block hidden text-sm'>Brands</span>
+              </NavLink>
+            </div>
           </div>
-          <div className='nav' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content', paddingRight: '0px' }} >
-            <NavLink to={constants.paths.INTERIOR} className={"nav-link items-center hover:!text-primary " + (isActive(constants.paths.INTERIOR) ? "!text-interior" : "text-neutral-400 dark:!text-neutral-500")} style={{ display: 'flex' }}>
-              <div className='md:block hidden'>Interior</div>
-              <div><ChairIcon /></div>
-            </NavLink>
+
+          <div className='flex items-center sm:w-max md:w-fit justify-center sm:justify-end'>
+            <a href='https://buymeacoffee.com/anastaciasd' target='_blank' rel='noreferrer' className='hover:text-white hover:!no-underline'>
+              <button className='!bg-primary px-3 py-2 rounded-xl text-white flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105'>
+                <span className='mb-0 lg:block hidden font-semibold'>Support Genie</span>
+                <CoffeeTwoToneIcon />
+              </button>
+            </a>
           </div>
-          <div className='nav' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content', paddingRight: '0px' }} >
-            <NavLink to={constants.paths.JEWELRY} className={"nav-link items-center hover:!text-primary " + (isActive(constants.paths.JEWELRY) ? "!text-jewelry" : "text-neutral-400 dark:!text-neutral-500")} style={{ display: 'flex' }}>
-              <div className='md:block hidden'>Jewelry</div>
-              <div><DiamondIcon /></div>
-            </NavLink>
-          </div>
-          <div className='nav' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content', paddingRight: '0px' }} >
-            <NavLink to={constants.paths.HAIR} className={"nav-link items-center hover:!text-primary " + (isActive(constants.paths.HAIR) ? "!text-hair-dark dark:!text-hair" : "text-neutral-400 dark:!text-neutral-500")} style={{ display: 'flex' }}>
-              <div className='md:block hidden'>Hair</div>
-              <div><ContentCutIcon /></div>
-            </NavLink>
-          </div>
-          <div className='nav' style={{ display: 'flex', alignItems: 'center', maxWidth: 'fit-content' }} >
-            <NavLink to={constants.paths.ID_SEARCH} className={"nav-link items-center hover:!text-primary " + (isActive(constants.paths.ID_SEARCH) ? "!text-primary" : "text-neutral-400 dark:!text-neutral-500")} style={{ display: 'flex' }}>
-              <div className='md:block hidden'>Brands</div>
-              <div><NumbersIcon /></div>
-            </NavLink>
-          </div>
-        </div>
-        <div className='flex items-center sm:w-max md:w-fit justify-center sm:justify-end'>
-          <a href='https://buymeacoffee.com/anastaciasd' target='_blank' rel='noreferrer' className='hover:text-white hover:!no-underline'>
-            <button className='!bg-primary p-2 rounded text-white flex flex-row lg:space-x-1 items-center'>
-              <p className='mb-0 lg:block hidden font-bold'>Support Genie</p>
-              <CoffeeTwoToneIcon />
-            </button>
-          </a>
         </div>
       </div>
     ) : (null)

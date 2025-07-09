@@ -137,45 +137,6 @@ body {
   margin: 0;
 }
 
-/* Dark mode colors */
-
-@media (prefers-color-scheme: dark) {
-  html {
-    background-color: #171717 !important;
-  }
-  .MuiTable-root {
-    background-color: #353639 !important;
-    color: #dadada !important;
-    border-color: #1f2023 !important;
-  }
-  .MuiTableCell-root {
-    color: #dadada !important;
-  }
-  .MuiFormLabel-root, .MuiCheckbox-label {
-    color: #dadada !important;
-  }
-  .MuiAutocomplete-root, .MuiInput-root, .my-input {
-    background-color: #1f2023 !important;
-    color: #dadada !important;
-    border: 1px solid !important;
-    border-color: #dadada !important;
-  }
-  .genie-primary-text {
-    color: #A87CFC !important;
-    font-weight: bold !important;
-  }
-  a {
-    color: #fff !important;
-  }
-  .MuiCheckbox-checkbox {
-    background-color: #1f2023 !important;
-  }
-  tr {
-    border: 1px double #353639 !important;
-    border-collapse: collapse;
-  }
-}
-
 .page {
   width: 100% !important;
   /* height: 88vh !important; */
@@ -282,6 +243,12 @@ body {
 }
 
 .site-padding {
+  padding-left: min(100px, 5%);
+  padding-right: min(100px, 5%);
+  padding-top: 5px;
+}
+
+.site-nav-bar-padding {
   padding-left: min(100px, 5%);
   padding-right: min(100px, 5%);
 }

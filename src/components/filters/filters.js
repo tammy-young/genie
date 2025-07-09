@@ -2,9 +2,8 @@ import { getFilters } from "../../searchUtils.js";
 import { useState, useEffect } from "react";
 
 import FilterModal from "./containers/filterModal.js";
-import FilterBar from "./containers/filterBar.js";
 
-const Filters = ({ setIsSearching, searchedItems, setSearchedItems, modal, itemTypeFilter = true, brandFilter = true, colourFilter = true}) => {
+const Filters = ({ setIsSearching, searchedItems, setSearchedItems, itemTypeFilter = true, brandFilter = true, colourFilter = true }) => {
   const [brandsToId, setBrandsToId] = useState([]);
   const [coloursToId, setColoursToId] = useState([]);
   const [itemCategoriesToId, setItemCategoriesToId] = useState([]);
@@ -17,6 +16,8 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, modal, itemT
   const [itemName, setItemName] = useState('');
   const [selectedColour, setSelectedColour] = useState({});
   const [itemCategory, setItemCategory] = useState({});
+
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (brandsToId.length === 0) {
@@ -33,91 +34,46 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, modal, itemT
     setItemName('');
     setSelectedColour({});
     setItemCategory({});
+    setErrors({});
   }
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1280);
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     const isSmall = window.innerWidth < 1280;
-  //     setIsSmallScreen(isSmall);
-
-  //     if (!isSmall) {
-  //       setOpen(false);
-  //     }
-  //   };
-
-  //   window.addEventListener("resize", handleResize);
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
-
   return (
-    <div>
-      {modal ? (
-        <FilterModal
-          open={open}
-          handleOpen={handleOpen}
-          handleClose={handleClose}
-          selectedBrand={selectedBrand}
-          setSelectedBrand={setSelectedBrand}
-          excludedBrands={excludedBrands}
-          setExcludedBrands={setExcludedBrands}
-          selectedColour={selectedColour}
-          setSelectedColour={setSelectedColour}
-          itemCategory={itemCategory}
-          setItemCategory={setItemCategory}
-          priceRange={priceRange}
-          setPriceRange={setPriceRange}
-          currencyType={currencyType}
-          setCurrencyType={setCurrencyType}
-          itemName={itemName}
-          setItemName={setItemName}
-          itemType={itemType}
-          setIsSearching={setIsSearching}
-          searchedItems={searchedItems}
-          setSearchedItems={setSearchedItems}
-          brandsToId={brandsToId}
-          coloursToId={coloursToId}
-          itemCategoriesToId={itemCategoriesToId}
-          clearFilters={clearFilters}
-          itemTypeFilter={itemTypeFilter}
-          brandFilter={brandFilter}
-          colourFilter={colourFilter}
-        />
-      ) : (
-        <FilterBar
-          selectedBrand={selectedBrand}
-          setSelectedBrand={setSelectedBrand}
-          excludedBrands={excludedBrands}
-          setExcludedBrands={setExcludedBrands}
-          selectedColour={selectedColour}
-          setSelectedColour={setSelectedColour}
-          itemCategory={itemCategory}
-          setItemCategory={setItemCategory}
-          priceRange={priceRange}
-          setPriceRange={setPriceRange}
-          currencyType={currencyType}
-          setCurrencyType={setCurrencyType}
-          itemName={itemName}
-          setItemName={setItemName}
-          itemType={itemType}
-          setIsSearching={setIsSearching}
-          searchedItems={searchedItems}
-          setSearchedItems={setSearchedItems}
-          brandsToId={brandsToId}
-          coloursToId={coloursToId}
-          itemCategoriesToId={itemCategoriesToId}
-          clearFilters={clearFilters}
-          itemTypeFilter={itemTypeFilter}
-          brandFilter={brandFilter}
-          colourFilter={colourFilter}
-        />
-      )}
-    </div>
+    <FilterModal
+      open={open}
+      handleOpen={handleOpen}
+      handleClose={handleClose}
+      selectedBrand={selectedBrand}
+      setSelectedBrand={setSelectedBrand}
+      excludedBrands={excludedBrands}
+      setExcludedBrands={setExcludedBrands}
+      selectedColour={selectedColour}
+      setSelectedColour={setSelectedColour}
+      itemCategory={itemCategory}
+      setItemCategory={setItemCategory}
+      priceRange={priceRange}
+      setPriceRange={setPriceRange}
+      currencyType={currencyType}
+      setCurrencyType={setCurrencyType}
+      itemName={itemName}
+      setItemName={setItemName}
+      itemType={itemType}
+      setIsSearching={setIsSearching}
+      searchedItems={searchedItems}
+      setSearchedItems={setSearchedItems}
+      brandsToId={brandsToId}
+      coloursToId={coloursToId}
+      itemCategoriesToId={itemCategoriesToId}
+      clearFilters={clearFilters}
+      itemTypeFilter={itemTypeFilter}
+      brandFilter={brandFilter}
+      colourFilter={colourFilter}
+      errors={errors}
+      setErrors={setErrors}
+    />
   )
 }
 

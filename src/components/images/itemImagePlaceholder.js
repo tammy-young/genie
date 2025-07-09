@@ -17,7 +17,7 @@ const ItemImage = ({ itemId, itemType }) => {
   } else if (itemType === "jewelry") {
     linkDesign = "text-jewelry-dark dark:!text-jewelry hover:!text-jewelry dark:hover:!text-jewelry-light";
   } else if (itemType === "hair") {
-    linkDesign = "text-hair-dark dark:!text-hair hover:!text-hair dark:hover:!text-hair-light";
+    linkDesign = "text-hair-dark dark:!text-hair hover:!text-primary dark:hover:!text-hair-light";
   }
 
   return (
@@ -33,7 +33,7 @@ const ItemImage = ({ itemId, itemType }) => {
             ${linkDesign}
               cursor-pointer hover:no-underline`}
             href={imgSRC} target="_blank" rel="noreferrer">
-            <p>Click to view image</p>
+            <p className="mb-0">Click to view image</p>
           </a>
         )
       }

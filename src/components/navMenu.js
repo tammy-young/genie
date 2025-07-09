@@ -23,61 +23,92 @@ const NavMenu = () => {
   }
 
   return (
-    <div className="flex justify-between items-center">
-      <div className='flex flex-row justify-center sm:justify-start mt-2'>
-        <NavLink to="/">
-          <GenieLogo />
-        </NavLink>
-      </div>
+    <div className="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-neutral-700 sticky top-0 z-50 px-4 py-2">
+      <div className="flex justify-between items-center max-w-7xl mx-auto">
+        <div className='flex flex-row justify-center sm:justify-start'>
+          <NavLink to="/" className="transform hover:scale-105 transition-transform duration-200">
+            <GenieLogo />
+          </NavLink>
+        </div>
 
-      <div className='flex space-x-4'>
-        <a href='https://buymeacoffee.com/anastaciasd' target='_blank' rel='noreferrer' className='hover:text-white hover:!no-underline'>
-          <button className='!bg-primary p-2 rounded text-white flex flex-row items-center'>
-            <CoffeeTwoToneIcon />
-          </button>
-        </a>
+        <div className='flex items-center space-x-3'>
+          <a href='https://buymeacoffee.com/anastaciasd' target='_blank' rel='noreferrer' className='hover:text-white hover:!no-underline'>
+            <button className='!bg-primary p-2 rounded-xl text-white flex items-center transition-all duration-200 transform hover:scale-105'>
+              <CoffeeTwoToneIcon />
+            </button>
+          </a>
 
-        <Dropdown>
-          <MenuButton
-            className="!border-none dark:hover:!bg-neutral-700 dark:!text-white"
-          >
-            <MenuIcon />
-          </MenuButton>
-          <Menu placement="bottom-end" className="dark:!bg-neutral-800 w-1/3 !border-none">
-            <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
-              <NavLink to={constants.paths.FASHION} className={"nav-link items-center p-0 !flex justify-between w-full"}>
-                <p className={`m-0 p-0 font-bold ${isActive(constants.paths.FASHION) ? "!text-fashion" : "!text-black dark:!text-white"}`}>Fashion</p>
-                <CheckroomIcon className={`${isActive(constants.paths.FASHION) ? "!text-fashion" : "!text-black dark:!text-white"}`} />
-              </NavLink>
+          <Dropdown>
+            <MenuButton className="!border-none !bg-gray-100 dark:!bg-neutral-800 hover:!bg-gray-200 dark:hover:!bg-neutral-700 !text-gray-700 dark:!text-white rounded-xl p-2 transition-all duration-200 transform hover:scale-105">
+              <MenuIcon />
+            </MenuButton>
 
-            </MenuItem>
-            <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
-              <NavLink to={constants.paths.INTERIOR} className={"nav-link items-center p-0 !flex justify-between w-full"}>
-                <p className={`m-0 p-0 font-bold ${isActive(constants.paths.INTERIOR) ? "!text-interior" : "!text-black dark:!text-white"}`}>Interior</p>
-                <ChairIcon className={`${isActive(constants.paths.INTERIOR) ? "!text-interior" : "!text-black dark:!text-white"}`} />
-              </NavLink>
-            </MenuItem>
-            <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
-              <NavLink to={constants.paths.JEWELRY} className={"nav-link items-center p-0 !flex justify-between w-full"}>
-                <p className={`m-0 p-0 font-bold ${isActive(constants.paths.JEWELRY) ? "!text-jewelry" : "!text-black dark:!text-white"}`}>Jewelry</p>
-                <DiamondIcon className={`${isActive(constants.paths.JEWELRY) ? "!text-jewelry" : "!text-black dark:!text-white"}`} />
-              </NavLink>
-            </MenuItem>
-            <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
-              <NavLink to={constants.paths.HAIR} className={"nav-link items-center p-0 !flex justify-between w-full"}>
-                <p className={`m-0 p-0 font-bold ${isActive(constants.paths.HAIR) ? "!text-hair" : "!text-black dark:!text-white"}`}>Hair</p>
-                <ContentCutIcon className={`${isActive(constants.paths.HAIR) ? "!text-hair" : "!text-black dark:!text-white"}`} />
-              </NavLink>
-            </MenuItem>
+            <Menu
+              placement="bottom-end"
+              className="!bg-white/95 dark:!bg-neutral-800/95 backdrop-blur-sm !border border-gray-200 dark:!border-neutral-700 !rounded-2xl !shadow-2xl !min-w-[200px] !p-2"
+            >
+              <MenuItem className='!p-0 !bg-transparent hover:!bg-fashion/10 dark:hover:!bg-fashion/20 !rounded-xl !mb-1'>
+                <NavLink
+                  to={constants.paths.FASHION}
+                  className="nav-link !flex items-center justify-between w-full !p-3 !no-underline hover:!no-underline"
+                >
+                  <span className={`font-semibold ${isActive(constants.paths.FASHION) ? "text-fashion" : "text-gray-700 dark:text-white"}`}>
+                    Fashion
+                  </span>
+                  <CheckroomIcon className={`${isActive(constants.paths.FASHION) ? "text-fashion" : "text-gray-500 dark:text-gray-400"}`} />
+                </NavLink>
+              </MenuItem>
 
-            <MenuItem className='dark:!text-white dark:hover:!bg-neutral-700'>
-              <NavLink to={constants.paths.ID_SEARCH} className={"nav-link items-center p-0 !flex justify-between w-full"}>
-                <p className={`m-0 p-0 font-bold ${isActive(constants.paths.ID_SEARCH) ? "!text-primary" : "!text-black dark:!text-white"}`}>Brands</p>
-                <NumbersIcon className={`${isActive(constants.paths.ID_SEARCH) ? "!text-primary" : "!text-black dark:!text-white"}`} />
-              </NavLink>
-            </MenuItem>
-          </Menu>
-        </Dropdown>
+              <MenuItem className='!p-0 !bg-transparent hover:!bg-interior/10 dark:hover:!bg-interior/20 !rounded-xl !mb-1'>
+                <NavLink
+                  to={constants.paths.INTERIOR}
+                  className="nav-link !flex items-center justify-between w-full !p-3 !no-underline hover:!no-underline"
+                >
+                  <span className={`font-semibold ${isActive(constants.paths.INTERIOR) ? "text-interior" : "text-gray-700 dark:text-white"}`}>
+                    Interior
+                  </span>
+                  <ChairIcon className={`${isActive(constants.paths.INTERIOR) ? "text-interior" : "text-gray-500 dark:text-gray-400"}`} />
+                </NavLink>
+              </MenuItem>
+
+              <MenuItem className='!p-0 !bg-transparent hover:!bg-jewelry/10 dark:hover:!bg-jewelry/20 !rounded-xl !mb-1'>
+                <NavLink
+                  to={constants.paths.JEWELRY}
+                  className="nav-link !flex items-center justify-between w-full !p-3 !no-underline hover:!no-underline"
+                >
+                  <span className={`font-semibold ${isActive(constants.paths.JEWELRY) ? "text-jewelry" : "text-gray-700 dark:text-white"}`}>
+                    Jewelry
+                  </span>
+                  <DiamondIcon className={`${isActive(constants.paths.JEWELRY) ? "text-jewelry" : "text-gray-500 dark:text-gray-400"}`} />
+                </NavLink>
+              </MenuItem>
+
+              <MenuItem className='!p-0 !bg-transparent hover:!bg-hair/10 dark:hover:!bg-hair/20 !rounded-xl !mb-1'>
+                <NavLink
+                  to={constants.paths.HAIR}
+                  className="nav-link !flex items-center justify-between w-full !p-3 !no-underline hover:!no-underline"
+                >
+                  <span className={`font-semibold ${isActive(constants.paths.HAIR) ? "text-hair-dark dark:text-hair" : "text-gray-700 dark:text-white"}`}>
+                    Hair
+                  </span>
+                  <ContentCutIcon className={`${isActive(constants.paths.HAIR) ? "text-hair-dark dark:text-hair" : "text-gray-500 dark:text-gray-400"}`} />
+                </NavLink>
+              </MenuItem>
+
+              <MenuItem className='!p-0 !bg-transparent hover:!bg-primary/10 dark:hover:!bg-primary/20 !rounded-xl'>
+                <NavLink
+                  to={constants.paths.ID_SEARCH}
+                  className="nav-link !flex items-center justify-between w-full !p-3 !no-underline hover:!no-underline"
+                >
+                  <span className={`font-semibold ${isActive(constants.paths.ID_SEARCH) ? "!text-primary" : "text-gray-700 dark:text-white"}`}>
+                    Brands
+                  </span>
+                  <NumbersIcon className={`${isActive(constants.paths.ID_SEARCH) ? "!text-primary" : "text-gray-500 dark:text-gray-400"}`} />
+                </NavLink>
+              </MenuItem>
+            </Menu>
+          </Dropdown>
+        </div>
       </div>
     </div>
   )

@@ -5,7 +5,6 @@ import BrandSelector from '../brandFilter.js';
 import PriceSelector from '../priceFilter.js';
 import ExcludeBrandSelector from '../excludeBrandFilter.js';
 
-import Button from "@mui/material/Button";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
@@ -49,44 +48,47 @@ const FilterModal = ({
   clearFilters,
   itemTypeFilter,
   brandFilter,
-  colourFilter
+  colourFilter,
+  errors,
+  setErrors
 }) => {
+
+  function validateAndSearch(e) {
+    if (Object.keys(errors).length > 0) {
+      e.preventDefault();
+      return;
+    }
+    onEnterSearch(
+      e,
+      { selectedBrand, excludedBrands, selectedColour, itemCategory, priceRange, currencyType, itemName },
+      itemType,
+      setIsSearching,
+      searchedItems,
+      setSearchedItems,
+      handleClose
+    );
+  }
+
   return (
     <div className="!block w-full">
       <div className="flex space-x-2">
-        <Button onClick={handleOpen} className="border !text-black dark:!text-white !normal-case">
-          Filters
-        </Button>
-        <Button
-          onClick={(e) =>
-            onEnterSearch(
-              e,
-              { selectedBrand, excludedBrands, selectedColour, itemCategory, priceRange, currencyType, itemName },
-              itemType,
-              setIsSearching,
-              searchedItems,
-              setSearchedItems,
-            )
-          }
-          className={`${itemType} !text-white !normal-case`}
+        <button
+          className='px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 border !text-black dark:!text-white'
+          onClick={handleOpen}
         >
-          Search
-        </Button>
+          <span className='mb-0 font-semibold'>Filters</span>
+        </button>
+        <button
+          className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 ${itemType} !text-white`}
+          onClick={validateAndSearch}
+        >
+          <span className='mb-0 font-semibold'>Search</span>
+        </button>
       </div>
       <Modal open={open} onClose={handleClose}>
-        <Box sx={style} className="dark:!bg-[#1f2023] dark:!text-white p-4 w-[95%] sm:w-3/5 lg:w-2/5 !rounded-lg">
+        <Box sx={style} className="dark:!bg-neutral-800 dark:!text-white p-4 w-[95%] sm:w-3/5 lg:w-2/5 !rounded-lg">
           <form
-            onSubmit={(e) =>
-              onEnterSearch(
-                e,
-                { selectedBrand, excludedBrands, selectedColour, itemCategory, priceRange, currencyType, itemName },
-                itemType,
-                setIsSearching,
-                searchedItems,
-                setSearchedItems,
-                handleClose
-              )
-            }
+            onSubmit={validateAndSearch}
             id="filter-form"
             className="flex flex-col space-y-4 w-full flex-wrap ml-0"
           >
@@ -137,16 +139,25 @@ const FilterModal = ({
                 setCurrencyType={setCurrencyType}
                 priceRange={priceRange}
                 currencyType={currencyType}
+                errors={errors}
+                setErrors={setErrors}
               />
               <NameSelector setItemName={setItemName} itemName={itemName} />
             </div>
             <div className="flex space-x-2 ml-0">
-              <Button className={`btn ${itemType} !h-fit !normal-case`} type="submit">
-                Search
-              </Button>
-              <Button className="!bg-neutral-500 !text-white !normal-case" type="button" onClick={clearFilters}>
-                Clear Filters
-              </Button>
+              <button
+                className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 !text-black dark:!text-white ${itemType}`}
+                type="submit"
+              >
+                <span className='mb-0 font-semibold'>Search</span>
+              </button>
+              <button
+                className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 !bg-neutral-500 !text-white`}
+                onClick={clearFilters}
+                type="button"
+              >
+                <span className='mb-0 font-semibold'>Clear Filters</span>
+              </button>
             </div>
           </form>
         </Box>

@@ -14,7 +14,7 @@ import FormLabel from '@mui/joy/FormLabel';
 function Tag({ label, onDelete, ...other }) {
   return (
     <div
-      className="flex items-center p-1 m-1 bg-gray-100 dark:bg-[#1f2023] border rounded px-2 overflow-hidden"
+      className="flex items-center p-1 m-1 bg-gray-100 dark:!bg-neutral-700 border rounded px-2 overflow-hidden"
       {...other}
     >
       <span className="overflow-hidden text-ellipsis whitespace-nowrap">{label}</span>
@@ -137,10 +137,14 @@ const ExcludeBrandSelector = ({ brandsToId, setExcludedBrands, excludedBrands })
   return (
     <FormControl>
       <div>
-        <FormLabel>Exclude Brands</FormLabel>
-        <Input {...getInputProps()}
-          className="w-full border rounded dark:bg-[#1f2023] w-full"
-          placeholder='Start typing...'></Input>
+        <FormLabel className="dark:!text-white">
+          Exclude Brands
+        </FormLabel>
+        <Input
+          {...getInputProps()}
+          className="w-full border rounded w-full dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400"
+          placeholder='Start typing...'
+        />
       </div>
 
       <div className='relative overflow-visible'>
@@ -153,7 +157,7 @@ const ExcludeBrandSelector = ({ brandsToId, setExcludedBrands, excludedBrands })
               const { key, ...optionProps } = getOptionProps({ option, index });
               return (
                 <Box key={key} component="li" sx={{ display: 'flex', alignItems: 'stretch', '& > *': { flexGrow: 1 }, paddingLeft: '10px', paddingRight: '10px', minHeight: '35px' }} {...optionProps}
-                  className='flex items-center cursor-pointer hover:bg-blue-50 dark:text-white dark:hover:!bg-neutral-600 dark:bg-[#1f2023]'>
+                  className='flex items-center cursor-pointer hover:bg-blue-50 dark:text-white dark:hover:!bg-neutral-600 dark:bg-neutral-800'>
                   <div style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
                     <div style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }} className='!text-base'>
                       {option.name}
@@ -167,7 +171,7 @@ const ExcludeBrandSelector = ({ brandsToId, setExcludedBrands, excludedBrands })
         )}
       </div>
 
-      <div className='flex flex-wrap 2xl:max-w-[48%] w-full flex-row' id={constants.divIds.EXCLUDED_BRANDS_SECTION}>
+      <div className='flex flex-wrap w-full flex-row' id={constants.divIds.EXCLUDED_BRANDS_SECTION}>
         {value.map((option, index) => {
           const { key, ...tagProps } = getTagProps({ index });
           return <Tag key={key} {...tagProps} label={option.name} />;
