@@ -5,6 +5,8 @@ import FashionSearch from './pages/fashion.js';
 import InteriorSearch from './pages/interior.js';
 import JewelrySearch from './pages/jewelry.js';
 import HairSearch from './pages/hair.js';
+import NotFound from './pages/404.js';
+
 import constants from './constants.js';
 import IdSearch from './pages/idSearch.js';
 import NavBar from './components/navBar.js';
@@ -12,22 +14,45 @@ import NavMenu from './components/navMenu.js';
 
 const App = () => {
 	return (
-		<div className='site-padding dark:bg-neutral-900 dark:text-neutral-100'>
+		<div className='dark:bg-neutral-900 dark:text-neutral-100'>
 			<Router>
-				<div className='md:block hidden'>
-					<NavBar />
-				</div>
-				<div className='md:hidden block'>
-					<NavMenu />
-				</div>
-
 				<Routes>
-					{/* <Route index path="/" element={<Index />} /> */}
-					<Route path={constants.paths.FASHION} element={<FashionSearch />} />
-					<Route path={constants.paths.INTERIOR} element={<InteriorSearch />} />
-					<Route path={constants.paths.JEWELRY} element={<JewelrySearch />} />
-					<Route path={constants.paths.HAIR} element={<HairSearch />} />
-					<Route path={constants.paths.ID_SEARCH} element={<IdSearch />} />
+					<Route path={constants.paths.FASHION} element={
+						<div className='site-padding'>
+							<div className='md:block hidden'><NavBar /></div>
+							<div className='md:hidden block'><NavMenu /></div>
+							<FashionSearch />
+						</div>
+					} />
+					<Route path={constants.paths.INTERIOR} element={
+						<div className='site-padding'>
+							<div className='md:block hidden'><NavBar /></div>
+							<div className='md:hidden block'><NavMenu /></div>
+							<InteriorSearch />
+						</div>
+					} />
+					<Route path={constants.paths.JEWELRY} element={
+						<div className='site-padding'>
+							<div className='md:block hidden'><NavBar /></div>
+							<div className='md:hidden block'><NavMenu /></div>
+							<JewelrySearch />
+						</div>
+					} />
+					<Route path={constants.paths.HAIR} element={
+						<div className='site-padding'>
+							<div className='md:block hidden'><NavBar /></div>
+							<div className='md:hidden block'><NavMenu /></div>
+							<HairSearch />
+						</div>
+					} />
+					<Route path={constants.paths.ID_SEARCH} element={
+						<div className='site-padding'>
+							<div className='md:block hidden'><NavBar /></div>
+							<div className='md:hidden block'><NavMenu /></div>
+							<IdSearch />
+						</div>
+					} />
+					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</Router>
 			<div style={{ display: "none" }} id={constants.divIds.BRANDS_ID_TO_NAME}></div>
