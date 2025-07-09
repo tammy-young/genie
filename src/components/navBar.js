@@ -34,7 +34,7 @@ const NavBar = () => {
                 to={constants.paths.FASHION}
                 className={`flex items-center flex-col justify-center px-4 py-2 rounded-xl transition-all duration-200 hover:bg-fashion/10 hover:scale-105 hover:text-fashion !no-underline ${isActive(constants.paths.FASHION) ? "bg-fashion/20 text-fashion font-semibold shadow-sm" : "text-neutral-600 dark:text-neutral-400"}`}
               >
-                <CheckroomIcon className="lg:mr-2" />
+                <CheckroomIcon />
                 <span className='lg:block hidden text-sm'>Fashion</span>
               </NavLink>
             </div>
@@ -44,7 +44,7 @@ const NavBar = () => {
                 to={constants.paths.INTERIOR}
                 className={`flex items-center flex-col justify-center px-4 py-2 rounded-xl transition-all duration-200 hover:bg-interior/10 hover:scale-105 hover:text-interior !no-underline ${isActive(constants.paths.INTERIOR) ? "bg-interior/20 text-interior font-semibold shadow-sm" : "text-neutral-600 dark:text-neutral-400"}`}
               >
-                <ChairIcon className="lg:mr-2" />
+                <ChairIcon />
                 <span className='lg:block hidden text-sm'>Interior</span>
               </NavLink>
             </div>
@@ -54,7 +54,7 @@ const NavBar = () => {
                 to={constants.paths.JEWELRY}
                 className={`flex items-center flex-col justify-center px-4 py-2 rounded-xl transition-all duration-200 hover:bg-jewelry/10 hover:scale-105 hover:text-jewelry !no-underline ${isActive(constants.paths.JEWELRY) ? "bg-jewelry/20 text-jewelry font-semibold shadow-sm" : "text-neutral-600 dark:text-neutral-400"}`}
               >
-                <DiamondIcon className="lg:mr-2" />
+                <DiamondIcon />
                 <span className='lg:block hidden text-sm'>Jewelry</span>
               </NavLink>
             </div>
@@ -64,7 +64,7 @@ const NavBar = () => {
                 to={constants.paths.HAIR}
                 className={`flex items-center flex-col justify-center px-4 py-2 rounded-xl transition-all duration-200 hover:bg-hair/10 hover:scale-105 hover:text-hair-dark !no-underline ${isActive(constants.paths.HAIR) ? "bg-hair/20 text-hair-dark font-semibold shadow-sm" : "text-neutral-600 dark:text-neutral-400"}`}
               >
-                <ContentCutIcon className="lg:mr-2" />
+                <ContentCutIcon />
                 <span className='lg:block hidden text-sm'>Hair</span>
               </NavLink>
             </div>
@@ -74,7 +74,7 @@ const NavBar = () => {
                 to={constants.paths.ID_SEARCH}
                 className={`flex items-center flex-col justify-center px-4 py-2 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105 hover:text-primary !no-underline ${isActive(constants.paths.ID_SEARCH) ? "bg-primary/20 !text-primary font-semibold shadow-sm" : "text-neutral-600 dark:text-neutral-400"}`}
               >
-                <NumbersIcon className="lg:mr-2" />
+                <NumbersIcon />
                 <span className='lg:block hidden text-sm'>Brands</span>
               </NavLink>
             </div>
