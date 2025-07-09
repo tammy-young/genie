@@ -57,7 +57,7 @@ const FilterModal = ({
           className='px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 border !text-black dark:!text-white'
           onClick={handleOpen}
         >
-          <span className='mb-0 lg:block hidden font-semibold'>Filters</span>
+          <span className='mb-0 font-semibold'>Filters</span>
         </button>
         <button
           className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 ${itemType} !text-white`}
@@ -72,7 +72,7 @@ const FilterModal = ({
             )
           }
         >
-          <span className='mb-0 lg:block hidden font-semibold'>Search</span>
+          <span className='mb-0 font-semibold'>Search</span>
         </button>
       </div>
       <Modal open={open} onClose={handleClose}>
@@ -147,14 +147,14 @@ const FilterModal = ({
                 className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 !text-black dark:!text-white ${itemType}`}
                 type="submit"
               >
-                <span className='mb-0 lg:block hidden font-semibold'>Search</span>
+                <span className='mb-0 font-semibold'>Search</span>
               </button>
               <button
                 className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 !bg-neutral-500 !text-white`}
                 onClick={clearFilters}
                 type="button"
               >
-                <span className='mb-0 lg:block hidden font-semibold'>Clear Filters</span>
+                <span className='mb-0 font-semibold'>Clear Filters</span>
               </button>
             </div>
           </form>
