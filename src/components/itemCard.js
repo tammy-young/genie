@@ -19,15 +19,25 @@ const ItemCard = ({ item, index, itemType, allBrands }) => {
   const [sellerUsername, setSellerUsername] = useState("");
   const [brandName, setBrandName] = useState("");
   let idButtonColour = "";
+  let hoverOutlineColour = "";
+  let hoverTextColour = "";
 
   if (itemType === 'fashion') {
     idButtonColour = "!bg-fashion";
+    hoverOutlineColour = "group-hover:border-fashion/30";
+    hoverTextColour = "group-hover:text-fashion";
   } else if (itemType === 'interior') {
     idButtonColour = "!bg-interior";
+    hoverOutlineColour = "group-hover:border-interior/30";
+    hoverTextColour = "group-hover:text-interior";
   } else if (itemType === 'jewelry') {
     idButtonColour = "!bg-jewelry";
+    hoverOutlineColour = "group-hover:border-primary/30";
+    hoverTextColour = "group-hover:text-primary";
   } else if (itemType === 'hair') {
     idButtonColour = "!bg-hair";
+    hoverOutlineColour = "group-hover:border-hair/30";
+    hoverTextColour = "group-hover:text-hair-dark dark:group-hover:text-hair";
   }
 
   useEffect(() => {
@@ -56,43 +66,82 @@ const ItemCard = ({ item, index, itemType, allBrands }) => {
   }, [allBrands]);
 
   return (
-    <div className="card item-card dark:!bg-neutral-800 !min-w-[270px] sm:max-w-[30%] md:max-w-[32%] lg:max-w-[23.5%] 2xl:max-w-[19%] w-3/4 light:border p-4 flex flex-col" data-div-id={index}>
-      <ItemImage itemId={itemType === "hair" ? item.customItemId : item.itemId} itemType={itemType} />
-      <h6 className='mb-0 font-bold text-lg leading-tight'>{item.name}</h6>
-      <p className='mb-1'>{brandName}</p>
-      <div className='flex flex-row space-x-3'>
-        <div className='flex flex-row items-center'>
-          <p className='mb-0'>{item.sellPrice}</p>
-          {getCurrencyIcon({ item })}
-        </div>
-        <div className='flex flex-row items-center line-through decoration-neutral-400'>
-          <p className='mb-0 text-neutral-500 dark:text-neutral-400'>{item.originalPrice}</p>
-          {getCurrencyIcon({ item })}
+    <div className="group relative dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] overflow-hidden !border !border-gray-200 dark:!border-none dark:!border-0 dark:border-none !min-w-[270px] sm:max-w-[30%] md:max-w-[32%] lg:max-w-[23.5%] 2xl:max-w-[19%] w-3/4" data-div-id={index}>
+
+      <div className="relative overflow-hidden rounded-t-2xl">
+        <div className="relative">
+          <ItemImage itemId={itemType === "hair" ? item.customItemId : item.itemId} itemType={itemType} />
         </div>
       </div>
-      <div className='flex flex-row items-center'>
-        <div>Sold by</div>
-        {
-          sellerUsername ? (
-            <div className='text-overflow-ellipses max-w-28 sm:max-w-20 md:max-w-24' id={constants.divIds.SELLER_USERNAME_DIV_ID}>
-              &nbsp;{sellerUsername}
+
+      <div className="px-3 pb-3 flex flex-col justify-between dark:!bg-neutral-800">
+        <h3 className={`mb-0 font-bold text-lg leading-tight text-gray-900 dark:text-white line-clamp-2 ${hoverTextColour} transition-colors duration-200`}>
+          {item.name}
+        </h3>
+
+        <p className="text-gray-600 dark:text-neutral-400 font-medium">
+          {brandName}
+        </p>
+
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-1">
+              <span className="text-xl font-bold text-gray-900 dark:text-white">
+                {item.sellPrice}
+              </span>
+              <div className="w-5 h-5">
+                {getCurrencyIcon({ item })}
+              </div>
             </div>
-          ) : null
-        }
-        <div className={`flex flex-row items-center pl-1`}>
-          {
-            sellerUsername ? (
-              <IconButton className={`!p-0 pr-1`} onClick={() => copy(true)} aria-label="Copy Username">
-                <ContentCopyIcon style={{ width: '17px' }} className='text-neutral-400 dark:text-neutral-300' />
-              </IconButton>
-            ) : null
-          }
-          <Button className={`!rounded-full px-2 !text-xs flex-flex-row items-center space-x-[1px] ${idButtonColour} ${itemType === "hair"? '!text-neutral-500' : ''}`} onClick={() => copy(false)} sx={{ height: '3px' }}>
-            <p className='mb-0'>ID</p>
-            <ContentCopyIcon style={{ width: '14px' }} className={`${itemType === "hair"? 'text-neutral-500 dark:text-neutral-500' : 'text-white dark:text-neutral-300'}`} />
+
+            <div className="flex items-center space-x-1 line-through">
+              <span className="text-sm text-gray-500 dark:text-neutral-400">
+                {item.originalPrice}
+              </span>
+              <div className="w-5 h-5 opacity-60">
+                {getCurrencyIcon({ item })}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-neutral-700">
+          <div className="flex items-center space-x-1 flex-1 min-w-0">
+            <span className="text-sm text-gray-600 dark:text-neutral-400">
+              Sold by
+            </span>
+            {
+              sellerUsername && (
+                <div className="flex items-center space-x-1 flex-1 min-w-0">
+                  <span className="text-sm text-gray-900 dark:text-white truncate max-w-20">
+                    {sellerUsername}
+                  </span>
+                  <IconButton
+                    className="!p-1 !min-w-0 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded-full transition-colors duration-200"
+                    onClick={() => copy(true)}
+                    aria-label="Copy Username"
+                  >
+                    <ContentCopyIcon style={{ width: '14px' }} className="text-gray-500 dark:text-neutral-400" />
+                  </IconButton>
+                </div>
+              )
+            }
+          </div>
+
+          <Button
+            className={`!rounded-full !px-3 !py-1 !text-xs !font-semibold !min-h-0 !h-7 flex items-center space-x-1 ${idButtonColour} ${itemType === "hair" ? '!text-black hover:!text-black' : '!text-white hover:!text-white'} hover:shadow-md transition-all duration-200 transform hover:scale-105`}
+            onClick={() => copy(false)}
+          >
+            <span>ID</span>
+            <ContentCopyIcon
+              style={{ width: '12px' }}
+              className={`${itemType === "hair" ? 'text-black' : 'text-white'}`}
+            />
           </Button>
         </div>
       </div>
+
+      <div className={`absolute inset-0 rounded-2xl border-2 border-transparent ${hoverOutlineColour} transition-all duration-300 pointer-events-none`}></div>
     </div>
   )
 }

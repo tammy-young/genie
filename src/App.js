@@ -14,7 +14,7 @@ import NavMenu from './components/navMenu.js';
 
 const App = () => {
 	return (
-		<div className='dark:bg-neutral-900 dark:text-neutral-100'>
+		<div className='dark:bg-neutral-900 dark:text-neutral-100 min-h-screen'>
 			<Router>
 				<Routes>
 					<Route path={constants.paths.FASHION} element={

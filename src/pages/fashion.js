@@ -51,7 +51,7 @@ const FashionSearch = () => {
 				</div>
 			</div>
 
-			<div className='flex flex-wrap w-full sm:gap-4 justify-center pb-4 sm:space-y-0 space-y-4'>
+			<div className='flex flex-wrap w-full sm:gap-4 justify-center pb-4 sm:space-y-0 space-y-4 mt-1'>
 				{
 					(
 						isSearching && (
