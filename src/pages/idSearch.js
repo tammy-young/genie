@@ -57,7 +57,7 @@ const IdSearch = () => {
       <div className='sticky top-0 bg-white/95 dark:bg-neutral-900/80 backdrop-blur-sm w-full z-10 pb-4'>
         <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>All Brands</h2>
         <FormControl className="max-w-md">
-          <FormLabel className="text-gray-700 dark:text-neutral-300 font-medium mb-2 dark:!text-white">
+          <FormLabel className="text-gray-700 dark:text-neutral-300 dark:!text-white">
             Search Brand Name
           </FormLabel>
           <Input
@@ -65,7 +65,6 @@ const IdSearch = () => {
             onChange={updateSearchingBrand}
             placeholder='Start typing to search brands...'
             className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
-            size="lg"
           />
         </FormControl>
       </div>
