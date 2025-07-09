@@ -37,7 +37,7 @@ const IdSearch = () => {
 
   return (
     <div>
-      <div className='!sticky top-0 absolute dark:!bg-neutral-900 bg-[#ffffff] w-full'>
+      <div className='!sticky top-0 absolute dark:!bg-neutral-900 bg-[#ffffff] w-full z-[10]'>
         <FormControl>
           <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>All Brands</h2>
           <FormLabel>Brand Name</FormLabel>
@@ -55,7 +55,7 @@ const IdSearch = () => {
             return (searchedBrand && brandName.includes(searchedBrand)) || searchedBrand === "";
           })
           .map((brand, index) => (
-            <div key={index} className="p-4 lg:w-[23%] md:w-[30%] w-[48%] rounded dark:!bg-neutral-800 dark:!border-none" style={{ border: '1px solid #dee2e6' }}>
+            <div key={index} className="p-4 lg:w-[23%] md:w-[30%] sm:w-[48%] w-full rounded dark:!bg-neutral-800 dark:!border-none" style={{ border: '1px solid #dee2e6' }}>
               <p className='p-0 m-0 text-xl font-bold'>{brand.name}</p>
               <div className='flex flex-row items-center space-x-1'>
                 <p className='p-0 m-0'>ID: {brand.id}</p>
