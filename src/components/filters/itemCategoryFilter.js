@@ -7,9 +7,12 @@ import TextField from '@mui/material/TextField';
 function ItemCategoryFilter({ itemCategoriesToId, setItemCategory, itemCategory }) {
 	return (
 		<FormControl>
-			<FormLabel>Item Type</FormLabel>
+			<FormLabel className="dark:!text-white">
+				Item Type
+			</FormLabel>
 			<Autocomplete
 				options={!itemCategoriesToId ? [{ name: "Loading...", categoryId: 0 }] : itemCategoriesToId}
+				className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
 				placeholder='Start typing...'
 				autoHighlight
 				getOptionLabel={(option) => option.name || ''}
@@ -19,7 +22,7 @@ function ItemCategoryFilter({ itemCategoriesToId, setItemCategory, itemCategory 
 						sx: (theme) => ({
 							zIndex: theme.vars.zIndex.modal,
 						}),
-						className: 'dark:!bg-[#1f2023]'
+						className: 'dark:!bg-neutral-800'
 					}
 				}}
 				onChange={(event, value) => {
@@ -29,7 +32,7 @@ function ItemCategoryFilter({ itemCategoriesToId, setItemCategory, itemCategory 
 					const { key, ...optionProps } = props;
 					return (
 						<Box key={key} component="li" sx={{ display: 'flex', alignItems: 'stretch', paddingLeft: '10px', paddingRight: '10px', minHeight: '35px', maxHeight: '100px' }} {...optionProps}
-							className='-mt-2 mb-2 dark:bg-[#1f2023] dark:text-white dark:hover:!bg-neutral-600 dark:aria-selected:bg-neutral-600 aria-selected:font-bold'>
+							className='-mt-2 mb-2 dark:!bg-neutral-800 dark:text-white dark:hover:!bg-neutral-600 dark:aria-selected:bg-neutral-600 aria-selected:font-bold'>
 							<div style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
 								{option.name}
 							</div>

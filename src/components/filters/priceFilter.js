@@ -7,6 +7,7 @@ import ButtonGroup from '@mui/joy/ButtonGroup';
 import Button from '@mui/joy/Button';
 import FormLabel from '@mui/joy/FormLabel';
 import FormControl from '@mui/joy/FormControl';
+import Input from '@mui/joy/Input';
 
 
 const defaultMin = 2;
@@ -40,7 +41,9 @@ const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange, currencyTyp
   return (
     <div className="flex flex-row space-x-2">
       <FormControl className="pr-2">
-        <FormLabel>Currency Type</FormLabel>
+        <FormLabel className="dark:!text-white">
+          Currency Type
+        </FormLabel>
         <ButtonGroup variant="outlined" aria-label="Currency Type Select">
           <Button
             className={selectedBtn === 0 ? constants.filterValuesIds.SELECTED_CURRENCY + " !bg-primary" : " !bg-neutral-100 dark:!bg-neutral-800 dark:!text-white"} id="0"
@@ -63,14 +66,25 @@ const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange, currencyTyp
 
       <div className={`flex flex-row space-x-2 ${selectedBtn === 0 ? "hidden" : ""}`}>
         <FormControl>
-          <FormLabel>Min</FormLabel>
-          <input type="number" id={constants.filterValuesIds.FASHION_MIN_PRICE} min={defaultMin} max={defaultMax}
-            onChange={handleMinInputChange} value={priceRange[0]} className='my-input font-normal h-9 text-clip' />
+          <FormLabel className="dark:!text-white">
+            Min
+          </FormLabel>
+          <Input
+            type="number"
+            id={constants.filterValuesIds.FASHION_MIN_PRICE} min={defaultMin} max={defaultMax}
+            onChange={handleMinInputChange} value={priceRange[0]}
+            className='my-input font-normal h-9 text-clip dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400 w-20'
+          />
         </FormControl>
         <FormControl>
-          <FormLabel>Max</FormLabel>
-          <input type="number" id={constants.filterValuesIds.FASHION_MAX_PRICE} min={defaultMin} max={defaultMax}
-            onChange={handleMaxInputChange} value={priceRange[1]} className='my-input font-normal h-9' />
+          <FormLabel className="dark:!text-white">
+            Max
+          </FormLabel>
+          <Input type="number"
+            id={constants.filterValuesIds.FASHION_MAX_PRICE} min={defaultMin} max={defaultMax}
+            onChange={handleMaxInputChange} value={priceRange[1]}
+            className='my-input font-normal h-9 dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400 w-20'
+          />
         </FormControl>
       </div>
     </div>

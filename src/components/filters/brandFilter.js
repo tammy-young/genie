@@ -11,11 +11,14 @@ const BRAND_NAME_TEXT = "Brand Name";
 export function BrandSelector({ brandsToId, setSelectedBrand, selectedBrand }) {
 	return (
 		<FormControl>
-			<FormLabel>{BRAND_NAME_TEXT}</FormLabel>
+			<FormLabel className="dark:!text-white">
+				{BRAND_NAME_TEXT}
+			</FormLabel>
 			<Autocomplete
 				id={constants.filterValuesIds.FASHION_BRAND}
 				options={!brandsToId ? [{ name: "Loading...", brandId: 0 }] : brandsToId}
 				placeholder='Start typing...'
+				className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
 				autoHighlight
 				getOptionLabel={(option) => option.name || ''}
 				value={selectedBrand}
@@ -24,7 +27,7 @@ export function BrandSelector({ brandsToId, setSelectedBrand, selectedBrand }) {
 						sx: (theme) => ({
 							zIndex: theme.vars.zIndex.modal,
 						}),
-						className: 'dark:!bg-[#1f2023]'
+						className: 'dark:!bg-neutral-800'
 					}
 				}}
 				onChange={(event, value) => {
@@ -34,7 +37,7 @@ export function BrandSelector({ brandsToId, setSelectedBrand, selectedBrand }) {
 					const { key, ...optionProps } = props;
 					return (
 						<Box key={key} component="li" sx={{ display: 'flex', alignItems: 'stretch', paddingLeft: '10px', paddingRight: '10px', minHeight: '35px', maxHeight: '100px' }} {...optionProps}
-							className='-mt-2 mb-2 dark:bg-[#1f2023] dark:text-white dark:hover:!bg-neutral-600 dark:aria-selected:bg-neutral-600 aria-selected:font-bold'>
+							className='-mt-2 mb-2 dark:!bg-neutral-800 dark:text-white dark:hover:!bg-neutral-600 dark:aria-selected:bg-neutral-600 aria-selected:font-bold'>
 							<div style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
 								{option.name}
 							</div>
