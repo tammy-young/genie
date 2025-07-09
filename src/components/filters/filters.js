@@ -17,6 +17,8 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, itemTypeFilt
   const [selectedColour, setSelectedColour] = useState({});
   const [itemCategory, setItemCategory] = useState({});
 
+  const [errors, setErrors] = useState({});
+
   useEffect(() => {
     if (brandsToId.length === 0) {
       getFilters(setBrandsToId, setColoursToId, setItemCategoriesToId, itemType);
@@ -32,27 +34,12 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, itemTypeFilt
     setItemName('');
     setSelectedColour({});
     setItemCategory({});
+    setErrors({});
   }
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  // const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1280);
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     const isSmall = window.innerWidth < 1280;
-  //     setIsSmallScreen(isSmall);
-
-  //     if (!isSmall) {
-  //       setOpen(false);
-  //     }
-  //   };
-
-  //   window.addEventListener("resize", handleResize);
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
 
   return (
     <FilterModal
@@ -84,6 +71,8 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, itemTypeFilt
       itemTypeFilter={itemTypeFilter}
       brandFilter={brandFilter}
       colourFilter={colourFilter}
+      errors={errors}
+      setErrors={setErrors}
     />
   )
 }

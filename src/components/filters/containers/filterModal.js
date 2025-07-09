@@ -48,8 +48,27 @@ const FilterModal = ({
   clearFilters,
   itemTypeFilter,
   brandFilter,
-  colourFilter
+  colourFilter,
+  errors,
+  setErrors
 }) => {
+
+  function validateAndSearch(e) {
+    if (Object.keys(errors).length > 0) {
+      e.preventDefault();
+      return;
+    }
+    onEnterSearch(
+      e,
+      { selectedBrand, excludedBrands, selectedColour, itemCategory, priceRange, currencyType, itemName },
+      itemType,
+      setIsSearching,
+      searchedItems,
+      setSearchedItems,
+      handleClose
+    );
+  }
+
   return (
     <div className="!block w-full">
       <div className="flex space-x-2">
@@ -61,16 +80,7 @@ const FilterModal = ({
         </button>
         <button
           className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 ${itemType} !text-white`}
-          onClick={(e) =>
-            onEnterSearch(
-              e,
-              { selectedBrand, excludedBrands, selectedColour, itemCategory, priceRange, currencyType, itemName },
-              itemType,
-              setIsSearching,
-              searchedItems,
-              setSearchedItems,
-            )
-          }
+          onClick={validateAndSearch}
         >
           <span className='mb-0 font-semibold'>Search</span>
         </button>
@@ -78,17 +88,7 @@ const FilterModal = ({
       <Modal open={open} onClose={handleClose}>
         <Box sx={style} className="dark:!bg-neutral-800 dark:!text-white p-4 w-[95%] sm:w-3/5 lg:w-2/5 !rounded-lg">
           <form
-            onSubmit={(e) =>
-              onEnterSearch(
-                e,
-                { selectedBrand, excludedBrands, selectedColour, itemCategory, priceRange, currencyType, itemName },
-                itemType,
-                setIsSearching,
-                searchedItems,
-                setSearchedItems,
-                handleClose
-              )
-            }
+            onSubmit={validateAndSearch}
             id="filter-form"
             className="flex flex-col space-y-4 w-full flex-wrap ml-0"
           >
@@ -139,6 +139,8 @@ const FilterModal = ({
                 setCurrencyType={setCurrencyType}
                 priceRange={priceRange}
                 currencyType={currencyType}
+                errors={errors}
+                setErrors={setErrors}
               />
               <NameSelector setItemName={setItemName} itemName={itemName} />
             </div>
