@@ -5,6 +5,9 @@
 # Genie 🧞 [![Netlify Status](https://api.netlify.com/api/v1/badges/7ec8dd45-a039-4f09-94a2-e96e76955207/deploy-status)](https://app.netlify.com/sites/stardoll-genie/deploys)
 A GUI for Stardoll debug search built with [React](https://react.dev/).
 
+# Backend 🔧
+Please see the [Genie API](https://github.com/tammy-young/genie-api).
+
 # Installation 🛠️
 To run Genie locally, first clone the repository.
 ```bash
