@@ -6,6 +6,8 @@ import InteriorSearch from './pages/interior.js';
 import JewelrySearch from './pages/jewelry.js';
 import HairSearch from './pages/hair.js';
 import NotFound from './pages/404.js';
+import Login from './pages/login.js';
+import Signup from './pages/signup.js';
 
 import constants from './constants.js';
 import IdSearch from './pages/idSearch.js';
@@ -51,6 +53,12 @@ const App = () => {
 							<div className='md:hidden block'><NavMenu /></div>
 							<div className='site-padding'><IdSearch /></div>
 						</div>
+					} />
+					<Route path="/login" element={
+						<Login />
+					} />
+					<Route path="/signup" element={
+						<Signup />
 					} />
 					<Route path="*" element={<NotFound />} />
 				</Routes>
