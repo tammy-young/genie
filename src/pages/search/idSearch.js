@@ -7,8 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import constants from '../constants';
-import '../App.css';
+import constants from '../../constants';
 
 const BrandItem = ({ brand }) => {
   return (

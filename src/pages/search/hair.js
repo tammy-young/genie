@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
-import '../App.css';
-import { search } from '../searchUtils.js';
+import { search } from '../../searchUtils.js';
 import axios from 'axios';
-import constants from '../constants.js';
+import constants from '../../constants.js';
 
-import Filters from '../components/filters/filters.js';
-import ItemCard from '../components/itemCard.js';
+import Filters from '../../components/filters/filters.js';
+import ItemCard from '../../components/itemCard.js';
 
 
-const JewelrySearch = () => {
+const HairSearch = () => {
   // for searching
   const [isSearching, setIsSearching] = useState(false);
   const [searchedItems, setSearchedItems] = useState([]);
@@ -16,8 +15,8 @@ const JewelrySearch = () => {
   const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   useEffect(() => {
-    document.title = 'Jewelry | Genie';
-    search({ priceRange: [2, 600] }, "jewelry", setIsSearching, searchedItems, setSearchedItems);
+    document.title = 'Hair | Genie';
+    search({ priceRange: [2, 600] }, "hair", setIsSearching, searchedItems, setSearchedItems);
     axios.get(constants.backend.API + constants.backend.GET_BRANDS)
       .then((response) => {
         let brandsIdToName = response.data.brandsIdToName;
@@ -45,9 +44,17 @@ const JewelrySearch = () => {
   return (
     <div className='flex flex-col h-full relative'>
       <div className='sticky top-0 bg-white/95 dark:!bg-neutral-900/80 dark:text-neutral-100 z-50'>
-        <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>Jewelry for Sale in Starbazaar</h2>
+        <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>Hair for Sale in Starbazaar</h2>
         <div className='pb-4 w-full'>
-          <Filters setIsSearching={setIsSearching} searchedItems={searchedItems} setSearchedItems={setSearchedItems} allBrands={allBrands} itemTypeFilter={false} />
+          <Filters
+            setIsSearching={setIsSearching}
+            searchedItems={searchedItems}
+            setSearchedItems={setSearchedItems}
+            allBrands={allBrands}
+            itemTypeFilter={false}
+            brandFilter={false}
+            colourFilter={false}
+          />
         </div>
       </div>
 
@@ -62,7 +69,7 @@ const JewelrySearch = () => {
           ) || (
             (searchedItems.length !== 0 && !isSearching) &&
             searchedItems.map((item, index) => (
-              <ItemCard item={item} index={index} itemType={"jewelry"} allBrands={allBrands} />
+              <ItemCard item={item} index={index} itemType={"hair"} allBrands={allBrands} />
             ))
           ) || (
             (
@@ -80,7 +87,7 @@ const JewelrySearch = () => {
         showScrollToTop && (
           <button
             onClick={scrollToTop}
-            className={`fixed bottom-6 right-6 bg-jewelry hover:bg-jewelry-dark text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-50 ${showScrollToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            className={`fixed bottom-6 right-6 bg-hair hover:bg-hair-dark text-black p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-50 ${showScrollToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             aria-label="Scroll to top"
           >
             <svg
@@ -103,4 +110,4 @@ const JewelrySearch = () => {
   )
 }
 
-export default JewelrySearch;
+export default HairSearch;

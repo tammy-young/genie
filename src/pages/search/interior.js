@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import '../App.css';
-import { search } from '../searchUtils.js';
+import { search } from '../../searchUtils.js';
 import axios from 'axios';
-import constants from '../constants.js';
+import constants from '../../constants.js';
 
-import Filters from '../components/filters/filters.js';
-import ItemCard from '../components/itemCard.js';
+import Filters from '../../components/filters/filters.js';
+import ItemCard from '../../components/itemCard.js';
 
 
 const InteriorSearch = () => {
