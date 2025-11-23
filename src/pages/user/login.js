@@ -50,17 +50,19 @@ export default function Login() {
         {error && <p style={{ color: 'red', margin: 0, padding: 0, textAlign: 'center' }}>{error}</p>}
         <form className='flex flex-col gap-4' onSubmit={handleLogin}>
           <FormControl className='w-full'>
-            <FormLabel className="dark:!text-white">Username</FormLabel>
+            <FormLabel className="dark:!text-white">Username *</FormLabel>
             <Input
               placeholder="Enter your username" value={form.username} onChange={e => setForm({ ...form, username: e.target.value })}
               className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
+              required
             />
           </FormControl>
           <FormControl className='w-full'>
-            <FormLabel className="dark:!text-white">Password</FormLabel>
+            <FormLabel className="dark:!text-white">Password *</FormLabel>
             <Input
               placeholder="Enter your password" type="password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })}
               className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
+              required
             />
           </FormControl>
           <button

@@ -31,6 +31,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -146,7 +147,7 @@ body {
   height: fit-content;
 }
 
-.nav-bar .nav > a.fashion-selected.nav-link {
+.nav-bar .nav>a.fashion-selected.nav-link {
   border-radius: 30px;
   background-color: #ee6fb3;
   color: #fff !important;
@@ -157,7 +158,7 @@ body {
   gap: 5px !important;
 }
 
-.nav-bar .nav > a.interior-selected.nav-link {
+.nav-bar .nav>a.interior-selected.nav-link {
   border-radius: 30px;
   background-color: #51c0cb;
   color: #fff !important;
@@ -224,7 +225,7 @@ body {
   color: #fff !important;
 }
 
-.nav-bar .nav > a.selected.nav-link {
+.nav-bar .nav>a.selected.nav-link {
   border-radius: 30px;
   background-color: #A87CFC;
   color: #fff !important;
@@ -256,4 +257,12 @@ body {
   .nav-link div {
     display: none;
   }
+}
+
+* {
+  transition-duration: 300ms;
+}
+
+.MuiMenu-root {
+  transition-duration: 0ms !important;
 }

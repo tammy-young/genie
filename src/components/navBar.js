@@ -5,6 +5,8 @@ import ChairIcon from '@mui/icons-material/Chair';
 import CoffeeTwoToneIcon from '@mui/icons-material/CoffeeTwoTone';
 import DiamondIcon from '@mui/icons-material/Diamond';
 import ContentCutIcon from '@mui/icons-material/ContentCut';
+import ProfileMenu from './profileMenu.js';
+import { useSelector } from 'react-redux';
 
 import GenieLogo from './images/genieLogo.js';
 import constants from '../constants.js';
@@ -12,6 +14,7 @@ import constants from '../constants.js';
 
 const NavBar = () => {
   const location = useLocation();
+  const username = useSelector(state => state.username);
 
   const isActive = (path) => {
     return location.pathname === path;
@@ -80,13 +83,24 @@ const NavBar = () => {
             </div>
           </div>
 
-          <div className='flex items-center sm:w-max md:w-fit justify-center sm:justify-end'>
+          <div className='flex items-center sm:w-max md:w-fit justify-center sm:justify-end flex-row gap-4'>
             <a href='https://buymeacoffee.com/anastaciasd' target='_blank' rel='noreferrer' className='hover:text-white hover:!no-underline'>
               <button className='!bg-primary px-3 py-2 rounded-xl text-white flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105'>
                 <span className='mb-0 lg:block hidden font-semibold'>Support Genie</span>
                 <CoffeeTwoToneIcon />
               </button>
             </a>
+            {
+              username ? (
+                <ProfileMenu username={username} />
+              ) : (
+                <a href='/login' target='_self' rel='noreferrer' className='hover:text-white hover:!no-underline'>
+                  <button className='!bg-primary px-3 py-2 rounded-xl text-white flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105'>
+                    <span className='mb-0 lg:block hidden font-semibold'>Sign In</span>
+                  </button>
+                </a>
+              )
+            }
           </div>
         </div>
       </div>

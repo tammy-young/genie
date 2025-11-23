@@ -45,7 +45,9 @@ const constants = {
         INTERIOR: "/interior",
         JEWELRY: "/jewelry",
         HAIR: "/hair",
-        ID_SEARCH: "/brands"
+        ID_SEARCH: "/brands",
+        PROFILE: "/profile",
+        WISHES: "/wishes"
     },
     backend: {
         API: process.env.REACT_APP_API_URL,
@@ -53,7 +55,8 @@ const constants = {
         SEARCH: "/search",
         GET_SELLER: "/getSeller",
         LOGIN: "/auth/login",
-        SIGNUP: "/auth/signup"
+        SIGNUP: "/auth/signup",
+        USERS: "/users/",
     }
 }
 
