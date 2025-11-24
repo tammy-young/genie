@@ -57,6 +57,7 @@ const constants = {
         LOGIN: "/auth/login",
         SIGNUP: "/auth/signup",
         USERS: "/users/",
+        WISHES: "/wishes"
     }
 }
 

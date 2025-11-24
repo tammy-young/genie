@@ -1,0 +1,71 @@
+import { useSelector } from "react-redux"
+import { useEffect, useState } from "react"
+import constants from "../../constants";
+import ItemCard from "../../components/itemCard";
+import StarIcon from '@mui/icons-material/Star';
+
+export default function Wishes() {
+  const [page, setPage] = useState(1);
+  const [wishesData, setWishesData] = useState({});
+  const userId = useSelector(state => state.id);
+  const [allBrands, setAllBrands] = useState({});
+
+  function getBrands() {
+    fetch(constants.backend.API + constants.backend.GET_BRANDS)
+      .then((res) => res.json())
+      .then((data) => {
+        let brandsIdToName = data.brandsIdToName;
+        setAllBrands(brandsIdToName);
+      });
+  }
+
+  function fetchWishes() {
+    fetch(`${constants.backend.API}${constants.backend.WISHES}?userId=${userId}&page=${page}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(async response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        const err = await response.json();
+        throw err;
+      }
+    }).then((data) => {
+      setWishesData(data);
+    }).catch((error) => {
+      console.error('Error fetching wishes:', error);
+    });
+  }
+
+  useEffect(() => {
+    getBrands();
+    fetchWishes();
+  }, [page]);
+
+  useEffect(() => {
+    document.title = 'My Wishes | Genie';
+  }, []);
+
+  return (
+    <div className='flex flex-col h-full relative'>
+      <div className='sticky top-0 bg-white/95 dark:!bg-neutral-900/80 dark:text-neutral-100 z-50 pb-2'>
+        <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>My Wishes</h2>
+      </div>
+      <div className='flex flex-wrap w-full sm:gap-4 justify-center pb-4 sm:space-y-0 space-y-4 mt-1'>
+        {
+          wishesData.wishes?.length === 0 ? (
+            <p className="text-gray-600 dark:text-gray-300 text-center">
+              You have no wishes yet.<br />Add wishes by clicking the <StarIcon className="inline-block mb-1 text-neutral-400" /> on the items you like.
+            </p>
+          ) : (
+            wishesData.wishes?.map((item) => (
+              <ItemCard key={item.id} item={item} userId={userId} wishPage allBrands={allBrands} />
+            ))
+          )
+        }
+      </div>
+    </div>
+  )
+}

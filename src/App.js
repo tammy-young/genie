@@ -9,6 +9,7 @@ import NotFound from './pages/404.js';
 import Login from './pages/user/login.js';
 import Signup from './pages/user/signup.js';
 import Profile from './pages/user/profile.js';
+import Wishes from './pages/user/wishes.js';
 
 import constants from './constants.js';
 import IdSearch from './pages/search/idSearch.js';
@@ -66,6 +67,13 @@ const App = () => {
 							<div className='md:block hidden'><NavBar /></div>
 							<div className='md:hidden block'><NavMenu /></div>
 							<div className='site-padding'><Profile /></div>
+						</div>
+					} />
+					<Route path="/wishes" element={
+						<div>
+							<div className='md:block hidden'><NavBar /></div>
+							<div className='md:hidden block'><NavMenu /></div>
+							<div className='site-padding'><Wishes /></div>
 						</div>
 					} />
 					<Route path="*" element={<NotFound />} />

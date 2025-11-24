@@ -12,7 +12,7 @@ import constants from '../../constants';
 const BrandItem = ({ brand }) => {
   return (
     <div
-      className="group relative dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl !border !border-gray-200 dark:border-none transition-all duration-300 transform hover:scale-[1.02] p-6 lg:w-[23%] md:w-[30%] sm:w-[48%] w-full min-h-[120px] flex flex-col justify-between"
+      className="group relative dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl !border !border-gray-200 dark:border-none transition-all duration-300 transform p-6 lg:w-[23%] md:w-[30%] sm:w-[48%] w-full min-h-[120px] flex flex-col justify-between"
     >
       <div className="flex-1 flex items-start pb-2">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight group-hover:text-primary transition-colors duration-200">
@@ -31,7 +31,7 @@ const BrandItem = ({ brand }) => {
         </div>
 
         <IconButton
-          className="!p-2 !min-w-0 hover:!bg-primary/10 dark:hover:!bg-primary/20 rounded-full transition-all duration-200 transform hover:scale-110 group-hover:!bg-primary/5"
+          className="!p-2 !min-w-0 hover:!bg-primary/10 dark:hover:!bg-primary/20 rounded-full transition-all duration-200 transform group-hover:!bg-primary/5"
           onClick={() => navigator.clipboard.writeText(brand.id)}
           aria-label="Copy Brand ID"
         >
@@ -132,7 +132,7 @@ const IdSearch = () => {
         showScrollToTop && (
           <button
             onClick={scrollToTop}
-            className={`fixed bottom-6 right-6 !bg-primary hover:!bg-primary-dark text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-50 ${showScrollToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            className={`fixed bottom-6 right-6 !bg-primary hover:!bg-primary-dark text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform z-50 ${showScrollToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             aria-label="Scroll to top"
           >
             <svg

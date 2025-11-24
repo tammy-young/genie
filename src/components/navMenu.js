@@ -19,7 +19,7 @@ import { useSelector } from 'react-redux';
 function NavDropdown({ isActive }) {
   return (
     <Dropdown>
-      <MenuButton className="!border-none !bg-gray-100 dark:!bg-neutral-800 hover:!bg-gray-200 dark:hover:!bg-neutral-700 !text-gray-700 dark:!text-white rounded-xl p-2 transition-all duration-200 transform hover:scale-105">
+      <MenuButton className="!border-none !bg-gray-100 dark:!bg-neutral-800 hover:!bg-gray-200 dark:hover:!bg-neutral-700 !text-gray-700 dark:!text-white rounded-xl p-2 transition-all duration-200 transform">
         <MenuIcon />
       </MenuButton>
 
@@ -105,14 +105,14 @@ const NavMenu = () => {
     <div className="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-neutral-700 sticky top-0 z-50 px-4 py-2">
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         <div className='flex flex-row justify-center sm:justify-start'>
-          <NavLink to="/" className="transform hover:scale-105 transition-transform duration-200">
+          <NavLink to="/" className="transform transition-transform duration-200">
             <GenieLogo />
           </NavLink>
         </div>
 
         <div className='flex items-center flex-row gap-3'>
           <a href='https://buymeacoffee.com/anastaciasd' target='_blank' rel='noreferrer' className='hover:text-white hover:!no-underline'>
-            <button className='!bg-primary p-2 rounded-xl text-white flex items-center transition-all duration-200 transform hover:scale-105'>
+            <button className='!bg-primary p-2 rounded-xl text-white flex items-center transition-all duration-200 transform'>
               <CoffeeTwoToneIcon />
             </button>
           </a>

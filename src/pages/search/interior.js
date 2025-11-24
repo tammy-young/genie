@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { search } from '../../searchUtils.js';
 import axios from 'axios';
 import constants from '../../constants.js';
+import { useSelector } from 'react-redux';
 
 import Filters from '../../components/filters/filters.js';
 import ItemCard from '../../components/itemCard.js';
@@ -13,6 +14,7 @@ const InteriorSearch = () => {
 	const [searchedItems, setSearchedItems] = useState([]);
 	const [allBrands, setAllBrands] = useState({});
 	const [showScrollToTop, setShowScrollToTop] = useState(false);
+	const userId = useSelector(state => state.id);
 
 	useEffect(() => {
 		document.title = 'Interior | Genie';
@@ -61,7 +63,7 @@ const InteriorSearch = () => {
 					) || (
 						(searchedItems.length !== 0 && !isSearching) &&
 						searchedItems.map((item, index) => (
-							<ItemCard item={item} index={index} itemType={"interior"} allBrands={allBrands} />
+							<ItemCard item={item} itemType={"interior"} allBrands={allBrands} userId={userId} />
 						))
 					) || (
 						(
@@ -79,7 +81,7 @@ const InteriorSearch = () => {
 				showScrollToTop && (
 					<button
 						onClick={scrollToTop}
-						className={`fixed bottom-6 right-6 bg-interior hover:bg-interior-dark text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-50 ${showScrollToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+						className={`fixed bottom-6 right-6 bg-interior hover:bg-interior-dark text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform z-50 ${showScrollToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
 						aria-label="Scroll to top"
 					>
 						<svg

@@ -66,7 +66,7 @@ export default function Login() {
             />
           </FormControl>
           <button
-            className={`px-3 py-2 rounded-xl font-semibold text-center flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 !text-black dark:!text-white !bg-primary`}
+            className={`px-3 py-2 rounded-xl font-semibold text-center flex flex-row lg:space-x-2 items-center transition-all duration-200 transform !text-black dark:!text-white !bg-primary`}
             type="submit"
           >
             <span className='w-full text-center text-white'>Login</span>

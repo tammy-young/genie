@@ -106,13 +106,13 @@ function EditProfileForm({ profile, setIsEditing }) {
       </FormControl>
       <div className="flex flex-row gap-4">
         <button
-          className={`px-3 py-2 !bg-primary rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 !text-white`}
+          className={`px-3 py-2 !bg-primary rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform !text-white`}
           type="submit"
         >
           <span className='mb-0 font-semibold'>Save</span>
         </button>
         <button
-          className={`px-3 py-2 bg-neutral-500 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 !text-white`}
+          className={`px-3 py-2 bg-neutral-500 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform !text-white`}
           type="submit"
         >
           <span className='mb-0 font-semibold'>Cancel</span>

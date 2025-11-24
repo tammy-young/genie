@@ -7,6 +7,7 @@ import StardollarIcon from './images/stardollar';
 import StarcoinIcon from './images/starcoin';
 import ItemImage from './images/itemImagePlaceholder';
 import Button from '@mui/joy/Button';
+import WishlistStar from './wishlistStar';
 
 
 const getCurrencyIcon = ({ item }) => {
@@ -15,9 +16,11 @@ const getCurrencyIcon = ({ item }) => {
   );
 }
 
-const ItemCard = ({ item, index, itemType, allBrands }) => {
+const ItemCard = ({ item, itemType, allBrands, userId = "", wishPage = false }) => {
   const [sellerUsername, setSellerUsername] = useState("");
   const [brandName, setBrandName] = useState("");
+  const [wishlisted, setWishlisted] = useState(false);
+
   let idButtonColour = "";
   let hoverOutlineColour = "";
   let hoverTextColour = "";
@@ -38,15 +41,56 @@ const ItemCard = ({ item, index, itemType, allBrands }) => {
     idButtonColour = "!bg-hair";
     hoverOutlineColour = "group-hover:border-hair/30";
     hoverTextColour = "group-hover:text-hair-dark dark:group-hover:text-hair";
+  } else {
+    idButtonColour = "!bg-primary";
+    hoverOutlineColour = "group-hover:border-primary/30";
+    hoverTextColour = "group-hover:text-primary";
   }
 
-  useEffect(() => {
+  function getBrand() {
     fetch(constants.backend.API + constants.backend.GET_SELLER + "?sellerId=" + item.sellerId)
       .then(res => res.json())
       .then(data => {
         let username = data.sellerUser;
         setSellerUsername(username);
       });
+  }
+
+  function checkWishlisted() {
+    if (userId && !wishPage) {
+      const body = {
+        userId: userId,
+        itemSellerId: item.sellerId,
+        itemId: item.itemId,
+        price: item.sellPrice
+      }
+      fetch(`${constants.backend.API}${constants.backend.WISHES}/check`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      }).then(async response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          const err = await response.json();
+          throw err;
+        }
+      }).then((data) => {
+        setWishlisted(data.wishId !== null);
+        item['wishId'] = data.wishId;
+      }).catch((error) => {
+        console.error('Error checking wishlist status:', error);
+      });
+    } else if (wishPage) {
+      setWishlisted(true);
+    }
+  }
+
+  useEffect(() => {
+    getBrand();
+    checkWishlisted();
     // eslint-disable-next-line
   }, []);
 
@@ -66,11 +110,18 @@ const ItemCard = ({ item, index, itemType, allBrands }) => {
   }, [allBrands]);
 
   return (
-    <div className="group relative dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] overflow-hidden !border !border-gray-200 dark:!border-none dark:!border-0 dark:border-none !min-w-[270px] sm:max-w-[30%] md:max-w-[32%] lg:max-w-[23.5%] 2xl:max-w-[19%] w-3/4" data-div-id={index}>
+    <div className="group relative dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform overflow-hidden !border !border-gray-200 dark:!border-none dark:!border-0 dark:border-none !min-w-[270px] sm:max-w-[30%] md:max-w-[32%] lg:max-w-[23.5%] 2xl:max-w-[19%] w-3/4">
 
       <div className="relative overflow-hidden rounded-t-2xl">
         <div className="relative">
           <ItemImage itemId={itemType === "hair" ? item.customItemId : item.itemId} itemType={itemType} />
+          {
+            userId &&
+            <WishlistStar
+              item={item} isInWishlist={wishlisted} setIsInWishlist={setWishlisted} userId={userId} wishPage={wishPage}
+              positionClass={"absolute top-3 right-3 z-10 w-7 h-7"}
+            />
+          }
         </div>
       </div>
 
@@ -129,7 +180,7 @@ const ItemCard = ({ item, index, itemType, allBrands }) => {
           </div>
 
           <Button
-            className={`!rounded-full !px-3 !py-1 !text-xs !font-semibold !min-h-0 !h-7 flex items-center space-x-1 ${idButtonColour} ${itemType === "hair" ? '!text-black hover:!text-black' : '!text-white hover:!text-white'} hover:shadow-md transition-all duration-200 transform hover:scale-105`}
+            className={`!rounded-full !px-3 !py-1 !text-xs !font-semibold !min-h-0 !h-7 flex items-center space-x-1 ${idButtonColour} ${itemType === "hair" ? '!text-black hover:!text-black' : '!text-white hover:!text-white'} hover:shadow-md transition-all duration-200 transform`}
             onClick={() => copy(false)}
           >
             <span>ID</span>

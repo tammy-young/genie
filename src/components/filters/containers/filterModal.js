@@ -73,13 +73,13 @@ const FilterModal = ({
     <div className="!block w-full">
       <div className="flex space-x-2">
         <button
-          className='px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 border !text-black dark:!text-white'
+          className='px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform border !text-black dark:!text-white'
           onClick={handleOpen}
         >
           <span className='mb-0 font-semibold'>Filters</span>
         </button>
         <button
-          className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 ${itemType} !text-white`}
+          className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform ${itemType} !text-white`}
           onClick={validateAndSearch}
         >
           <span className='mb-0 font-semibold'>Search</span>
@@ -146,13 +146,13 @@ const FilterModal = ({
             </div>
             <div className="flex space-x-2 ml-0">
               <button
-                className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 !text-black dark:!text-white ${itemType}`}
+                className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform !text-black dark:!text-white ${itemType}`}
                 type="submit"
               >
                 <span className='mb-0 font-semibold'>Search</span>
               </button>
               <button
-                className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 !bg-neutral-500 !text-white`}
+                className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform !bg-neutral-500 !text-white`}
                 onClick={clearFilters}
                 type="button"
               >

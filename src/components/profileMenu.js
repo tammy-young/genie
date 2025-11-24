@@ -40,13 +40,13 @@ export function LogoutModal({ open, onClose }) {
           <p>Are you sure you want to logout?</p>
           <div className='flex justify-end space-x-4'>
             <button
-              className='px-4 py-2 font-semibold rounded-xl bg-neutral-300 dark:bg-neutral-700 hover:scale-105 hover:bg-neutral-200 dark:hover:bg-neutral-500 transition-all duration-200'
+              className='px-4 py-2 font-semibold rounded-xl bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-500 transition-all duration-200'
               onClick={onClose}
             >
               Cancel
             </button>
             <button
-              className='px-4 py-2 font-semibold rounded-xl bg-red-500 text-white hover:bg-red-600 hover:scale-105 transition-all duration-200'
+              className='px-4 py-2 font-semibold rounded-xl bg-red-500 text-white hover:bg-red-600 transition-all duration-200'
               onClick={handleLogout}
             >
               Logout
@@ -92,7 +92,7 @@ export default function ProfileMenu({ username }) {
             className="nav-link !flex items-center justify-between w-full !p-3 !no-underline hover:!no-underline"
           >
             <span className={`font-semibold ${isActive(constants.paths.WISHES) ? "!text-primary" : "text-gray-700 dark:text-white"}`}>
-              Wishlist
+              Wishes
             </span>
             <StarIcon className={`${isActive(constants.paths.WISHES) ? "!text-primary" : "text-gray-500 dark:text-gray-400"}`} />
           </NavLink>
