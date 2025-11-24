@@ -42,8 +42,8 @@ export default function Signup() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-dvh">
-      <div className='dark:!bg-neutral-700 bg-[#ffffff] lg:w-1/3 w-4/5 flex flex-col p-6 rounded-lg shadow-lg gap-4'>
+    <div className="flex justify-center items-center min-h-dvh bg-primary-light dark:bg-neutral-900">
+      <div className='dark:!bg-neutral-700 bg-[#ffffff] lg:w-1/3 w-4/5 flex flex-col p-6 rounded-lg shadow-md gap-4'>
         <div className='w-full flex justify-center'>
           <GenieLogo />
         </div>

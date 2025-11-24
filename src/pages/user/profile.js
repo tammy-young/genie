@@ -131,6 +131,7 @@ export default function Profile() {
 
     if (!profile.username) {
       window.location.href = "/login";
+      return;
     }
     // eslint-disable-next-line
   }, []);

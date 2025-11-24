@@ -40,6 +40,12 @@ export default function Wishes() {
   }
 
   useEffect(() => {
+
+    if (!userId) {
+      window.location.href = '/login';
+      return;
+    }
+
     getBrands();
     fetchWishes();
   }, [page]);
