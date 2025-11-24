@@ -55,7 +55,7 @@ function EditProfileForm({ profile, setIsEditing }) {
 
   return (
     <form
-      className="rounded-xl border p-6 flex flex-col items-center justify-between w-full gap-3 md:max-w-[75%]"
+      className="rounded-xl border-[1px] dark:border-neutral-700 p-6 flex flex-col items-center justify-between w-full gap-3 md:max-w-[75%]"
       onSubmit={handleEditProfile}
     >
       <ProfilePicture username={profile.username} size={120} />
@@ -144,7 +144,7 @@ export default function Profile() {
         isEditing ? (
           <EditProfileForm profile={profile} setIsEditing={setIsEditing} />
         ) : (
-          <div className="rounded-xl border p-6 flex flex-row items-center justify-between w-full gap-6 md:max-w-[75%]">
+          <div className="rounded-xl border-[1px] dark:border-neutral-700 p-6 flex flex-row items-center justify-between w-full gap-6 md:max-w-[75%]">
             <div className="flex flex-row gap-4 items-center">
               <ProfilePicture username={profile.username} size={120} />
               <div>
@@ -153,7 +153,7 @@ export default function Profile() {
               </div>
             </div>
             <button
-              className="flex flex-row items-center gap-1 font-semibold rounded-xl border !p-2 !px-4 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+              className="flex flex-row items-center gap-1 font-semibold rounded-xl border-[1px] dark:border-neutral-700 !p-2 !px-4 hover:bg-neutral-100 dark:hover:bg-neutral-800"
               onClick={() => setIsEditing(true)}
             >
               <span className="!text-primary-300">Edit</span>
