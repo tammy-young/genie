@@ -263,6 +263,6 @@ body {
   transition-duration: 300ms;
 }
 
-.MuiMenu-root {
+.MuiMenu-root, .MuiAutocomplete-listbox {
   transition-duration: 0ms !important;
 }

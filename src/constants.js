@@ -51,9 +51,9 @@ const constants = {
     },
     backend: {
         API: process.env.REACT_APP_API_URL,
-        GET_BRANDS: "/getBrands",
-        SEARCH: "/search",
-        GET_SELLER: "/getSeller",
+        GET_BRANDS: "/api/brands",
+        SEARCH: "/api/search",
+        GET_SELLER: "/api/seller",
         LOGIN: "/auth/login",
         SIGNUP: "/auth/signup",
         USERS: "/users/",

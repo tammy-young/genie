@@ -5,7 +5,6 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import IconButton from '@mui/material/IconButton';
 
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import constants from '../../constants';
 
@@ -61,8 +60,9 @@ const IdSearch = () => {
   const getBrands = async () => {
     setIsMakingRequest(true);
     try {
-      const response = await axios.get(constants.backend.API + constants.backend.GET_BRANDS);
-      let brandsIdToName = response.data.brandsIdToName;
+      const response = await fetch(constants.backend.API + constants.backend.GET_BRANDS);
+      const data = await response.json();
+      let brandsIdToName = data.brandsIdToName;
       setBrands(Object.entries(brandsIdToName).map((brand) => ({ name: brand[1], id: brand[0] })).sort((a, b) => a.name.localeCompare(b.name)));
       setIsMakingRequest(false);
     } catch (error) {

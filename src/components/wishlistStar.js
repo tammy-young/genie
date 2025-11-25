@@ -1,7 +1,7 @@
 import StarIcon from '@mui/icons-material/Star';
 import constants from '../constants';
 
-export default function WishlistStar({ item, isInWishlist, setIsInWishlist, positionClass = "", userId = null, wishPage = false }) {
+export default function WishlistStar({ item, isInWishlist, setIsInWishlist, sellerUsername, positionClass = "", userId = null, wishPage = false }) {
 
   function toggleStar() {
     if (isInWishlist && (wishPage || 'wishId' in item)) {
@@ -22,7 +22,7 @@ export default function WishlistStar({ item, isInWishlist, setIsInWishlist, posi
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ userId, item })
+        body: JSON.stringify({ userId, item, sellerUsername })
       }).then((response) => {
         if (response.ok) {
           setIsInWishlist(true);

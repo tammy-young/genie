@@ -11,7 +11,7 @@ export default function Wishes() {
   const [allBrands, setAllBrands] = useState({});
 
   function getBrands() {
-    fetch(constants.backend.API + constants.backend.GET_BRANDS)
+    fetch(`${constants.backend.API}${constants.backend.GET_BRANDS}?onlySellable=true`)
       .then((res) => res.json())
       .then((data) => {
         let brandsIdToName = data.brandsIdToName;
@@ -33,13 +33,27 @@ export default function Wishes() {
         throw err;
       }
     }).then((data) => {
+      if (data.pagination.currentPage > data.pagination.totalPages) {
+        setPage(1);
+        return;
+      }
       setWishesData(data);
     }).catch((error) => {
       console.error('Error fetching wishes:', error);
     });
   }
 
+  function goToPage(newPage) {
+    setPage(newPage);
+    window.scrollTo({ top: 0 });
+  }
+
   useEffect(() => {
+    fetchWishes();
+  }, [page]);
+
+  useEffect(() => {
+    document.title = 'My Wishes | Genie';
 
     if (!userId) {
       window.location.href = '/login';
@@ -47,15 +61,10 @@ export default function Wishes() {
     }
 
     getBrands();
-    fetchWishes();
-  }, [page]);
-
-  useEffect(() => {
-    document.title = 'My Wishes | Genie';
   }, []);
 
   return (
-    <div className='flex flex-col h-full relative'>
+    <div className='flex flex-col min-h-dvh relative pb-8'>
       <div className='sticky top-0 bg-white/95 dark:!bg-neutral-900/80 dark:text-neutral-100 z-50 pb-2'>
         <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>My Wishes</h2>
       </div>
@@ -71,6 +80,25 @@ export default function Wishes() {
             ))
           )
         }
+      </div>
+      <div className="flex flex-row justify-between items-center">
+        <button
+          className={`px-3 py-2 rounded-xl font-semibold text-center flex flex-row lg:space-x-2 items-center transition-all duration-200 transform !text-black dark:!text-white !bg-primary disabled:opacity-50`}
+          onClick={() => goToPage(page - 1)}
+          disabled={page === 1}
+        >
+          <span className='w-full text-center text-white'>Previous</span>
+        </button>
+        <p className="text-center text-neutral-700 dark:text-neutral-300 self-center">
+          {page} / {wishesData.pagination?.totalPages || 1}
+        </p>
+        <button
+          className={`px-3 py-2 rounded-xl font-semibold text-center flex flex-row lg:space-x-2 items-center transition-all duration-200 transform !text-black dark:!text-white !bg-primary disabled:opacity-50`}
+          onClick={() => goToPage(page + 1)}
+          disabled={page >= (wishesData.pagination?.totalPages || 1)}
+        >
+          <span className='w-full text-center text-white'>Next</span>
+        </button>
       </div>
     </div>
   )

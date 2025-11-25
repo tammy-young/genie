@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { search } from '../../searchUtils.js';
-import axios from 'axios';
 import constants from '../../constants.js';
 import { useSelector } from 'react-redux';
 
@@ -19,9 +18,10 @@ const FashionSearch = () => {
 	useEffect(() => {
 		document.title = 'Fashion | Genie';
 		search({ priceRange: [2, 600] }, "fashion", setIsSearching, searchedItems, setSearchedItems);
-		axios.get(constants.backend.API + constants.backend.GET_BRANDS)
-			.then((response) => {
-				let brandsIdToName = response.data.brandsIdToName;
+		fetch(`${constants.backend.API}${constants.backend.GET_BRANDS}?onlySellable=true`)
+			.then((response) => response.json())
+			.then((data) => {
+				let brandsIdToName = data.brandsIdToName;
 				setAllBrands(brandsIdToName);
 			})
 		// eslint-disable-next-line

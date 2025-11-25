@@ -31,8 +31,8 @@ export function LogoutModal({ open, onClose }) {
       aria-labelledby="logout-modal-title"
       aria-describedby="logout-modal-description"
     >
-      <Box sx={style} className="dark:!bg-neutral-800 dark:!text-white p-4 w-[95%] sm:w-3/5 lg:w-2/5 !rounded-lg">
-        <div className='p-4 flex flex-col gap-4'>
+      <Box sx={style} className="dark:!bg-neutral-800 dark:!text-white w-[95%] sm:w-3/5 lg:w-2/5 !rounded-lg">
+        <div className='p-4 flex flex-col sm:gap-1'>
           <div className="flex justify-between items-center">
             <h1 className="font-bold mb-0">Confirm Logout</h1>
           </div>
