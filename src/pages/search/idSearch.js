@@ -62,8 +62,7 @@ const IdSearch = () => {
     try {
       const response = await fetch(constants.backend.API + constants.backend.GET_BRANDS);
       const data = await response.json();
-      let brandsIdToName = data.brandsIdToName;
-      setBrands(Object.entries(brandsIdToName).map((brand) => ({ name: brand[1], id: brand[0] })).sort((a, b) => a.name.localeCompare(b.name)));
+      setBrands(data.brands);
       setIsMakingRequest(false);
     } catch (error) {
       console.error('Error fetching brands:', error);

@@ -11,7 +11,9 @@ const FashionSearch = () => {
 	// for searching
 	const [isSearching, setIsSearching] = useState(false);
 	const [searchedItems, setSearchedItems] = useState([]);
-	const [allBrands, setAllBrands] = useState({});
+	const [brands, setBrands] = useState([]);
+	const [colours, setColours] = useState([]);
+	const [categories, setCategories] = useState([]);
 	const [showScrollToTop, setShowScrollToTop] = useState(false);
 	const userId = useSelector(state => state.id);
 
@@ -21,8 +23,9 @@ const FashionSearch = () => {
 		fetch(`${constants.backend.API}${constants.backend.GET_BRANDS}?onlySellable=true`)
 			.then((response) => response.json())
 			.then((data) => {
-				let brandsIdToName = data.brandsIdToName;
-				setAllBrands(brandsIdToName);
+				setBrands(data.brands);
+				setColours(data.colours);
+				setCategories(data.fashionItemCategories);
 			})
 		// eslint-disable-next-line
 	}, []);
@@ -48,7 +51,14 @@ const FashionSearch = () => {
 			<div className='sticky top-0 bg-white/95 dark:!bg-neutral-900/80 dark:text-neutral-100 z-50'>
 				<h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>Fashion for Sale in Starbazaar</h2>
 				<div className='pb-4 w-full'>
-					<Filters setIsSearching={setIsSearching} searchedItems={searchedItems} setSearchedItems={setSearchedItems} />
+					<Filters
+						brandsToId={brands}
+						coloursToId={colours}
+						itemCategoriesToId={categories}
+						setIsSearching={setIsSearching}
+						searchedItems={searchedItems}
+						setSearchedItems={setSearchedItems}
+					/>
 				</div>
 			</div>
 
@@ -63,7 +73,7 @@ const FashionSearch = () => {
 					) || (
 						(searchedItems.length !== 0 && !isSearching) &&
 						searchedItems.map((item, index) => (
-							<ItemCard item={item} itemType={"fashion"} allBrands={allBrands} userId={userId} />
+							<ItemCard item={item} itemType={"fashion"} allBrands={brands} userId={userId} />
 						))
 					) || (
 						(

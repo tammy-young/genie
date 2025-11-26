@@ -14,7 +14,7 @@ export default function Wishes() {
     fetch(`${constants.backend.API}${constants.backend.GET_BRANDS}?onlySellable=true`)
       .then((res) => res.json())
       .then((data) => {
-        setBrands(data.brandsRaw);
+        setBrands(data.brands);
       });
   }
 

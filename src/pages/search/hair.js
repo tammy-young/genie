@@ -1,29 +1,23 @@
 import { useState, useEffect } from 'react';
 import { search } from '../../searchUtils.js';
-import constants from '../../constants.js';
 import { useSelector } from 'react-redux';
 
 import Filters from '../../components/filters/filters.js';
 import ItemCard from '../../components/itemCard.js';
+
+const STARDESIGN_HAIR_BRAND = [{ brandId: 555, name: "StarDesign Hair" }];
 
 
 const HairSearch = () => {
   // for searching
   const [isSearching, setIsSearching] = useState(false);
   const [searchedItems, setSearchedItems] = useState([]);
-  const [allBrands, setAllBrands] = useState({});
   const [showScrollToTop, setShowScrollToTop] = useState(false);
   const userId = useSelector(state => state.id);
 
   useEffect(() => {
     document.title = 'Hair | Genie';
     search({ priceRange: [2, 600] }, "hair", setIsSearching, searchedItems, setSearchedItems);
-    fetch(`${constants.backend.API}${constants.backend.GET_BRANDS}?onlySellable=true`)
-      .then((response) => response.json())
-      .then((data) => {
-        let brandsIdToName = data.brandsIdToName;
-        setAllBrands(brandsIdToName);
-      })
     // eslint-disable-next-line
   }, []);
 
@@ -52,7 +46,6 @@ const HairSearch = () => {
             setIsSearching={setIsSearching}
             searchedItems={searchedItems}
             setSearchedItems={setSearchedItems}
-            allBrands={allBrands}
             itemTypeFilter={false}
             brandFilter={false}
             colourFilter={false}
@@ -71,7 +64,7 @@ const HairSearch = () => {
           ) || (
             (searchedItems.length !== 0 && !isSearching) &&
             searchedItems.map((item, index) => (
-              <ItemCard item={item} itemType={"hair"} allBrands={allBrands} userId={userId} />
+              <ItemCard item={item} itemType={"hair"} allBrands={STARDESIGN_HAIR_BRAND} userId={userId} />
             ))
           ) || (
             (

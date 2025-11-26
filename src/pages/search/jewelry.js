@@ -11,7 +11,8 @@ const JewelrySearch = () => {
   // for searching
   const [isSearching, setIsSearching] = useState(false);
   const [searchedItems, setSearchedItems] = useState([]);
-  const [allBrands, setAllBrands] = useState({});
+  const [brands, setBrands] = useState([]);
+  const [colours, setColours] = useState([]);
   const [showScrollToTop, setShowScrollToTop] = useState(false);
   const userId = useSelector(state => state.id);
 
@@ -21,8 +22,8 @@ const JewelrySearch = () => {
     fetch(`${constants.backend.API}${constants.backend.GET_BRANDS}?onlySellable=true`)
       .then((response) => response.json())
       .then((data) => {
-        let brandsIdToName = data.brandsIdToName;
-        setAllBrands(brandsIdToName);
+        setBrands(data.brands);
+        setColours(data.colours);
       })
     // eslint-disable-next-line
   }, []);
@@ -48,7 +49,14 @@ const JewelrySearch = () => {
       <div className='sticky top-0 bg-white/95 dark:!bg-neutral-900/80 dark:text-neutral-100 z-50'>
         <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>Jewelry for Sale in Starbazaar</h2>
         <div className='pb-4 w-full'>
-          <Filters setIsSearching={setIsSearching} searchedItems={searchedItems} setSearchedItems={setSearchedItems} allBrands={allBrands} itemTypeFilter={false} />
+          <Filters
+            setIsSearching={setIsSearching}
+            searchedItems={searchedItems}
+            setSearchedItems={setSearchedItems}
+            brandsToId={brands}
+            coloursToId={colours}
+            itemTypeFilter={false}
+          />
         </div>
       </div>
 
@@ -63,7 +71,7 @@ const JewelrySearch = () => {
           ) || (
             (searchedItems.length !== 0 && !isSearching) &&
             searchedItems.map((item, index) => (
-              <ItemCard item={item} itemType={"jewelry"} allBrands={allBrands} userId={userId} />
+              <ItemCard item={item} itemType={"jewelry"} allBrands={brands} userId={userId} />
             ))
           ) || (
             (

@@ -1,12 +1,7 @@
-import { getFilters } from "../../searchUtils.js";
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
 import FilterModal from "./containers/filterModal.js";
 
-const Filters = ({ setIsSearching, searchedItems, setSearchedItems, itemTypeFilter = true, brandFilter = true, colourFilter = true }) => {
-  const [brandsToId, setBrandsToId] = useState([]);
-  const [coloursToId, setColoursToId] = useState([]);
-  const [itemCategoriesToId, setItemCategoriesToId] = useState([]);
+const Filters = ({ setIsSearching, brandsToId, coloursToId, itemCategoriesToId, searchedItems, setSearchedItems, itemTypeFilter = true, brandFilter = true, colourFilter = true }) => {
   const itemType = window.location.pathname.split('/')[1] || "fashion";
 
   const [selectedBrand, setSelectedBrand] = useState({});
@@ -18,13 +13,6 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, itemTypeFilt
   const [itemCategory, setItemCategory] = useState({});
 
   const [errors, setErrors] = useState({});
-
-  useEffect(() => {
-    if (brandsToId.length === 0) {
-      getFilters(setBrandsToId, setColoursToId, setItemCategoriesToId, itemType);
-    }
-    // eslint-disable-next-line
-  }, []);
 
   function clearFilters() {
     setSelectedBrand({});

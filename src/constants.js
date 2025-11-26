@@ -7,7 +7,6 @@ const constants = {
         OTHER_FILTERS_DIV: "otherFilersDiv",
         ITEM_PANEL_DIV: "itemPanel",
         SEARCHING_TEXT_DIV: "searchingText",
-        BRANDS_ID_TO_NAME: "brandsIdToNameDiv",
         SELLER_USERNAME_DIV_ID: "sellerUsername",
         SELLER_USERNAME_ID_DIV_ID: "sellerIdDiv",
         COPY_ICON: "copySellerUsername",
