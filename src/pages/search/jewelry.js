@@ -1,116 +1,21 @@
-import { useState, useEffect } from 'react';
-import { search } from '../../searchUtils.js';
-import constants from '../../constants.js';
-import { useSelector } from 'react-redux';
-
-import Filters from '../../components/filters/filters.js';
-import ItemCard from '../../components/itemCard.js';
-
+import SearchPageTemplate from '../../components/SearchPageTemplate.js';
+import { initializeJewelryData } from '../../utils/searchPageInitializers.js';
 
 const JewelrySearch = () => {
-  // for searching
-  const [isSearching, setIsSearching] = useState(false);
-  const [searchedItems, setSearchedItems] = useState([]);
-  const [brands, setBrands] = useState([]);
-  const [colours, setColours] = useState([]);
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
-  const userId = useSelector(state => state.id);
-
-  useEffect(() => {
-    document.title = 'Jewelry | Genie';
-    search({ priceRange: [2, 600] }, "jewelry", setIsSearching, searchedItems, setSearchedItems);
-    fetch(`${constants.backend.API}${constants.backend.GET_BRANDS}?onlySellable=true`)
-      .then((response) => response.json())
-      .then((data) => {
-        setBrands(data.brands);
-        setColours(data.colours);
-      })
-    // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollToTop(window.pageYOffset > 300);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
   return (
-    <div className='flex flex-col h-full relative'>
-      <div className='sticky top-0 bg-white/95 dark:!bg-neutral-900/80 dark:text-neutral-100 z-50'>
-        <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>Jewelry for Sale in Starbazaar</h2>
-        <div className='pb-4 w-full'>
-          <Filters
-            setIsSearching={setIsSearching}
-            isSearching={isSearching}
-            searchedItems={searchedItems}
-            setSearchedItems={setSearchedItems}
-            brandsToId={brands}
-            coloursToId={colours}
-            itemTypeFilter={false}
-          />
-        </div>
-      </div>
-
-      <div className='flex flex-wrap w-full sm:gap-4 justify-center pb-4 sm:space-y-0 space-y-4 mt-1'>
-        {
-          (
-            isSearching && (
-              <div className={`w-full flex justify-center items-center h-full max-h-full ${isSearching ? 'block' : 'hidden'}`}>
-                <img src={process.env.PUBLIC_URL + "sd-loading.gif"} alt="Searching..." style={{ alignSelf: "center" }} />
-              </div>
-            )
-          ) || (
-            (searchedItems.length !== 0 && !isSearching) &&
-            searchedItems.map((item, index) => (
-              <ItemCard item={item} itemType={"jewelry"} allBrands={brands} userId={userId} />
-            ))
-          ) || (
-            (
-              (searchedItems.length === 0 && !isSearching) &&
-              <div className='flex justify-center items-center w-full h-full flex-col space-y-1'>
-                <p className='m-0 p-0'>No items found.</p>
-                <p className='m-0 p-0'>Clear filters and try again!</p>
-              </div>
-            )
-          )
-        }
-      </div>
-
-      {
-        showScrollToTop && (
-          <button
-            onClick={scrollToTop}
-            className={`fixed bottom-6 right-6 bg-jewelry hover:bg-jewelry-dark text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform z-50 ${showScrollToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-            aria-label="Scroll to top"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 10l7-7m0 0l7 7m-7-7v18"
-              />
-            </svg>
-          </button>
-        )
-      }
-    </div>
-  )
-}
+    <SearchPageTemplate
+      itemType="jewelry"
+      title="Jewelry"
+      initializeData={initializeJewelryData}
+      filterProps={{
+        itemTypeFilter: false
+      }}
+      buttonColors={{ 
+        bg: 'bg-jewelry', 
+        hover: 'hover:bg-jewelry-dark' 
+      }}
+    />
+  );
+};
 
 export default JewelrySearch;

@@ -1,7 +1,22 @@
 import { useState } from "react";
 import FilterModal from "./containers/filterModal.js";
 
-const Filters = ({ isSearching, setIsSearching, brandsToId, coloursToId, itemCategoriesToId, searchedItems, setSearchedItems, itemTypeFilter = true, brandFilter = true, colourFilter = true }) => {
+const Filters = ({
+  isSearching,
+  setIsSearching,
+  sortBy,
+  setSortBy,
+  sortedItems,
+  setSortedItems,
+  brandsToId,
+  coloursToId,
+  itemCategoriesToId,
+  searchedItems,
+  setSearchedItems,
+  itemTypeFilter = true,
+  brandFilter = true,
+  colourFilter = true
+}) => {
   const itemType = window.location.pathname.split('/')[1] || "fashion";
 
   const [selectedBrand, setSelectedBrand] = useState({});

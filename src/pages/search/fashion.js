@@ -1,118 +1,18 @@
-import { useState, useEffect } from 'react';
-import { search } from '../../searchUtils.js';
-import constants from '../../constants.js';
-import { useSelector } from 'react-redux';
-
-import Filters from '../../components/filters/filters.js';
-import ItemCard from '../../components/itemCard.js';
-
+import SearchPageTemplate from '../../components/SearchPageTemplate.js';
+import { initializeFashionData } from '../../utils/searchPageInitializers.js';
 
 const FashionSearch = () => {
-	// for searching
-	const [isSearching, setIsSearching] = useState(false);
-	const [searchedItems, setSearchedItems] = useState([]);
-	const [brands, setBrands] = useState([]);
-	const [colours, setColours] = useState([]);
-	const [categories, setCategories] = useState([]);
-	const [showScrollToTop, setShowScrollToTop] = useState(false);
-	const userId = useSelector(state => state.id);
-
-	useEffect(() => {
-		document.title = 'Fashion | Genie';
-		search({ priceRange: [2, 600] }, "fashion", setIsSearching, searchedItems, setSearchedItems);
-		fetch(`${constants.backend.API}${constants.backend.GET_BRANDS}?onlySellable=true`)
-			.then((response) => response.json())
-			.then((data) => {
-				setBrands(data.brands);
-				setColours(data.colours);
-				setCategories(data.fashionItemCategories);
-			})
-		// eslint-disable-next-line
-	}, []);
-
-	useEffect(() => {
-		const handleScroll = () => {
-			setShowScrollToTop(window.pageYOffset > 300);
-		};
-
-		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
-	}, []);
-
-	const scrollToTop = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth'
-		});
-	};
-
 	return (
-		<div className='flex flex-col h-full relative'>
-			<div className='sticky top-0 bg-white/95 dark:!bg-neutral-900/80 dark:text-neutral-100 z-50'>
-				<h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>Fashion for Sale in Starbazaar</h2>
-				<div className='pb-4 w-full'>
-					<Filters
-						brandsToId={brands}
-						coloursToId={colours}
-						itemCategoriesToId={categories}
-						isSearching={isSearching}
-						setIsSearching={setIsSearching}
-						searchedItems={searchedItems}
-						setSearchedItems={setSearchedItems}
-					/>
-				</div>
-			</div>
-
-			<div className='flex flex-wrap w-full sm:gap-4 justify-center pb-4 sm:space-y-0 space-y-4 mt-1'>
-				{
-					(
-						isSearching && (
-							<div className={`w-full flex justify-center items-center h-full max-h-full ${isSearching ? 'block' : 'hidden'}`}>
-								<img src={process.env.PUBLIC_URL + "sd-loading.gif"} alt="Searching..." style={{ alignSelf: "center" }} />
-							</div>
-						)
-					) || (
-						(searchedItems.length !== 0 && !isSearching) &&
-						searchedItems.map((item, index) => (
-							<ItemCard item={item} itemType={"fashion"} allBrands={brands} userId={userId} />
-						))
-					) || (
-						(
-							(searchedItems.length === 0 && !isSearching) &&
-							<div className='flex justify-center items-center w-full h-full flex-col space-y-1'>
-								<p className='m-0 p-0'>No items found.</p>
-								<p className='m-0 p-0'>Clear filters and try again!</p>
-							</div>
-						)
-					)
-				}
-			</div>
-
-			{
-				showScrollToTop && (
-					<button
-						onClick={scrollToTop}
-						className={`fixed bottom-6 right-6 bg-fashion hover:bg-fashion-dark text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform z-50 ${showScrollToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-						aria-label="Scroll to top"
-					>
-						<svg
-							className="w-6 h-6"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M5 10l7-7m0 0l7 7m-7-7v18"
-							/>
-						</svg>
-					</button>
-				)
-			}
-		</div>
-	)
-}
+		<SearchPageTemplate
+			itemType="fashion"
+			title="Fashion"
+			initializeData={initializeFashionData}
+			buttonColors={{ 
+				bg: 'bg-fashion', 
+				hover: 'hover:bg-fashion-dark' 
+			}}
+		/>
+	);
+};
 
 export default FashionSearch;

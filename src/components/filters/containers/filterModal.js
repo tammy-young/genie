@@ -1,4 +1,5 @@
 import { onEnterSearch } from "../../../searchUtils.js";
+import { useState, useEffect } from "react";
 
 import NameSelector from '../itemNameFilter.js';
 import BrandSelector from '../brandFilter.js';
@@ -10,6 +11,45 @@ import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import ColourFilter from "../colourFilter.js";
 import ItemCategoryFilter from "../itemCategoryFilter.js";
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
+
+function SortingSelector({ sortBy, setSortBy }) {
+  const options = [
+    { value: 'relevance', label: 'Relevance' },
+    { value: 'increasing', label: 'Sell Price Increasing' },
+    { value: 'decreasing', label: 'Sell Price Decreasing' }
+  ];
+  return (
+    <Select
+      defaultValue="relevance"
+      value={sortBy}
+      onChange={(e, newValue) => setSortBy(newValue)}
+      variant="outlined"
+      className="min-w-[150px] dark:!bg-neutral-800 dark:!text-white"
+      slotProps={{
+        listbox: {
+          sx: (theme) => ({
+            zIndex: theme.vars.zIndex.modal,
+          }),
+          className: 'dark:!bg-neutral-800'
+        }
+      }}
+    >
+      {
+        options.map((option) => (
+          <Option
+            key={option.value}
+            value={option.value}
+            className="dark:!bg-neutral-800 dark:!text-white dark:hover:!bg-neutral-700 dark:aria-selected:!bg-neutral-700 aria-selected:font-bold"
+          >
+            {option.label}
+          </Option>
+        ))
+      }
+    </Select>
+  )
+}
 
 export const style = {
   position: 'absolute',
@@ -51,7 +91,11 @@ const FilterModal = ({
   colourFilter,
   errors,
   setErrors,
-  isSearching
+  isSearching,
+  sortBy,
+  setSortBy,
+  sortedItems,
+  setSortedItems
 }) => {
 
   function validateAndSearch(e) {
@@ -66,26 +110,33 @@ const FilterModal = ({
       setIsSearching,
       searchedItems,
       setSearchedItems,
+      sortBy,
+      setSortedItems,
       handleClose
     );
   }
 
   return (
     <div className="!block w-full">
-      <div className="flex space-x-2">
-        <button
-          className='px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform border !text-black dark:!text-white'
-          onClick={handleOpen}
-        >
-          <span className='mb-0 font-semibold'>Filters</span>
-        </button>
-        <button
-          className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform ${itemType} !text-white ${isSearching ? 'opacity-50' : ''}`}
-          onClick={validateAndSearch}
-          disabled={isSearching}
-        >
-          <span className='mb-0 font-semibold'>Search</span>
-        </button>
+      <div className="flex flex-row justify-between">
+        <div className="flex space-x-2">
+          <button
+            className='px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform border !text-black dark:!text-white'
+            onClick={handleOpen}
+          >
+            <span className='mb-0 font-semibold'>Filters</span>
+          </button>
+          <button
+            className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform ${itemType} !text-white ${isSearching ? 'opacity-50' : ''}`}
+            onClick={validateAndSearch}
+            disabled={isSearching}
+          >
+            <span className='mb-0 font-semibold'>Search</span>
+          </button>
+        </div>
+        {/* <div>
+          <SortingSelector sortBy={sortBy} setSortBy={setSortBy} setSearchedItems={setSearchedItems} />
+        </div> */}
       </div>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style} className="dark:!bg-neutral-800 dark:!text-white p-4 w-[95%] sm:w-3/5 lg:w-2/5 !rounded-lg">
