@@ -8,39 +8,14 @@ export default function Wishes() {
   const [page, setPage] = useState(1);
   const [wishesData, setWishesData] = useState({});
   const userId = useSelector(state => state.id);
-  const [allBrands, setAllBrands] = useState({});
+  const [brands, setBrands] = useState({});
 
   function getBrands() {
     fetch(`${constants.backend.API}${constants.backend.GET_BRANDS}?onlySellable=true`)
       .then((res) => res.json())
       .then((data) => {
-        let brandsIdToName = data.brandsIdToName;
-        setAllBrands(brandsIdToName);
+        setBrands(data.brandsRaw);
       });
-  }
-
-  function fetchWishes() {
-    fetch(`${constants.backend.API}${constants.backend.WISHES}?userId=${userId}&page=${page}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(async response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        const err = await response.json();
-        throw err;
-      }
-    }).then((data) => {
-      if (data.pagination.currentPage > data.pagination.totalPages) {
-        setPage(1);
-        return;
-      }
-      setWishesData(data);
-    }).catch((error) => {
-      console.error('Error fetching wishes:', error);
-    });
   }
 
   function goToPage(newPage) {
@@ -49,7 +24,32 @@ export default function Wishes() {
   }
 
   useEffect(() => {
+    function fetchWishes() {
+      fetch(`${constants.backend.API}${constants.backend.WISHES}?userId=${userId}&page=${page}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(async response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          const err = await response.json();
+          throw err;
+        }
+      }).then((data) => {
+        if (data.pagination.currentPage > data.pagination.totalPages) {
+          setPage(1);
+          return;
+        }
+        setWishesData(data);
+      }).catch((error) => {
+        console.error('Error fetching wishes:', error);
+      });
+    }
+
     fetchWishes();
+    // eslint-disable-next-line
   }, [page]);
 
   useEffect(() => {
@@ -61,6 +61,7 @@ export default function Wishes() {
     }
 
     getBrands();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -76,7 +77,7 @@ export default function Wishes() {
             </p>
           ) : (
             wishesData.wishes?.map((item) => (
-              <ItemCard key={item.id} item={item} userId={userId} wishPage allBrands={allBrands} />
+              <ItemCard key={item.id} item={item} userId={userId} wishPage allBrands={brands} />
             ))
           )
         }
