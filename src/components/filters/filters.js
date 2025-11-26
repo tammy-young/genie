@@ -77,6 +77,10 @@ const Filters = ({
       colourFilter={colourFilter}
       errors={errors}
       setErrors={setErrors}
+      sortBy={sortBy}
+      setSortBy={setSortBy}
+      sortedItems={sortedItems}
+      setSortedItems={setSortedItems}
     />
   )
 }
