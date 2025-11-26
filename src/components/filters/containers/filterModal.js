@@ -50,7 +50,8 @@ const FilterModal = ({
   brandFilter,
   colourFilter,
   errors,
-  setErrors
+  setErrors,
+  isSearching
 }) => {
 
   function validateAndSearch(e) {
@@ -79,8 +80,9 @@ const FilterModal = ({
           <span className='mb-0 font-semibold'>Filters</span>
         </button>
         <button
-          className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform ${itemType} !text-white`}
+          className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform ${itemType} !text-white ${isSearching ? 'opacity-50' : ''}`}
           onClick={validateAndSearch}
+          disabled={isSearching}
         >
           <span className='mb-0 font-semibold'>Search</span>
         </button>
@@ -146,8 +148,9 @@ const FilterModal = ({
             </div>
             <div className="flex space-x-2 ml-0">
               <button
-                className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform !text-black dark:!text-white ${itemType}`}
+                className={`px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform !text-black dark:!text-white ${itemType} ${isSearching ? 'opacity-50' : ''}`}
                 type="submit"
+                disabled={isSearching}
               >
                 <span className='mb-0 font-semibold'>Search</span>
               </button>

@@ -56,6 +56,7 @@ const InteriorSearch = () => {
 						coloursToId={colours}
 						itemCategoriesToId={categories}
 						setIsSearching={setIsSearching}
+						isSearching={isSearching}
 						searchedItems={searchedItems}
 						setSearchedItems={setSearchedItems}
 					/>

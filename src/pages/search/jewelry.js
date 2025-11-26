@@ -51,6 +51,7 @@ const JewelrySearch = () => {
         <div className='pb-4 w-full'>
           <Filters
             setIsSearching={setIsSearching}
+            isSearching={isSearching}
             searchedItems={searchedItems}
             setSearchedItems={setSearchedItems}
             brandsToId={brands}

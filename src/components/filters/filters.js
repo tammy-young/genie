@@ -1,7 +1,7 @@
 import { useState } from "react";
 import FilterModal from "./containers/filterModal.js";
 
-const Filters = ({ setIsSearching, brandsToId, coloursToId, itemCategoriesToId, searchedItems, setSearchedItems, itemTypeFilter = true, brandFilter = true, colourFilter = true }) => {
+const Filters = ({ isSearching, setIsSearching, brandsToId, coloursToId, itemCategoriesToId, searchedItems, setSearchedItems, itemTypeFilter = true, brandFilter = true, colourFilter = true }) => {
   const itemType = window.location.pathname.split('/')[1] || "fashion";
 
   const [selectedBrand, setSelectedBrand] = useState({});
@@ -32,6 +32,7 @@ const Filters = ({ setIsSearching, brandsToId, coloursToId, itemCategoriesToId, 
   return (
     <FilterModal
       open={open}
+      isSearching={isSearching}
       handleOpen={handleOpen}
       handleClose={handleClose}
       selectedBrand={selectedBrand}

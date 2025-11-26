@@ -55,6 +55,7 @@ const FashionSearch = () => {
 						brandsToId={brands}
 						coloursToId={colours}
 						itemCategoriesToId={categories}
+						isSearching={isSearching}
 						setIsSearching={setIsSearching}
 						searchedItems={searchedItems}
 						setSearchedItems={setSearchedItems}
