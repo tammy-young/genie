@@ -13,6 +13,7 @@ import { Modal, Box } from "@mui/material";
 import { style } from './../containers/filterModal.js';
 import ItemNameFilter from "../components/filters/itemNameFilter";
 import PriceSelector from "../components/filters/priceFilter.js";
+import Snackbar from '@mui/material/Snackbar';
 
 function DeleteFilterModal({ filter, open, onClose }) {
   const dispatch = useDispatch();
@@ -64,12 +65,13 @@ function DeleteFilterModal({ filter, open, onClose }) {
   )
 }
 
-function FilterItem({ filter, filterOptions }) {
+function FilterItem({ filter, filterOptions, setFilters }) {
   const [open, setOpen] = useState(filter.open || false);
   const [filterData, setFilterData] = useState(filter);
   const dispatch = useDispatch();
   const userId = useSelector(state => state.id);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   function addFilter(e) {
     e.preventDefault();
@@ -92,6 +94,8 @@ function FilterItem({ filter, filterOptions }) {
         dispatch({ type: 'ADD_FILTER', payload: data });
         setFilterData(data);
         closeFilter();
+        setFilters(prev => prev.map((f, index) => index !== prev.length - 1 ? f : data));
+        setSnackbarOpen(true);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -119,6 +123,7 @@ function FilterItem({ filter, filterOptions }) {
         dispatch({ type: 'UPDATE_FILTER', payload: data });
         setFilterData(data);
         closeFilter();
+        setSnackbarOpen(true);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -213,6 +218,12 @@ function FilterItem({ filter, filterOptions }) {
         </form>
       </Collapse>
       <DeleteFilterModal filter={filter} open={deleteModalOpen} onClose={() => setDeleteModalOpen(false)} />
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={5000}
+        onClose={() => setSnackbarOpen(false)}
+        message="Filter saved successfully"
+      />
     </div>
   )
 }
@@ -241,7 +252,7 @@ export default function FilterSection({ profile }) {
       <div className="table">
         {
           filters.map((filter, index) => (
-            <FilterItem key={index} filter={filter} filterOptions={filterOptions} />
+            <FilterItem key={index} filter={filter} filterOptions={filterOptions} setFilters={setFilters} />
           ))
         }
       </div>
