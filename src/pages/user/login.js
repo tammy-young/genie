@@ -35,7 +35,7 @@ export default function Login() {
       body: JSON.stringify(form)
     }).then(async response => {
       if (response.ok) {
-        setError("");
+        setError({});
         return response.json();
       } else {
         const err = await response.json();
@@ -45,7 +45,7 @@ export default function Login() {
       dispatch({ type: 'SET_PROFILE', payload: data });
       navigate('/');
     }).catch((error) => {
-      setError(error.error);
+      setError({ detail: error.error });
     });
   }
 

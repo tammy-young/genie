@@ -22,7 +22,7 @@ export default function Profile() {
   }, []);
 
   return (
-    <div className='flex flex-col h-full relative gap-4 site-padding'>
+    <div className='flex flex-col h-full relative gap-4 site-padding pb-4'>
       <div className="flex flex-col gap-2">
         <div className='sticky top-0 bg-white/95 dark:!bg-neutral-900/80 dark:text-neutral-100 z-50'>
           <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>My Profile</h2>
@@ -31,11 +31,11 @@ export default function Profile() {
           isEditing ? (
             <EditProfileForm profile={profile} setIsEditing={setIsEditing} setShowDoneEditSnackbar={setShowDoneEditSnackbar} />
           ) : (
-            <div className="rounded-xl border-[1px] dark:border-neutral-700 p-6 flex flex-row items-center justify-between w-full gap-6 md:max-w-[75%]">
-              <div className="flex flex-row gap-4 items-center">
+            <div className="rounded-xl border-[1px] dark:border-neutral-700 p-6 flex sm:flex-row flex-col items-center justify-between w-full sm:gap-6 md:max-w-[75%]">
+              <div className="flex sm:flex-row flex-col gap-4 items-center">
                 <ProfilePicture username={profile.username} size={120} />
                 <div>
-                  <h3 className="text-2xl font-semibold">{profile.name || "Anonymous Doll"}</h3>
+                  <h3 className="text-2xl font-semibold m-0">{profile.name || "Anonymous Doll"}</h3>
                   <p className="text-gray-600 dark:text-gray-300">@{profile.username}</p>
                 </div>
               </div>
