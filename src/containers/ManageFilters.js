@@ -135,7 +135,7 @@ function FilterItem({ filter, filterOptions, setFilters }) {
   }
 
   return (
-    <div className="flex flex-col border-[1px] dark:border-neutral-500 rounded-xl overflow-hidden mb-3">
+    <div className="flex flex-col border-[1px] dark:border-neutral-500 rounded-xl overflow-hidden">
       <div
         className="p-3 flex justify-between items-center bg-neutral-200 dark:bg-neutral-800 cursor-pointer"
         onClick={() => {
@@ -249,13 +249,17 @@ export default function FilterSection({ profile }) {
 
   return (
     <div>
-      <div className="table">
-        {
-          filters.map((filter, index) => (
-            <FilterItem key={index} filter={filter} filterOptions={filterOptions} setFilters={setFilters} />
-          ))
-        }
-      </div>
+      {
+        filters.length > 0 ? (
+          <div className="table !space-y-3">
+            {
+              filters.map((filter, index) => (
+                <FilterItem key={index} filter={filter} filterOptions={filterOptions} setFilters={setFilters} />
+              ))
+            }
+          </div>
+        ) : null
+      }
       <button
         className={`!bg-primary px-3 py-2 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform !text-white`}
         onClick={addFilter}

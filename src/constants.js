@@ -11,7 +11,6 @@ const constants = {
         SELLER_USERNAME_ID_DIV_ID: "sellerIdDiv",
         COPY_ICON: "copySellerUsername",
         COPY_ID_ICON: "copySellerId",
-        EXCLUDED_BRANDS_DIV: "excludedBrandsDiv",
         EXCLUDED_BRANDS_SECTION: "excludedBrandsSection"
     },
     filterValuesIds: {

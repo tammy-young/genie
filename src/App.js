@@ -79,8 +79,6 @@ const App = () => {
 					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</Router>
-			<div style={{ display: "none" }} id={constants.divIds.BRANDS_ID_TO_NAME}></div>
-			<div style={{ display: "none" }} id={constants.divIds.EXCLUDED_BRANDS_DIV}></div>
 		</div>
 	);
 }
