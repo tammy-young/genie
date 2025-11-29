@@ -3,9 +3,13 @@ import ProfilePicture from "../components/profilePicture";
 import { useState } from "react";
 import { FormControl, FormLabel, Input, FormHelperText } from "@mui/joy";
 import constants from "../constants";
+import validateData from "../utils/validateData";
+import { editProfileLabels } from "../lib/labels";
+import { isEmptyObject } from "../searchUtils";
+import FormError from "../components/FormError";
 
 export default function EditProfileForm({ profile, setIsEditing }) {
-  const [error, setError] = useState("");
+  const [error, setError] = useState({});
   const dispatch = useDispatch();
   const [form, setForm] = useState({
     ...profile,
@@ -15,14 +19,10 @@ export default function EditProfileForm({ profile, setIsEditing }) {
 
   function handleEditProfile(e) {
     e.preventDefault();
-    if (form.password !== form.confirmPassword) {
-      setError("Passwords do not match");
+    const errors = validateData(form, editProfileLabels);
+    if (!isEmptyObject(errors)) {
+      setError(errors);
       return;
-    } else if (form.name.trim() === "" || form.username.trim() === "") {
-      setError("Name and username cannot be empty");
-      return;
-    } else {
-      setError("");
     }
 
     fetch(`${constants.backend.API}${constants.backend.USERS}/${profile.id}`, {
@@ -37,7 +37,7 @@ export default function EditProfileForm({ profile, setIsEditing }) {
       })
     }).then(async response => {
       if (response.ok) {
-        setError("");
+        setError({});
         return response.json();
       } else {
         const err = await response.json();
@@ -48,7 +48,7 @@ export default function EditProfileForm({ profile, setIsEditing }) {
       setForm({ ...data, password: "", confirmPassword: "" });
       setIsEditing(false);
     }).catch((error) => {
-      setError(error.error);
+      setError({ detail: error.error });
     });
   }
 
@@ -58,16 +58,18 @@ export default function EditProfileForm({ profile, setIsEditing }) {
       onSubmit={handleEditProfile}
     >
       <ProfilePicture username={profile.username} size={120} />
-      {error && <p style={{ color: 'red', margin: 0, padding: 0, textAlign: 'center' }}>{error}</p>}
+      {error.detail && <p style={{ color: 'red', margin: 0, padding: 0, textAlign: 'center' }}>{error.detail}</p>}
       <FormControl className='w-full'>
         <FormLabel className="dark:!text-white">
           Name
         </FormLabel>
         <Input
-          placeholder='Enter your name' required
+          placeholder='Enter your name'
           onChange={(e) => { setForm({ ...form, name: e.target.value }) }} value={form.name}
           className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
+          error={error.name ? true : false}
         />
+        {error.name && <FormError message={error.name} />}
       </FormControl>
       <FormControl className='w-full'>
         <FormLabel className="dark:!text-white">
@@ -77,7 +79,9 @@ export default function EditProfileForm({ profile, setIsEditing }) {
           placeholder='Enter your username' required
           onChange={(e) => { setForm({ ...form, username: e.target.value }) }} value={form.username}
           className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
+          error={error.username ? true : false}
         />
+        {error.username && <FormError message={error.username} />}
       </FormControl>
       <FormControl className='w-full'>
         <FormLabel className="dark:!text-white">
@@ -87,9 +91,9 @@ export default function EditProfileForm({ profile, setIsEditing }) {
           placeholder='Enter your new password'
           onChange={(e) => { setForm({ ...form, password: e.target.value }) }} value={form.password}
           className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
-          type="password"
+          type="password" error={error.password ? true : false}
         />
-        <FormHelperText className="dark:!text-neutral-400">Leave blank to keep current password</FormHelperText>
+        {error.password ? <FormError message={error.password} /> : <FormHelperText className="dark:!text-neutral-400">Leave blank to keep current password</FormHelperText>}
       </FormControl>
       <FormControl className='w-full'>
         <FormLabel className="dark:!text-white">
@@ -99,9 +103,9 @@ export default function EditProfileForm({ profile, setIsEditing }) {
           placeholder='Enter your new password'
           onChange={(e) => { setForm({ ...form, confirmPassword: e.target.value }) }} value={form.confirmPassword}
           className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
-          type="password" required={form.password !== ""}
+          type="password" required={form.password !== ""} error={error.confirmPassword ? true : false}
         />
-        <FormHelperText className="dark:!text-neutral-400">Leave blank if not changing password</FormHelperText>
+        {error.confirmPassword ? <FormError message={error.confirmPassword} /> : <FormHelperText className="dark:!text-neutral-400">Leave blank if not changing password</FormHelperText>}
       </FormControl>
       <div className="flex flex-row gap-4">
         <button
@@ -112,7 +116,8 @@ export default function EditProfileForm({ profile, setIsEditing }) {
         </button>
         <button
           className={`px-3 py-2 bg-neutral-500 rounded-xl flex flex-row lg:space-x-2 items-center transition-all duration-200 transform !text-white`}
-          type="submit"
+          type="button"
+          onClick={() => setIsEditing(false)}
         >
           <span className='mb-0 font-semibold'>Cancel</span>
         </button>

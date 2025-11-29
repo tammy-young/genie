@@ -38,7 +38,7 @@ export default function Wishes() {
           throw err;
         }
       }).then((data) => {
-        if (data.pagination.currentPage > data.pagination.totalPages) {
+        if (data.pagination.currentPage > data.pagination.totalPages && data.pagination.totalItems > 0) {
           setPage(1);
           return;
         }

@@ -266,3 +266,13 @@ body {
 .MuiMenu-root, .MuiAutocomplete-listbox, .MuiTooltip-popper, .base-Popper-root {
   transition-duration: 0ms !important;
 }
+
+.MuiInput-root.MuiInput-variantOutlined, .MuiAutocomplete-variantOutlined, .MuiButtonGroup-root, .MuiButton-variantOutlined {
+  border-color: #d4d4d4 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .MuiInput-root.MuiInput-variantOutlined, .MuiAutocomplete-variantOutlined, .MuiButtonGroup-root, .MuiButton-variantOutlined {
+    border-color: #525252 !important;
+  }
+}

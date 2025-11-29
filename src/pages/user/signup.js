@@ -6,6 +6,10 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import GenieLogo from '../../components/images/genieLogo';
 import { useNavigate } from 'react-router-dom';
+import validateData from '../../utils/validateData';
+import { signupLabels } from '../../lib/labels';
+import { isEmptyObject } from '../../searchUtils';
+import FormError from '../../components/FormError';
 
 export default function Signup() {
   const [form, setForm] = useState({
@@ -13,12 +17,18 @@ export default function Signup() {
     username: "",
     password: "",
   });
-  const [error, setError] = useState("");
+  const [error, setError] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   function handleSignup(e) {
     e.preventDefault();
+    const errors = validateData(form, signupLabels);
+    if (!isEmptyObject(errors)) {
+      setError(errors);
+      return;
+    }
+
     fetch(`${constants.backend.API}${constants.backend.SIGNUP}`, {
       method: 'POST',
       headers: {
@@ -27,7 +37,7 @@ export default function Signup() {
       body: JSON.stringify(form)
     }).then(async response => {
       if (response.ok) {
-        setError("");
+        setError({});
         return response.json();
       } else {
         const err = await response.json();
@@ -37,7 +47,7 @@ export default function Signup() {
       dispatch({ type: 'SET_PROFILE', payload: data });
       navigate('/');
     }).catch((error) => {
-      setError(error.error);
+      setError({ detail: error.error });
     });
   }
 
@@ -48,30 +58,43 @@ export default function Signup() {
           <GenieLogo />
         </div>
         <h2 className='sm:pt-4 pt-2 ml-0 font-semibold sm:text-2xl text-xl text-center'>Get Started</h2>
-        {error && <p style={{ color: 'red', margin: 0, padding: 0, textAlign: 'center' }}>{error}</p>}
+        {error.detail && <FormError message={error.detail} className="text-center" />}
         <form className='flex flex-col gap-4' onSubmit={handleSignup}>
           <FormControl className='w-full'>
             <FormLabel className="dark:!text-white">Name</FormLabel>
             <Input
               placeholder="Enter your name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
               className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
+              error={error.name ? true : false}
             />
+            {error.name && <FormError message={error.name} />}
           </FormControl>
           <FormControl className='w-full'>
             <FormLabel className="dark:!text-white">Username *</FormLabel>
             <Input
               placeholder="Enter your username" value={form.username} onChange={e => setForm({ ...form, username: e.target.value })}
               className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
-              required
+              required error={error.username ? true : false}
             />
+            {error.username && <FormError message={error.username} />}
           </FormControl>
           <FormControl className='w-full'>
             <FormLabel className="dark:!text-white">Password *</FormLabel>
             <Input
               placeholder="Enter your password" type="password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })}
               className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
-              required
+              required error={error.password ? true : false}
             />
+            {error.password && <FormError message={error.password} />}
+          </FormControl>
+          <FormControl className='w-full'>
+            <FormLabel className="dark:!text-white">Confirm Password *</FormLabel>
+            <Input
+              placeholder="Enter your password" type="password" value={form.confirmPassword} onChange={e => setForm({ ...form, confirmPassword: e.target.value })}
+              className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
+              required error={error.confirmPassword ? true : false}
+            />
+            {error.confirmPassword && <FormError message={error.confirmPassword} />}
           </FormControl>
           <button
             className={`px-3 py-2 rounded-xl font-semibold text-center flex flex-row lg:space-x-2 items-center transition-all duration-200 transform !text-black dark:!text-white !bg-primary`}

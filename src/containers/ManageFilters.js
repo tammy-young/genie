@@ -137,7 +137,7 @@ function FilterItem({ filter, filterOptions, setFilters }) {
   return (
     <div className="flex flex-col border-[1px] dark:border-neutral-500 rounded-xl overflow-hidden">
       <div
-        className="p-3 flex justify-between items-center bg-neutral-200 dark:bg-neutral-800 cursor-pointer"
+        className={`p-3 flex justify-between items-center ${open ? "bg-neutral-100 dark:bg-neutral-800" : "bg-[#ffffff] dark:bg-neutral-800"} cursor-pointer`}
         onClick={() => {
           if (open) {
             closeFilter();
@@ -146,8 +146,10 @@ function FilterItem({ filter, filterOptions, setFilters }) {
           }
         }}
       >
-        <h2 className="dark:text-white text-xl m-0 p-0">{filterData.name || "Untitled"}</h2>
-        <KeyboardArrowDownIcon className={`dark:!text-white transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
+        <h2 className={`${open ? "dark:text-white text-neutral-700" : "dark:text-white"} text-xl m-0 p-0`}>
+          {filterData.name || "Untitled"}
+        </h2>
+        <KeyboardArrowDownIcon className={`${open ? "dark:!text-white !text-neutral-700" : "dark:text-white"} transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
       </div>
       {open && <hr className="dark:border-neutral-700 p-0 m-0" />}
       <Collapse in={open} timeout="auto" unmountOnExit>

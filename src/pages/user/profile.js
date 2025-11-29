@@ -34,7 +34,7 @@ export default function Profile() {
               <div className="flex flex-row gap-4 items-center">
                 <ProfilePicture username={profile.username} size={120} />
                 <div>
-                  <h3 className="text-2xl font-semibold">{profile.name}</h3>
+                  <h3 className="text-2xl font-semibold">{profile.name || "Anonymous Doll"}</h3>
                   <p className="text-gray-600 dark:text-gray-300">@{profile.username}</p>
                 </div>
               </div>

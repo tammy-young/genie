@@ -8,7 +8,7 @@ export const onEnterSearch = (e, params, itemType, setIsSearching, searchedItems
 	search(params, itemType, setIsSearching, searchedItems, setSearchedItems, sortBy, setSortedItems);
 }
 
-function isEmptyObject(obj) {
+export function isEmptyObject(obj) {
 	return Object.keys(obj).length === 0;
 }
 

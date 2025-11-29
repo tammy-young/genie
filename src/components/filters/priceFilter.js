@@ -69,7 +69,7 @@ const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange = [2, 600], 
           </FormLabel>
           <ButtonGroup variant="outlined" aria-label="Currency Type Select">
             <Button
-              className={selectedBtn === 0 ? constants.filterValuesIds.SELECTED_CURRENCY + " !bg-primary" : " !bg-neutral-100 dark:!bg-neutral-800 dark:!text-white"} id="0"
+              className={selectedBtn === 0 ? constants.filterValuesIds.SELECTED_CURRENCY + " !bg-primary text-white !font-medium" : " !bg-neutral-100 dark:!bg-neutral-800 dark:!text-white"} id="0"
               style={{ fontWeight: "normal" }}
               variant={selectedBtn === 0 ? "soft" : ""} onClick={() => changeCurrencyType(0)}>
               N/A
