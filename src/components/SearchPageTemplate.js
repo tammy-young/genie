@@ -52,15 +52,15 @@ const SearchPageTemplate = ({
     });
   };
 
-  useEffect(() => {
-    let items = [...searchedItems];
-    if (sortBy === 'increasing') {
-      items.sort((a, b) => a.sellPrice - b.sellPrice);
-    } else if (sortBy === 'decreasing') {
-      items.sort((a, b) => b.sellPrice - a.sellPrice);
-    }
-    setSortedItems(items);
-  }, [sortBy]);
+  // useEffect(() => {
+  //   let items = [...searchedItems];
+  //   if (sortBy === 'increasing') {
+  //     items.sort((a, b) => a.sellPrice - b.sellPrice);
+  //   } else if (sortBy === 'decreasing') {
+  //     items.sort((a, b) => b.sellPrice - a.sellPrice);
+  //   }
+  //   setSortedItems(items);
+  // }, [sortBy]);
 
   // Merge default filter props with passed props
   const mergedFilterProps = {
