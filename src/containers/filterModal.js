@@ -66,7 +66,7 @@ function SavedFilterItem({ filter, setSavedFilter }) {
 }
 
 function SavedFilters({ setSavedFilter }) {
-  const savedFilters = useSelector((state) => state.filters);
+  const savedFilters = useSelector(state => state.filters);
   const navigate = useNavigate();
 
   return (
@@ -76,7 +76,7 @@ function SavedFilters({ setSavedFilter }) {
       </FormLabel>
       <div className="flex flex-wrap gap-2">
         {
-          savedFilters.length > 0 ? (
+          savedFilters && savedFilters.length > 0 ? (
             savedFilters.map((filter, index) => (
               <SavedFilterItem key={index} filter={filter} setSavedFilter={setSavedFilter} />
             ))
