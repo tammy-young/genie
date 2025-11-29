@@ -155,7 +155,7 @@ function FilterItem({ filter, filterOptions, setFilters }) {
           className="flex flex-col gap-3 p-3"
           onSubmit={filter.id ? updateFilter : addFilter}
         >
-          <div className="grid sm:grid-rows-2 sm:grid-cols-2 gap-3">
+          <div className="grid sm:grid-cols-2 gap-3">
             <FormControl>
               <FormLabel className="dark:!text-white">Filter Name *</FormLabel>
               <Input
