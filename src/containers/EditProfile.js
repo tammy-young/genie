@@ -8,7 +8,7 @@ import { editProfileLabels } from "../lib/labels";
 import { isEmptyObject } from "../searchUtils";
 import FormError from "../components/FormError";
 
-export default function EditProfileForm({ profile, setIsEditing }) {
+export default function EditProfileForm({ profile, setIsEditing, setShowDoneEditSnackbar }) {
   const [error, setError] = useState({});
   const dispatch = useDispatch();
   const [form, setForm] = useState({
@@ -46,6 +46,7 @@ export default function EditProfileForm({ profile, setIsEditing }) {
     }).then((data) => {
       dispatch({ type: 'SET_PROFILE', payload: data });
       setForm({ ...data, password: "", confirmPassword: "" });
+      setShowDoneEditSnackbar(true);
       setIsEditing(false);
     }).catch((error) => {
       setError({ detail: error.error });

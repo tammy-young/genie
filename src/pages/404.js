@@ -3,7 +3,7 @@ import GenieLogo from '../components/images/genieLogo';
 
 function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-4 -mt-12">
+    <div className="min-h-dvh flex flex-col items-center justify-center gap-4 -mt-12">
 
       <div className='flex flex-row justify-center sm:justify-start'>
         <div className="transform transition-transform duration-200">

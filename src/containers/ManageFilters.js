@@ -13,7 +13,7 @@ import { Modal, Box } from "@mui/material";
 import { style } from './../containers/filterModal.js';
 import ItemNameFilter from "../components/filters/itemNameFilter";
 import PriceSelector from "../components/filters/priceFilter.js";
-import Snackbar from '@mui/material/Snackbar';
+import Snackbar from '@mui/joy/Snackbar';
 
 function DeleteFilterModal({ filter, open, onClose }) {
   const dispatch = useDispatch();
@@ -135,7 +135,7 @@ function FilterItem({ filter, filterOptions, setFilters }) {
   }
 
   return (
-    <div className="flex flex-col border-[1px] dark:border-neutral-500 rounded-xl overflow-hidden">
+    <div className="flex flex-col border-[1px] dark:border-neutral-600 rounded-xl overflow-hidden">
       <div
         className={`p-3 flex justify-between items-center ${open ? "bg-neutral-100 dark:bg-neutral-800" : "bg-[#ffffff] dark:bg-neutral-800"} cursor-pointer`}
         onClick={() => {
@@ -222,10 +222,12 @@ function FilterItem({ filter, filterOptions, setFilters }) {
       <DeleteFilterModal filter={filter} open={deleteModalOpen} onClose={() => setDeleteModalOpen(false)} />
       <Snackbar
         open={snackbarOpen}
-        autoHideDuration={5000}
+        autoHideDuration={3000}
         onClose={() => setSnackbarOpen(false)}
-        message="Filter saved successfully"
-      />
+        className="dark:!bg-neutral-800 dark:!text-white dark:!border-neutral-600"
+      >
+        <p className="m-0 p-0">Filter saved successfully</p>
+      </Snackbar>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import Filters from './filters/filters.js';
 import ItemCard from './itemCard.js';
+import LoadingIndicator from './LoadingIndicator.js';
 
 const SearchPageTemplate = ({
   itemType,
@@ -78,7 +79,7 @@ const SearchPageTemplate = ({
   };
 
   return (
-    <div className='flex flex-col h-full relative'>
+    <div className='flex flex-col h-full relative site-padding flex-1'>
       <div className='sticky top-0 bg-white/95 dark:!bg-neutral-900/80 dark:text-neutral-100 z-50'>
         <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>{title} for Sale in Starbazaar</h2>
         <div className='pb-4 w-full'>
@@ -86,13 +87,11 @@ const SearchPageTemplate = ({
         </div>
       </div>
 
-      <div className='flex flex-wrap w-full sm:gap-4 justify-center pb-4 sm:space-y-0 space-y-4 mt-1'>
+      <div className='flex flex-wrap w-full sm:gap-4 justify-center pb-4 sm:space-y-0 space-y-4 mt-1 flex-1 min-h-0'>
         {
           (
             isSearching && (
-              <div className={`w-full flex justify-center items-center h-full max-h-full ${isSearching ? 'block' : 'hidden'}`}>
-                <img src={process.env.PUBLIC_URL + "sd-loading.gif"} alt="Searching..." style={{ alignSelf: "center" }} />
-              </div>
+              <LoadingIndicator />
             )
           ) || (
             sortBy === 'relevance' ? (
@@ -121,10 +120,9 @@ const SearchPageTemplate = ({
           ) || (
             (
               (searchedItems.length === 0 && !isSearching) &&
-              <div className='flex justify-center items-center w-full h-full flex-col space-y-1'>
-                <p className='m-0 p-0'>No items found.</p>
-                <p className='m-0 p-0'>Clear filters and try again!</p>
-              </div>
+              <p className="text-gray-600 dark:text-gray-300 text-center">
+                No items found matching your criteria.
+              </p>
             )
           )
         }

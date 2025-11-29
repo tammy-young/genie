@@ -18,42 +18,42 @@ import NavMenu from './components/navMenu.js';
 
 const App = () => {
 	return (
-		<div className='dark:bg-neutral-900 dark:text-neutral-100 min-h-screen'>
+		<div className='dark:bg-neutral-900 dark:text-neutral-100'>
 			<Router>
 				<Routes>
 					<Route path={constants.paths.FASHION} element={
-						<div>
+						<div className="min-h-dvh flex flex-col">
 							<div className='md:block hidden'><NavBar /></div>
 							<div className='md:hidden block'><NavMenu /></div>
-							<div className='site-padding'><FashionSearch /></div>
+							<FashionSearch />
 						</div>
 					} />
 					<Route path={constants.paths.INTERIOR} element={
-						<div>
+						<div className="min-h-dvh flex flex-col">
 							<div className='md:block hidden'><NavBar /></div>
 							<div className='md:hidden block'><NavMenu /></div>
-							<div className='site-padding'><InteriorSearch /></div>
+							<InteriorSearch />
 						</div>
 					} />
 					<Route path={constants.paths.JEWELRY} element={
-						<div>
+						<div className="min-h-dvh flex flex-col">
 							<div className='md:block hidden'><NavBar /></div>
 							<div className='md:hidden block'><NavMenu /></div>
-							<div className='site-padding'><JewelrySearch /></div>
+							<JewelrySearch />
 						</div>
 					} />
 					<Route path={constants.paths.HAIR} element={
-						<div>
+						<div className="min-h-dvh flex flex-col">
 							<div className='md:block hidden'><NavBar /></div>
 							<div className='md:hidden block'><NavMenu /></div>
-							<div className='site-padding'><HairSearch /></div>
+							<HairSearch />
 						</div>
 					} />
 					<Route path={constants.paths.ID_SEARCH} element={
-						<div>
+						<div className="min-h-dvh flex flex-col">
 							<div className='md:block hidden'><NavBar /></div>
 							<div className='md:hidden block'><NavMenu /></div>
-							<div className='site-padding'><IdSearch /></div>
+							<IdSearch />
 						</div>
 					} />
 					<Route path="/login" element={
@@ -63,17 +63,17 @@ const App = () => {
 						<Signup />
 					} />
 					<Route path="/profile" element={
-						<div>
+						<div className="min-h-dvh flex flex-col">
 							<div className='md:block hidden'><NavBar /></div>
 							<div className='md:hidden block'><NavMenu /></div>
-							<div className='site-padding'><Profile /></div>
+							<Profile />
 						</div>
 					} />
 					<Route path="/wishes" element={
-						<div>
+						<div className="min-h-dvh flex flex-col">
 							<div className='md:block hidden'><NavBar /></div>
 							<div className='md:hidden block'><NavMenu /></div>
-							<div className='site-padding'><Wishes /></div>
+							<Wishes />
 						</div>
 					} />
 					<Route path="*" element={<NotFound />} />

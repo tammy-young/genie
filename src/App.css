@@ -246,6 +246,7 @@ body {
   padding-left: min(100px, 5%);
   padding-right: min(100px, 5%);
   padding-top: 5px;
+  height: 100%;
 }
 
 .site-nav-bar-padding {
@@ -263,16 +264,27 @@ body {
   transition-duration: 300ms;
 }
 
-.MuiMenu-root, .MuiAutocomplete-listbox, .MuiTooltip-popper, .base-Popper-root {
+.MuiMenu-root,
+.MuiAutocomplete-listbox,
+.MuiTooltip-popper,
+.base-Popper-root {
   transition-duration: 0ms !important;
 }
 
-.MuiInput-root.MuiInput-variantOutlined, .MuiAutocomplete-variantOutlined, .MuiButtonGroup-root, .MuiButton-variantOutlined {
+.MuiInput-root.MuiInput-variantOutlined,
+.MuiAutocomplete-variantOutlined,
+.MuiButtonGroup-root,
+.MuiButton-variantOutlined {
   border-color: #d4d4d4 !important;
 }
 
 @media (prefers-color-scheme: dark) {
-  .MuiInput-root.MuiInput-variantOutlined, .MuiAutocomplete-variantOutlined, .MuiButtonGroup-root, .MuiButton-variantOutlined {
+
+  .MuiInput-root.MuiInput-variantOutlined,
+  .MuiAutocomplete-variantOutlined,
+  .MuiButtonGroup-root,
+  .MuiButton-variantOutlined,
+  button.border {
     border-color: #525252 !important;
   }
 }
