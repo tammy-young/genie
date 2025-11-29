@@ -50,10 +50,27 @@ export default function appReducer(state = defaultState, action) {
       saveStateToStorage(newState);
       return newState;
 
-    case 'UPDATE_FILTERS':
+    case 'ADD_FILTER':
       newState = {
         ...state,
-        filters: action.payload
+        filters: [...state.filters, action.payload]
+      };
+      saveStateToStorage(newState);
+      return newState;
+    
+    case 'UPDATE_FILTER':
+      const otherFilters = state.filters.filter(filter => filter.id !== action.payload.id);
+      newState = {
+        ...state,
+        filters: otherFilters.concat([action.payload])
+      };
+      saveStateToStorage(newState);
+      return newState;
+    
+    case 'DELETE_FILTER':
+      newState = {
+        ...state,
+        filters: state.filters.filter(filter => filter.id !== action.payload)
       };
       saveStateToStorage(newState);
       return newState;

@@ -1,53 +1,105 @@
-import { onEnterSearch } from "../../../searchUtils.js";
-import { useState, useEffect } from "react";
+import { onEnterSearch } from "../searchUtils.js";
 
-import NameSelector from '../itemNameFilter.js';
-import BrandSelector from '../brandFilter.js';
-import PriceSelector from '../priceFilter.js';
-import ExcludeBrandSelector from '../excludeBrandFilter.js';
+import NameSelector from '../components/filters/itemNameFilter.js';
+import BrandSelector from '../components/filters/brandFilter.js';
+import PriceSelector from '../components/filters/priceFilter.js';
+import ExcludeBrandSelector from '../components/filters/excludeBrandFilter.js';
 
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
-import ColourFilter from "../colourFilter.js";
-import ItemCategoryFilter from "../itemCategoryFilter.js";
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
+import ColourFilter from "../components/filters/colourFilter.js";
+import ItemCategoryFilter from "../components/filters/itemCategoryFilter.js";
+// import Select from '@mui/joy/Select';
+// import Option from '@mui/joy/Option';
+import { FormControl, FormLabel } from "@mui/joy";
+import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
-function SortingSelector({ sortBy, setSortBy }) {
-  const options = [
-    { value: 'relevance', label: 'Relevance' },
-    { value: 'increasing', label: 'Sell Price Increasing' },
-    { value: 'decreasing', label: 'Sell Price Decreasing' }
-  ];
+// function SortingSelector({ sortBy, setSortBy }) {
+//   const options = [
+//     { value: 'relevance', label: 'Relevance' },
+//     { value: 'increasing', label: 'Sell Price Increasing' },
+//     { value: 'decreasing', label: 'Sell Price Decreasing' }
+//   ];
+//   return (
+//     <Select
+//       defaultValue="relevance"
+//       value={sortBy}
+//       onChange={(e, newValue) => setSortBy(newValue)}
+//       variant="outlined"
+//       className="min-w-[150px] dark:!bg-neutral-800 dark:!text-white"
+//       slotProps={{
+//         listbox: {
+//           sx: (theme) => ({
+//             zIndex: theme.vars.zIndex.modal,
+//           }),
+//           className: 'dark:!bg-neutral-800'
+//         }
+//       }}
+//     >
+//       {
+//         options.map((option) => (
+//           <Option
+//             key={option.value}
+//             value={option.value}
+//             className="dark:!bg-neutral-800 dark:!text-white dark:hover:!bg-neutral-700 dark:aria-selected:!bg-neutral-700 aria-selected:font-bold"
+//           >
+//             {option.label}
+//           </Option>
+//         ))
+//       }
+//     </Select>
+//   )
+// }
+
+function SavedFilterItem({ filter, setSavedFilter }) {
   return (
-    <Select
-      defaultValue="relevance"
-      value={sortBy}
-      onChange={(e, newValue) => setSortBy(newValue)}
-      variant="outlined"
-      className="min-w-[150px] dark:!bg-neutral-800 dark:!text-white"
-      slotProps={{
-        listbox: {
-          sx: (theme) => ({
-            zIndex: theme.vars.zIndex.modal,
-          }),
-          className: 'dark:!bg-neutral-800'
-        }
-      }}
+    <button
+      className="p-2 px-3 border border-neutral-300 dark:border-neutral-600 rounded-full"
+      type="button"
+      onClick={() => setSavedFilter(filter)}
     >
+      <p className="font-semibold m-0 p-0">{filter.name}</p>
+    </button>
+  )
+}
+
+function SavedFilters({ setSavedFilter }) {
+  const savedFilters = useSelector((state) => state.filters);
+  const navigate = useNavigate();
+
+  return (
+    <FormControl>
+      <FormLabel className="dark:!text-white">
+        Saved Filters
+      </FormLabel>
+      <div className="flex flex-wrap gap-2">
+        {
+          savedFilters.length > 0 ? (
+            savedFilters.map((filter, index) => (
+              <SavedFilterItem key={index} filter={filter} setSavedFilter={setSavedFilter} />
+            ))
+          ) : (
+            <div className="flex flex-row items-center">
+              <p className="m-0 p-0 text-neutral-400">
+                No saved filters.
+              </p>
+              <p className="m-0 p-0 !text-primary cursor-pointer pl-1 font-medium" onClick={() => navigate('/profile')}>
+                Create one!
+              </p>
+            </div>
+          )
+        }
+      </div>
       {
-        options.map((option) => (
-          <Option
-            key={option.value}
-            value={option.value}
-            className="dark:!bg-neutral-800 dark:!text-white dark:hover:!bg-neutral-700 dark:aria-selected:!bg-neutral-700 aria-selected:font-bold"
-          >
-            {option.label}
-          </Option>
-        ))
+        savedFilters.length > 0 ? (
+          <FormLabel className="font-medium !text-primary pt-1 cursor-pointer" onClick={() => navigate('/profile')}>
+            Manage filters...
+          </FormLabel>
+        ) : null
       }
-    </Select>
+    </FormControl>
   )
 }
 
@@ -95,8 +147,10 @@ const FilterModal = ({
   sortBy,
   setSortBy,
   sortedItems,
-  setSortedItems
+  setSortedItems,
+  setSavedFilter
 }) => {
+  const userId = useSelector((state) => state.id);
 
   function validateAndSearch(e) {
     if (Object.keys(errors).length > 0) {
@@ -146,11 +200,12 @@ const FilterModal = ({
             className="flex flex-col space-y-4 w-full flex-wrap ml-0"
           >
             <div className="flex justify-between items-center">
-              <h1 className="font-bold mb-0">Filters</h1>
+              <h1 className="font-bold mb-0 sm:text-3xl text-2xl">Filters</h1>
               <CloseIcon onClick={handleClose} className="cursor-pointer !text-neutral-400" />
             </div>
             <hr className="dark:border-neutral-500" />
-            <div className="space-y-4 overflow-y-auto">
+            <div className="space-y-2 overflow-y-auto">
+              {userId ? <SavedFilters setSavedFilter={setSavedFilter} /> : null}
               {
                 brandFilter ? (
                   <BrandSelector

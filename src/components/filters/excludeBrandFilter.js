@@ -17,10 +17,10 @@ function Tag({ label, onDelete, ...other }) {
       className="flex items-center p-1 m-1 bg-gray-100 dark:!bg-neutral-700 border rounded px-2 overflow-hidden"
       {...other}
     >
-      <span className="overflow-hidden text-ellipsis whitespace-nowrap">{label}</span>
+      <span className="overflow-hidden text-ellipsis whitespace-nowrap dark:text-neutral-200">{label}</span>
       <CloseIcon
         onClick={onDelete}
-        className="ml-2 !text-base cursor-pointer hover:text-red-500"
+        className="ml-2 !text-base cursor-pointer hover:text-red-500 dark:text-neutral-300"
       />
     </div>
   );
@@ -147,7 +147,7 @@ const ExcludeBrandSelector = ({ brandsToId, setExcludedBrands, excludedBrands })
         />
       </div>
 
-      <div className='relative overflow-visible'>
+      <div className='relative overflow-visible !z-[9999]'>
         {groupedOptions.length > 0 && (
           <Listbox
             {...getListboxProps()}

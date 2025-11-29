@@ -12,7 +12,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { Modal, Box } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { style } from '../components/filters/containers/filterModal.js';
+import { style } from './../containers/filterModal.js';
 
 
 export function LogoutModal({ open, onClose }) {
@@ -34,7 +34,7 @@ export function LogoutModal({ open, onClose }) {
       <Box sx={style} className="dark:!bg-neutral-800 dark:!text-white w-[95%] sm:w-3/5 lg:w-2/5 !rounded-lg">
         <div className='p-4 flex flex-col sm:gap-1'>
           <div className="flex justify-between items-center">
-            <h1 className="font-bold mb-0">Confirm Logout</h1>
+            <h1 className="font-bold mb-0 sm:text-3xl text-2xl">Confirm Logout</h1>
           </div>
           <hr className="dark:border-neutral-500" />
           <p>Are you sure you want to logout?</p>

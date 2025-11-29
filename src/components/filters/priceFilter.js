@@ -13,9 +13,9 @@ import Input from '@mui/joy/Input';
 const defaultMin = 2;
 const defaultMax = 600;
 
-const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange, currencyType, errors, setErrors }) => {
+const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange = [2, 600], currencyType, errors, setErrors }) => {
   const [value, setValue] = useState([defaultMin, defaultMax]);
-  const [selectedBtn, setSelectedBtn] = useState(0);
+  const [selectedBtn, setSelectedBtn] = useState(currencyType ? parseInt(currencyType) : 0);
 
   const handleMinInputChange = (event) => {
     const newMin = Math.min(Number(event.target.value), value[1]);

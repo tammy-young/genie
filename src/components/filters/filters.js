@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FilterModal from "./containers/filterModal.js";
+import FilterModal from "./../../containers/filterModal.js";
 
 const Filters = ({
   isSearching,
@@ -38,6 +38,16 @@ const Filters = ({
     setSelectedColour({});
     setItemCategory({});
     setErrors({});
+  }
+
+  function setSavedFilter(filter) {
+    setSelectedBrand(filter.query.brand || {});
+    setExcludedBrands(filter.query.excludedBrands || []);
+    setSelectedColour(filter.query.colour || {});
+    setItemCategory(filter.query.itemCategory || {});
+    setPriceRange(filter.query.priceRange || [2, 600]);
+    setCurrencyType(filter.query.currencyType || '0');
+    setItemName(filter.query.itemName || '');
   }
 
   const [open, setOpen] = useState(false);
@@ -81,6 +91,7 @@ const Filters = ({
       setSortBy={setSortBy}
       sortedItems={sortedItems}
       setSortedItems={setSortedItems}
+      setSavedFilter={setSavedFilter}
     />
   )
 }
