@@ -117,7 +117,17 @@ const NavMenu = () => {
             </button>
           </a>
 
-          <ProfileMenu username={username} />
+          {
+            username ? (
+              <ProfileMenu username={username} />
+            ) : (
+              <a href='/login' target='_self' rel='noreferrer' className='hover:text-white hover:!no-underline'>
+                <button className='!bg-primary px-3 py-2 rounded-xl text-white flex flex-row lg:space-x-2 items-center transition-all duration-200 transform'>
+                  <span className='mb-0 font-semibold'>Sign In</span>
+                </button>
+              </a>
+            )
+          }
 
           <NavDropdown isActive={isActive} />
 

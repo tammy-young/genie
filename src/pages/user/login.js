@@ -10,6 +10,7 @@ import validateData from '../../utils/validateData';
 import { loginLabels } from '../../lib/labels';
 import { isEmptyObject } from '../../searchUtils';
 import FormError from '../../components/FormError';
+import { OutlinedButton } from '../../components/Button';
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -82,6 +83,12 @@ export default function Login() {
           >
             <span className='w-full text-center text-white'>Login</span>
           </button>
+          <OutlinedButton
+            onClick={() => navigate('/')}
+            className="w-full !text-black dark:!text-white text-center items-center justify-center dark:bg-neutral-800"
+          >
+            <p className='m-0 p-0 w-full'>Use Genie without an account</p>
+          </OutlinedButton>
         </form>
         <p className='!m-0 !p-0'>Don't have an account? <a href="/signup" className="!text-primary">Sign Up</a></p>
       </div>
