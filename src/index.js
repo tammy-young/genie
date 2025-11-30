@@ -5,14 +5,19 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from 'react-redux'
-import reducer, { loadStateFromStorage } from './reducer.js'
+import reducer, { loadStateFromStorageAsync } from './reducer.js'
 import { configureStore } from '@reduxjs/toolkit'
 
-const preloadedState = loadStateFromStorage();
-
 const store = configureStore({
-  reducer: reducer,
-  preloadedState: preloadedState
+  reducer: reducer
+});
+
+loadStateFromStorageAsync().then(persistedState => {
+  if (persistedState) {
+    store.dispatch({ type: 'INIT_STATE', payload: persistedState });
+  }
+}).catch(err => {
+  console.warn('Failed to load persisted state:', err);
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
