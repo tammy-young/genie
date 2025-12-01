@@ -15,15 +15,21 @@ const SearchPageTemplate = ({
 }) => {
   const {
     isSearching,
+    setIsSearching,
     searchedItems,
+    setSearchedItems,
     brands,
     setBrands,
+    colours,
     setColours,
+    categories,
     setCategories,
     showScrollToTop,
     scrollToTop,
     sortBy,
+    setSortBy,
     sortedItems,
+    setSortedItems,
     userId,
     search
   } = useSearchContext();
