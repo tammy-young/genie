@@ -7,7 +7,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from 'react-redux'
 import reducer, { loadStateFromStorageAsync } from './reducer.js'
 import { configureStore } from '@reduxjs/toolkit'
-import SearchProvider from './contexts/SearchContext';
 
 const store = configureStore({
   reducer: reducer
@@ -24,9 +23,7 @@ loadStateFromStorageAsync().then(persistedState => {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <SearchProvider>
-      <App />
-    </SearchProvider>
+    <App />
   </Provider>
 );
 

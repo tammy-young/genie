@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
-import { useSearchContext } from '../contexts/SearchContext';
+import { useState, useEffect } from 'react';
+import { search } from '../searchUtils.js';
+import { useSelector } from 'react-redux';
 
 import Filters from './filters/filters.js';
 import ItemCard from './itemCard.js';
@@ -13,35 +14,20 @@ const SearchPageTemplate = ({
   buttonColors = { bg: 'bg-blue-500', hover: 'hover:bg-blue-600' },
   defaultBrands = []
 }) => {
-  const {
-    isSearching,
-    setIsSearching,
-    searchedItems,
-    setSearchedItems,
-    brands,
-    setBrands,
-    colours,
-    setColours,
-    categories,
-    setCategories,
-    showScrollToTop,
-    scrollToTop,
-    sortBy,
-    setSortBy,
-    sortedItems,
-    setSortedItems,
-    userId,
-    search
-  } = useSearchContext();
+  // for searching
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchedItems, setSearchedItems] = useState([]);
+  const [brands, setBrands] = useState(defaultBrands);
+  const [colours, setColours] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+  const userId = useSelector(state => state.id);
+  const [sortBy, setSortBy] = useState('relevance');
+  const [sortedItems, setSortedItems] = useState([]);
 
   useEffect(() => {
     document.title = `${title} | Genie`;
-    search({ priceRange: [2, 600] }, itemType);
-
-    // Set default brands if provided
-    if (defaultBrands.length > 0) {
-      setBrands(defaultBrands);
-    }
+    search({ priceRange: [2, 600] }, itemType, setIsSearching, searchedItems, setSearchedItems, sortBy, setSortedItems);
 
     // Call the custom initialization function if provided
     if (initializeData) {
@@ -50,11 +36,46 @@ const SearchPageTemplate = ({
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollToTop(window.pageYOffset > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  // useEffect(() => {
+  //   let items = [...searchedItems];
+  //   if (sortBy === 'increasing') {
+  //     items.sort((a, b) => a.sellPrice - b.sellPrice);
+  //   } else if (sortBy === 'decreasing') {
+  //     items.sort((a, b) => b.sellPrice - a.sellPrice);
+  //   }
+  //   setSortedItems(items);
+  // }, [sortBy]);
+
   // Merge default filter props with passed props
   const mergedFilterProps = {
-    itemTypeFilter: filterProps.itemTypeFilter,
-    brandFilter: filterProps.brandFilter,
-    colourFilter: filterProps.colourFilter
+    setIsSearching,
+    isSearching,
+    searchedItems,
+    setSearchedItems,
+    brandsToId: brands,
+    coloursToId: colours,
+    itemCategoriesToId: categories,
+    sortBy,
+    setSortBy,
+    sortedItems,
+    setSortedItems,
+    ...filterProps
   };
 
   return (

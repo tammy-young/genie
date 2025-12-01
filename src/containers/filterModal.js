@@ -1,4 +1,4 @@
-import { useSearchContext } from "../contexts/SearchContext.js";
+import { onEnterSearch } from "../searchUtils.js";
 
 import NameSelector from '../components/filters/itemNameFilter.js';
 import BrandSelector from '../components/filters/brandFilter.js';
@@ -151,7 +151,6 @@ const FilterModal = ({
   setSavedFilter
 }) => {
   const userId = useSelector((state) => state.id);
-  const { onEnterSearch } = useSearchContext();
 
   function validateAndSearch(e) {
     if (Object.keys(errors).length > 0) {
@@ -162,6 +161,11 @@ const FilterModal = ({
       e,
       { selectedBrand, excludedBrands, selectedColour, itemCategory, priceRange, currencyType, itemName },
       itemType,
+      setIsSearching,
+      searchedItems,
+      setSearchedItems,
+      sortBy,
+      setSortedItems,
       handleClose
     );
   }
