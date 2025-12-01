@@ -1,22 +1,25 @@
 import { useState } from "react";
-import FilterModal from "./../../containers/filterModal.js";
+import { useSearchContext } from "../../contexts/SearchContext";
+import FilterModal from "../../containers/filterModal.js";
 
 const Filters = ({
-  isSearching,
-  setIsSearching,
-  sortBy,
-  setSortBy,
-  sortedItems,
-  setSortedItems,
-  brandsToId,
-  coloursToId,
-  itemCategoriesToId,
-  searchedItems,
-  setSearchedItems,
   itemTypeFilter = true,
   brandFilter = true,
   colourFilter = true
 }) => {
+  const {
+    isSearching,
+    setIsSearching,
+    sortBy,
+    setSortBy,
+    sortedItems,
+    setSortedItems,
+    brands: brandsToId,
+    colours: coloursToId,
+    categories: itemCategoriesToId,
+    searchedItems,
+    setSearchedItems,
+  } = useSearchContext();
   const itemType = window.location.pathname.split('/')[1] || "fashion";
 
   const [selectedBrand, setSelectedBrand] = useState({});

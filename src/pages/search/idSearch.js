@@ -2,7 +2,8 @@ import Input from '@mui/joy/Input';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useSearchContext } from '../../contexts/SearchContext';
 
 import constants from '../../constants';
 import LoadingIndicator from '../../components/LoadingIndicator';
@@ -10,7 +11,7 @@ import LoadingIndicator from '../../components/LoadingIndicator';
 const BrandItem = ({ brand }) => {
   return (
     <div
-      className="group relative dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl !border !border-gray-200 dark:border-none transition-all duration-300 transform p-6 lg:w-[23%] md:w-[30%] sm:w-[48%] w-full min-h-[120px] flex flex-col justify-between"
+      className="group relative dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl !border !border-gray-200 dark:border-none transition-all duration-300 transform p-6 lg:w-[23%] md:w-[30%] sm:w-[48%] w-full min-h-[120px] h-min flex flex-col justify-between"
     >
       <div className="flex-1 flex items-start pb-2">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight group-hover:text-primary transition-colors duration-200">
@@ -39,49 +40,21 @@ const BrandItem = ({ brand }) => {
 }
 
 const IdSearch = () => {
-
-  const [searchingFor, setSearchingFor] = useState("");
-  const [brands, setBrands] = useState([]);
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
-  const [isMakingRequest, setIsMakingRequest] = useState(false);
-
-  const updateSearchingBrand = (brand) => {
-    setSearchingFor(brand.target.value);
-  }
-
-  const getBrands = async () => {
-    setIsMakingRequest(true);
-    try {
-      const response = await fetch(constants.backend.API + constants.backend.GET_BRANDS);
-      const data = await response.json();
-      setBrands(data.brands);
-      setIsMakingRequest(false);
-    } catch (error) {
-      console.error('Error fetching brands:', error);
-    }
-  };
+  const {
+    brands,
+    searchingFor,
+    updateSearchingBrand,
+    showScrollToTop,
+    scrollToTop,
+    isMakingRequest,
+    getBrands
+  } = useSearchContext();
 
   useEffect(() => {
     getBrands();
     document.title = 'Brands | Genie';
     // eslint-disable-next-line
   }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollToTop(window.pageYOffset > 300);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
 
   return (
     <div className='relative site-padding flex-1 flex flex-col h-full'>
