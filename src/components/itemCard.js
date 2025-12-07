@@ -253,7 +253,7 @@ const ItemCard = ({ item, itemType, allBrands, userId = "", wishPage = false }) 
       wishPage && available === 0 ? <NotAvailableCard item={item} brandName={brandName} /> : (
         <div className="group relative dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform overflow-hidden !border !border-gray-200 dark:!border-none dark:!border-0 dark:border-none !min-w-[270px] sm:max-w-[30%] md:max-w-[32%] lg:max-w-[23.5%] 2xl:max-w-[19%] w-3/4">
 
-          <div className="relative overflow-hidden rounded-t-2xl">
+          <div className="relative overflow-hidden rounded-t-2xl pb-3">
             <div className="relative">
               <ItemImage itemId={itemType === "hair" ? item.customItemId : item.itemId} itemType={itemType} />
               {
