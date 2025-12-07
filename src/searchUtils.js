@@ -60,7 +60,7 @@ export const search = async (params, itemType, setIsSearching, searchedItems, se
 		setSortedItems(sorted);
 
 	} catch (error) {
-		console.error('Error fetching data:', error);
+		// console.error('Error fetching data:', error);
 	} finally {
 		setIsSearching(false);
 	}

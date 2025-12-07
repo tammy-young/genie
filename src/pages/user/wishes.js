@@ -44,7 +44,7 @@ export default function Wishes() {
         }
         setWishesData(data);
       }).catch((error) => {
-        console.error('Error fetching wishes:', error);
+        // console.error('Error fetching wishes:', error);
       });
     }
 
@@ -65,7 +65,7 @@ export default function Wishes() {
   }, []);
 
   return (
-    <div className='flex flex-col min-h-dvh relative pb-8 site-padding'>
+    <div className='flex flex-col min-h-full relative site-padding pb-8'>
       <div className='sticky top-0 bg-white/95 dark:!bg-neutral-900/80 dark:text-neutral-100 z-50 pb-2'>
         <h2 className='sm:pt-4 pt-2 ml-0 font-bold sm:text-3xl text-2xl'>My Wishes</h2>
       </div>

@@ -130,7 +130,7 @@ const ItemCard = ({ item, itemType, allBrands, userId = "", wishPage = false }) 
   const [sellerUsername, setSellerUsername] = useState("");
   const [brandName, setBrandName] = useState("");
   const [wishlisted, setWishlisted] = useState(false);
-  const [available, setAvailable] = useState(-1);   // -1: unknown, 0: not available, 1: available
+  const [available, setAvailable] = useState(-1);   // -1: unknown, 0: not available, 1: available, 2: unsure
 
   let idButtonColour = "";
   let hoverOutlineColour = "";
@@ -192,7 +192,7 @@ const ItemCard = ({ item, itemType, allBrands, userId = "", wishPage = false }) 
         setWishlisted(data.wishId !== null);
         item['wishId'] = data.wishId;
       }).catch((error) => {
-        console.error('Error checking wishlist status:', error);
+        // console.error('Error checking wishlist status:', error);
       });
     } else if (wishPage) {
       setWishlisted(true);
@@ -216,8 +216,7 @@ const ItemCard = ({ item, itemType, allBrands, userId = "", wishPage = false }) 
     }).then((data) => {
       setAvailable(data.available ? 1 : 0);
     }).catch((error) => {
-      console.error('Error checking wishlist availability:', error);
-      setAvailable(1);
+      setAvailable(2);
     });
   }
 
@@ -298,52 +297,69 @@ const ItemCard = ({ item, itemType, allBrands, userId = "", wishPage = false }) 
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-neutral-700">
-              <div className="flex items-center space-x-1 flex-1 min-w-0">
-                <span className="text-sm text-gray-600 dark:text-neutral-400">
-                  Sold by
-                </span>
-                {
-                  wishPage ? (
-                    <div className="flex items-center space-x-1 flex-1 min-w-0">
-                      <span className="text-sm text-gray-900 dark:text-white truncate max-w-20">
-                        {item.sellerUsername}
-                      </span>
-                      <IconButton
-                        className="!p-1 !min-w-0 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded-full transition-colors duration-200"
-                        onClick={() => copy(true)}
-                        aria-label="Copy Username"
-                      >
-                        <ContentCopyIcon style={{ width: '14px' }} className="text-gray-500 dark:text-neutral-400" />
-                      </IconButton>
-                    </div>
-                  ) : (
-                    <div className="flex items-center space-x-1 flex-1 min-w-0">
-                      <span className="text-sm text-gray-900 dark:text-white truncate max-w-20">
-                        {sellerUsername}
-                      </span>
-                      <IconButton
-                        className="!p-1 !min-w-0 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded-full transition-colors duration-200"
-                        onClick={() => copy(true)}
-                        aria-label="Copy Username"
-                      >
-                        <ContentCopyIcon style={{ width: '14px' }} className="text-gray-500 dark:text-neutral-400" />
-                      </IconButton>
-                    </div>
-                  )
-                }
-              </div>
+            <div className="flex flex-col justify-between pt-2 border-t border-gray-100 dark:border-neutral-700">
+              <div className='flex flex-row items-center justify-between w-full'>
+                <div className="flex items-center space-x-1 flex-1 min-w-0">
+                  <span className="text-sm text-gray-600 dark:text-neutral-400">
+                    Sold by
+                  </span>
+                  {
+                    wishPage ? (
+                      <div className="flex items-center space-x-1 flex-1 min-w-0">
+                        <span className="text-sm text-gray-900 dark:text-white truncate max-w-20">
+                          {item.sellerUsername}
+                        </span>
+                        {
+                          item.sellerUsername ? (
+                            <IconButton
+                              className="!p-1 !min-w-0 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded-full transition-colors duration-200"
+                              onClick={() => copy(true)}
+                              aria-label="Copy Username"
+                            >
+                              <ContentCopyIcon style={{ width: '14px' }} className="text-gray-500 dark:text-neutral-400" />
+                            </IconButton>
+                          ) : null
+                        }
+                      </div>
+                    ) : (
+                      <div className="flex items-center space-x-1 flex-1 min-w-0">
+                        <span className="text-sm text-gray-900 dark:text-white truncate max-w-20">
+                          {sellerUsername}
+                        </span>
+                        {
+                          sellerUsername ? (
+                            <IconButton
+                              className="!p-1 !min-w-0 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded-full transition-colors duration-200"
+                              onClick={() => copy(true)}
+                              aria-label="Copy Username"
+                            >
+                              <ContentCopyIcon style={{ width: '14px' }} className="text-gray-500 dark:text-neutral-400" />
+                            </IconButton>
+                          ) : null
+                        }
+                      </div>
+                    )
+                  }
+                </div>
 
-              <Button
-                className={`!rounded-full !px-3 !py-1 !text-xs !font-semibold !min-h-0 !h-7 flex items-center space-x-1 ${idButtonColour} ${itemType === "hair" ? '!text-black hover:!text-black' : '!text-white hover:!text-white'} hover:shadow-md transition-all duration-200 transform`}
-                onClick={() => copy(false)}
-              >
-                <span>ID</span>
-                <ContentCopyIcon
-                  style={{ width: '12px' }}
-                  className={`${itemType === "hair" ? 'text-black' : 'text-white'}`}
-                />
-              </Button>
+                <Button
+                  className={`!rounded-full !px-3 !py-1 !text-xs !font-semibold !min-h-0 !h-7 flex items-center space-x-1 ${idButtonColour} ${itemType === "hair" ? '!text-black hover:!text-black' : '!text-white hover:!text-white'} hover:shadow-md transition-all duration-200 transform`}
+                  onClick={() => copy(false)}
+                >
+                  <span>ID</span>
+                  <ContentCopyIcon
+                    style={{ width: '12px' }}
+                    className={`${itemType === "hair" ? 'text-black' : 'text-white'}`}
+                  />
+                </Button>
+              </div>
+              {
+                available === 2 ? (
+                  <p className="text-sm text-gray-600 dark:text-neutral-400 m-0 p-0 mt-1">
+                    Availability unknown. Please check manually or refresh the page.
+                  </p>
+                ) : null
+              }
             </div>
           </div>
 
