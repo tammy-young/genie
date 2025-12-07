@@ -251,9 +251,9 @@ const ItemCard = ({ item, itemType, allBrands, userId = "", wishPage = false }) 
   return (
     wishPage && available === -1 ? <SkeletonItemCard /> : (
       wishPage && available === 0 ? <NotAvailableCard item={item} brandName={brandName} /> : (
-        <div className="group relative dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform overflow-hidden !border !border-gray-200 dark:!border-none dark:!border-0 dark:border-none !min-w-[270px] sm:max-w-[30%] md:max-w-[32%] lg:max-w-[23.5%] 2xl:max-w-[19%] w-3/4">
+        <div className="group relative dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform overflow-hidden !border !border-gray-200 dark:!border-none dark:!border-0 dark:border-none !min-w-[270px] sm:max-w-[30%] md:max-w-[32%] lg:max-w-[23.5%] 2xl:max-w-[19%] w-3/4 flex flex-col">
 
-          <div className="relative overflow-hidden rounded-t-2xl pb-3">
+          <div className="relative overflow-hidden rounded-t-2xl flex-shrink-0">
             <div className="relative">
               <ItemImage itemId={itemType === "hair" ? item.customItemId : item.itemId} itemType={itemType} />
               {
@@ -266,100 +266,104 @@ const ItemCard = ({ item, itemType, allBrands, userId = "", wishPage = false }) 
             </div>
           </div>
 
-          <div className="px-3 pb-3 flex flex-col justify-between dark:!bg-neutral-800">
-            <h3 className={`mb-0 font-bold text-lg leading-tight text-gray-900 dark:text-white line-clamp-2 ${hoverTextColour} transition-colors duration-200`}>
-              {item.name}
-            </h3>
+          <div className="p-3 flex flex-col justify-between dark:!bg-neutral-800 flex-1">
+            <div>
+              <h3 className={`mb-0 font-bold text-lg leading-tight text-gray-900 dark:text-white line-clamp-2 ${hoverTextColour} transition-colors duration-200`}>
+                {item.name}
+              </h3>
 
-            <p className="text-gray-600 dark:text-neutral-400 font-medium">
-              {brandName}
-            </p>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="flex items-center space-x-1">
-                  <span className="text-xl font-bold text-gray-900 dark:text-white">
-                    {item.sellPrice}
-                  </span>
-                  <div className="w-5 h-5">
-                    {getCurrencyIcon({ item })}
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-1 line-through">
-                  <span className="text-sm text-gray-500 dark:text-neutral-400">
-                    {item.originalPrice}
-                  </span>
-                  <div className="w-5 h-5 opacity-60">
-                    {getCurrencyIcon({ item })}
-                  </div>
-                </div>
-              </div>
+              <p className="text-gray-600 dark:text-neutral-400 font-medium pb-0 mb-2">
+                {brandName}
+              </p>
             </div>
 
-            <div className="flex flex-col justify-between pt-2 border-t border-gray-100 dark:border-neutral-700">
-              <div className='flex flex-row items-center justify-between w-full'>
-                <div className="flex items-center space-x-1 flex-1 min-w-0">
-                  <span className="text-sm text-gray-600 dark:text-neutral-400">
-                    Sold by
-                  </span>
-                  {
-                    wishPage ? (
-                      <div className="flex items-center space-x-1 flex-1 min-w-0">
-                        <span className="text-sm text-gray-900 dark:text-white truncate max-w-20">
-                          {item.sellerUsername}
-                        </span>
-                        {
-                          item.sellerUsername ? (
-                            <IconButton
-                              className="!p-1 !min-w-0 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded-full transition-colors duration-200"
-                              onClick={() => copy(true)}
-                              aria-label="Copy Username"
-                            >
-                              <ContentCopyIcon style={{ width: '14px' }} className="text-gray-500 dark:text-neutral-400" />
-                            </IconButton>
-                          ) : null
-                        }
-                      </div>
-                    ) : (
-                      <div className="flex items-center space-x-1 flex-1 min-w-0">
-                        <span className="text-sm text-gray-900 dark:text-white truncate max-w-20">
-                          {sellerUsername}
-                        </span>
-                        {
-                          sellerUsername ? (
-                            <IconButton
-                              className="!p-1 !min-w-0 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded-full transition-colors duration-200"
-                              onClick={() => copy(true)}
-                              aria-label="Copy Username"
-                            >
-                              <ContentCopyIcon style={{ width: '14px' }} className="text-gray-500 dark:text-neutral-400" />
-                            </IconButton>
-                          ) : null
-                        }
-                      </div>
-                    )
-                  }
-                </div>
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-1">
+                    <span className="text-xl font-bold text-gray-900 dark:text-white">
+                      {item.sellPrice}
+                    </span>
+                    <div className="w-5 h-5">
+                      {getCurrencyIcon({ item })}
+                    </div>
+                  </div>
 
-                <Button
-                  className={`!rounded-full !px-3 !py-1 !text-xs !font-semibold !min-h-0 !h-7 flex items-center space-x-1 ${idButtonColour} ${itemType === "hair" ? '!text-black hover:!text-black' : '!text-white hover:!text-white'} hover:shadow-md transition-all duration-200 transform`}
-                  onClick={() => copy(false)}
-                >
-                  <span>ID</span>
-                  <ContentCopyIcon
-                    style={{ width: '12px' }}
-                    className={`${itemType === "hair" ? 'text-black' : 'text-white'}`}
-                  />
-                </Button>
+                  <div className="flex items-center space-x-1 line-through">
+                    <span className="text-sm text-gray-500 dark:text-neutral-400">
+                      {item.originalPrice}
+                    </span>
+                    <div className="w-5 h-5 opacity-60">
+                      {getCurrencyIcon({ item })}
+                    </div>
+                  </div>
+                </div>
               </div>
-              {
-                available === 2 ? (
-                  <p className="text-sm text-gray-600 dark:text-neutral-400 m-0 p-0 mt-1">
-                    Availability unknown. Please check manually or refresh the page.
-                  </p>
-                ) : null
-              }
+
+              <div className="flex flex-col justify-between pt-2 border-t border-gray-100 dark:border-neutral-700">
+                <div className='flex flex-row items-center justify-between w-full'>
+                  <div className="flex items-center space-x-1 flex-1 min-w-0">
+                    <span className="text-sm text-gray-600 dark:text-neutral-400">
+                      Sold by
+                    </span>
+                    {
+                      wishPage ? (
+                        <div className="flex items-center space-x-1 flex-1 min-w-0">
+                          <span className="text-sm text-gray-900 dark:text-white truncate max-w-20">
+                            {item.sellerUsername}
+                          </span>
+                          {
+                            item.sellerUsername ? (
+                              <IconButton
+                                className="!p-1 !min-w-0 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded-full transition-colors duration-200"
+                                onClick={() => copy(true)}
+                                aria-label="Copy Username"
+                              >
+                                <ContentCopyIcon style={{ width: '14px' }} className="text-gray-500 dark:text-neutral-400" />
+                              </IconButton>
+                            ) : null
+                          }
+                        </div>
+                      ) : (
+                        <div className="flex items-center space-x-1 flex-1 min-w-0">
+                          <span className="text-sm text-gray-900 dark:text-white truncate max-w-20">
+                            {sellerUsername}
+                          </span>
+                          {
+                            sellerUsername ? (
+                              <IconButton
+                                className="!p-1 !min-w-0 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded-full transition-colors duration-200"
+                                onClick={() => copy(true)}
+                                aria-label="Copy Username"
+                              >
+                                <ContentCopyIcon style={{ width: '14px' }} className="text-gray-500 dark:text-neutral-400" />
+                              </IconButton>
+                            ) : null
+                          }
+                        </div>
+                      )
+                    }
+                  </div>
+
+                  <Button
+                    className={`!rounded-full !px-3 !py-1 !text-xs !font-semibold !min-h-0 !h-7 flex items-center space-x-1 ${idButtonColour} ${itemType === "hair" ? '!text-black hover:!text-black' : '!text-white hover:!text-white'} hover:shadow-md transition-all duration-200 transform`}
+                    onClick={() => copy(false)}
+                  >
+                    <span>ID</span>
+                    <ContentCopyIcon
+                      style={{ width: '12px' }}
+                      className={`${itemType === "hair" ? 'text-black' : 'text-white'}`}
+                    />
+                  </Button>
+                </div>
+                {
+                  available === 2 ? (
+                    <p className="text-sm text-gray-600 dark:text-neutral-400 m-0 p-0 mt-1">
+                      Availability unknown. Please check manually or refresh the page.
+                    </p>
+                  ) : null
+                }
+              </div>
             </div>
           </div>
 
