@@ -87,46 +87,57 @@ const SearchPageTemplate = ({
         </div>
       </div>
 
-      <div className='flex flex-wrap w-full sm:gap-4 justify-center pb-4 sm:space-y-0 space-y-4 mt-1 flex-1 min-h-0'>
-        {
-          (
-            isSearching && (
+      {
+        (
+          isSearching && (
+            <div className='flex flex-wrap w-full sm:gap-4 justify-center items-start pb-4 sm:space-y-0 space-y-4 mt-1 flex-1 min-h-0'>
               <LoadingIndicator />
+            </div>
+          )
+        ) || (
+          sortBy === 'relevance' ? (
+            searchedItems.length !== 0 && !isSearching && (
+              <div className='flex flex-wrap w-full sm:gap-4 justify-center items-start pb-4 sm:space-y-0 space-y-4 mt-1'>
+                {
+                  searchedItems.map((item, index) => (
+                    <ItemCard
+                      key={index}
+                      item={item}
+                      itemType={itemType}
+                      allBrands={brands}
+                      userId={userId}
+                    />
+                  ))
+                }
+              </div>
             )
-          ) || (
-            sortBy === 'relevance' ? (
-              (searchedItems.length !== 0 && !isSearching) &&
-              searchedItems.map((item, index) => (
-                <ItemCard
-                  key={index}
-                  item={item}
-                  itemType={itemType}
-                  allBrands={brands}
-                  userId={userId}
-                />
-              ))
-            ) : (
-              (sortedItems.length !== 0 && !isSearching) &&
-              sortedItems.map((item, index) => (
-                <ItemCard
-                  key={index}
-                  item={item}
-                  itemType={itemType}
-                  allBrands={brands}
-                  userId={userId}
-                />
-              ))
+          ) : (
+            sortedItems.length !== 0 && !isSearching && (
+              <div className='flex flex-wrap w-full sm:gap-4 justify-center items-start pb-4 sm:space-y-0 space-y-4 mt-1'>
+                {
+                  sortedItems.map((item, index) => (
+                    <ItemCard
+                      key={index}
+                      item={item}
+                      itemType={itemType}
+                      allBrands={brands}
+                      userId={userId}
+                    />
+                  ))
+                }
+              </div>
             )
-          ) || (
-            (
-              (searchedItems.length === 0 && !isSearching) &&
+          )
+        ) || (
+          searchedItems.length === 0 && !isSearching && (
+            <div className='flex flex-wrap w-full sm:gap-4 justify-center items-start pb-4 sm:space-y-0 space-y-4 mt-1 flex-1 min-h-0'>
               <p className="text-gray-600 dark:text-gray-300 text-center">
                 No items found matching your criteria.
               </p>
-            )
+            </div>
           )
-        }
-      </div>
+        )
+      }
 
       {
         showScrollToTop && (
