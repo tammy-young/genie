@@ -133,7 +133,7 @@ export default function appReducer(state = defaultState, action) {
 
     case 'SET_PROFILE':
       newState = action.payload;
-      // saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
+      saveStateToStorage(newState)  //.catch(err => console.error('Failed to save state:', err));
       return newState;
 
     case 'ADD_FILTER':
@@ -141,7 +141,7 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         filters: [...state.filters, action.payload]
       };
-      // saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
+      saveStateToStorage(newState)  //.catch(err => console.error('Failed to save state:', err));
       return newState;
 
     case 'UPDATE_FILTER':
@@ -150,7 +150,7 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         filters: otherFilters.concat([action.payload])
       };
-      // saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
+      saveStateToStorage(newState)  // .catch(err => console.error('Failed to save state:', err));
       return newState;
 
     case 'DELETE_FILTER':
@@ -158,7 +158,7 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         filters: state.filters.filter(filter => filter.id !== action.payload)
       };
-      // saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
+      saveStateToStorage(newState)  // .catch(err => console.error('Failed to save state:', err));
       return newState;
 
     case 'UPDATE_WISHES':
@@ -166,7 +166,7 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         wishes: action.payload
       };
-      // saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
+      saveStateToStorage(newState)  // .catch(err => console.error('Failed to save state:', err));
       return newState;
 
     case 'LOGOUT':
