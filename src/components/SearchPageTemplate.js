@@ -90,14 +90,14 @@ const SearchPageTemplate = ({
       {
         (
           isSearching && (
-            <div className='flex flex-wrap w-full sm:gap-4 justify-center items-start pb-4 sm:space-y-0 space-y-4 mt-1 flex-1 min-h-0'>
+            <div className='flex flex-wrap w-full sm:gap-4 justify-center pb-4 sm:space-y-0 space-y-4 mt-1 flex-1 min-h-0'>
               <LoadingIndicator />
             </div>
           )
         ) || (
           sortBy === 'relevance' ? (
             searchedItems.length !== 0 && !isSearching && (
-              <div className='flex flex-wrap w-full sm:gap-4 justify-center items-start pb-4 sm:space-y-0 space-y-4 mt-1'>
+              <div className='flex flex-wrap w-full sm:gap-4 justify-center items-stretch content-start pb-4 sm:space-y-0 space-y-4 mt-1'>
                 {
                   searchedItems.map((item, index) => (
                     <ItemCard
@@ -113,7 +113,7 @@ const SearchPageTemplate = ({
             )
           ) : (
             sortedItems.length !== 0 && !isSearching && (
-              <div className='flex flex-wrap w-full sm:gap-4 justify-center items-start pb-4 sm:space-y-0 space-y-4 mt-1'>
+              <div className='flex flex-wrap w-full sm:gap-4 justify-center items-stretch content-start pb-4 sm:space-y-0 space-y-4 mt-1'>
                 {
                   sortedItems.map((item, index) => (
                     <ItemCard

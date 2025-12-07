@@ -23,7 +23,7 @@ const ItemImage = ({ itemId, itemType }) => {
   }
 
   return (
-    <div className="flex justify-center pb-3">
+    <div className="flex justify-center">
       {
         process.env.REACT_APP_ENV === "dev" ? (
           <div className="bg-neutral-100 dark:bg-neutral-700 p-4 w-full sm:h-44 h-56 lg:h-56 rounded flex justify-center items-center">
