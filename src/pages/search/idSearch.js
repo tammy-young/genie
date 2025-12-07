@@ -24,7 +24,7 @@ const BrandItem = ({ brand }) => {
             ID:
           </span>
           <span className="text-sm font-mono font-semibold text-gray-900 dark:text-white bg-gray-100 dark:bg-neutral-700 px-2 py-1 rounded-md">
-            {brand.id}
+            {brand.brandId}
           </span>
         </div>
 
