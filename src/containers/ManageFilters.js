@@ -76,10 +76,15 @@ function FilterItem({ filter, filterOptions, setFilters }) {
   function addFilter(e) {
     e.preventDefault();
 
+    const priceRange = !filterData.query.currencyType || filterData.query.currencyType === '0' ? [2, 600] : filterData.query.priceRange;
+
     const body = {
       name: filterData.name,
       userId: userId,
-      query: filterData.query
+      query: {
+        ...filterData.query,
+        priceRange: priceRange
+      }
     }
 
     fetch(`${constants.backend.API}${constants.backend.FILTERS}`, {
@@ -105,10 +110,15 @@ function FilterItem({ filter, filterOptions, setFilters }) {
   function updateFilter(e) {
     e.preventDefault();
 
+    const priceRange = !filterData.query.currencyType || filterData.query.currencyType === '0' ? [2, 600] : filterData.query.priceRange;
+
     const body = {
       name: filterData.name,
       userId: userId,
-      query: filterData.query
+      query: {
+        ...filterData.query,
+        priceRange: priceRange
+      }
     }
 
     fetch(`${constants.backend.API}${constants.backend.FILTERS}/${filterData.id}`, {
