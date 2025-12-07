@@ -52,7 +52,7 @@ async function decrypt(keyArray, counterArray, ciphertextArray) {
 
     return new TextDecoder().decode(decrypted);
   } catch (err) {
-    console.error('Decryption failed:', err);
+    // console.error('Decryption failed:', err);
     return null;
   }
 }
@@ -69,7 +69,7 @@ const loadStateFromStorage = () => {
     // This ensures we have a synchronous return for the initial state
     return undefined;
   } catch (err) {
-    console.error('Error loading state from localStorage:', err);
+    // console.error('Error loading state from localStorage:', err);
     return undefined;
   }
 };
@@ -93,7 +93,7 @@ const loadStateFromStorageAsync = async () => {
 
     return JSON.parse(decryptedState);
   } catch (err) {
-    console.error('Error loading state from localStorage:', err);
+    // console.error('Error loading state from localStorage:', err);
     return undefined;
   }
 };
@@ -109,7 +109,7 @@ const saveStateToStorage = async (state) => {
       world: encryptedState.iv
     }));
   } catch (err) {
-    console.error('Error saving state to localStorage:', err);
+    // console.error('Error saving state to localStorage:', err);
   }
 };
 
@@ -133,7 +133,7 @@ export default function appReducer(state = defaultState, action) {
 
     case 'SET_PROFILE':
       newState = action.payload;
-      saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
+      // saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
       return newState;
 
     case 'ADD_FILTER':
@@ -141,7 +141,7 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         filters: [...state.filters, action.payload]
       };
-      saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
+      // saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
       return newState;
 
     case 'UPDATE_FILTER':
@@ -150,7 +150,7 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         filters: otherFilters.concat([action.payload])
       };
-      saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
+      // saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
       return newState;
 
     case 'DELETE_FILTER':
@@ -158,7 +158,7 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         filters: state.filters.filter(filter => filter.id !== action.payload)
       };
-      saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
+      // saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
       return newState;
 
     case 'UPDATE_WISHES':
@@ -166,7 +166,7 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         wishes: action.payload
       };
-      saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
+      // saveStateToStorage(newState).catch(err => console.error('Failed to save state:', err));
       return newState;
 
     case 'LOGOUT':

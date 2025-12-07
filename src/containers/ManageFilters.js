@@ -27,7 +27,7 @@ function DeleteFilterModal({ filter, open, onClose }) {
         window.location.reload();
       })
       .catch((error) => {
-        console.error('Error:', error);
+        // console.error('Error:', error);
       });
   }
 
@@ -98,7 +98,7 @@ function FilterItem({ filter, filterOptions, setFilters }) {
         setSnackbarOpen(true);
       })
       .catch((error) => {
-        console.error('Error:', error);
+        // console.error('Error:', error);
       });
   }
 
@@ -126,7 +126,7 @@ function FilterItem({ filter, filterOptions, setFilters }) {
         setSnackbarOpen(true);
       })
       .catch((error) => {
-        console.error('Error:', error);
+        // console.error('Error:', error);
       });
   }
 
@@ -243,7 +243,7 @@ export default function FilterSection({ profile }) {
         setFilterOptions(data);
       })
       .catch(error => {
-        console.error('Error fetching brands:', error);
+        // console.error('Error fetching brands:', error);
       });
   }, []);
 

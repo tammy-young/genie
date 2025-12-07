@@ -57,7 +57,7 @@ const IdSearch = () => {
       setBrands(data.brands);
       setIsMakingRequest(false);
     } catch (error) {
-      console.error('Error fetching brands:', error);
+      // console.error('Error fetching brands:', error);
     }
   };
 
