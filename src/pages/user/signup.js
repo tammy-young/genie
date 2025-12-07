@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import constants from '../../constants';
 import Input from '@mui/joy/Input';
 import FormControl from '@mui/joy/FormControl';
@@ -52,6 +52,10 @@ export default function Signup() {
       setError({ detail: error.error });
     });
   }
+
+  useEffect(() => {
+    document.title = "Sign Up | Genie";
+  }, []);
 
   return (
     <div className="flex justify-center items-center min-h-dvh bg-primary-light dark:bg-neutral-900">

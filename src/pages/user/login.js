@@ -11,6 +11,7 @@ import { loginLabels } from '../../lib/labels';
 import { isEmptyObject } from '../../searchUtils';
 import FormError from '../../components/FormError';
 import { OutlinedButton } from '../../components/Button';
+import { useEffect } from 'react';
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -49,6 +50,10 @@ export default function Login() {
       setError({ detail: error.error });
     });
   }
+
+  useEffect(() => {
+    document.title = "Login | Genie";
+  }, []);
 
   return (
     <div className="flex justify-center items-center min-h-dvh bg-primary-light dark:bg-neutral-900">
