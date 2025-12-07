@@ -10,7 +10,7 @@ import LoadingIndicator from '../../components/LoadingIndicator';
 const BrandItem = ({ brand }) => {
   return (
     <div
-      className="group relative dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl !border !border-gray-200 dark:border-none transition-all duration-300 transform p-6 lg:w-[23%] md:w-[30%] sm:w-[48%] w-full min-h-[120px] flex flex-col justify-between"
+      className="group relative dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl !border !border-gray-200 dark:border-none transition-all duration-300 transform p-6 lg:w-[23%] md:w-[30%] sm:w-[48%] w-full h-min min-h-[151px] flex flex-col justify-between"
     >
       <div className="flex-1 flex items-start pb-2">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight group-hover:text-primary transition-colors duration-200">
