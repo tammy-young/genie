@@ -15,9 +15,11 @@ const ItemImage = ({ itemId, itemType }) => {
   } else if (itemType === "interior") {
     linkDesign = "text-interior-dark dark:!text-interior hover:!text-interior dark:hover:!text-interior-light";
   } else if (itemType === "jewelry") {
-    linkDesign = "text-jewelry-dark dark:!text-jewelry hover:!text-jewelry dark:hover:!text-jewelry-light";
+    linkDesign = "text-jewelry-dark dark:!text-jewelry-light hover:!text-jewelry dark:hover:!text-jewelry";
   } else if (itemType === "hair") {
     linkDesign = "text-hair-dark dark:!text-hair hover:!text-primary dark:hover:!text-hair-light";
+  } else {
+    linkDesign = "text-primary-dark dark:!text-primary-light hover:!text-primary dark:hover:!text-primary";
   }
 
   return (
