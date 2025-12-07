@@ -22,6 +22,12 @@ export function BrandSelector({ brandsToId, setSelectedBrand, selectedBrand }) {
 				autoHighlight
 				getOptionLabel={(option) => option.name || ''}
 				value={selectedBrand}
+				filterOptions={(options, state) => {
+					const filtered = options.filter(option =>
+						option.name.toLowerCase().includes(state.inputValue.toLowerCase())
+					);
+					return filtered.slice(0, 5);
+				}}
 				slotProps={{
 					listbox: {
 						sx: (theme) => ({
