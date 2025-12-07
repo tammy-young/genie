@@ -78,7 +78,7 @@ export default function Signup() {
               className='dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400'
               required error={error.username ? true : false}
             />
-            <FormHelperText>This does not have to be your Stardoll username.</FormHelperText>
+            <FormHelperText className="dark:!text-neutral-300">This does not have to be your Stardoll username.</FormHelperText>
             {error.username && <FormError message={error.username} />}
           </FormControl>
           <FormControl className='w-full'>
