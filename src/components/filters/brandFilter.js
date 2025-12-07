@@ -12,7 +12,6 @@ export function BrandSelector({ brandsToId, setSelectedBrand, selectedBrand }) {
 		getListboxProps,
 		getOptionProps,
 		groupedOptions = [],
-		value = selectedBrand,
 	} = useAutocomplete({
 		id: 'brand-hook',
 		options: brandsToId,
