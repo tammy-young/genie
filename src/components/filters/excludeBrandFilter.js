@@ -31,7 +31,7 @@ Tag.propTypes = {
   onDelete: PropTypes.func.isRequired,
 };
 
-const Listbox = styled('ul')(
+export const Listbox = styled('ul')(
   () => `
   margin: 2px 0 0;
   padding: 0;
