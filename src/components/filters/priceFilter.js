@@ -13,9 +13,9 @@ import Input from '@mui/joy/Input';
 const defaultMin = 2;
 const defaultMax = 600;
 
-const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange, currencyType, errors, setErrors }) => {
+const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange = [2, 600], currencyType, errors, setErrors }) => {
   const [value, setValue] = useState([defaultMin, defaultMax]);
-  const [selectedBtn, setSelectedBtn] = useState(0);
+  const [selectedBtn, setSelectedBtn] = useState(currencyType ? parseInt(currencyType) : 0);
 
   const handleMinInputChange = (event) => {
     const newMin = Math.min(Number(event.target.value), value[1]);
@@ -62,14 +62,14 @@ const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange, currencyTyp
 
   return (
     <div className='flex flex-col'>
-      <div className="flex flex-row space-x-2">
-        <FormControl className="pr-2">
+      <div className="grid grid-rows-1 grid-cols-[170px_1fr] gap-2">
+        <FormControl>
           <FormLabel className="dark:!text-white">
             Currency Type
           </FormLabel>
           <ButtonGroup variant="outlined" aria-label="Currency Type Select">
             <Button
-              className={selectedBtn === 0 ? constants.filterValuesIds.SELECTED_CURRENCY + " !bg-primary" : " !bg-neutral-100 dark:!bg-neutral-800 dark:!text-white"} id="0"
+              className={selectedBtn === 0 ? constants.filterValuesIds.SELECTED_CURRENCY + " !bg-primary text-white !font-medium" : " !bg-neutral-100 dark:!bg-neutral-800 dark:!text-white"} id="0"
               style={{ fontWeight: "normal" }}
               variant={selectedBtn === 0 ? "soft" : ""} onClick={() => changeCurrencyType(0)}>
               N/A
@@ -87,7 +87,7 @@ const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange, currencyTyp
           </ButtonGroup>
         </FormControl>
 
-        <div className={`flex flex-row space-x-2 ${selectedBtn === 0 ? "hidden" : ""}`}>
+        <div className={`grid grid-rows-1 grid-cols-2 gap-2 ${selectedBtn === 0 ? "hidden" : ""}`}>
           <FormControl>
             <FormLabel className="dark:!text-white">
               Min
@@ -96,7 +96,7 @@ const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange, currencyTyp
               type="number"
               id={constants.filterValuesIds.FASHION_MIN_PRICE} min={defaultMin} max={defaultMax}
               onChange={handleMinInputChange} value={priceRange[0]}
-              className='my-input font-normal text-clip dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400 w-20'
+              className='font-normal text-clip dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400 w-full'
             />
           </FormControl>
           <FormControl>
@@ -106,7 +106,7 @@ const PriceSelector = ({ setPriceRange, setCurrencyType, priceRange, currencyTyp
             <Input type="number"
               id={constants.filterValuesIds.FASHION_MAX_PRICE} min={defaultMin} max={defaultMax}
               onChange={handleMaxInputChange} value={priceRange[1]}
-              className='my-input font-normal dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400 w-20'
+              className='font-normal dark:!bg-neutral-800 dark:!text-white dark:placeholder:!text-neutral-400 w-full'
             />
           </FormControl>
         </div>

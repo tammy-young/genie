@@ -1,55 +1,18 @@
 import constants from './constants.js';
-import axios from 'axios';
 
-export const onEnterSearch = (e, params, itemType, setIsSearching, searchedItems, setSearchedItems, handleClose) => {
+export const onEnterSearch = (e, params, itemType, setIsSearching, searchedItems, setSearchedItems, sortBy, setSortedItems, handleClose) => {
 	e.preventDefault();
 	if (handleClose) {
 		handleClose();
 	}
-	search(params, itemType, setIsSearching, searchedItems, setSearchedItems);
+	search(params, itemType, setIsSearching, searchedItems, setSearchedItems, sortBy, setSortedItems);
 }
 
-export const getFilters = async (setBrandsToId, setColoursToId, setItemCategoriesToId, itemType) => {
-	try {
-		const response = await axios.get(constants.backend.API + constants.backend.GET_BRANDS);
+export function isEmptyObject(obj) {
+	return Object.keys(obj).length === 0;
+}
 
-		let brandsIdToName = response.data.brandsIdToName;
-
-		let brandsIdToNameHidden = document.getElementById(constants.divIds.BRANDS_ID_TO_NAME);
-		brandsIdToNameHidden.innerHTML = JSON.stringify(brandsIdToName);
-
-		let formattedBrandsList = [];
-		for (const [key, value] of Object.entries(brandsIdToName)) {
-			formattedBrandsList.push({ 'name': value, 'brandId': key });
-		}
-		setBrandsToId(formattedBrandsList);
-
-		let formattedColoursList = [];
-		for (const [key, value] of Object.entries(response.data.coloursToId)) {
-			formattedColoursList.push({ 'name': key, 'categoryId': value });
-		}
-		setColoursToId(formattedColoursList);
-
-		if (itemType === "fashion") {
-			let formattedFashionItemCategoriesList = [];
-			for (const [key, value] of Object.entries(response.data.fashionItemCategoriesToId)) {
-				formattedFashionItemCategoriesList.push({ 'name': key, 'categoryId': value });
-			}
-			setItemCategoriesToId(formattedFashionItemCategoriesList);
-		} else if (itemType === "interior") {
-			let formattedInteriorItemCategoriesList = [];
-			for (const [key, value] of Object.entries(response.data.interiorItemCategoriesToId)) {
-				formattedInteriorItemCategoriesList.push({ 'name': key, 'categoryId': value });
-			}
-			setItemCategoriesToId(formattedInteriorItemCategoriesList);
-		}
-		
-	} catch (error) {
-		console.error('Error fetching data:', error);
-	}
-};
-
-export const search = async (params, itemType, setIsSearching, searchedItems, setSearchedItems) => {
+export const search = async (params, itemType, setIsSearching, searchedItems, setSearchedItems, sortBy, setSortedItems) => {
 	try {
 		setIsSearching(true);
 
@@ -59,22 +22,43 @@ export const search = async (params, itemType, setIsSearching, searchedItems, se
 			setSearchedItems([]);
 		}
 
-		const response = await axios.get(constants.backend.API + constants.backend.SEARCH, {
-			params: {
-				"brandId": params.selectedBrand?.brandId,
-				"colourId": params.selectedColour?.categoryId,
-				"itemCategoryId": params.itemCategory?.categoryId,
-				"minPrice": params.priceRange[0],
-				"maxPrice": params.priceRange[1],
-				"itemName": params.itemName,
-				"currencyType": params.currencyType,
-				"excludedBrands": params.excludedBrands?.map(brand => brand.brandId),
-				"itemType": itemType
-			}
-		});
+		const reqParams = new URLSearchParams();
+		if (params.selectedBrand && !isEmptyObject(params.selectedBrand)) {
+			reqParams.append("brandId", params.selectedBrand.brandId);
+		}
+		if (params.selectedColour && !isEmptyObject(params.selectedColour)) {
+			reqParams.append("colourId", params.selectedColour.categoryId);
+		}
+		if (params.itemCategory && !isEmptyObject(params.itemCategory)) {
+			reqParams.append("itemCategoryId", params.itemCategory.categoryId);
+		}
+		if (params.priceRange) {
+			reqParams.append("minPrice", params.priceRange[0]);
+			reqParams.append("maxPrice", params.priceRange[1]);
+		}
+		if (params.itemName) {
+			reqParams.append("itemName", params.itemName);
+		}
+		if (params.currencyType) {
+			reqParams.append("currencyType", params.currencyType);
+		}
+		if (params.excludedBrands && params.excludedBrands.length > 0) {
+			reqParams.append("excludedBrands", params.excludedBrands.map(brand => brand.brandId).join(','));
+		}
+		reqParams.append("itemType", itemType);
 
-		let items = response.data.items;
-		setSearchedItems(items);
+		const response = await fetch(constants.backend.API + constants.backend.SEARCH + "?" + reqParams.toString());
+		const data = await response.json();
+		setSearchedItems(data.items);
+
+		let sorted = [];
+		if (sortBy === 'increasing') {
+			sorted = [...data.items].sort((a, b) => a.sellPrice - b.sellPrice);
+		} else if (sortBy === 'decreasing') {
+			sorted = [...data.items].sort((a, b) => b.sellPrice - a.sellPrice);
+		}
+		setSortedItems(sorted);
+
 	} catch (error) {
 		console.error('Error fetching data:', error);
 	} finally {

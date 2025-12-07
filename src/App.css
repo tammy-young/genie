@@ -31,6 +31,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -132,7 +133,6 @@
 }
 
 body {
-  background-color: #fff !important;
   color: #1f2023;
   margin: 0;
 }
@@ -147,7 +147,7 @@ body {
   height: fit-content;
 }
 
-.nav-bar .nav > a.fashion-selected.nav-link {
+.nav-bar .nav>a.fashion-selected.nav-link {
   border-radius: 30px;
   background-color: #ee6fb3;
   color: #fff !important;
@@ -158,7 +158,7 @@ body {
   gap: 5px !important;
 }
 
-.nav-bar .nav > a.interior-selected.nav-link {
+.nav-bar .nav>a.interior-selected.nav-link {
   border-radius: 30px;
   background-color: #51c0cb;
   color: #fff !important;
@@ -225,7 +225,7 @@ body {
   color: #fff !important;
 }
 
-.nav-bar .nav > a.selected.nav-link {
+.nav-bar .nav>a.selected.nav-link {
   border-radius: 30px;
   background-color: #A87CFC;
   color: #fff !important;
@@ -246,6 +246,7 @@ body {
   padding-left: min(100px, 5%);
   padding-right: min(100px, 5%);
   padding-top: 5px;
+  height: 100%;
 }
 
 .site-nav-bar-padding {
@@ -256,5 +257,34 @@ body {
 @media (max-width: 30em) {
   .nav-link div {
     display: none;
+  }
+}
+
+* {
+  transition-duration: 300ms;
+}
+
+.MuiMenu-root,
+.MuiAutocomplete-listbox,
+.MuiTooltip-popper,
+.base-Popper-root {
+  transition-duration: 0ms !important;
+}
+
+.MuiInput-root.MuiInput-variantOutlined,
+.MuiAutocomplete-variantOutlined,
+.MuiButtonGroup-root,
+.MuiButton-variantOutlined {
+  border-color: #d4d4d4 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .MuiInput-root.MuiInput-variantOutlined,
+  .MuiAutocomplete-variantOutlined,
+  .MuiButtonGroup-root,
+  .MuiButton-variantOutlined,
+  button.border {
+    border-color: #525252 !important;
   }
 }

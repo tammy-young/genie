@@ -7,12 +7,10 @@ const constants = {
         OTHER_FILTERS_DIV: "otherFilersDiv",
         ITEM_PANEL_DIV: "itemPanel",
         SEARCHING_TEXT_DIV: "searchingText",
-        BRANDS_ID_TO_NAME: "brandsIdToNameDiv",
         SELLER_USERNAME_DIV_ID: "sellerUsername",
         SELLER_USERNAME_ID_DIV_ID: "sellerIdDiv",
         COPY_ICON: "copySellerUsername",
         COPY_ID_ICON: "copySellerId",
-        EXCLUDED_BRANDS_DIV: "excludedBrandsDiv",
         EXCLUDED_BRANDS_SECTION: "excludedBrandsSection"
     },
     filterValuesIds: {
@@ -45,13 +43,20 @@ const constants = {
         INTERIOR: "/interior",
         JEWELRY: "/jewelry",
         HAIR: "/hair",
-        ID_SEARCH: "/brands"
+        ID_SEARCH: "/brands",
+        PROFILE: "/profile",
+        WISHES: "/wishes"
     },
     backend: {
         API: process.env.REACT_APP_API_URL,
-        GET_BRANDS: "/getBrands",
-        SEARCH: "/search",
-        GET_SELLER: "/getSeller"
+        GET_BRANDS: "/api/brands",
+        SEARCH: "/api/search",
+        GET_SELLER: "/api/seller",
+        LOGIN: "/auth/login",
+        SIGNUP: "/auth/signup",
+        USERS: "/users/",
+        WISHES: "/wishes",
+        FILTERS: "/filters"
     }
 }
 

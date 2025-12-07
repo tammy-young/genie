@@ -3,10 +3,10 @@ import GenieLogo from '../components/images/genieLogo';
 
 function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-4 -mt-12">
+    <div className="min-h-dvh flex flex-col items-center justify-center gap-4 -mt-12">
 
       <div className='flex flex-row justify-center sm:justify-start'>
-        <div className="transform hover:scale-105 transition-transform duration-200">
+        <div className="transform transition-transform duration-200">
           <GenieLogo />
         </div>
       </div>
@@ -24,7 +24,7 @@ function NotFound() {
             Looks like this page doesn't exist!
           </p>
           <a href='/' target='_self' rel='noreferrer' className='hover:text-white hover:!no-underline'>
-            <button className='!bg-primary px-3 py-2 rounded-xl text-white flex flex-row lg:space-x-2 items-center transition-all duration-200 transform hover:scale-105 w-full !text-center'>
+            <button className='!bg-primary px-3 py-2 rounded-xl text-white flex flex-row lg:space-x-2 items-center transition-all duration-200 transform w-full !text-center'>
               <span className='mb-0 font-semibold w-full'>Go Home</span>
             </button>
           </a>

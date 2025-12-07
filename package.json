@@ -13,14 +13,16 @@
     "@mui/icons-material": "^5.16.4",
     "@mui/joy": "^5.0.0-beta.36",
     "@mui/material": "^5.15.19",
+    "@reduxjs/toolkit": "^2.10.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.6.8",
     "bootstrap": "^4.6.2",
+    "boring-avatars": "^2.0.4",
     "cheerio": "^1.0.0-rc.12",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^6.25.1",
     "react-scripts": "^5.0.1",
     "reactstrap": "^8.9.0",
@@ -29,6 +31,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:obfuscated": "react-scripts build && javascript-obfuscator build --output build --config javascript-obfuscator.config.json",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -51,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "javascript-obfuscator": "^4.2.0",
     "tailwindcss": "^3.4.17"
   }
 }

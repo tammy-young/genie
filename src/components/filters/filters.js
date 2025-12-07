@@ -1,12 +1,22 @@
-import { getFilters } from "../../searchUtils.js";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import FilterModal from "./../../containers/filterModal.js";
 
-import FilterModal from "./containers/filterModal.js";
-
-const Filters = ({ setIsSearching, searchedItems, setSearchedItems, itemTypeFilter = true, brandFilter = true, colourFilter = true }) => {
-  const [brandsToId, setBrandsToId] = useState([]);
-  const [coloursToId, setColoursToId] = useState([]);
-  const [itemCategoriesToId, setItemCategoriesToId] = useState([]);
+const Filters = ({
+  isSearching,
+  setIsSearching,
+  sortBy,
+  setSortBy,
+  sortedItems,
+  setSortedItems,
+  brandsToId,
+  coloursToId,
+  itemCategoriesToId,
+  searchedItems,
+  setSearchedItems,
+  itemTypeFilter = true,
+  brandFilter = true,
+  colourFilter = true
+}) => {
   const itemType = window.location.pathname.split('/')[1] || "fashion";
 
   const [selectedBrand, setSelectedBrand] = useState({});
@@ -19,13 +29,6 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, itemTypeFilt
 
   const [errors, setErrors] = useState({});
 
-  useEffect(() => {
-    if (brandsToId.length === 0) {
-      getFilters(setBrandsToId, setColoursToId, setItemCategoriesToId, itemType);
-    }
-    // eslint-disable-next-line
-  }, []);
-
   function clearFilters() {
     setSelectedBrand({});
     setExcludedBrands([]);
@@ -37,6 +40,16 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, itemTypeFilt
     setErrors({});
   }
 
+  function setSavedFilter(filter) {
+    setSelectedBrand(filter.query.brand || {});
+    setExcludedBrands(filter.query.excludedBrands || []);
+    setSelectedColour(filter.query.colour || {});
+    setItemCategory(filter.query.itemCategory || {});
+    setPriceRange(filter.query.priceRange || [2, 600]);
+    setCurrencyType(filter.query.currencyType || '0');
+    setItemName(filter.query.itemName || '');
+  }
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -44,6 +57,7 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, itemTypeFilt
   return (
     <FilterModal
       open={open}
+      isSearching={isSearching}
       handleOpen={handleOpen}
       handleClose={handleClose}
       selectedBrand={selectedBrand}
@@ -73,6 +87,11 @@ const Filters = ({ setIsSearching, searchedItems, setSearchedItems, itemTypeFilt
       colourFilter={colourFilter}
       errors={errors}
       setErrors={setErrors}
+      sortBy={sortBy}
+      setSortBy={setSortBy}
+      sortedItems={sortedItems}
+      setSortedItems={setSortedItems}
+      setSavedFilter={setSavedFilter}
     />
   )
 }
