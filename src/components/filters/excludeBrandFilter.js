@@ -132,6 +132,12 @@ const ExcludeBrandSelector = ({ brandsToId, setExcludedBrands, excludedBrands })
     },
     getOptionLabel: (option) => option.name,
     value: excludedBrands,
+    filterOptions: (options, state) => {
+      const filtered = options.filter(option =>
+        option.name.toLowerCase().includes(state.inputValue.toLowerCase())
+      );
+      return filtered.slice(0, 5);
+    },
   });
 
   return (
